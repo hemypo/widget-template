@@ -97,7 +97,7 @@
 .cefalot-lead { font-size: 14px; color: var(--cf-muted); margin-top: var(--cf-s3); }
 
 .cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 0; border-radius: var(--cf-r-pill); background: var(--cf-surface-tile); color: var(--cf-ink-soft); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease); }
-.cefalot-close:active { background: var(--cf-accent); color: var(--cf-surface); }
+.cefalot-close:active { background: var(--cf-line); }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
 /* ============================================================
