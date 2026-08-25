@@ -1,5 +1,547 @@
+/* HAVAL WIDGET — Раскрытие (десктоп)
+   Файл: стили десктоп
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Шрифт бренда подключён через @font-face + {{asset:font3}} — см. DESIGN-TOKENS.md.
+
+   Токен-блок ниже скопирован дословно из expanded.mobile.css —
+   это одно и то же состояние (Раскрытие), только другой viewport,
+   поэтому переменные должны совпадать между обоими файлами.
+ */
+
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
+
+
+/* ============================================================
+   VARIABLES
+   ============================================================ */
+
+:root,
+:host {
+  --cf-ink:          #000000;
+  --cf-ink-soft:     #333333;
+  --cf-muted:        #666666;
+  --cf-line:         #E0E0E0;
+
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F5F5F5;
+  --cf-surface-tile: #F0F0F0;
+
+  --cf-accent:       #03CABF;
+  --cf-accent-ink:   #037068;
+  --cf-focus:        #03CABF;
+
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --cf-fs-label: 11px;
+
+  /*
+    Все скругления унифицированы:
+    5px для кнопок, карточек, иконок и элементов интерфейса.
+  */
+  --cf-r-sm:   5px;
+  --cf-r-md:   5px;
+  --cf-r-lg:   5px;
+  --cf-r-pill: 5px;
+
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 20px;
+  --cf-s6: 28px;
+
+  --cf-tap: 48px;
+
+  --cf-dur: 180ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+
+/* ============================================================
+   ROOT
+   Десктоп: плавающая карточка рядом с иконкой-лаунчером,
+   а не bottom sheet, как на мобильном — скругление со всех
+   сторон и «парящая» тень, без анимации docking к низу экрана.
+   ============================================================ */
+
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+
+  font-family: var(--cf-font);
+  font-size: 15px;
+  line-height: 1.5;
+
+  color: var(--cf-ink);
+
+  -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: var(--cf-s4);
+
+  width: 420px;
+  max-width: 100%;
+
+  padding:
+    var(--cf-s4)
+    var(--cf-s4)
+    var(--cf-s5);
+
+  background: var(--cf-surface);
+
+  border-radius: var(--cf-r-md);
+
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.16),
+    0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+.cefalot-custom-template-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cefalot-custom-template-content h2,
+.cefalot-custom-template-content p {
+  margin: 0;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.cefalot-menu__head {
+  display: flex;
+  align-items: flex-start;
+
+  gap: var(--cf-s3);
+}
+
+.cefalot-menu__head-text,
+.cefalot-head__text {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+
+/* Eyebrow */
+
+.cefalot-eyebrow {
+  margin-bottom: 6px;
+
+  color: var(--cf-accent-ink);
+
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  text-transform: uppercase;
+}
+
+
+/* Title */
+
+.cefalot-title {
+  color: var(--cf-ink);
+
+  font-size: 19px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+
+.cefalot-close {
+  appearance: none;
+  -webkit-appearance: none;
+
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-close svg {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Hover */
+
+.cefalot-close:hover {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-close:active {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+
+  transform: scale(0.96);
+}
+
+
+/* Focus */
+
+.cefalot-close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.cefalot-menu__nav {
+  width: 100%;
+}
+
+
+/* ============================================================
+   CHIPS
+   Десктоп: два столбца вместо мобильного вертикального списка —
+   на карточке 420px хватает ширины на пару колонок, это
+   осознанная адаптация под десктоп (см. отчёт агента).
+   ============================================================ */
+
+.cefalot-menu__chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: var(--cf-s2);
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.cefalot-menu__chips > li {
+  display: flex;
+
+  min-width: 0;
+}
+
+
+/* Chip */
+
+.cefalot-chip {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding:
+    12px
+    14px;
+
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+
+  font-family: var(--cf-font);
+  font-size: 13px;
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  text-align: center;
+  white-space: normal;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover */
+
+.cefalot-chip:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-chip:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-chip:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   BASE BUTTON
+   ============================================================ */
+
+.cefalot-btn {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: var(--cf-tap);
+
+  padding:
+    13px
+    18px;
+
+  border: 1px solid transparent;
+  border-radius: var(--cf-r-sm);
+
+  font-family: var(--cf-font);
+  font-size: 15px;
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease),
+    box-shadow var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-btn svg {
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 12px;
+
+  transition:
+    transform var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* ============================================================
+   PRIMARY CTA
+   ============================================================ */
+
+.cefalot-btn--primary {
+  background: var(--cf-ink);
+  border-color: var(--cf-ink);
+
+  color: #FFFFFF;
+}
+
+
+/* Hover */
+
+.cefalot-btn--primary:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+.cefalot-btn--primary:hover svg {
+  color: #FFFFFF;
+
+  transform: translateX(3px);
+}
+
+
+/* Active */
+
+.cefalot-btn--primary:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-btn--primary:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 3px;
+}
+
+
+/* CTA */
+
+.cefalot-menu__cta {
+  margin: 0;
+}
+
+
+/* ============================================================
+   DISABLED
+   ============================================================ */
+
+.cefalot-chip:disabled,
+.cefalot-btn:disabled,
+.cefalot-close:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   NARROW DESKTOP VIEWPORT
+   Подстраховка на случай узкого браузерного окна/маленького
+   ноутбучного экрана — сворачиваем чипы обратно в один столбец,
+   не полагаясь только на то, что рамка на полотне всегда широкая.
+   ============================================================ */
+
+@media (max-width: 460px) {
+  .cefalot-menu__chips {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   Сохраняем тот же accent-стиль интерактивных состояний
+   (сенсорные ноутбуки/моноблоки тоже десктоп-вьюпорт)
+   ============================================================ */
+
+@media (hover: none) {
+
+  .cefalot-chip:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+
+  .cefalot-btn--primary:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+  .cefalot-btn--primary:hover svg {
+    color: #FFFFFF;
+
+    transform: none;
+  }
+
+
+  .cefalot-close:hover {
+    background: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
 /* ============================================================
    Launcher — grid icon
+   Существующий блок анимации иконки-лаунчера, сохранён как есть
+   (не используется разметкой expanded.desktop.html — в ней нет
+   .cefalot-launcher__*, — но это отдельный, самостоятельный
+   контент, который не нужно терять при переписывании файла).
    ============================================================ */
 
 .cefalot-launcher__icon {
