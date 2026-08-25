@@ -1122,3 +1122,293 @@
 
   flex: 0 0 auto;
 }
+
+/* ============================================================
+   TEST DRIVE — MODEL GRID
+   ============================================================ */
+
+.cefalot-models-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: var(--cf-s4);
+
+  width: 100%;
+}
+
+
+/* ============================================================
+   MODEL CARD
+   ============================================================ */
+
+.cefalot-model-card {
+  position: relative;
+
+  display: block;
+
+  min-width: 0;
+
+  cursor: pointer;
+}
+
+
+/* Настоящий radio остаётся в DOM и передаётся в форму */
+
+.cefalot-model-card__radio {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  margin: -1px;
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 0;
+
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   CARD SURFACE
+   ============================================================ */
+
+.cefalot-model-card__surface {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    44px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: var(--cf-s3);
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 96px;
+
+  padding: var(--cf-s4);
+
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface);
+  color: var(--cf-ink);
+
+  transition:
+    background var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    box-shadow var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.cefalot-model-card:hover
+.cefalot-model-card__surface {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(-2px);
+}
+
+.cefalot-model-card:hover
+.cefalot-model-card__num {
+  background: rgba(255, 255, 255, 0.18);
+
+  color: #FFFFFF;
+}
+
+.cefalot-model-card:hover
+.cefalot-model-card__brand {
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   SELECTED
+   ============================================================ */
+
+.cefalot-model-card__radio:checked
++ .cefalot-model-card__surface {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  box-shadow:
+    0 0 0 2px rgba(3, 202, 191, 0.14);
+}
+
+.cefalot-model-card__radio:checked
++ .cefalot-model-card__surface
+.cefalot-model-card__num {
+  background: rgba(255, 255, 255, 0.18);
+
+  color: #FFFFFF;
+}
+
+.cefalot-model-card__radio:checked
++ .cefalot-model-card__surface
+.cefalot-model-card__brand {
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+   ============================================================ */
+
+.cefalot-model-card__radio:focus-visible
++ .cefalot-model-card__surface {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   NUMBER
+   ============================================================ */
+
+.cefalot-model-card__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface-soft);
+  color: var(--cf-accent);
+
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+  line-height: 1;
+
+  transition:
+    background var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* ============================================================
+   MODEL CONTENT
+   ============================================================ */
+
+.cefalot-model-card__content {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--cf-s1);
+
+  min-width: 0;
+
+  padding-right: var(--cf-s5);
+}
+
+.cefalot-model-card__brand {
+  color: var(--cf-muted);
+
+  font-size: var(--cf-fs-label);
+  font-weight: 600;
+  line-height: 1.2;
+
+  letter-spacing: var(--cf-ls-label);
+
+  text-transform: uppercase;
+
+  transition:
+    color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-model-card__name {
+  color: inherit;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   SELECTED CHECK
+   ============================================================ */
+
+.cefalot-model-card__check {
+  position: absolute;
+
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: var(--cf-r-sm);
+
+  background: #FFFFFF;
+  color: var(--cf-accent);
+
+  opacity: 0;
+
+  transform: scale(0.8);
+
+  pointer-events: none;
+
+  transition:
+    opacity var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-model-card__check svg {
+  display: block;
+
+  width: 14px;
+  height: 14px;
+}
+
+.cefalot-model-card__radio:checked
++ .cefalot-model-card__surface
+.cefalot-model-card__check {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+
+/* ============================================================
+   DISABLED
+   ============================================================ */
+
+.cefalot-model-card__radio:disabled
++ .cefalot-model-card__surface {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+}

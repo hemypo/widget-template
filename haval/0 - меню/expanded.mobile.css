@@ -1,13 +1,17 @@
-/* HAVAL WIDGET — Раскрытие (само меню/навигация)
-   Файл: стили мобильные
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
-   Оформлено как панель снизу экрана (bottom-sheet) — плоский низ,
-   слегка скруглённый верх; это чисто CSS-выбор, платформенного
-   механизма под bottom-sheet нет.
- */
+@font-face {
+  font-family: "Haval-Regular";
+  src: url("{{asset:font3}}") format("woff2");
+  font-display: swap;
+}
+
+.cefalot-custom-template-root {
+  font-family: "Haval-Regular", system-ui, sans-serif;
+}
+
+
+/* ============================================================
+   VARIABLES
+   ============================================================ */
 
 :root,
 :host {
@@ -15,20 +19,27 @@
   --cf-ink-soft:     #333333;
   --cf-muted:        #666666;
   --cf-line:         #E0E0E0;
+
   --cf-surface:      #FFFFFF;
   --cf-surface-soft: #F5F5F5;
   --cf-surface-tile: #F0F0F0;
+
   --cf-accent:       #03CABF;
   --cf-accent-ink:   #037068;
-  --cf-focus:        #000000;
+  --cf-focus:        #03CABF;
 
-  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
   --cf-fs-label: 11px;
 
-  --cf-r-sm: 6px;
-  --cf-r-md: 8px;
-  --cf-r-lg: 16px;
-  --cf-r-pill: 999px;
+  /*
+    Все скругления унифицированы:
+    5px для кнопок, карточек, иконок и элементов интерфейса.
+  */
+  --cf-r-sm:   5px;
+  --cf-r-md:   5px;
+  --cf-r-lg:   5px;
+  --cf-r-pill: 5px;
 
   --cf-s2: 8px;
   --cf-s3: 12px;
@@ -38,102 +49,979 @@
 
   --cf-tap: 48px;
 
-  --cf-dur:  180ms;
+  --cf-dur: 180ms;
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
 .cefalot-custom-template-content {
   box-sizing: border-box;
+
   font-family: var(--cf-font);
   font-size: 15px;
   line-height: 1.5;
+
   color: var(--cf-ink);
+
   -webkit-font-smoothing: antialiased;
 
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
   gap: var(--cf-s4);
+
   width: 100%;
-  padding: var(--cf-s3) var(--cf-s4) var(--cf-s6);
+
+  padding:
+    var(--cf-s3)
+    var(--cf-s4)
+    var(--cf-s6);
+
   background: var(--cf-surface);
-  border-radius: var(--cf-r-lg) var(--cf-r-lg) 0 0;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+
+  border-radius: 5px 5px 0 0;
+
+  box-shadow:
+    0 -8px 24px rgba(0, 0, 0, 0.12);
 }
+
 .cefalot-custom-template-content *,
 .cefalot-custom-template-content *::before,
 .cefalot-custom-template-content *::after {
   box-sizing: inherit;
 }
-.cefalot-custom-template-content ul { margin: 0; padding: 0; list-style: none; }
-.cefalot-custom-template-content h2,
-.cefalot-custom-template-content p { margin: 0; }
 
-/* --- Ручка bottom-sheet ---------------------------------------- */
+.cefalot-custom-template-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cefalot-custom-template-content h2,
+.cefalot-custom-template-content p {
+  margin: 0;
+}
+
+
+/* ============================================================
+   BOTTOM SHEET HANDLE
+   ============================================================ */
+
 .cefalot-sheet__handle {
   display: block;
-  width: 36px; height: 4px; margin: 0 auto;
-  border-radius: var(--cf-r-pill);
+
+  width: 36px;
+  height: 4px;
+
+  margin: 0 auto;
+
+  border-radius: 5px;
+
   background: var(--cf-line);
 }
 
-/* --- Шапка -------------------------------------------------- */
-.cefalot-menu__head { display: flex; align-items: flex-start; gap: var(--cf-s3); }
-.cefalot-menu__head-text { flex: 1 1 auto; min-width: 0; }
-.cefalot-eyebrow {
-  font-size: var(--cf-fs-label); letter-spacing: 0.6px;
-  text-transform: uppercase; font-weight: 700; color: var(--cf-accent-ink);
-  margin-bottom: 6px;
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.cefalot-menu__head {
+  display: flex;
+  align-items: flex-start;
+
+  gap: var(--cf-s3);
 }
-.cefalot-title { font-weight: 700; font-size: 19px; line-height: 1.2; color: var(--cf-ink); }
-.cefalot-lead { color: var(--cf-muted); margin-top: 6px; font-size: 13px; }
+
+.cefalot-menu__head-text,
+.cefalot-head__text {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+
+/* Eyebrow */
+
+.cefalot-eyebrow {
+  margin-bottom: 6px;
+
+  color: var(--cf-accent-ink);
+
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  text-transform: uppercase;
+}
+
+
+/* Title */
+
+.cefalot-title {
+  color: var(--cf-ink);
+
+  font-size: 19px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* Lead */
+
+.cefalot-lead {
+  margin-top: 6px;
+
+  color: var(--cf-muted);
+
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
 
 .cefalot-close {
-  flex: 0 0 auto;
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  padding: 0; border: 0; border-radius: var(--cf-r-pill);
-  background: var(--cf-surface-tile); color: var(--cf-ink-soft);
-  cursor: pointer;
-}
-.cefalot-close svg { width: 15px; height: 15px; display: block; }
+  appearance: none;
+  -webkit-appearance: none;
 
-/* --- Список разделов ------------------------------------------ */
-.cefalot-menu__list { display: flex; flex-direction: column; gap: var(--cf-s2); }
-.cefalot-menu__item {
-  display: flex; align-items: center; gap: var(--cf-s3);
-  width: 100%; min-height: var(--cf-tap); padding: var(--cf-s3) var(--cf-s4);
-  font-family: var(--cf-font); font-size: 15px; font-weight: 500; text-align: left;
-  color: var(--cf-ink); background: var(--cf-surface-soft);
-  border: 1px solid transparent; border-radius: var(--cf-r-md);
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 5px;
+
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
+
   cursor: pointer;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
 }
-.cefalot-menu__item:active { background: var(--cf-surface-tile); }
+
+.cefalot-close svg {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Hover */
+
+.cefalot-close:hover {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-close:active {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+
+  transform: scale(0.96);
+}
+
+
+/* Focus */
+
+.cefalot-close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   OLD MENU LIST
+   Оставлено для совместимости
+   ============================================================ */
+
+.cefalot-menu__list {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--cf-s2);
+}
+
+
+/* Item */
+
+.cefalot-menu__item {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--cf-s3);
+
+  width: 100%;
+  min-height: var(--cf-tap);
+
+  padding:
+    var(--cf-s3)
+    var(--cf-s4);
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  background: var(--cf-surface-soft);
+  color: var(--cf-ink);
+
+  font-family: var(--cf-font);
+  font-size: 15px;
+  font-weight: 500;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover */
+
+.cefalot-menu__item:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-menu__item:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Item icon */
+
 .cefalot-menu__item-icon {
   flex: 0 0 auto;
-  display: flex; align-items: center; justify-content: center;
-  width: 38px; height: 38px; border-radius: var(--cf-r-sm);
-  background: var(--cf-surface); color: var(--cf-accent-ink);
-}
-.cefalot-menu__item-icon svg { width: 20px; height: 20px; }
-.cefalot-menu__item-label { flex: 1 1 auto; min-width: 0; }
-.cefalot-menu__item-chevron { flex: 0 0 auto; display: flex; color: var(--cf-muted); }
-.cefalot-menu__item-chevron svg { width: 16px; height: 16px; }
 
-/* --- Подпись авторства (мелкая, ненавязчивая, не скрыта) ------- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 5px;
+
+  background: var(--cf-surface);
+  color: var(--cf-accent-ink);
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-menu__item-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* Item label */
+
+.cefalot-menu__item-label {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  transition:
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Chevron */
+
+.cefalot-menu__item-chevron {
+  flex: 0 0 auto;
+
+  display: flex;
+
+  color: var(--cf-muted);
+
+  transition:
+    color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-menu__item-chevron svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* Inner hover */
+
+.cefalot-menu__item:hover .cefalot-menu__item-icon,
+.cefalot-menu__item:active .cefalot-menu__item-icon {
+  background: transparent;
+  color: #FFFFFF;
+}
+
+.cefalot-menu__item:hover .cefalot-menu__item-label,
+.cefalot-menu__item:active .cefalot-menu__item-label,
+.cefalot-menu__item:hover .cefalot-menu__item-chevron,
+.cefalot-menu__item:active .cefalot-menu__item-chevron {
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   CREDITS
+   ============================================================ */
+
 .cefalot-cr {
   margin-top: var(--cf-s2);
+
+  color: rgba(0, 0, 0, 0.38);
+
   font-size: 10px;
   line-height: 1.3;
+
   text-align: center;
-  color: rgba(0, 0, 0, 0.38);
 }
-.cefalot-cr a { color: inherit; text-decoration: underline; }
+
+.cefalot-cr a {
+  color: inherit;
+
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.cefalot-menu__nav {
+  width: 100%;
+}
+
+
+/* ============================================================
+   CHIPS
+   ============================================================ */
+
+.cefalot-menu__chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: var(--cf-s2);
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.cefalot-menu__chips > li {
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* Chip */
+
+.cefalot-chip {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 38px;
+
+  padding:
+    16px
+    14px;
+
+  border: 1px solid var(--cf-line);
+  border-radius: 5px;
+
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+
+  font-family: var(--cf-font);
+  font-size: 13px;
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover */
+
+.cefalot-chip:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-chip:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-chip:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   BASE BUTTON
+   ============================================================ */
+
+.cefalot-btn {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: var(--cf-tap);
+
+  padding:
+    13px
+    18px;
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  font-family: var(--cf-font);
+  font-size: 15px;
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease),
+    box-shadow var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-btn svg {
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 12px;
+
+  transition:
+    transform var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* ============================================================
+   PRIMARY CTA
+   ============================================================ */
+
+.cefalot-btn--primary {
+  background: var(--cf-ink);
+  border-color: var(--cf-ink);
+
+  color: #FFFFFF;
+}
+
+
+/* Hover */
+
+.cefalot-btn--primary:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+.cefalot-btn--primary:hover svg {
+  color: #FFFFFF;
+
+  transform: translateX(3px);
+}
+
+
+/* Active */
+
+.cefalot-btn--primary:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-btn--primary:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 3px;
+}
+
+
+/* CTA */
+
+.cefalot-menu__cta {
+  margin: 0;
+}
+
+
+/* ============================================================
+   TILES
+   ============================================================ */
+
+.cefalot-menu__tiles {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: var(--cf-s2);
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.cefalot-menu__tiles > li {
+  display: flex;
+
+  min-width: 0;
+}
+
+
+/* Tile */
+
+.cefalot-tile {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: var(--cf-s3);
+
+  width: 100%;
+  min-width: 0;
+  min-height: 106px;
+
+  padding: var(--cf-s3);
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  background: var(--cf-surface-soft);
+  color: var(--cf-ink);
+
+  font-family: var(--cf-font);
+
+  text-align: left;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease),
+    box-shadow var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover */
+
+.cefalot-tile:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-tile:active {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-tile:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   TILE ICON
+   ============================================================ */
+
+.cefalot-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  border-radius: 5px;
+
+  background: var(--cf-surface);
+  color: var(--cf-accent-ink);
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-tile__icon svg {
+  display: block;
+
+  width: 22px;
+  height: 22px;
+}
+
+
+/* Hover icon */
+
+.cefalot-tile:hover .cefalot-tile__icon,
+.cefalot-tile:active .cefalot-tile__icon {
+  background: transparent;
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   TILE LABEL
+   ============================================================ */
+
+.cefalot-tile__label {
+  display: block;
+
+  max-width: 100%;
+
+  color: var(--cf-ink);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  overflow-wrap: anywhere;
+
+  transition:
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover label */
+
+.cefalot-tile:hover .cefalot-tile__label,
+.cefalot-tile:active .cefalot-tile__label {
+  color: #FFFFFF;
+}
+
+
+/* ============================================================
+   DISABLED
+   ============================================================ */
+
+.cefalot-chip:disabled,
+.cefalot-btn:disabled,
+.cefalot-tile:disabled,
+.cefalot-menu__item:disabled,
+.cefalot-close:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+  .cefalot-custom-template-content {
+    gap: var(--cf-s3);
+
+    padding:
+      var(--cf-s3)
+      var(--cf-s3)
+      calc(
+        var(--cf-s5) +
+        env(safe-area-inset-bottom, 0px)
+      );
+  }
+
+
+  /* Header */
+
+  .cefalot-title {
+    font-size: 18px;
+  }
+
+  .cefalot-lead {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+
+  /* Chips */
+
+  .cefalot-menu__chips {
+    gap: 6px;
+  }
+
+  .cefalot-chip {
+    min-height: 36px;
+
+    padding:
+      7px
+      11px;
+
+    font-size: 12px;
+  }
+
+
+  /* Tiles */
+
+  .cefalot-menu__tiles {
+    gap: 6px;
+  }
+
+  .cefalot-tile {
+    min-height: 100px;
+
+    padding: 10px;
+  }
+
+
+  /* Tile icon */
+
+  .cefalot-tile__icon {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+  .cefalot-tile__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+
+  /* Tile label */
+
+  .cefalot-tile__label {
+    font-size: 12px;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 340px) {
+
+  .cefalot-menu__tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .cefalot-tile {
+    min-height: var(--cf-tap);
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cefalot-tile__label {
+    font-size: 13px;
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   Сохраняем тот же accent-стиль интерактивных состояний
+   ============================================================ */
+
+@media (hover: none) {
+
+  .cefalot-chip:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+
+  .cefalot-btn--primary:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+  .cefalot-btn--primary:hover svg {
+    color: #FFFFFF;
+
+    transform: none;
+  }
+
+
+  .cefalot-tile:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+  .cefalot-tile:hover .cefalot-tile__icon {
+    background: transparent;
+    color: #FFFFFF;
+  }
+
+  .cefalot-tile:hover .cefalot-tile__label {
+    color: #FFFFFF;
+  }
+
+
+  .cefalot-close:hover {
+    background: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+
+  .cefalot-menu__item:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+  .cefalot-menu__item:hover .cefalot-menu__item-icon {
+    background: transparent;
+    color: #FFFFFF;
+  }
+
+  .cefalot-menu__item:hover .cefalot-menu__item-label,
+  .cefalot-menu__item:hover .cefalot-menu__item-chevron {
+    color: #FFFFFF;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .cefalot-custom-template-content *,
   .cefalot-custom-template-content *::before,
   .cefalot-custom-template-content *::after {
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
