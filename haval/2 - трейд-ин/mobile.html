@@ -622,6 +622,7 @@
               id="hv-name"
               type="text"
               name="name"
+              data-widget-catalog-field="name"
               placeholder="Введите имя"
               aria-labelledby="hv-name-l"
               required
@@ -648,6 +649,8 @@
               id="hv-phone"
               type="tel"
               name="phone"
+              data-widget-catalog-field="phone"
+              data-widget-field-type="phone"
               placeholder="+7 (9XX) XXX-XX-XX"
               aria-labelledby="hv-phone-l"
               inputmode="tel"
@@ -660,7 +663,7 @@
         </div>
 
 
-        <!-- CONSENT -->
+        <!-- CONSENTS -->
 
         <label class="cefalot-check">
 
@@ -669,6 +672,7 @@
             type="checkbox"
             id="hv-pd"
             name="agreement_pd"
+            data-widget-catalog-field="agreement_pd"
             value="1"
             data-widget-field-type="checkbox"
             required
@@ -677,14 +681,48 @@
 
           <span class="cefalot-check__text">
 
-            Согласен(на) с условиями обработки персональных данных в
+            Я даю согласие на
 
             <a
-              href="https://www.haval.ru/"
+              class="cefalot-check__link"
+              href="https://docs.yandex.ru/view/d/M7fLB9LZxYHXJ_iyHaU29iPegnqahzm72s0qoIz-cKg6R29aSkRmWVJTUQ"
               target="_blank"
               rel="noopener"
             >
-              Политике конфиденциальности
+              обработку персональных данных
+            </a>
+
+            <span class="cefalot-req">*</span>
+
+          </span>
+
+        </label>
+
+        <label class="cefalot-check">
+
+          <input
+            class="cefalot-check__box"
+            type="checkbox"
+            id="hv-third-party"
+            name="agreement_third_party"
+            data-widget-catalog-field="agreement_third_party"
+            value="1"
+            data-widget-field-type="checkbox"
+            required
+            aria-required="true"
+          >
+
+          <span class="cefalot-check__text">
+
+            Я даю согласие на предоставление персональных данных третьим лицам; ознакомлен(-а) c
+
+            <a
+              class="cefalot-check__link"
+              href="https://sales-haval-avtosalon-2000.ru/#popup:politika"
+              target="_blank"
+              rel="noopener"
+            >
+              Политикой обработки персональных данных
             </a>
 
             <span class="cefalot-req">*</span>

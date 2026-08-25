@@ -1,72 +1,29 @@
 <header class="cefalot-head">
   <div class="cefalot-head__text">
-    <p class="cefalot-eyebrow">Спецпредложения</p>
-
+    <p class="cefalot-eyebrow">Шаг 2 из 2</p>
     <h2 class="cefalot-title">
-      Выгодные условия на новый HAVAL
-    </h2>
+      Запишитесь на тест-драйв</h2>
+    <p class="cefalot-lead">
+      Оставьте контактные данные — менеджер свяжется с вами
+      и согласует удобное время тест-драйва.</p>
   </div>
-
-  <button
-    class="cefalot-close"
-    type="button"
-    data-widget-close
-    aria-label="Закрыть окно"
-  >
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <line
-        x1="2"
-        y1="2"
-        x2="14"
-        y2="14"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-      />
-      <line
-        x1="14"
-        y1="2"
-        x2="2"
-        y2="14"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-      />
-    </svg>
-  </button>
+  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </header>
+
 <div class="cefalot-body">
 
-  <div class="cefalot-step-head">
-
-    <p class="cefalot-eyebrow">
-      Шаг 2 из 2
-    </p>
-
-    <h2 class="cefalot-title">
-      Получить предложение
-    </h2>
-
-    <p class="cefalot-lead">
-      Оставьте контактные данные — менеджер свяжется с вами,
-      расскажет подробности и рассчитает вашу выгоду.
-    </p>
-
-  </div>
-
-
   <div class="cefalot-contact-form">
-
 
     <div class="cefalot-grid">
 
 
-      <!-- Имя -->
+      <!-- NAME -->
+
       <div class="cefalot-field">
 
         <span
           class="cefalot-label"
-          id="offer-name-l"
+          id="td-name-l"
         >
           Имя
 
@@ -78,12 +35,12 @@
 
         <input
           class="cefalot-input"
-          id="offer-name"
+          id="td-name"
           type="text"
           name="name"
           data-widget-field="name"
           placeholder="Введите имя"
-          aria-labelledby="offer-name-l"
+          aria-labelledby="td-name-l"
           required
           aria-required="true"
         >
@@ -91,12 +48,13 @@
       </div>
 
 
-      <!-- Телефон -->
+      <!-- PHONE -->
+
       <div class="cefalot-field">
 
         <span
           class="cefalot-label"
-          id="offer-phone-l"
+          id="td-phone-l"
         >
           Телефон
 
@@ -108,14 +66,14 @@
 
         <input
           class="cefalot-input"
-          id="offer-phone"
+          id="td-phone"
           type="tel"
           name="phone"
           data-widget-field="phone"
           data-widget-field-type="phone"
           data-widget-mask="+7 (000) 000-00-00"
           placeholder="+7 (9XX) XXX-XX-XX"
-          aria-labelledby="offer-phone-l"
+          aria-labelledby="td-phone-l"
           inputmode="tel"
           required
           aria-required="true"
@@ -126,15 +84,16 @@
     </div>
 
 
-    <div class="cefalot-consents">
+    <!-- CONSENTS -->
 
+    <div class="cefalot-consents">
 
       <label class="cefalot-check">
 
         <input
           class="cefalot-check__box"
           type="checkbox"
-          id="offer-pd"
+          id="td-pd"
           name="agreement_pd"
           data-widget-field="agreement_pd"
           data-widget-field-type="checkbox"
@@ -156,10 +115,7 @@
             обработку персональных данных
           </a>
 
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
+          <span class="cefalot-req">*</span>
 
         </span>
 
@@ -171,7 +127,7 @@
         <input
           class="cefalot-check__box"
           type="checkbox"
-          id="offer-third-party"
+          id="td-third-party"
           name="agreement_third_party"
           data-widget-field="agreement_third_party"
           data-widget-field-type="checkbox"
@@ -194,10 +150,7 @@
             Политикой обработки персональных данных
           </a>
 
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
+          <span class="cefalot-req">*</span>
 
         </span>
 
@@ -228,7 +181,6 @@
           stroke="currentColor"
           stroke-width="1.4"
         />
-
         <polyline
           points="7,1 1,6 7,11"
           stroke="currentColor"
@@ -248,7 +200,7 @@
       type="button"
       data-widget-submit
     >
-      Получить предложение
+      Записаться на тест-драйв
 
       <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
         <line
@@ -259,7 +211,6 @@
           stroke="currentColor"
           stroke-width="1.4"
         />
-
         <polyline
           points="13,1 19,6 13,11"
           stroke="currentColor"
@@ -269,7 +220,6 @@
           stroke-linejoin="round"
         />
       </svg>
-
     </button>
 
   </div>
@@ -282,12 +232,7 @@
 
   <p class="cefalot-cr">
     Разработано в
-
-    <a
-      href="https://auto.makeagency.ru"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">
       мэйк.диджитал
     </a>
   </p>
