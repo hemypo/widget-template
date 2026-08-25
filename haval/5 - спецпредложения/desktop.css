@@ -202,8 +202,8 @@
 }
 
 .cefalot-close:hover {
-  background: var(--cf-accent);
-  color: var(--cf-surface);
+  background: var(--cf-line);
+  color: var(--cf-ink);
 }
 
 .cefalot-close svg {
