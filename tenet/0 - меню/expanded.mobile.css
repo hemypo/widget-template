@@ -1,0 +1,164 @@
+/* TENET WIDGET — Раскрытие (само меню/навигация)
+   Файл: стили мобильные
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Оформлено как панель снизу экрана (bottom-sheet) — плоский низ,
+   скруглённый верх; это чисто CSS-выбор, платформенного механизма
+   под bottom-sheet нет.
+ */
+
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-regular}}") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-medium}}") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TENET Sans Display";
+  src: url("{{asset:tenet-sans-semiexpanded-bold}}") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root,
+:host {
+  --tw-ink:          #3E3A39;
+  --tw-ink-soft:     #615952;
+  --tw-muted:        #80756B;
+  --tw-line:         #D8CEC5;
+  --tw-surface:      #FFFFFF;
+  --tw-surface-soft: #F7F3EF;
+  --tw-surface-tile: #F2EDE8;
+  --tw-cta:          #D8CEC5;
+  --tw-cta-hover:    #CBBEB0;
+  --tw-cta-active:   #BFB1A2;
+  --tw-cta-ink:      #4A443F;
+  --tw-focus:        #3E3A39;
+
+  --tw-font:         "TENET Sans", Arial, Helvetica, sans-serif;
+  --tw-font-display: "TENET Sans Display", "TENET Sans", Arial, Helvetica, sans-serif;
+  --tw-fs-label:     11px;
+  --tw-fs-caption:   12px;
+  --tw-fs-body:      15px;
+  --tw-ls-label:     1px;
+  --tw-ls-btn:       1px;
+
+  --tw-r-sm: 12px;
+  --tw-r-lg: 20px;
+  --tw-r-pill: 999px;
+
+  --tw-s2: 8px;
+  --tw-s3: 12px;
+  --tw-s4: 16px;
+  --tw-s5: 24px;
+  --tw-s6: 32px;
+
+  --tw-control-h: 56px;
+  --tw-tap: 44px;
+
+  --tw-dur:  200ms;
+  --tw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-body);
+  line-height: 1.5;
+  color: var(--tw-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--tw-s4);
+  padding: var(--tw-s5) var(--tw-s4) var(--tw-s6);
+  background: var(--tw-surface-soft);
+  border-radius: var(--tw-r-lg) var(--tw-r-lg) 0 0;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+.cefalot-custom-template-content ul,
+.cefalot-custom-template-content ol { margin: 0; padding: 0; list-style: none; }
+.cefalot-custom-template-content h2,
+.cefalot-custom-template-content p { margin: 0; }
+
+.tw-head { display: flex; align-items: flex-start; gap: var(--tw-s4); }
+.tw-head__text { flex: 1 1 auto; min-width: 0; }
+.tw-eyebrow { font-size: var(--tw-fs-label); letter-spacing: var(--tw-ls-label); text-transform: uppercase; color: var(--tw-muted); margin-bottom: var(--tw-s2); }
+.tw-title { font-family: var(--tw-font-display); font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--tw-ink); font-size: 24px; line-height: 1.15; }
+.tw-lead { color: var(--tw-muted); margin-top: var(--tw-s3); font-size: 14px; }
+
+.tw-close {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  padding: 0; border: 0; border-radius: var(--tw-r-pill);
+  background: var(--tw-surface-tile); color: var(--tw-ink-soft);
+  cursor: pointer;
+}
+.tw-close svg { width: 16px; height: 16px; display: block; }
+
+.tw-menu__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--tw-s2); }
+.tw-chip {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  width: 100%; min-height: var(--tw-tap); padding: 12px 10px;
+  font-family: var(--tw-font); font-size: 11px;
+  letter-spacing: var(--tw-ls-label); text-transform: uppercase;
+  color: var(--tw-ink-soft); background: var(--tw-surface);
+  border: 1px solid var(--tw-line); border-radius: var(--tw-r-sm);
+  cursor: pointer;
+}
+
+.tw-menu__cta { width: 100%; }
+.tw-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--tw-s3);
+  min-height: var(--tw-control-h); padding: 16px 20px;
+  font-family: var(--tw-font); font-size: 13px; letter-spacing: var(--tw-ls-btn);
+  text-transform: uppercase; text-decoration: none;
+  border: 1px solid transparent; border-radius: var(--tw-r-sm);
+  cursor: pointer;
+  transition: background var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+}
+.tw-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+.tw-btn:active { transform: translateY(1px); }
+.tw-btn--primary { background: var(--tw-cta); color: var(--tw-cta-ink); }
+.tw-btn--primary:active { background: var(--tw-cta-active); }
+
+.tw-menu__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--tw-s2); }
+.tw-tile {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: var(--tw-s2); width: 100%; height: 100%; padding: var(--tw-s3);
+  text-align: center; text-decoration: none; color: var(--tw-ink-soft);
+  background: var(--tw-surface); border: 1px solid transparent; border-radius: var(--tw-r-lg);
+  cursor: pointer;
+}
+.tw-tile__icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: var(--tw-r-lg);
+  background: var(--tw-surface-tile); color: var(--tw-ink-soft);
+}
+.tw-tile__icon svg { width: 26px; height: 26px; }
+.tw-tile__label { font-size: 11px; letter-spacing: var(--tw-ls-label); text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

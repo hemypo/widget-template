@@ -1,0 +1,444 @@
+/* TENET WIDGET — Заказать звонок
+   Файл: стили общие
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+ */
+
+/* ============================================================
+   ШРИФТЫ — подключаются ассетами платформы ({{asset:key}}).
+   Загрузите файлы через кнопки медиа и укажите свои ключи.
+   ============================================================ */
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-regular}}") format("otf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-medium}}") format("otf");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   ТОКЕНЫ ДИЗАЙН-СИСТЕМЫ (сняты с tenet.ru)
+   ============================================================ */
+:root,
+:host {
+  /* Цвет */
+  --tw-ink:          #3E3A39;
+  --tw-ink-strong:   #2F2B2A;
+  --tw-ink-soft:     #615952;
+  --tw-muted:        #80756B;
+  --tw-line:         #D8CEC5;
+  --tw-line-soft:    #EDE7E1;
+  --tw-surface:      #FFFFFF;
+  --tw-surface-soft: #F7F3EF;
+  --tw-surface-tile: #F2EDE8;
+  --tw-accent:       #C30D23;
+  --tw-cta:          #D8CEC5;
+  --tw-cta-hover:    #CBBEB0;
+  --tw-cta-active:   #BFB1A2;
+  --tw-cta-ink:      #4A443F;
+  --tw-disabled:     #E7E0D9;
+  --tw-focus:        #3E3A39;
+
+  /* Типографика */
+  --tw-font:         "TENET Sans", Arial, Helvetica, sans-serif;
+  --tw-font-display: "TENET Sans", Arial, Helvetica, sans-serif;
+  --tw-fs-label:     11px;
+  --tw-fs-caption:   12px;
+  --tw-fs-body:      15px;
+  --tw-fs-input:     16px;   /* 16px — чтобы iOS не зумил поле при фокусе */
+  --tw-ls-label:     1px;
+  --tw-ls-btn:       1px;
+
+  /* Скругления */
+  --tw-r-xs: 8px;
+  --tw-r-sm: 12px;
+  --tw-r-md: 16px;
+  --tw-r-lg: 20px;
+  --tw-r-xl: 28px;
+  --tw-r-pill: 999px;
+
+  /* Шкала отступов */
+  --tw-s1: 4px;
+  --tw-s2: 8px;
+  --tw-s3: 12px;
+  --tw-s4: 16px;
+  --tw-s5: 24px;
+  --tw-s6: 32px;
+  --tw-s7: 40px;
+  --tw-s8: 56px;
+
+  /* Контролы */
+  --tw-control-h: 56px;
+  --tw-tap:        44px;
+
+  /* Движение */
+  --tw-dur:  200ms;
+  --tw-dur-l: 300ms;
+  --tw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Тени */
+  --tw-shadow-sm: 0 1px 2px rgba(62, 58, 57, 0.06);
+  --tw-shadow-md: 0 8px 24px rgba(62, 58, 57, 0.10);
+}
+
+/* ============================================================
+   БАЗА. Размеры и позиционирование окна НЕ задаются —
+   их выставляет редактор платформы.
+   ============================================================ */
+.cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-body);
+  line-height: 1.5;
+  color: var(--tw-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after {
+  box-sizing: inherit;
+}
+.cefalot-form-custom-template-content p,
+.cefalot-form-custom-template-content h1,
+.cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3,
+.cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul,
+.cefalot-form-custom-template-content ol {
+  margin: 0;
+  padding: 0;
+}
+.cefalot-form-custom-template-content ul,
+.cefalot-form-custom-template-content ol { list-style: none; }
+
+/* --- Шапка ------------------------------------------------ */
+.tw-head { display: flex; align-items: flex-start; gap: var(--tw-s4); }
+.tw-head__text { flex: 1 1 auto; min-width: 0; }
+.tw-eyebrow {
+  font-size: var(--tw-fs-label);
+  letter-spacing: var(--tw-ls-label);
+  text-transform: uppercase;
+  color: var(--tw-muted);
+  margin-bottom: var(--tw-s2);
+}
+.tw-title {
+  font-family: var(--tw-font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--tw-ink);
+}
+.tw-lead { color: var(--tw-muted); margin-top: var(--tw-s3); }
+
+/* --- Кнопка закрытия -------------------------------------- */
+.tw-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tw-tap);
+  height: var(--tw-tap);
+  padding: 0;
+  border: 0;
+  border-radius: var(--tw-r-pill);
+  background: var(--tw-surface-tile);
+  color: var(--tw-ink-soft);
+  cursor: pointer;
+  transition: background var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease);
+}
+.tw-close:hover { background: var(--tw-line); }
+.tw-close svg { width: 16px; height: 16px; display: block; }
+
+/* --- Поля -------------------------------------------------- */
+.tw-field { display: flex; flex-direction: column; gap: var(--tw-s2); min-width: 0; }
+.tw-field--wide { grid-column: 1 / -1; }
+.tw-label {
+  display: block;
+  font-size: var(--tw-fs-label);
+  letter-spacing: var(--tw-ls-label);
+  text-transform: uppercase;
+  color: var(--tw-muted);
+}
+.tw-req { color: var(--tw-accent); margin-left: 2px; }
+
+.tw-input,
+.tw-select,
+.tw-textarea {
+  width: 100%;
+  min-height: var(--tw-control-h);
+  padding: 15px 20px;
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-input);
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: var(--tw-ink);
+  background: var(--tw-surface);
+  border: 1px solid var(--tw-line);
+  border-radius: var(--tw-r-sm);
+  outline: none;
+  transition: border-color var(--tw-dur) var(--tw-ease), box-shadow var(--tw-dur) var(--tw-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tw-textarea { min-height: 108px; resize: vertical; }
+.tw-input::placeholder,
+.tw-textarea::placeholder { color: var(--tw-muted); opacity: 1; }
+.tw-input:hover,
+.tw-select:hover,
+.tw-textarea:hover { border-color: var(--tw-cta-hover); }
+.tw-input:focus-visible,
+.tw-select:focus-visible,
+.tw-textarea:focus-visible,
+.tw-input:focus,
+.tw-select:focus,
+.tw-textarea:focus {
+  border-color: var(--tw-focus);
+  box-shadow: 0 0 0 3px rgba(62, 58, 57, 0.12);
+}
+.tw-input:disabled,
+.tw-select:disabled { background: var(--tw-surface-soft); color: var(--tw-muted); cursor: not-allowed; }
+
+/* Стрелка селекта — инлайновый градиент, без url() */
+.tw-select-wrap { position: relative; display: block; }
+.tw-select { padding-right: 48px; cursor: pointer; }
+.tw-select-wrap .tw-caret {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  pointer-events: none;
+  color: var(--tw-muted);
+}
+.tw-select-wrap .tw-caret svg { width: 12px; height: 12px; display: block; }
+.tw-hint { font-size: var(--tw-fs-caption); color: var(--tw-muted); }
+.tw-hint--error { color: var(--tw-accent); }
+
+/* --- Чекбоксы и радио -------------------------------------- */
+.tw-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tw-s3);
+  min-height: var(--tw-tap);
+  padding: 10px 0;
+  cursor: pointer;
+}
+.tw-check__box {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 1px solid var(--tw-line);
+  border-radius: 6px;
+  background: var(--tw-surface);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  transition: border-color var(--tw-dur) var(--tw-ease), background var(--tw-dur) var(--tw-ease);
+}
+.tw-check__box:checked { background: var(--tw-ink); border-color: var(--tw-ink); }
+.tw-check__box:checked::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 6px;
+  height: 11px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.tw-check__box:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+.tw-check__text { font-size: var(--tw-fs-caption); line-height: 1.5; color: var(--tw-muted); }
+.tw-check__text a { color: var(--tw-ink); text-decoration: underline; }
+
+/* --- Карточки выбора (радио-плитки) ------------------------ */
+.tw-choice { position: relative; display: block; }
+.tw-choice__input {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tw-choice__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tw-s2);
+  padding: var(--tw-s4) var(--tw-s5);
+  min-height: var(--tw-tap);
+  border: 1px solid var(--tw-line);
+  border-radius: var(--tw-r-md);
+  background: var(--tw-surface);
+  transition: border-color var(--tw-dur) var(--tw-ease), background var(--tw-dur) var(--tw-ease), box-shadow var(--tw-dur) var(--tw-ease);
+}
+.tw-choice__input:hover + .tw-choice__body { border-color: var(--tw-cta-hover); }
+.tw-choice__input:checked + .tw-choice__body {
+  border-color: var(--tw-ink);
+  background: var(--tw-surface-soft);
+  box-shadow: inset 0 0 0 1px var(--tw-ink);
+}
+.tw-choice__input:focus-visible + .tw-choice__body { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+.tw-choice { height: 100%; }
+.tw-choice__body { height: 100%; }
+.tw-choice__top { display: flex; align-items: center; justify-content: space-between; gap: var(--tw-s2); }
+.tw-choice__title { font-weight: 500; color: var(--tw-ink); }
+.tw-choice__meta { font-size: var(--tw-fs-caption); color: var(--tw-muted); margin-top: auto; }
+.tw-choice__badge {
+  flex: 0 0 auto;
+  align-self: center;
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: var(--tw-ls-label);
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--tw-accent);
+  padding: 4px 8px;
+  border-radius: var(--tw-r-xs);
+}
+
+/* --- Кнопки ------------------------------------------------ */
+.tw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tw-s3);
+  min-height: var(--tw-control-h);
+  padding: 16px 32px;
+  font-family: var(--tw-font);
+  font-size: 13px;
+  letter-spacing: var(--tw-ls-btn);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--tw-r-sm);
+  cursor: pointer;
+  transition: background var(--tw-dur) var(--tw-ease), border-color var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+}
+.tw-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+.tw-btn:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+.tw-btn:active { transform: translateY(1px); }
+
+.tw-btn--primary { background: var(--tw-cta); color: var(--tw-cta-ink); }
+.tw-btn--primary:hover { background: var(--tw-cta-hover); }
+.tw-btn--primary:active { background: var(--tw-cta-active); }
+
+.tw-btn--dark { background: var(--tw-ink); color: #FFFFFF; }
+.tw-btn--dark:hover { background: var(--tw-ink-strong); }
+
+.tw-btn--ghost { background: transparent; color: var(--tw-ink); border-color: var(--tw-line); }
+.tw-btn--ghost:hover { border-color: var(--tw-ink); }
+
+.tw-btn--quiet {
+  background: transparent;
+  color: var(--tw-muted);
+  border: 0;
+  padding: 0 var(--tw-s2);
+  min-height: var(--tw-tap);
+  font-size: var(--tw-fs-label);
+}
+.tw-btn--quiet:hover { color: var(--tw-ink); }
+
+/* --- Чипы (разводящая) ------------------------------------- */
+.tw-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: var(--tw-tap);
+  padding: 12px 20px;
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-caption);
+  letter-spacing: var(--tw-ls-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--tw-ink-soft);
+  background: var(--tw-surface);
+  border: 1px solid var(--tw-line);
+  border-radius: var(--tw-r-sm);
+  cursor: pointer;
+  transition: border-color var(--tw-dur) var(--tw-ease), background var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease);
+}
+.tw-chip:hover { border-color: var(--tw-ink); color: var(--tw-ink); background: var(--tw-surface-soft); }
+.tw-chip:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+
+/* --- Плитки с иконкой -------------------------------------- */
+.tw-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--tw-s3);
+  padding: var(--tw-s4);
+  text-align: center;
+  text-decoration: none;
+  color: var(--tw-ink-soft);
+  background: var(--tw-surface);
+  border: 1px solid transparent;
+  border-radius: var(--tw-r-lg);
+  cursor: pointer;
+  transition: border-color var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+}
+.tw-tile:hover { border-color: var(--tw-line); transform: translateY(-2px); }
+.tw-tile:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+.tw-tile__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--tw-r-md);
+  background: var(--tw-surface-tile);
+  color: var(--tw-ink-soft);
+}
+.tw-tile__icon svg { width: 32px; height: 32px; }
+.tw-tile__label {
+  font-size: var(--tw-fs-caption);
+  letter-spacing: var(--tw-ls-label);
+  text-transform: uppercase;
+}
+
+/* --- Служебное --------------------------------------------- */
+.tw-note { font-size: var(--tw-fs-caption); color: var(--tw-muted); }
+.tw-divider { height: 1px; background: var(--tw-line-soft); border: 0; }
+.tw-foot { display: flex; flex-direction: column; gap: var(--tw-s3); }
+.tw-actions { display: flex; align-items: center; gap: var(--tw-s3); flex-wrap: wrap; }
+.tw-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tw-s3);
+  padding: var(--tw-s5);
+  background: var(--tw-surface-soft);
+  border-radius: var(--tw-r-md);
+}
+.tw-summary__row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--tw-s4); }
+.tw-summary__key { font-size: var(--tw-fs-caption); letter-spacing: var(--tw-ls-label); text-transform: uppercase; color: var(--tw-muted); }
+.tw-summary__val { font-family: var(--tw-font-display); font-weight: 700; color: var(--tw-ink); }
+
+/* --- Уважение к prefers-reduced-motion --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-form-custom-template-content *,
+  .cefalot-form-custom-template-content *::before,
+  .cefalot-form-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Заказать звонок --------------------------------------- */
+.tw-callback .tw-consents { display: flex; flex-direction: column; gap: var(--tw-s1); }

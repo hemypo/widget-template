@@ -1,0 +1,152 @@
+  <header class="tw-head">
+    <div class="tw-head__text">
+      <p class="tw-eyebrow">Выгода</p>
+      <h2 class="tw-title">Спецпредложения</h2>
+      <p class="tw-lead">Отметьте интересное предложение — менеджер рассчитает условия под ваш случай.</p>
+    </div>
+    <button class="tw-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </header>
+
+  <div class="tw-body">
+    <div class="tw-field tw-field--wide">
+      <span class="tw-label" id="of-offer-l">Выберите предложение<span class="tw-req" aria-hidden="true">*</span></span>
+      <div class="tw-choice-grid tw-scroll" role="radiogroup" aria-labelledby="of-offer-l">
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_direct" name="offer" value="offer_direct" data-widget-field="offer"
+                 aria-labelledby="of-offer_direct-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_direct-t">TENET Direct</span>
+              <span class="tw-choice__badge">Хит</span>
+            </span>
+            <span class="tw-choice__meta">Выгода до 250 000 ₽ при покупке в кредит</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_tradein" name="offer" value="offer_tradein" data-widget-field="offer"
+                 aria-labelledby="of-offer_tradein-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_tradein-t">Трейд-ин + выгода</span>
+              
+            </span>
+            <span class="tw-choice__meta">Дополнительно 100 000 ₽ при сдаче авто</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_t4l" name="offer" value="offer_t4l" data-widget-field="offer"
+                 aria-labelledby="of-offer_t4l-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_t4l-t">T4L «Прайм»</span>
+              <span class="tw-choice__badge">Новинка</span>
+            </span>
+            <span class="tw-choice__meta">Ставка от 0,01% на первый год</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_corp" name="offer" value="offer_corp" data-widget-field="offer"
+                 aria-labelledby="of-offer_corp-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_corp-t">Корпоративным клиентам</span>
+              
+            </span>
+            <span class="tw-choice__meta">Специальные условия для парка от 2 авто</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_insurance" name="offer" value="offer_insurance" data-widget-field="offer"
+                 aria-labelledby="of-offer_insurance-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_insurance-t">КАСКО в подарок</span>
+              
+            </span>
+            <span class="tw-choice__meta">При покупке T7 и T8 в комплектации «Прайм»</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="of-offer_service" name="offer" value="offer_service" data-widget-field="offer"
+                 aria-labelledby="of-offer_service-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="of-offer_service-t">Сервисный пакет</span>
+              
+            </span>
+            <span class="tw-choice__meta">3 ТО в подарок для новых владельцев</span>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <hr class="tw-divider">
+
+    <div class="tw-grid">
+      <div class="tw-field">
+        <span class="tw-label" id="of-name-l">Имя<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="of-name" type="text" name="name" data-widget-field="name"
+               placeholder="Введите" aria-labelledby="of-name-l" required aria-required="true">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="of-phone-l">Телефон<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="of-phone" type="tel" name="phone" data-widget-field="phone"
+               placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="of-phone-l" required aria-required="true" inputmode="tel">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="of-city-l">Город<span class="tw-req" aria-hidden="true">*</span></span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="of-city" name="city" data-widget-field="city" aria-labelledby="of-city-l" required aria-required="true">
+            <option value="" disabled selected>Выберите</option>
+            <option value="moscow">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+            <option value="ekb">Екатеринбург</option>
+            <option value="nsk">Новосибирск</option>
+            <option value="kzn">Казань</option>
+            <option value="nnov">Нижний Новгород</option>
+            <option value="krd">Краснодар</option>
+            <option value="other">Другой город</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="of-dealer-l">Дилерский центр</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="of-dealer" name="dealer" data-widget-field="dealer" aria-labelledby="of-dealer-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="d1">АВИЛОН — Москва, Волгоградский пр-т, 43</option>
+            <option value="d2">АВИЛОН БЕЛАЯ ДАЧА — Котельники</option>
+            <option value="d3">АВТОДОМ — Москва, Ленинградское ш., 71</option>
+            <option value="d4">РОЛЬФ — Санкт-Петербург, Витебский пр-т, 17</option>
+            <option value="d5">Подобрать ближайший автоматически</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+    </div>
+      <div class="tw-consents">
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="of-pd" name="agreement_pd"
+                 data-widget-field="agreement_pd" value="1" required aria-labelledby="of-pd-t"
+                 data-widget-field-type="checkbox">
+          <span class="tw-check__text" id="of-pd-t">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
+            в разделе по обработке персональных данных в
+            <a data-widget-link="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="tw-req" aria-hidden="true">*</span></span>
+        </span>
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="of-ad" name="agreement_ad"
+                 data-widget-field="agreement_ad" value="1" aria-labelledby="of-ad-t"
+                 data-widget-field-type="checkbox">
+          <span class="tw-check__text" id="of-ad-t">Даю согласие на рекламную коммуникацию</span>
+        </span>
+      </div>
+  </div>
+
+  <footer class="tw-foot">
+    <div class="tw-actions">
+      <button class="tw-btn tw-btn--primary" type="button" data-widget-submit>Получить условия <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="tw-btn tw-btn--quiet" type="button" data-widget-close>Отмена</button>
+    </div>
+    <p class="tw-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+  </footer>

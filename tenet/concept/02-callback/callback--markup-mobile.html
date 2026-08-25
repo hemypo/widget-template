@@ -1,0 +1,114 @@
+<!-- TENET WIDGET — Заказать звонок | разметка, мобильная
+     Размеры и положение окна задаются в редакторе платформы. -->
+<section class="cefalot-form-custom-template-content tw tw--mobile tw-callback " data-widget-step="callback">
+  <header class="tw-head">
+    <div class="tw-head__text">
+      <p class="tw-eyebrow">Обратная связь</p>
+      <h2 class="tw-title">Заказать звонок</h2>
+      <p class="tw-lead">Оставьте номер — менеджер дилерского центра перезвонит в удобное время.</p>
+    </div>
+    <button class="tw-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </header>
+
+  <div class="tw-body">
+    <div class="tw-grid">
+      <div class="tw-field">
+        <span class="tw-label" id="cb-name-l">Имя<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="cb-name" type="text" name="name" data-widget-field
+               placeholder="Введите" aria-labelledby="cb-name-l" required aria-required="true">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="cb-phone-l">Телефон<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="cb-phone" type="tel" name="phone" data-widget-field
+               placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="cb-phone-l" required aria-required="true" inputmode="tel">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="cb-topic-l">Тема обращения<span class="tw-req" aria-hidden="true">*</span></span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="cb-topic" name="topic" data-widget-field aria-labelledby="cb-topic-l" required aria-required="true">
+            <option value="" disabled selected>Выберите</option>
+            <option value="purchase">Покупка автомобиля</option>
+            <option value="test_drive">Тест-драйв</option>
+            <option value="trade_in">Трейд-ин</option>
+            <option value="credit">Кредит и лизинг</option>
+            <option value="service">Сервис и гарантия</option>
+            <option value="other">Другое</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="cb-time-l">Удобное время звонка</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="cb-time" name="call_time" data-widget-field aria-labelledby="cb-time-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="asap">Как можно скорее</option>
+            <option value="9_12">09:00 — 12:00</option>
+            <option value="12_15">12:00 — 15:00</option>
+            <option value="15_18">15:00 — 18:00</option>
+            <option value="18_21">18:00 — 21:00</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="cb-city-l">Город</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="cb-city" name="city" data-widget-field aria-labelledby="cb-city-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="moscow">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+            <option value="ekb">Екатеринбург</option>
+            <option value="nsk">Новосибирск</option>
+            <option value="kzn">Казань</option>
+            <option value="nnov">Нижний Новгород</option>
+            <option value="krd">Краснодар</option>
+            <option value="other">Другой город</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="cb-dealer-l">Дилерский центр</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="cb-dealer" name="dealer" data-widget-field aria-labelledby="cb-dealer-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="d1">АВИЛОН — Москва, Волгоградский пр-т, 43</option>
+            <option value="d2">АВИЛОН БЕЛАЯ ДАЧА — Котельники</option>
+            <option value="d3">АВТОДОМ — Москва, Ленинградское ш., 71</option>
+            <option value="d4">РОЛЬФ — Санкт-Петербург, Витебский пр-т, 17</option>
+            <option value="d5">Подобрать ближайший автоматически</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field tw-field--wide">
+        <span class="tw-label" id="cb-comment-l">Комментарий</span>
+        <textarea class="tw-textarea" id="cb-comment" name="comment" data-widget-field rows="3"
+                  placeholder="Коротко опишите вопрос — менеджер подготовится заранее" aria-labelledby="cb-comment-l"></textarea>
+      </div>
+    </div>
+      <div class="tw-consents">
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="cb-pd" name="agreement_pd"
+                 data-widget-field value="1" required aria-labelledby="cb-pd-t">
+          <span class="tw-check__text" id="cb-pd-t">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
+            в разделе по обработке персональных данных в
+            <a data-widget-link="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="tw-req" aria-hidden="true">*</span></span>
+        </span>
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="cb-ad" name="agreement_ad"
+                 data-widget-field value="1" aria-labelledby="cb-ad-t">
+          <span class="tw-check__text" id="cb-ad-t">Даю согласие на рекламную коммуникацию</span>
+        </span>
+      </div>
+  </div>
+
+  <footer class="tw-foot">
+    <div class="tw-actions">
+      <button class="tw-btn tw-btn--primary" type="button" data-widget-submit>Заказать звонок <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="tw-btn tw-btn--quiet" type="button" data-widget-close>Отмена</button>
+    </div>
+    <p class="tw-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+  </footer>
+</section>

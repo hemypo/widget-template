@@ -1,0 +1,98 @@
+/* HAVAL WIDGET — Компакт (плавающая иконка)
+   Файл: стили десктоп
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Шрифт — системный стек (кастомные шрифты через <link> запрещены платформой).
+ */
+
+:root,
+:host {
+  --cf-ink:      #000000;
+  --cf-surface:  #FFFFFF;
+  --cf-line:     #E0E0E0;
+  --cf-accent:   #03CABF;
+  --cf-focus:    #000000;
+
+  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --cf-r-lg: 16px;
+  --cf-r-pill: 999px;
+
+  --cf-dur:  200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --cf-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  position: relative;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+/* --- Кнопка-лаунчер ------------------------------------------ */
+.cefalot-launcher__btn {
+  position: relative;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: var(--cf-r-lg);
+  background: var(--cf-accent); color: var(--cf-ink);
+  cursor: pointer;
+  animation: cefalot-launcher-pulse 2.4s ease-out infinite;
+}
+.cefalot-launcher__btn:hover { background: #02A99F; }
+.cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
+.cefalot-launcher__icon svg { width: 26px; height: 26px; display: block; }
+
+@keyframes cefalot-launcher-pulse {
+  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0.5); }
+  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(3, 202, 191, 0); }
+  100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0); }
+}
+
+/* --- Дизмисс «не показывать сегодня» --------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
+.cefalot-launcher__dismiss {
+  position: absolute; top: -8px; left: -8px;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--cf-line); border-radius: var(--cf-r-pill);
+  background: var(--cf-surface); color: #333333;
+  cursor: pointer; opacity: 0; transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
+
+/* --- Подпись авторства (мелкая, ненавязчивая, не скрыта) ------- */
+.cefalot-cr {
+  margin: 6px 0 0;
+  font-size: 10px;
+  line-height: 1.3;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.38);
+}
+.cefalot-cr a { color: inherit; text-decoration: underline; }
+
+/* --- Уважение к prefers-reduced-motion --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

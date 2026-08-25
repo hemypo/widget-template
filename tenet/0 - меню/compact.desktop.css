@@ -1,0 +1,127 @@
+/* TENET WIDGET — Компакт (плавающая иконка)
+   Файл: стили десктоп
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+ */
+
+/* ============================================================
+   ШРИФТЫ — подключаются ассетами платформы ({{asset:key}}).
+   Загрузите файлы через кнопки медиа и укажите свои ключи.
+   ============================================================ */
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-regular}}") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:tenet-sans-medium}}") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   ТОКЕНЫ ДИЗАЙН-СИСТЕМЫ (сняты с tenet.ru)
+   ============================================================ */
+:root,
+:host {
+  --tw-ink:          #3E3A39;
+  --tw-ink-strong:   #2F2B2A;
+  --tw-ink-soft:     #615952;
+  --tw-line:         #D8CEC5;
+  --tw-surface:      #FFFFFF;
+  --tw-accent:       #C30D23;
+  --tw-focus:        #3E3A39;
+
+  --tw-font: "TENET Sans", Arial, Helvetica, sans-serif;
+
+  --tw-r-pill: 999px;
+
+  --tw-dur:  200ms;
+  --tw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --tw-shadow-md: 0 8px 24px rgba(62, 58, 57, 0.10);
+}
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--tw-font);
+  position: relative;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+/* --- Кнопка-лаунчер ------------------------------------------ */
+.tw-launcher__btn {
+  position: relative;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: var(--tw-r-pill);
+  background: var(--tw-ink); color: var(--tw-surface);
+  cursor: pointer; box-shadow: var(--tw-shadow-md);
+  animation: tw-launcher-breathe 3.2s ease-in-out infinite;
+}
+.tw-launcher__btn:hover { background: var(--tw-ink-strong); }
+.tw-launcher__btn:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 3px; }
+.tw-launcher__icon svg { width: 26px; height: 26px; display: block; }
+.tw-launcher__ring {
+  position: absolute; inset: -6px; border-radius: inherit;
+  border: 2px solid var(--tw-accent);
+  opacity: 0; animation: tw-launcher-ping 2.6s ease-out infinite;
+}
+.tw-launcher__badge {
+  position: absolute; top: -3px; right: -3px;
+  min-width: 18px; height: 18px; padding: 0 4px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--tw-r-pill);
+  background: var(--tw-accent); color: #fff;
+  font-size: 10.5px; font-weight: 700; line-height: 1;
+  border: 2px solid var(--tw-surface);
+}
+
+/* --- Дизмисс «не показывать сегодня» --------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
+.tw-launcher__dismiss {
+  position: absolute; top: -8px; left: -8px;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--tw-line); border-radius: var(--tw-r-pill);
+  background: var(--tw-surface); color: var(--tw-ink-soft);
+  cursor: pointer; opacity: 0; transform: scale(0.8);
+  transition: opacity var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+}
+.tw-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .tw-launcher__dismiss,
+.tw-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
+
+@keyframes tw-launcher-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+@keyframes tw-launcher-ping {
+  0% { transform: scale(0.9); opacity: 0.55; }
+  70%, 100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* --- Уважение к prefers-reduced-motion --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

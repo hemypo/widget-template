@@ -1,0 +1,455 @@
+<!-- TENET WIDGET — Трейд-ин (каталог) | разметка, десктоп
+     Размеры и положение окна задаются в редакторе платформы. -->
+<section class="cefalot-form-custom-template-content tw tw--desktop tw-tradein " data-widget-step="trade_in">
+  <header class="tw-head">
+    <div class="tw-head__text">
+      <p class="tw-eyebrow">Трейд-ин</p>
+      <h2 class="tw-title">Обменять на новый</h2>
+      <p class="tw-lead">Оценим ваш автомобиль и подберём новый TENET с выгодой по программе трейд-ин.</p>
+    </div>
+    <button class="tw-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </header>
+
+  <div class="tw-catalog">
+  <aside class="tw-rail" aria-label="Шаги калькулятора трейд-ин">
+    <p class="tw-rail__title">Калькулятор трейд-ин</p>
+    <ul class="tw-rail__list">
+      <li class="tw-rail__item">
+        <button class="tw-rail__btn" type="button" data-widget-catalog-go="brand">
+          <span class="tw-rail__num" aria-hidden="true">01</span>
+          <span class="tw-rail__text">
+            <span class="tw-rail__label">Марка</span>
+            <span class="tw-rail__sub">Марка вашего автомобиля</span>
+          </span>
+        </button>
+      </li>
+      <li class="tw-rail__item">
+        <button class="tw-rail__btn" type="button" data-widget-catalog-go="model">
+          <span class="tw-rail__num" aria-hidden="true">02</span>
+          <span class="tw-rail__text">
+            <span class="tw-rail__label">Модель</span>
+            <span class="tw-rail__sub">Модель и поколение</span>
+          </span>
+        </button>
+      </li>
+      <li class="tw-rail__item">
+        <button class="tw-rail__btn" type="button" data-widget-catalog-go="state">
+          <span class="tw-rail__num" aria-hidden="true">03</span>
+          <span class="tw-rail__text">
+            <span class="tw-rail__label">Состояние</span>
+            <span class="tw-rail__sub">Год выпуска и пробег</span>
+          </span>
+        </button>
+      </li>
+      <li class="tw-rail__item">
+        <button class="tw-rail__btn" type="button" data-widget-catalog-go="new">
+          <span class="tw-rail__num" aria-hidden="true">04</span>
+          <span class="tw-rail__text">
+            <span class="tw-rail__label">Новый TENET</span>
+            <span class="tw-rail__sub">На что меняем</span>
+          </span>
+        </button>
+      </li>
+      <li class="tw-rail__item">
+        <button class="tw-rail__btn" type="button" data-widget-catalog-go="contacts">
+          <span class="tw-rail__num" aria-hidden="true">05</span>
+          <span class="tw-rail__text">
+            <span class="tw-rail__label">Контакты</span>
+            <span class="tw-rail__sub">Куда прислать расчёт</span>
+          </span>
+        </button>
+      </li>
+    </ul>
+    <p class="tw-rail__note">Расчёт предварительный. Финальную стоимость подтверждает дилер после осмотра.</p>
+  </aside>
+    <div class="tw-catalog__panel">
+    <div class="tw-substep" data-widget-catalog-substep="brand">
+      <p class="tw-substep__label" data-widget-catalog-substep-label>Шаг 1 из 5</p>
+      <h3 class="tw-substep__title">Ваш автомобиль</h3>
+      <p class="tw-substep__lead">Выберите марку или найдите авто по VIN / госномеру.</p>
+      <div class="tw-substep__body">
+        <div class="tw-vin">
+          <div class="tw-field tw-field--wide">
+            <span class="tw-label" id="ti-vin-l">VIN или госномер</span>
+            <input class="tw-input" id="ti-vin" type="text" name="vin"
+                   data-widget-catalog-field placeholder="Введите" aria-labelledby="ti-vin-l">
+            <span class="tw-hint">Заполним данные автоматически. Или выберите марку вручную ниже.</span>
+          </div>
+        </div>
+        <div class="tw-pills" role="radiogroup">
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-lada" name="brand" value="LADA" data-widget-catalog-field aria-labelledby="ti-b-lada-t">
+            <span class="tw-pill__body" id="ti-b-lada-t">LADA</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-kia" name="brand" value="KIA" data-widget-catalog-field aria-labelledby="ti-b-kia-t">
+            <span class="tw-pill__body" id="ti-b-kia-t">KIA</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-hyundai" name="brand" value="Hyundai" data-widget-catalog-field aria-labelledby="ti-b-hyundai-t">
+            <span class="tw-pill__body" id="ti-b-hyundai-t">Hyundai</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-toyota" name="brand" value="Toyota" data-widget-catalog-field aria-labelledby="ti-b-toyota-t">
+            <span class="tw-pill__body" id="ti-b-toyota-t">Toyota</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-volkswagen" name="brand" value="Volkswagen" data-widget-catalog-field aria-labelledby="ti-b-volkswagen-t">
+            <span class="tw-pill__body" id="ti-b-volkswagen-t">Volkswagen</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-skoda" name="brand" value="Skoda" data-widget-catalog-field aria-labelledby="ti-b-skoda-t">
+            <span class="tw-pill__body" id="ti-b-skoda-t">Skoda</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-nissan" name="brand" value="Nissan" data-widget-catalog-field aria-labelledby="ti-b-nissan-t">
+            <span class="tw-pill__body" id="ti-b-nissan-t">Nissan</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-renault" name="brand" value="Renault" data-widget-catalog-field aria-labelledby="ti-b-renault-t">
+            <span class="tw-pill__body" id="ti-b-renault-t">Renault</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-chery" name="brand" value="Chery" data-widget-catalog-field aria-labelledby="ti-b-chery-t">
+            <span class="tw-pill__body" id="ti-b-chery-t">Chery</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-haval" name="brand" value="Haval" data-widget-catalog-field aria-labelledby="ti-b-haval-t">
+            <span class="tw-pill__body" id="ti-b-haval-t">Haval</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-geely" name="brand" value="Geely" data-widget-catalog-field aria-labelledby="ti-b-geely-t">
+            <span class="tw-pill__body" id="ti-b-geely-t">Geely</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-bmw" name="brand" value="BMW" data-widget-catalog-field aria-labelledby="ti-b-bmw-t">
+            <span class="tw-pill__body" id="ti-b-bmw-t">BMW</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-mercedes-benz" name="brand" value="Mercedes-Benz" data-widget-catalog-field aria-labelledby="ti-b-mercedes-benz-t">
+            <span class="tw-pill__body" id="ti-b-mercedes-benz-t">Mercedes-Benz</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-b-другая-марка" name="brand" value="Другая марка" data-widget-catalog-field aria-labelledby="ti-b-другая-марка-t">
+            <span class="tw-pill__body" id="ti-b-другая-марка-t">Другая марка</span>
+          </span>
+        </div>
+        <div class="tw-actions tw-substep__nav">
+          
+          <button class="tw-btn tw-btn--primary" type="button" data-widget-catalog-next>Далее <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-substep" data-widget-catalog-substep="model">
+      <p class="tw-substep__label" data-widget-catalog-substep-label>Шаг 2 из 5</p>
+      <h3 class="tw-substep__title">Модель</h3>
+      <p class="tw-substep__lead">Выберите модель — список подставится по выбранной марке.</p>
+      <div class="tw-substep__body">
+        <div class="tw-pills" role="radiogroup">
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-rio" name="model" value="Rio" data-widget-catalog-field aria-labelledby="ti-m-rio-t">
+            <span class="tw-pill__body" id="ti-m-rio-t">Rio</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-ceed" name="model" value="Ceed" data-widget-catalog-field aria-labelledby="ti-m-ceed-t">
+            <span class="tw-pill__body" id="ti-m-ceed-t">Ceed</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-sportage" name="model" value="Sportage" data-widget-catalog-field aria-labelledby="ti-m-sportage-t">
+            <span class="tw-pill__body" id="ti-m-sportage-t">Sportage</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-solaris" name="model" value="Solaris" data-widget-catalog-field aria-labelledby="ti-m-solaris-t">
+            <span class="tw-pill__body" id="ti-m-solaris-t">Solaris</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-creta" name="model" value="Creta" data-widget-catalog-field aria-labelledby="ti-m-creta-t">
+            <span class="tw-pill__body" id="ti-m-creta-t">Creta</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-camry" name="model" value="Camry" data-widget-catalog-field aria-labelledby="ti-m-camry-t">
+            <span class="tw-pill__body" id="ti-m-camry-t">Camry</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-rav4" name="model" value="RAV4" data-widget-catalog-field aria-labelledby="ti-m-rav4-t">
+            <span class="tw-pill__body" id="ti-m-rav4-t">RAV4</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-polo" name="model" value="Polo" data-widget-catalog-field aria-labelledby="ti-m-polo-t">
+            <span class="tw-pill__body" id="ti-m-polo-t">Polo</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-tiguan" name="model" value="Tiguan" data-widget-catalog-field aria-labelledby="ti-m-tiguan-t">
+            <span class="tw-pill__body" id="ti-m-tiguan-t">Tiguan</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-octavia" name="model" value="Octavia" data-widget-catalog-field aria-labelledby="ti-m-octavia-t">
+            <span class="tw-pill__body" id="ti-m-octavia-t">Octavia</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-qashqai" name="model" value="Qashqai" data-widget-catalog-field aria-labelledby="ti-m-qashqai-t">
+            <span class="tw-pill__body" id="ti-m-qashqai-t">Qashqai</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-duster" name="model" value="Duster" data-widget-catalog-field aria-labelledby="ti-m-duster-t">
+            <span class="tw-pill__body" id="ti-m-duster-t">Duster</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-tiggo-7-pro" name="model" value="Tiggo 7 Pro" data-widget-catalog-field aria-labelledby="ti-m-tiggo-7-pro-t">
+            <span class="tw-pill__body" id="ti-m-tiggo-7-pro-t">Tiggo 7 Pro</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-jolion" name="model" value="Jolion" data-widget-catalog-field aria-labelledby="ti-m-jolion-t">
+            <span class="tw-pill__body" id="ti-m-jolion-t">Jolion</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-coolray" name="model" value="Coolray" data-widget-catalog-field aria-labelledby="ti-m-coolray-t">
+            <span class="tw-pill__body" id="ti-m-coolray-t">Coolray</span>
+          </span>
+          <span class="tw-pill">
+            <input class="tw-pill__input" type="radio" id="ti-m-другая-модель" name="model" value="Другая модель" data-widget-catalog-field aria-labelledby="ti-m-другая-модель-t">
+            <span class="tw-pill__body" id="ti-m-другая-модель-t">Другая модель</span>
+          </span>
+        </div>
+        <div class="tw-actions tw-substep__nav">
+          <button class="tw-btn tw-btn--ghost" type="button" data-widget-catalog-back><svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Назад</button>
+          <button class="tw-btn tw-btn--primary" type="button" data-widget-catalog-next>Далее <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-substep" data-widget-catalog-substep="state">
+      <p class="tw-substep__label" data-widget-catalog-substep-label>Шаг 3 из 5</p>
+      <h3 class="tw-substep__title">Состояние</h3>
+      <p class="tw-substep__lead">Чем точнее данные, тем ближе предварительная оценка к финальной.</p>
+      <div class="tw-substep__body">
+        <div class="tw-grid">
+      <div class="tw-field">
+        <span class="tw-label" id="ti-year-l">Год выпуска<span class="tw-req" aria-hidden="true">*</span></span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="ti-year" name="year" data-widget-catalog-field aria-labelledby="ti-year-l" required aria-required="true">
+            <option value="" disabled selected>Выберите</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008 и раньше">2008 и раньше</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-mileage-l">Пробег, км<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="ti-mileage" type="text" name="mileage" data-widget-catalog-field
+               placeholder="Например, 84 000" aria-labelledby="ti-mileage-l" required aria-required="true" inputmode="numeric">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-gear-l">Коробка передач</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="ti-gear" name="transmission" data-widget-catalog-field aria-labelledby="ti-gear-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="mt">Механическая</option>
+            <option value="at">Автоматическая</option>
+            <option value="cvt">Вариатор</option>
+            <option value="dct">Робот</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-owners-l">Владельцев по ПТС</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="ti-owners" name="owners" data-widget-catalog-field aria-labelledby="ti-owners-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3 и более</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+        </div>
+        <div class="tw-actions tw-substep__nav">
+          <button class="tw-btn tw-btn--ghost" type="button" data-widget-catalog-back><svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Назад</button>
+          <button class="tw-btn tw-btn--primary" type="button" data-widget-catalog-next>Далее <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-substep" data-widget-catalog-substep="new">
+      <p class="tw-substep__label" data-widget-catalog-substep-label>Шаг 4 из 5</p>
+      <h3 class="tw-substep__title">Новый TENET</h3>
+      <p class="tw-substep__lead">На какую модель меняем ваш автомобиль.</p>
+      <div class="tw-substep__body">
+        <div class="tw-choice-grid" role="radiogroup">
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-t4" name="new_model" value="t4" data-widget-catalog-field
+                 aria-labelledby="ti-n-t4-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-t4-t">TENET T4</span>
+              
+            </span>
+            <span class="tw-choice__meta">от 2 089 000 ₽</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-t4l" name="new_model" value="t4l" data-widget-catalog-field
+                 aria-labelledby="ti-n-t4l-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-t4l-t">TENET T4L</span>
+              
+            </span>
+            <span class="tw-choice__meta">от 2 279 000 ₽</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-t7" name="new_model" value="t7" data-widget-catalog-field
+                 aria-labelledby="ti-n-t7-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-t7-t">TENET T7</span>
+              
+            </span>
+            <span class="tw-choice__meta">от 2 555 000 ₽</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-t8" name="new_model" value="t8" data-widget-catalog-field
+                 aria-labelledby="ti-n-t8-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-t8-t">TENET T8</span>
+              
+            </span>
+            <span class="tw-choice__meta">от 2 999 000 ₽</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-a8" name="new_model" value="a8" data-widget-catalog-field
+                 aria-labelledby="ti-n-a8-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-a8-t">TENET A8</span>
+              
+            </span>
+            <span class="tw-choice__meta">скоро в продаже</span>
+          </span>
+        </span>
+        <span class="tw-choice">
+          <input class="tw-choice__input" type="radio" id="ti-n-t9" name="new_model" value="t9" data-widget-catalog-field
+                 aria-labelledby="ti-n-t9-t">
+          <span class="tw-choice__body">
+            <span class="tw-choice__top">
+              <span class="tw-choice__title" id="ti-n-t9-t">TENET T9</span>
+              
+            </span>
+            <span class="tw-choice__meta">осень 2026</span>
+          </span>
+        </span>
+        </div>
+        <div class="tw-actions tw-substep__nav">
+          <button class="tw-btn tw-btn--ghost" type="button" data-widget-catalog-back><svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Назад</button>
+          <button class="tw-btn tw-btn--primary" type="button" data-widget-catalog-next>Далее <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-substep" data-widget-catalog-substep="contacts">
+      <p class="tw-substep__label" data-widget-catalog-substep-label>Шаг 5 из 5</p>
+      <h3 class="tw-substep__title">Запись к дилеру</h3>
+      <p class="tw-substep__lead">Пришлём расчёт и предложим время для осмотра.</p>
+      <div class="tw-substep__body">
+        <div class="tw-summary">
+          <div class="tw-summary__row">
+            <span class="tw-summary__key">Предварительная оценка</span>
+            <span class="tw-summary__val">Рассчитаем и пришлём</span>
+          </div>
+          <p class="tw-note">Расчёт готовит менеджер по алгоритмам оценки и передаёт вместе
+            с доступными выгодами по трейд-ин.</p>
+        </div>
+
+        <div class="tw-grid">
+      <div class="tw-field">
+        <span class="tw-label" id="ti-name-l">Имя<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="ti-name" type="text" name="name" data-widget-field
+               placeholder="Введите" aria-labelledby="ti-name-l" required aria-required="true">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-phone-l">Телефон<span class="tw-req" aria-hidden="true">*</span></span>
+        <input class="tw-input" id="ti-phone" type="tel" name="phone" data-widget-field
+               placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="ti-phone-l" required aria-required="true" inputmode="tel">
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-city-l">Город<span class="tw-req" aria-hidden="true">*</span></span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="ti-city" name="city" data-widget-field aria-labelledby="ti-city-l" required aria-required="true">
+            <option value="" disabled selected>Выберите</option>
+            <option value="moscow">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+            <option value="ekb">Екатеринбург</option>
+            <option value="nsk">Новосибирск</option>
+            <option value="kzn">Казань</option>
+            <option value="nnov">Нижний Новгород</option>
+            <option value="krd">Краснодар</option>
+            <option value="other">Другой город</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+      <div class="tw-field">
+        <span class="tw-label" id="ti-dealer-l">Дилерский центр</span>
+        <span class="tw-select-wrap">
+          <select class="tw-select" id="ti-dealer" name="dealer" data-widget-field aria-labelledby="ti-dealer-l">
+            <option value="" disabled selected>Выберите</option>
+            <option value="d1">АВИЛОН — Москва, Волгоградский пр-т, 43</option>
+            <option value="d2">АВИЛОН БЕЛАЯ ДАЧА — Котельники</option>
+            <option value="d3">АВТОДОМ — Москва, Ленинградское ш., 71</option>
+            <option value="d4">РОЛЬФ — Санкт-Петербург, Витебский пр-т, 17</option>
+            <option value="d5">Подобрать ближайший автоматически</option>
+          </select>
+          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </div>
+        </div>
+      <div class="tw-consents">
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="ti-pd" name="agreement_pd"
+                 data-widget-field value="1" required aria-labelledby="ti-pd-t">
+          <span class="tw-check__text" id="ti-pd-t">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
+            в разделе по обработке персональных данных в
+            <a data-widget-link="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="tw-req" aria-hidden="true">*</span></span>
+        </span>
+        <span class="tw-check">
+          <input class="tw-check__box" type="checkbox" id="ti-ad" name="agreement_ad"
+                 data-widget-field value="1" aria-labelledby="ti-ad-t">
+          <span class="tw-check__text" id="ti-ad-t">Даю согласие на рекламную коммуникацию</span>
+        </span>
+      </div>
+        <div class="tw-actions tw-substep__nav">
+          <button class="tw-btn tw-btn--ghost" type="button" data-widget-catalog-back><svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Назад</button>
+          <button class="tw-btn tw-btn--primary" type="button" data-widget-submit>Отправить заявку <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <p class="tw-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+</section>

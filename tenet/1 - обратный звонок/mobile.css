@@ -1,0 +1,231 @@
+:root,
+.cefalot-form-custom-template-root,
+.cefalot-form-custom-template-content {
+  --tw-ink:          #3E3A39;
+  --tw-ink-strong:   #2F2B2A;
+  --tw-ink-soft:     #615952;
+  --tw-muted:        #80756B;
+  --tw-line:         #D8CEC5;
+  --tw-line-soft:    #EDE7E1;
+  --tw-surface:      #FFFFFF;
+  --tw-surface-soft: #F7F3EF;
+  --tw-surface-tile: #F2EDE8;
+  --tw-accent:       #C30D23;
+  --tw-cta:          #D8CEC5;
+  --tw-cta-hover:    #CBBEB0;
+  --tw-cta-active:   #BFB1A2;
+  --tw-cta-ink:      #4A443F;
+  --tw-disabled:     #E7E0D9;
+  --tw-focus:        #3E3A39;
+
+  --tw-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --tw-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --tw-fs-label:     11px;
+  --tw-fs-caption:   12px;
+  --tw-fs-body:      15px;
+  --tw-fs-input:     16px; 
+  --tw-ls-label:     1px;
+  --tw-ls-btn:       1px;
+
+  --tw-r-xs: 8px;
+  --tw-r-sm: 12px;
+  --tw-r-md: 16px;
+  --tw-r-lg: 20px;
+  --tw-r-xl: 28px;
+  --tw-r-pill: 999px;
+  --tw-s1: 4px;
+  --tw-s2: 8px;
+  --tw-s3: 12px;
+  --tw-s4: 16px;
+  --tw-s5: 24px;
+  --tw-s6: 32px;
+  --tw-s7: 40px;
+  --tw-s8: 56px;
+  --tw-control-h: 56px;
+  --tw-tap:        44px;
+
+  --tw-dur:  200ms;
+  --tw-dur-l: 300ms;
+  --tw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ============================================================
+   БАЗА И КОРНЕВОЙ БЛОК (МОБАЙЛ)
+   ============================================================ */
+.cefalot-form-custom-template-root,
+.cefalot-form-custom-template-content {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cefalot-form-custom-template-content {
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-body);
+  line-height: 1.5;
+  color: var(--tw-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  
+  /* Мобильный Layout: убрали min-height: 100vh */
+  display: flex;
+  flex-direction: column;
+  gap: var(--tw-s5);
+  padding: var(--tw-s5) var(--tw-s4);
+  background: var(--tw-surface);
+  
+  /* Скрываем всё, что выходит за края (важно для кликабельности чекбокса) */
+  overflow-x: hidden; 
+}
+
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after {
+  box-sizing: border-box;
+}
+
+p, h1, h2, h3, h4, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+/* ============================================================
+   ШАПКА
+   ============================================================ */
+.tw-head { display: flex; align-items: flex-start; gap: var(--tw-s4); }
+.tw-head__text { flex: 1 1 auto; min-width: 0; }
+.tw-eyebrow { font-size: var(--tw-fs-label); letter-spacing: var(--tw-ls-label); text-transform: uppercase; color: var(--tw-muted); margin-bottom: var(--tw-s2); }
+.tw-title { font-size: 26px; line-height: 1.15; font-family: var(--tw-font-display); font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--tw-ink); }
+.tw-lead { font-size: 14px; color: var(--tw-muted); margin-top: var(--tw-s3); }
+
+.tw-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--tw-tap); height: var(--tw-tap); padding: 0; border: 0; border-radius: var(--tw-r-pill); background: var(--tw-surface-tile); color: var(--tw-ink-soft); cursor: pointer; transition: background var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease); }
+.tw-close:active { background: var(--tw-line); }
+.tw-close svg { width: 16px; height: 16px; display: block; }
+
+/* ============================================================
+   СЕТКА И ПОЛЯ (МОБАЙЛ)
+   ============================================================ */
+.tw-body { display: flex; flex-direction: column; gap: var(--tw-s5); }
+.tw-grid { display: flex; flex-direction: column; gap: var(--tw-s4); }
+.tw-field { display: flex; flex-direction: column; gap: var(--tw-s2); min-width: 0; }
+.tw-label { display: block; font-size: var(--tw-fs-label); letter-spacing: var(--tw-ls-label); text-transform: uppercase; color: var(--tw-muted); }
+.tw-req { color: var(--tw-accent); margin-left: 2px; }
+
+.tw-input {
+  width: 100%;
+  min-height: var(--tw-control-h);
+  padding: 15px 20px;
+  font-family: var(--tw-font);
+  font-size: var(--tw-fs-input);
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: var(--tw-ink);
+  background: var(--tw-surface);
+  border: 1px solid var(--tw-line);
+  border-radius: var(--tw-r-sm);
+  outline: none;
+  transition: border-color var(--tw-dur) var(--tw-ease), box-shadow var(--tw-dur) var(--tw-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tw-input::placeholder { color: var(--tw-muted); opacity: 1; }
+.tw-input:focus { border-color: var(--tw-focus); }
+
+/* ============================================================
+   ЧЕКБОКСЫ (Магия полного клика)
+   ============================================================ */
+.tw-consents { display: flex; flex-direction: column; gap: var(--tw-s1); }
+
+.tw-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tw-s3);
+  min-height: var(--tw-tap);
+  padding: 10px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.tw-check__box {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 1px solid var(--tw-line);
+  border-radius: 6px;
+  background: var(--tw-surface);
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.tw-check__box::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  width: 150vw; 
+  z-index: 1;
+}
+
+.tw-check__box:checked { background: var(--tw-ink); border-color: var(--tw-ink); }
+.tw-check__box:checked::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 6px;
+  height: 11px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+.tw-check__text { 
+  font-size: var(--tw-fs-caption); 
+  line-height: 1.5; 
+  color: var(--tw-muted); 
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tw-check__text a { 
+  color: var(--tw-ink); 
+  text-decoration: underline; 
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   КНОПКИ И ПОДВАЛ (МОБАЙЛ)
+   ============================================================ */
+.tw-foot { 
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--tw-s4); 
+  /* Убрали margin-top: auto, теперь подвал сразу под контентом */
+}
+
+.tw-actions { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: stretch; 
+  gap: var(--tw-s3); 
+}
+
+.tw-btn { 
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--tw-s3); min-height: var(--tw-control-h); padding: 16px 32px; font-family: var(--tw-font); font-size: 13px; letter-spacing: var(--tw-ls-btn); text-transform: uppercase; text-decoration: none; border: 1px solid transparent; border-radius: var(--tw-r-sm); transition: transform var(--tw-dur) var(--tw-ease); 
+  width: 100%; 
+}
+.tw-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+.tw-btn:active { transform: translateY(1px); }
+.tw-btn--primary { background: var(--tw-cta); color: var(--tw-cta-ink); }
+.tw-btn--primary:active { background: var(--tw-cta-active); }
+.tw-btn--quiet { background: transparent; color: var(--tw-muted); border: 0; padding: 0 var(--tw-s2); min-height: var(--tw-tap); font-size: var(--tw-fs-label); }
+.tw-btn--quiet:active { color: var(--tw-ink); }
+
+.tw-note { font-size: var(--tw-fs-caption); color: var(--tw-muted); text-align: center; }
+.tw-note a, .tw-note a:visited { color: #FF3A62; }
