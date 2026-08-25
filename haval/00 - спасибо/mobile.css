@@ -99,7 +99,7 @@
 
   min-height: 100%;
 
-  padding: var(--cf-s7);
+  padding: var(--cf-s5) var(--cf-s4);
 
   background: var(--cf-surface);
   color: var(--cf-ink);
@@ -138,7 +138,7 @@
   position: absolute;
 
   top: var(--cf-s5);
-  right: var(--cf-s5);
+  right: var(--cf-s4);
 
   margin: 0;
 }

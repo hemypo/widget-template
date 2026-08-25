@@ -137,8 +137,8 @@
 .cefalot-head {
   position: absolute;
 
-  top: var(--cf-s5);
-  right: var(--cf-s5);
+  top: var(--cf-s7);
+  right: var(--cf-s7);
 
   margin: 0;
 }

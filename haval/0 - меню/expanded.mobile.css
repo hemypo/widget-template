@@ -198,13 +198,13 @@
   align-items: center;
   justify-content: center;
 
-  width: 36px;
-  height: 36px;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
 
   padding: 0;
 
   border: 0;
-  border-radius: 5px;
+  border-radius: var(--cf-r-pill);
 
   background: var(--cf-surface-tile);
   color: var(--cf-ink-soft);
@@ -212,34 +212,22 @@
   cursor: pointer;
 
   transition:
-    background-color var(--cf-dur) var(--cf-ease),
-    color var(--cf-dur) var(--cf-ease),
-    transform var(--cf-dur) var(--cf-ease);
+    background var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
 }
 
 .cefalot-close svg {
   display: block;
 
-  width: 15px;
-  height: 15px;
-}
-
-
-/* Hover */
-
-.cefalot-close:hover {
-  background: var(--cf-accent);
-  color: #FFFFFF;
+  width: 16px;
+  height: 16px;
 }
 
 
 /* Active */
 
 .cefalot-close:active {
-  background: var(--cf-accent);
-  color: #FFFFFF;
-
-  transform: scale(0.96);
+  background: var(--cf-line);
 }
 
 
