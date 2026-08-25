@@ -30,7 +30,7 @@
   --cf-surface-soft: #F5F5F5;
   --cf-surface-tile: #F0F0F0;
 
-  --cf-focus: #03CABF;
+  --cf-focus: #1A1A1A;
 
   --cf-font:
     Haval-Regular,
@@ -40,7 +40,7 @@
     Arial,
     sans-serif;
 
-  --cf-fs-label:   12px;
+  --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
   --cf-fs-input:   16px;
