@@ -1,10 +1,14 @@
 /* HAVAL WIDGET — Компакт (плавающая иконка)
-   Файл: стили мобильные
+   Файл: стили мобайл
    Платформа: разрешены только data-widget-* атрибуты,
    медиа только через {{asset:key}}, без script/style/iframe.
    Позиция/размер этого состояния на странице задаются в редакторе
    («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Шрифт бренда подключён через @font-face + {{asset:font3}} — см. DESIGN-TOKENS.md.
  */
+
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
 :root,
 :host {
@@ -14,14 +18,20 @@
   --cf-accent:   #03CABF;
   --cf-focus:    #000000;
 
-  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  --cf-r-lg: 14px;
+  --cf-r-lg: 16px;
   --cf-r-pill: 999px;
 
-  --cf-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.22);
+  --cf-dur:  200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --cf-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.22);
 }
 
+/* ============================================================
+   БАЗА
+   ============================================================ */
 .cefalot-custom-template-content {
   box-sizing: border-box;
   font-family: var(--cf-font);
@@ -33,36 +43,41 @@
   box-sizing: inherit;
 }
 
-/* --- Кнопка-лаунчер (мобайл — чуть компактнее) ---------------- */
+/* --- Кнопка-лаунчер ------------------------------------------ */
 .cefalot-launcher__btn {
   position: relative;
-  width: 52px; height: 52px;
+  width: 60px; height: 60px;
   display: flex; align-items: center; justify-content: center;
   border: 0; border-radius: var(--cf-r-lg);
   background: var(--cf-accent); color: var(--cf-ink);
   cursor: pointer;
   animation: cefalot-launcher-pulse 2.4s ease-out infinite;
 }
+.cefalot-launcher__btn:hover { background: #02A99F; }
 .cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
-.cefalot-launcher__icon svg { width: 22px; height: 22px; display: block; }
+.cefalot-launcher__icon svg { width: 26px; height: 26px; display: block; }
 
 @keyframes cefalot-launcher-pulse {
   0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0.5); }
-  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 12px rgba(3, 202, 191, 0); }
+  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(3, 202, 191, 0); }
   100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0); }
 }
 
-/* На тач-устройствах :hover ненадёжен — дизмисс виден сразу,
-   без анимации раскрытия по наведению. */
+/* --- Дизмисс «не показывать сегодня» --------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
 .cefalot-launcher__dismiss {
   position: absolute; top: -8px; left: -8px;
   width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--cf-line); border-radius: var(--cf-r-pill);
   background: var(--cf-surface); color: #333333;
-  cursor: pointer;
+  cursor: pointer; opacity: 0; transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
 }
 .cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
 
 /* --- Подпись авторства (мелкая, ненавязчивая, не скрыта) ------- */
 .cefalot-cr {
@@ -74,6 +89,7 @@
 }
 .cefalot-cr a { color: inherit; text-decoration: underline; }
 
+/* --- Уважение к prefers-reduced-motion --------------------- */
 @media (prefers-reduced-motion: reduce) {
   .cefalot-custom-template-content *,
   .cefalot-custom-template-content *::before,
@@ -81,5 +97,149 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Launcher — grid icon
+   ============================================================ */
+
+.cefalot-launcher__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  /* Белый цвет SVG */
+  color: #FFFFFF;
+
+  pointer-events: none;
+}
+
+.cefalot-launcher__grid {
+  display: block;
+
+  width: 23px;
+  height: 23px;
+
+  overflow: visible;
+}
+
+
+/* ------------------------------------------------------------
+   Анимация отдельных элементов grid
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__grid-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation-name: cefalot-grid-pulse;
+  animation-duration: 3.6s;
+  animation-timing-function: var(
+    --cf-ease,
+    cubic-bezier(0.22, 0.61, 0.36, 1)
+  );
+  animation-iteration-count: infinite;
+}
+
+
+/* Ячейки запускаются последовательно */
+
+.cefalot-launcher__grid-cell--1 {
+  animation-delay: 0s;
+}
+
+.cefalot-launcher__grid-cell--2 {
+  animation-delay: 0.10s;
+}
+
+.cefalot-launcher__grid-cell--4 {
+  animation-delay: 0.20s;
+}
+
+.cefalot-launcher__grid-cell--3 {
+  animation-delay: 0.30s;
+}
+
+
+/*
+  Основную часть времени иконка спокойная.
+  В начале цикла квадраты последовательно
+  слегка уменьшаются и возвращаются назад.
+*/
+@keyframes cefalot-grid-pulse {
+  0%,
+  8% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  12% {
+    transform: scale(0.64);
+    opacity: 0.62;
+  }
+
+  18% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  23%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Дополнительная реакция при наведении
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:hover .cefalot-launcher__grid {
+  animation: cefalot-grid-hover 480ms
+    cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes cefalot-grid-hover {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(0.88) rotate(-5deg);
+  }
+
+  75% {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Нажатие
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:active .cefalot-launcher__grid {
+  transform: scale(0.88);
+}
+
+
+/* ------------------------------------------------------------
+   Accessibility
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-launcher__grid,
+  .cefalot-launcher__grid-cell {
+    animation: none !important;
+    transition: none !important;
   }
 }

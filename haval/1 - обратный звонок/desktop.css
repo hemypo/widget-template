@@ -1,3 +1,6 @@
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
+
 :root,
 :host {
   /* Цвета бренда Haval */
@@ -15,7 +18,7 @@
   --cf-focus:        #1A1A1A;
 
   /* Типографика */
-  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
@@ -24,10 +27,10 @@
   --cf-ls-btn:     0.4px;
 
   /* Скругления (почти прямые углы — фирменный стиль Haval) */
-  --cf-r-xs: 4px;
-  --cf-r-sm: 6px;
-  --cf-r-md: 8px;
-  --cf-r-pill: 999px;
+  --cf-r-xs: 5px;
+  --cf-r-sm: 5px;
+  --cf-r-md: 5px;
+  --cf-r-pill: 5px;
 
   /* Отступы */
   --cf-s1: 4px;

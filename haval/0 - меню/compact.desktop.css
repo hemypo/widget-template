@@ -4,8 +4,11 @@
    медиа только через {{asset:key}}, без script/style/iframe.
    Позиция/размер этого состояния на странице задаются в редакторе
    («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
-   Шрифт — системный стек (кастомные шрифты через <link> запрещены платформой).
+   Шрифт бренда подключён через @font-face + {{asset:font3}} — см. DESIGN-TOKENS.md.
  */
+
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
 :root,
 :host {
@@ -15,7 +18,7 @@
   --cf-accent:   #03CABF;
   --cf-focus:    #000000;
 
-  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --cf-r-lg: 16px;
   --cf-r-pill: 999px;
@@ -94,5 +97,18 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Accessibility
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-launcher__grid,
+  .cefalot-launcher__grid-cell {
+    animation: none !important;
+    transition: none !important;
   }
 }

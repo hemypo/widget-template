@@ -1,178 +1,143 @@
-/* HAVAL WIDGET — Раскрытие (само меню/навигация)
-   Файл: стили десктоп
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
- */
-
 /* ============================================================
-   ТОКЕНЫ ДИЗАЙН-СИСТЕМЫ (общий брендбук HAVAL — идентичен во всех
-   4 файлах этого комплекта для визуальной консистентности)
+   Launcher — grid icon
    ============================================================ */
-:root,
-.widget-custom-template-root,
-.cefalot-custom-template-content {
-  --hv-ink:          #141518;
-  --hv-ink-soft:     #4A4B4E;
-  --hv-muted:        #8A8A8E;
-  --hv-line:         #6B6B6E;
-  --hv-line-soft:    #D8D8DA;
-  --hv-paper:        #FFFFFF;
-  --hv-surface:      #F0F1F2;
-  --hv-surface-tile: #E7E8EA;
-  --hv-accent:       #3FBFAE;
-  --hv-accent-ink:   #0E3B36;
 
-  --hv-font:       -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --hv-fs-eyebrow: 11px;
-  --hv-fs-label:   12px;
-  --hv-fs-body:    14px;
-  --hv-ls-eyebrow: 1.5px;
-  --hv-ls-btn:     1px;
-
-  --hv-r:    2px;   /* почти без скруглений — HAVAL использует прямые углы */
-  --hv-s1: 4px; --hv-s2: 8px; --hv-s3: 12px; --hv-s4: 16px; --hv-s5: 24px; --hv-s6: 32px;
-}
-
-/* Доп. локальные токены для раскрытого состояния (в общий кит не входят). */
-:root,
-.widget-custom-template-root,
-.cefalot-custom-template-content {
-  --hv-r-panel:  8px;   /* радиус самой панели меню — контейнер, не кнопка */
-  --hv-fs-title: 30px;
-  --hv-s7:       40px;
-  --hv-tap:      44px;
-  --hv-control-h:56px;
-  --hv-dur:      180ms;
-  --hv-ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* ============================================================
-   БАЗА
-   ============================================================ */
-.cefalot-custom-template-content {
-  box-sizing: border-box;
-  font-family: var(--hv-font);
-  font-size: var(--hv-fs-body);
-  line-height: 1.5;
-  color: var(--hv-ink);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-
+.cefalot-launcher__icon {
   display: flex;
-  flex-direction: column;
-  gap: var(--hv-s5);
-  padding: var(--hv-s7);
-  background: var(--hv-paper);
-  border-radius: var(--hv-r-panel);
-}
-.cefalot-custom-template-content *,
-.cefalot-custom-template-content *::before,
-.cefalot-custom-template-content *::after {
-  box-sizing: inherit;
-}
-.cefalot-custom-template-content ul,
-.cefalot-custom-template-content ol { margin: 0; padding: 0; list-style: none; }
-.cefalot-custom-template-content h2,
-.cefalot-custom-template-content p { margin: 0; }
+  align-items: center;
+  justify-content: center;
 
-/* --- Шапка -------------------------------------------------- */
-.cefalot-head { display: flex; align-items: flex-start; gap: var(--hv-s4); }
-.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
-.cefalot-eyebrow {
-  font-size: var(--hv-fs-eyebrow); letter-spacing: var(--hv-ls-eyebrow);
-  text-transform: uppercase; font-weight: 800; color: var(--hv-accent);
-  margin-bottom: var(--hv-s2);
-}
-.cefalot-title {
-  font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase;
-  color: var(--hv-ink); font-size: var(--hv-fs-title); line-height: 1.1;
-}
-.cefalot-lead { color: var(--hv-muted); margin-top: var(--hv-s3); font-size: var(--hv-fs-body); }
+  width: 32px;
+  height: 32px;
 
-.cefalot-close {
-  flex: 0 0 auto;
-  display: inline-flex; align-items: center; justify-content: center;
-  width: var(--hv-tap); height: var(--hv-tap);
-  padding: 0; border: 1.5px solid var(--hv-line); border-radius: var(--hv-r);
-  background: var(--hv-paper); color: var(--hv-ink-soft);
-  cursor: pointer;
-  transition: border-color var(--hv-dur) var(--hv-ease), color var(--hv-dur) var(--hv-ease);
-}
-.cefalot-close:hover { border-color: var(--hv-ink); color: var(--hv-ink); }
-.cefalot-close:focus-visible { outline: 2px solid var(--hv-accent); outline-offset: 2px; }
-.cefalot-close svg { width: 16px; height: 16px; display: block; }
+  /* Белый цвет SVG */
+  color: #FFFFFF;
 
-/* --- Чипы (быстрые переходы к формам) ------------------------ */
-.cefalot-menu__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--hv-s3); }
-.cefalot-menu__chips li:last-child { grid-column: 1 / -1; }
-.cefalot-chip {
-  display: inline-flex; align-items: center; justify-content: center; text-align: center;
-  width: 100%; min-height: var(--hv-tap); padding: 12px 18px;
-  font-family: var(--hv-font); font-size: var(--hv-fs-label); font-weight: 800;
-  letter-spacing: var(--hv-ls-btn); text-transform: uppercase;
-  color: var(--hv-ink); background: var(--hv-paper);
-  border: 1.5px solid var(--hv-line); border-radius: var(--hv-r);
-  cursor: pointer;
-  transition: border-color var(--hv-dur) var(--hv-ease), background var(--hv-dur) var(--hv-ease), color var(--hv-dur) var(--hv-ease);
+  pointer-events: none;
 }
-.cefalot-chip:hover { border-color: var(--hv-ink); background: var(--hv-surface); }
-.cefalot-chip:focus-visible { outline: 2px solid var(--hv-accent); outline-offset: 2px; }
 
-/* --- Главная кнопка ------------------------------------------ */
-.cefalot-menu__cta { width: 100%; min-height: 60px; font-size: 13px; }
-.cefalot-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--hv-s3);
-  min-height: var(--hv-control-h); padding: 16px 28px;
-  font-family: var(--hv-font); font-size: 13px; font-weight: 800; letter-spacing: var(--hv-ls-btn);
-  text-transform: uppercase; text-decoration: none;
-  border: 1.5px solid transparent; border-radius: var(--hv-r);
-  cursor: pointer;
-  transition: background var(--hv-dur) var(--hv-ease), border-color var(--hv-dur) var(--hv-ease), color var(--hv-dur) var(--hv-ease), transform var(--hv-dur) var(--hv-ease);
-}
-.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
-.cefalot-btn:focus-visible { outline: 2px solid var(--hv-accent); outline-offset: 2px; }
-.cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--hv-ink); color: var(--hv-paper); }
-.cefalot-btn--primary:hover { background: #000000; }
-.cefalot-btn--primary:active { background: var(--hv-ink); }
+.cefalot-launcher__grid {
+  display: block;
 
-/* --- Плитки с иконкой ------------------------------------------ */
-.cefalot-menu__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--hv-s3); }
-.cefalot-tile {
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  gap: var(--hv-s3); width: 100%; height: 100%; padding: var(--hv-s4);
-  text-align: center; text-decoration: none; color: var(--hv-ink-soft);
-  background: var(--hv-surface); border: 1.5px solid transparent; border-radius: var(--hv-r);
-  cursor: pointer;
-  transition: border-color var(--hv-dur) var(--hv-ease), transform var(--hv-dur) var(--hv-ease);
-}
-.cefalot-tile:hover { border-color: var(--hv-ink); transform: translateY(-2px); }
-.cefalot-tile:focus-visible { outline: 2px solid var(--hv-accent); outline-offset: 2px; }
-.cefalot-tile__icon {
-  display: flex; align-items: center; justify-content: center;
-  width: 68px; height: 68px; border-radius: var(--hv-r);
-  background: var(--hv-surface-tile); color: var(--hv-ink);
-}
-.cefalot-tile__icon svg { width: 30px; height: 30px; }
-.cefalot-tile__label { font-size: var(--hv-fs-label); font-weight: 800; letter-spacing: var(--hv-ls-btn); text-transform: uppercase; }
+  width: 23px;
+  height: 23px;
 
-/* --- Подпись авторства (мелкая, ненавязчивая, не скрыта) ------- */
-.cefalot-cr {
-  margin-top: var(--cf-s2);
-  font-size: 10px;
-  line-height: 1.3;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.38);
+  overflow: visible;
 }
-.cefalot-cr a { color: inherit; text-decoration: underline; }
 
-/* --- Уважение к prefers-reduced-motion --------------------- */
+
+/* ------------------------------------------------------------
+   Анимация отдельных элементов grid
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__grid-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation-name: cefalot-grid-pulse;
+  animation-duration: 3.6s;
+  animation-timing-function: var(
+    --cf-ease,
+    cubic-bezier(0.22, 0.61, 0.36, 1)
+  );
+  animation-iteration-count: infinite;
+}
+
+
+/* Ячейки запускаются последовательно */
+
+.cefalot-launcher__grid-cell--1 {
+  animation-delay: 0s;
+}
+
+.cefalot-launcher__grid-cell--2 {
+  animation-delay: 0.10s;
+}
+
+.cefalot-launcher__grid-cell--4 {
+  animation-delay: 0.20s;
+}
+
+.cefalot-launcher__grid-cell--3 {
+  animation-delay: 0.30s;
+}
+
+
+/*
+  Основную часть времени иконка спокойная.
+  В начале цикла квадраты последовательно
+  слегка уменьшаются и возвращаются назад.
+*/
+@keyframes cefalot-grid-pulse {
+  0%,
+  8% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  12% {
+    transform: scale(0.64);
+    opacity: 0.62;
+  }
+
+  18% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  23%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Дополнительная реакция при наведении
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:hover .cefalot-launcher__grid {
+  animation: cefalot-grid-hover 480ms
+    cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes cefalot-grid-hover {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(0.88) rotate(-5deg);
+  }
+
+  75% {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Нажатие
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:active .cefalot-launcher__grid {
+  transform: scale(0.88);
+}
+
+
+/* ------------------------------------------------------------
+   Accessibility
+   ------------------------------------------------------------ */
+
 @media (prefers-reduced-motion: reduce) {
-  .cefalot-custom-template-content *,
-  .cefalot-custom-template-content *::before,
-  .cefalot-custom-template-content *::after {
-    transition-duration: 0.01ms !important;
+  .cefalot-launcher__grid,
+  .cefalot-launcher__grid-cell {
+    animation: none !important;
+    transition: none !important;
   }
 }
