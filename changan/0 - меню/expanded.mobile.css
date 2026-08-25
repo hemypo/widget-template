@@ -1,0 +1,607 @@
+/* CHANGAN WIDGET — Раскрытие (мобайл)
+   Файл: стили мобайл
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Шрифт бренда подключён через @font-face + {{asset:changan-font-*}}
+   — см. DESIGN-TOKENS.md (ключи ещё плейсхолдер, см. раздел «Статус»).
+
+   Токен-блок ниже скопирован дословно из expanded.desktop.css —
+   это одно и то же состояние (Раскрытие), только другой viewport,
+   поэтому переменные должны совпадать между обоими файлами.
+
+   Мобайл оформлен как bottom sheet (панель снизу экрана) — это
+   наш собственный layout-выбор в CSS, платформенного механизма
+   под bottom-sheet нет (см. агент, раздел 2a).
+ */
+
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
+.cefalot-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
+
+
+/* ============================================================
+   ТОКЕНЫ — скопировано дословно из DESIGN-TOKENS.md
+   ============================================================ */
+
+:root,
+:host {
+  /* Цвета бренда Changan */
+  --cf-accent:       #F89435;
+  --cf-accent-hover: #DA822F;
+  --cf-accent-active: #B26B26;
+  --cf-accent-tint:  #F6E1CC;
+  --cf-ink:          #24272D;
+  --cf-ink-soft:     #4E5561;
+  --cf-muted:        #83888F;
+  --cf-line:         #DFE4EB;
+  --cf-line-soft:    #E8EAED;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F4F5F7;
+  --cf-surface-tile: #E8EAED;
+  --cf-focus:        #24272D;
+  --cf-error:        #F13F3F;
+
+  /* Типографика */
+  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 13px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   0.6px;
+  --cf-ls-btn:     0.4px;
+
+  /* Скругления — по шкале реального сайта (Tailwind rounded-lg/xl/2xl/full) */
+  --cf-r-xs: 8px;
+  --cf-r-sm: 12px;
+  --cf-r-md: 16px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 160ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+
+/* ============================================================
+   Локальные токены именно этого комплекта (0 - меню, раскрытие) —
+   не входят в базовый набор DESIGN-TOKENS.md, не смешивать с ним.
+   ============================================================ */
+
+:root,
+:host {
+  --cf-shadow-sheet: 0 -8px 24px rgba(36, 39, 45, 0.14);
+}
+
+
+/* ============================================================
+   ROOT — bottom sheet
+   ============================================================ */
+
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+
+  color: var(--cf-ink);
+
+  -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: var(--cf-s4);
+
+  width: 100%;
+
+  padding:
+    var(--cf-s3)
+    var(--cf-s4)
+    calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+
+  background: var(--cf-surface);
+
+  border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
+
+  box-shadow: var(--cf-shadow-sheet);
+}
+
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+.cefalot-custom-template-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cefalot-custom-template-content h2,
+.cefalot-custom-template-content p {
+  margin: 0;
+}
+
+
+/* ============================================================
+   BOTTOM SHEET HANDLE
+   ============================================================ */
+
+.cefalot-sheet__handle {
+  display: block;
+
+  width: 36px;
+  height: 4px;
+
+  margin: 0 auto;
+
+  border-radius: var(--cf-r-pill);
+
+  background: var(--cf-line);
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.cefalot-menu__head {
+  display: flex;
+  align-items: flex-start;
+
+  gap: var(--cf-s3);
+}
+
+.cefalot-head__text {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+
+/* Eyebrow */
+
+.cefalot-eyebrow {
+  margin-bottom: 6px;
+
+  color: var(--cf-accent-active);
+
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+
+  letter-spacing: var(--cf-ls-label);
+
+  text-transform: uppercase;
+}
+
+
+/* Title */
+
+.cefalot-title {
+  color: var(--cf-ink);
+
+  font-size: 18px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+
+.cefalot-close {
+  appearance: none;
+  -webkit-appearance: none;
+
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-close svg {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Hover */
+
+.cefalot-close:hover {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-close:active {
+  background: var(--cf-accent-hover);
+  color: #FFFFFF;
+
+  transform: scale(0.96);
+}
+
+
+/* Focus */
+
+.cefalot-close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.cefalot-menu__nav {
+  width: 100%;
+}
+
+
+/* ============================================================
+   CHIPS — мобайл: обёртка в одну строку с переносом,
+   каждый чип во всю ширину строки
+   ============================================================ */
+
+.cefalot-menu__chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: var(--cf-s2);
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.cefalot-menu__chips > li {
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* Chip */
+
+.cefalot-chip {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: var(--cf-tap);
+
+  padding:
+    14px
+    14px;
+
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-caption);
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease);
+}
+
+
+/* Hover */
+
+.cefalot-chip:hover {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Active */
+
+.cefalot-chip:active {
+  background: var(--cf-accent-hover);
+  border-color: var(--cf-accent-hover);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-chip:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   BASE BUTTON
+   ============================================================ */
+
+.cefalot-btn {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: var(--cf-control-h);
+
+  padding:
+    13px
+    18px;
+
+  border: 1px solid transparent;
+  border-radius: var(--cf-r-sm);
+
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  font-weight: 600;
+
+  letter-spacing: var(--cf-ls-btn);
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease),
+    border-color var(--cf-dur) var(--cf-ease),
+    transform var(--cf-dur) var(--cf-ease),
+    box-shadow var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-btn svg {
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 12px;
+
+  transition:
+    transform var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+
+/* ============================================================
+   PRIMARY CTA
+   ============================================================ */
+
+.cefalot-btn--primary {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+
+  color: #FFFFFF;
+}
+
+
+/* Hover */
+
+.cefalot-btn--primary:hover {
+  background: var(--cf-accent-hover);
+  border-color: var(--cf-accent-hover);
+
+  color: #FFFFFF;
+}
+
+.cefalot-btn--primary:hover svg {
+  color: #FFFFFF;
+
+  transform: translateX(3px);
+}
+
+
+/* Active */
+
+.cefalot-btn--primary:active {
+  background: var(--cf-accent-active);
+  border-color: var(--cf-accent-active);
+
+  color: #FFFFFF;
+
+  transform: translateY(1px);
+}
+
+
+/* Focus */
+
+.cefalot-btn--primary:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 3px;
+}
+
+
+/* CTA */
+
+.cefalot-menu__cta {
+  margin: 0;
+}
+
+
+/* ============================================================
+   CREDITS
+   ============================================================ */
+
+.cefalot-cr {
+  margin-top: var(--cf-s1);
+
+  color: var(--cf-muted);
+
+  font-size: 10px;
+  line-height: 1.3;
+
+  text-align: center;
+}
+
+.cefalot-cr a {
+  color: inherit;
+
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   DISABLED
+   ============================================================ */
+
+.cefalot-chip:disabled,
+.cefalot-btn:disabled,
+.cefalot-close:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 340px) {
+
+  .cefalot-custom-template-content {
+    gap: var(--cf-s3);
+  }
+
+  .cefalot-title {
+    font-size: 17px;
+  }
+
+  .cefalot-chip {
+    min-height: 40px;
+
+    padding: 10px 12px;
+
+    font-size: 12px;
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   Сохраняем тот же accent-стиль интерактивных состояний
+   ============================================================ */
+
+@media (hover: none) {
+
+  .cefalot-chip:hover {
+    background: var(--cf-accent);
+    border-color: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+
+
+  .cefalot-btn--primary:hover {
+    background: var(--cf-accent-hover);
+    border-color: var(--cf-accent-hover);
+
+    color: #FFFFFF;
+  }
+
+  .cefalot-btn--primary:hover svg {
+    color: #FFFFFF;
+
+    transform: none;
+  }
+
+
+  .cefalot-close:hover {
+    background: var(--cf-accent);
+
+    color: #FFFFFF;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

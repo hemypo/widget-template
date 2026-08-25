@@ -1,0 +1,240 @@
+/* CHANGAN WIDGET — Компакт (плавающая иконка)
+   Файл: стили десктоп
+   Платформа: разрешены только data-widget-* атрибуты,
+   медиа только через {{asset:key}}, без script/style/iframe.
+   Позиция/размер этого состояния на странице задаются в редакторе
+   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
+   Шрифт бренда подключён через @font-face + {{asset:changan-font-*}}
+   — см. DESIGN-TOKENS.md (ключи ещё плейсхолдер, см. раздел «Статус»).
+ */
+
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
+.cefalot-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
+
+/* ============================================================
+   ТОКЕНЫ — скопировано дословно из DESIGN-TOKENS.md
+   ============================================================ */
+:root,
+:host {
+  /* Цвета бренда Changan */
+  --cf-accent:       #F89435;
+  --cf-accent-hover: #DA822F;
+  --cf-accent-active: #B26B26;
+  --cf-accent-tint:  #F6E1CC;
+  --cf-ink:          #24272D;
+  --cf-ink-soft:     #4E5561;
+  --cf-muted:        #83888F;
+  --cf-line:         #DFE4EB;
+  --cf-line-soft:    #E8EAED;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F4F5F7;
+  --cf-surface-tile: #E8EAED;
+  --cf-focus:        #24272D;
+  --cf-error:        #F13F3F;
+
+  /* Типографика */
+  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 13px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   0.6px;
+  --cf-ls-btn:     0.4px;
+
+  /* Скругления — по шкале реального сайта (Tailwind rounded-lg/xl/2xl/full) */
+  --cf-r-xs: 8px;
+  --cf-r-sm: 12px;
+  --cf-r-md: 16px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 160ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ============================================================
+   Локальные токены именно этого комплекта (0 - меню, компакт) —
+   не входят в базовый набор DESIGN-TOKENS.md, не смешивать с ним.
+   ============================================================ */
+:root,
+:host {
+  --cf-shadow-md: 0 6px 20px rgba(36, 39, 45, 0.22);
+}
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  position: relative;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+/* --- Кнопка-лаунчер ------------------------------------------ */
+.cefalot-launcher__btn {
+  position: relative;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: var(--cf-r-md);
+  background: var(--cf-accent); color: #FFFFFF;
+  cursor: pointer;
+  animation: cefalot-launcher-pulse 2.4s ease-out infinite;
+}
+.cefalot-launcher__btn:hover { background: var(--cf-accent-hover); }
+.cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
+.cefalot-launcher__icon svg { width: 26px; height: 26px; display: block; }
+
+@keyframes cefalot-launcher-pulse {
+  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(248, 148, 53, 0.5); }
+  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(248, 148, 53, 0); }
+  100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(248, 148, 53, 0); }
+}
+
+/* --- Дизмисс «не показывать сегодня» --------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
+.cefalot-launcher__dismiss {
+  position: absolute; top: -8px; left: -8px;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--cf-line); border-radius: var(--cf-r-pill);
+  background: var(--cf-surface); color: var(--cf-ink-soft);
+  cursor: pointer; opacity: 0; transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
+
+/* --- Уважение к prefers-reduced-motion --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ============================================================
+   Launcher — steering-wheel icon
+   ============================================================ */
+
+.cefalot-launcher__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  /* Белый цвет SVG на оранжевом фоне кнопки */
+  color: #FFFFFF;
+
+  pointer-events: none;
+}
+
+.cefalot-launcher__wheel {
+  display: block;
+
+  width: 24px;
+  height: 24px;
+
+  overflow: visible;
+}
+
+
+/* ------------------------------------------------------------
+   Лёгкое привлечение внимания: обод плавно "дышит",
+   спицы едва заметно покачиваются, как будто руль
+   слегка довернули — тонкий, не отвлекающий эффект.
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__wheel-rim {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: cefalot-wheel-breathe 3.6s var(--cf-ease) infinite;
+}
+
+.cefalot-launcher__wheel-spoke {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: cefalot-wheel-tick 3.6s var(--cf-ease) infinite;
+}
+
+.cefalot-launcher__wheel-spoke--2 { animation-delay: 0.08s; }
+.cefalot-launcher__wheel-spoke--3 { animation-delay: 0.16s; }
+
+@keyframes cefalot-wheel-breathe {
+  0%, 15%   { transform: scale(1); opacity: 1; }
+  30%       { transform: scale(0.92); opacity: 0.82; }
+  45%, 100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes cefalot-wheel-tick {
+  0%, 15%   { transform: rotate(0deg); }
+  30%       { transform: rotate(-6deg); }
+  40%       { transform: rotate(4deg); }
+  50%, 100% { transform: rotate(0deg); }
+}
+
+
+/* ------------------------------------------------------------
+   Дополнительная реакция при наведении — лёгкий поворот руля
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:hover .cefalot-launcher__wheel {
+  animation: cefalot-wheel-hover 480ms var(--cf-ease);
+}
+
+@keyframes cefalot-wheel-hover {
+  0%   { transform: rotate(0deg); }
+  60%  { transform: rotate(-16deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+/* ------------------------------------------------------------
+   Нажатие
+   ------------------------------------------------------------ */
+
+.cefalot-launcher__btn:active .cefalot-launcher__wheel {
+  transform: scale(0.9);
+}
+
+
+/* ------------------------------------------------------------
+   Accessibility
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-launcher__wheel,
+  .cefalot-launcher__wheel-rim,
+  .cefalot-launcher__wheel-spoke {
+    animation: none !important;
+    transition: none !important;
+  }
+}
