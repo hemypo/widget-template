@@ -70,13 +70,11 @@
   --cf-dur:   200ms;
   --cf-dur-l: 300ms;
   --cf-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  /* Локальный токен этого комплекта (меню, состояние compact) —
-     тень плавающей кнопки-лаунчера. Не входит в базовый набор проекта. */
-  --cf-shadow-md: 0 8px 24px rgba(62, 58, 57, 0.10);
 }
 
+/* Локальный токен состояния compact: тень плавающей кнопки. */
 .cefalot-custom-template-content {
+  --cf-shadow-md: 0 8px 24px rgba(62, 58, 57, 0.10);
   box-sizing: border-box;
   font-family: var(--cf-font);
   position: relative;

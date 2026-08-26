@@ -196,15 +196,19 @@
   grid-template-columns: minmax(0, 1fr);
   gap: var(--cf-s2);
 }
-.cefalot-scroll { max-height: 280px; }
+.cefalot-scroll { max-height: none; overflow-y: visible; }
 .cefalot-choice__body { padding: var(--cf-s3) var(--cf-s4); }
 /* Тач-цели крупнее, поля ниже по паддингу — экран короткий */
 .cefalot-input,
 .cefalot-select,
-.cefalot-textarea { padding: 14px 16px; min-height: 52px; }
+.cefalot-textarea { padding: 14px 16px; min-height: var(--cf-control-h); }
 .cefalot-select { padding-right: 44px; }
 .cefalot-select-wrap .cefalot-caret { right: 16px; }
 .cefalot-btn { width: 100%; padding: 16px 20px; }
 .cefalot-actions { flex-direction: column; align-items: stretch; gap: var(--cf-s2); }
 /* Было 40×40 в легаси-версии — ниже минимального тап-таргета 44px, зафиксировано на var(--cf-tap) */
 .cefalot-close { width: var(--cf-tap); height: var(--cf-tap); }
+
+@media (max-width: 340px) {
+  .cefalot-title { font-size: 21px; line-height: 1.15; }
+}

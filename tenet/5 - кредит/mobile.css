@@ -166,7 +166,7 @@
 }
 /* Тач-цели крупнее, поля ниже по паддингу — экран короткий */
 .cefalot-input,
-.cefalot-select { padding: 14px 16px; min-height: 52px; }
+.cefalot-select { padding: 14px 16px; min-height: var(--cf-control-h); }
 .cefalot-select { padding-right: 44px; }
 .cefalot-select-wrap .cefalot-caret { right: 16px; }
 /* Трейд-ин/КАСКО — в один столбец на узком экране, не в ряд, как на десктопе */

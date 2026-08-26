@@ -63,11 +63,15 @@
 /* ============================================================
    БАЗА И КОРНЕВОЙ БЛОК. Размеры/позиция окна задаёт редактор.
    ============================================================ */
-.cefalot-form-custom-template-root,
 .cefalot-form-custom-template-content {
   width: 100%;
-  height: 100%;
   margin: 0;
+  box-sizing: border-box;
+}
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after {
+  box-sizing: inherit;
 }
 
 .cefalot-form-custom-template-content {
@@ -79,8 +83,10 @@
   text-rendering: optimizeLegibility;
 }
 
-p, h1, h2, h3, h4, ul, ol { margin: 0; padding: 0; }
-ul, ol { list-style: none; }
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1, .cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3, .cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { list-style: none; }
 
 /* ============================================================
    ШАПКА
@@ -387,6 +393,10 @@ ul, ol { list-style: none; }
 /* Активный подшаг платформа помечает сама (aria-current/is-active на кнопке) — стилизуем оба варианта */
 .cefalot-rail__item[aria-current] .cefalot-rail__num,
 .cefalot-rail__item.is-active .cefalot-rail__num { background: var(--cf-accent); }
+
+.cefalot-catalog__panel,
+.cefalot-substep,
+.cefalot-substep__body { min-width: 0; }
 
 .cefalot-catalog__panel { display: flex; flex-direction: column; gap: var(--cf-s7); min-width: 0; }
 .cefalot-substep { display: flex; flex-direction: column; gap: var(--cf-s3); }

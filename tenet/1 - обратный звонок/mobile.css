@@ -63,11 +63,15 @@
 /* ============================================================
    БАЗА И КОРНЕВОЙ БЛОК (МОБАЙЛ)
    ============================================================ */
-.cefalot-form-custom-template-root,
 .cefalot-form-custom-template-content {
   width: 100%;
-  height: 100%;
   margin: 0;
+  box-sizing: border-box;
+}
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after {
+  box-sizing: inherit;
 }
 
 .cefalot-form-custom-template-content {
@@ -85,8 +89,10 @@
   background: var(--cf-surface);
 }
 
-p, h1, h2, h3, h4, ul, ol { margin: 0; padding: 0; }
-ul, ol { list-style: none; }
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1, .cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3, .cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { list-style: none; }
 
 /* ============================================================
    ШАПКА
@@ -209,4 +215,4 @@ ul, ol { list-style: none; }
 .cefalot-btn--quiet:active { color: var(--cf-ink); }
 
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); text-align: center; }
-.cefalot-cr a, .cefalot-cr a:visited { color: #FF3A62; }
+.cefalot-cr a, .cefalot-cr a:visited { color: var(--cf-muted); }
