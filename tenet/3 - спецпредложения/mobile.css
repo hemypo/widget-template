@@ -123,7 +123,11 @@
 
 /* Карточки выбора спецпредложения — на десктопе 2 колонки, на мобиле стекаются в 1 (см. правило ниже) */
 .cefalot-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
-.cefalot-scroll { max-height: 340px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+/* box-shadow вместо fade-градиента на псевдоэлементе: список одновременно
+   grid и scroll-контейнер, доп. ::after стал бы лишней grid-ячейкой и
+   сломал бы раскладку карточек — а так подсказка «есть что прокрутить»
+   видна всегда, пока не докрутили до конца, без затрагивания разметки. */
+.cefalot-scroll { max-height: 340px; overflow-y: auto; -webkit-overflow-scrolling: touch; box-shadow: inset 0 -16px 12px -12px rgba(62, 58, 57, 0.12); }
 .cefalot-choice { position: relative; display: block; align-self: stretch; }
 .cefalot-choice__input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
 .cefalot-choice__body { display: flex; flex-direction: column; gap: var(--cf-s1); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }

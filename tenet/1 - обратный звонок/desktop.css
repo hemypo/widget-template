@@ -217,4 +217,4 @@
 .cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); }
 .cefalot-actions { display: flex; align-items: center; justify-content: flex-start; gap: var(--cf-s3); flex-wrap: wrap; }
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
-.cefalot-cr a, .cefalot-cr a:visited { color: var(--cf-muted); }
+.cefalot-cr a, .cefalot-cr a:visited { color: var(--cf-muted); text-decoration: underline; }

@@ -215,4 +215,4 @@
 .cefalot-btn--quiet:active { color: var(--cf-ink); }
 
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); text-align: center; }
-.cefalot-cr a, .cefalot-cr a:visited { color: var(--cf-muted); }
+.cefalot-cr a, .cefalot-cr a:visited { color: var(--cf-muted); text-decoration: underline; }
