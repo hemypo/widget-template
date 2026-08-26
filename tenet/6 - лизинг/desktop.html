@@ -1,207 +1,203 @@
-  <header class="tw-head">
-    <div class="tw-head__text">
-      <p class="tw-eyebrow">TENET для бизнеса</p>
-      <h2 class="tw-title">Оформить лизинг</h2>
-      <p class="tw-lead">Специальные условия на автомобили для парка любого размера — от одной машины до корпоративного флота.</p>
-    </div>
-    <button class="tw-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
-  </header>
+<header class="cefalot-head">
+  <div class="cefalot-head__text">
+    <p class="cefalot-eyebrow">TENET для бизнеса</p>
+    <h2 class="cefalot-title">Оформить лизинг</h2>
+    <p class="cefalot-lead">Специальные условия на автомобили для парка любого размера — от одной машины до корпоративного флота.</p>
+  </div>
+  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</header>
 
-  <div class="tw-body">
-    <div class="tw-field tw-field--wide">
-      <span class="tw-label" id="ls-type-l">Тип клиента<span class="tw-req" aria-hidden="true">*</span></span>
-      <div class="tw-choice-grid" role="radiogroup" aria-labelledby="ls-type-l">
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="ls-t-ul" name="client_type" value="legal" data-widget-field="client_type"
-                 aria-labelledby="ls-t-ul-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="ls-t-ul-t">Юридическое лицо</span>
-              
-            </span>
-            <span class="tw-choice__meta">ООО, АО — полный пакет документов</span>
+<div class="cefalot-body">
+  <div class="cefalot-field cefalot-field--wide">
+    <span class="cefalot-label" id="ls-type-l">Тип клиента<span class="cefalot-req" aria-hidden="true">*</span></span>
+    <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="ls-type-l">
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="ls-t-ul" name="client_type" value="legal" data-widget-field="client_type"
+               aria-labelledby="ls-t-ul-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="ls-t-ul-t">Юридическое лицо</span>
           </span>
+          <span class="cefalot-choice__meta">ООО, АО — полный пакет документов</span>
         </span>
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="ls-t-ip" name="client_type" value="ip" data-widget-field="client_type"
-                 aria-labelledby="ls-t-ip-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="ls-t-ip-t">Индивидуальный предприниматель</span>
-              
-            </span>
-            <span class="tw-choice__meta">Упрощённый пакет, решение за 1 день</span>
+      </span>
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="ls-t-ip" name="client_type" value="ip" data-widget-field="client_type"
+               aria-labelledby="ls-t-ip-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="ls-t-ip-t">Индивидуальный предприниматель</span>
           </span>
+          <span class="cefalot-choice__meta">Упрощённый пакет, решение за 1 день</span>
         </span>
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="ls-t-fl" name="client_type" value="individual" data-widget-field="client_type"
-                 aria-labelledby="ls-t-fl-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="ls-t-fl-t">Физическое лицо</span>
-              
-            </span>
-            <span class="tw-choice__meta">Лизинг для частных клиентов</span>
+      </span>
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="ls-t-fl" name="client_type" value="individual" data-widget-field="client_type"
+               aria-labelledby="ls-t-fl-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="ls-t-fl-t">Физическое лицо</span>
           </span>
+          <span class="cefalot-choice__meta">Лизинг для частных клиентов</span>
         </span>
-      </div>
+      </span>
     </div>
-
-    <div class="tw-grid">
-      <div class="tw-field">
-        <span class="tw-label" id="ls-company-l">Название компании<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="ls-company" type="text" name="company" data-widget-field="company"
-               placeholder="Введите" aria-labelledby="ls-company-l" required aria-required="true">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-inn-l">ИНН</span>
-        <input class="tw-input" id="ls-inn" type="text" name="inn" data-widget-field="inn"
-               placeholder="10 или 12 цифр" aria-labelledby="ls-inn-l" inputmode="numeric">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-model-l">Модель<span class="tw-req" aria-hidden="true">*</span></span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-model" name="model" data-widget-field="model" aria-labelledby="ls-model-l" required aria-required="true">
-            <option value="" disabled selected>Выберите</option>
-            <option value="t4">TENET T4 — от 2 089 000 ₽</option>
-            <option value="t4l">TENET T4L — от 2 279 000 ₽</option>
-            <option value="t7">TENET T7 — от 2 555 000 ₽</option>
-            <option value="t8">TENET T8 — от 2 999 000 ₽</option>
-            <option value="a8">TENET A8 — скоро в продаже</option>
-            <option value="t9">TENET T9 — осень 2026</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-qty-l">Количество автомобилей<span class="tw-req" aria-hidden="true">*</span></span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-qty" name="quantity" data-widget-field="quantity" aria-labelledby="ls-qty-l" required aria-required="true">
-            <option value="" disabled selected>Выберите</option>
-            <option value="1">1</option>
-            <option value="2_5">2 — 5</option>
-            <option value="6_10">6 — 10</option>
-            <option value="11_30">11 — 30</option>
-            <option value="30plus">Более 30</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-adv-l">Аванс<span class="tw-req" aria-hidden="true">*</span></span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-adv" name="advance" data-widget-field="advance" aria-labelledby="ls-adv-l" required aria-required="true">
-            <option value="" disabled selected>Выберите</option>
-            <option value="0">Без аванса</option>
-            <option value="10">10%</option>
-            <option value="20">20%</option>
-            <option value="30">30%</option>
-            <option value="49">49%</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-term-l">Срок лизинга<span class="tw-req" aria-hidden="true">*</span></span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-term" name="term" data-widget-field="term" aria-labelledby="ls-term-l" required aria-required="true">
-            <option value="" disabled selected>Выберите</option>
-            <option value="12">12 месяцев</option>
-            <option value="24">24 месяца</option>
-            <option value="36">36 месяцев</option>
-            <option value="48">48 месяцев</option>
-            <option value="60">60 месяцев</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-balance-l">Балансодержатель</span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-balance" name="balance_holder" data-widget-field="balance_holder" aria-labelledby="ls-balance-l">
-            <option value="" disabled selected>Выберите</option>
-            <option value="lessor">Лизингодатель</option>
-            <option value="lessee">Лизингополучатель</option>
-            <option value="unknown">Нужна консультация</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-service-l">Дополнительно</span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-service" name="extras" data-widget-field="extras" aria-labelledby="ls-service-l">
-            <option value="" disabled selected>Выберите</option>
-            <option value="none">Не требуется</option>
-            <option value="service">Сервисное обслуживание</option>
-            <option value="insurance">Страхование КАСКО и ОСАГО</option>
-            <option value="full">Полный пакет «под ключ»</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-contact-l">Контактное лицо<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="ls-contact" type="text" name="contact_person" data-widget-field="contact_person"
-               placeholder="Введите" aria-labelledby="ls-contact-l" required aria-required="true">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-phone-l">Телефон<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="ls-phone" type="tel" name="phone" data-widget-field="phone"
-               placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="ls-phone-l" required aria-required="true" inputmode="tel">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-email-l">Рабочая почта<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="ls-email" type="email" name="email" data-widget-field="email"
-               placeholder="Введите" aria-labelledby="ls-email-l" required aria-required="true" inputmode="email">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="ls-city-l">Город<span class="tw-req" aria-hidden="true">*</span></span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="ls-city" name="city" data-widget-field="city" aria-labelledby="ls-city-l" required aria-required="true">
-            <option value="" disabled selected>Выберите</option>
-            <option value="moscow">Москва</option>
-            <option value="spb">Санкт-Петербург</option>
-            <option value="ekb">Екатеринбург</option>
-            <option value="nsk">Новосибирск</option>
-            <option value="kzn">Казань</option>
-            <option value="nnov">Нижний Новгород</option>
-            <option value="krd">Краснодар</option>
-            <option value="other">Другой город</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-    </div>
-
-      <div class="tw-field tw-field--wide">
-        <span class="tw-label" id="ls-comment-l">Комментарий</span>
-        <textarea class="tw-textarea" id="ls-comment" name="comment" data-widget-field="comment" rows="3"
-                  placeholder="Задачи парка, желаемый график платежей, особые условия" aria-labelledby="ls-comment-l"></textarea>
-      </div>
-
-      <div class="tw-consents">
-        <span class="tw-check">
-          <input class="tw-check__box" type="checkbox" id="ls-pd" name="agreement_pd"
-                 data-widget-field="agreement_pd" value="1" required aria-labelledby="ls-pd-t"
-                 data-widget-field-type="checkbox">
-          <span class="tw-check__text" id="ls-pd-t">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
-            в разделе по обработке персональных данных в
-            <a data-widget-link="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="tw-req" aria-hidden="true">*</span></span>
-        </span>
-        <span class="tw-check">
-          <input class="tw-check__box" type="checkbox" id="ls-ad" name="agreement_ad"
-                 data-widget-field="agreement_ad" value="1" aria-labelledby="ls-ad-t"
-                 data-widget-field-type="checkbox">
-          <span class="tw-check__text" id="ls-ad-t">Даю согласие на рекламную коммуникацию</span>
-        </span>
-      </div>
   </div>
 
-  <footer class="tw-foot">
-    <div class="tw-actions">
-      <button class="tw-btn tw-btn--primary" type="button" data-widget-submit>Отправить заявку <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="tw-btn tw-btn--quiet" type="button" data-widget-close>Отмена</button>
+  <div class="cefalot-grid">
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-company-l">Название компании<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="ls-company" type="text" name="company" data-widget-field="company"
+             placeholder="Введите" aria-labelledby="ls-company-l" required aria-required="true">
     </div>
-    <p class="tw-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
-  </footer>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-inn-l">ИНН</span>
+      <input class="cefalot-input" id="ls-inn" type="text" name="inn" data-widget-field="inn"
+             placeholder="10 или 12 цифр" aria-labelledby="ls-inn-l" inputmode="numeric">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-model" name="model" data-widget-field="model" aria-labelledby="ls-model-l" required aria-required="true">
+          <option value="" disabled selected>Выберите</option>
+          <option value="t4">TENET T4 — от 2 089 000 ₽</option>
+          <option value="t4l">TENET T4L — от 2 279 000 ₽</option>
+          <option value="t7">TENET T7 — от 2 555 000 ₽</option>
+          <option value="t8">TENET T8 — от 2 999 000 ₽</option>
+          <option value="a8">TENET A8 — скоро в продаже</option>
+          <option value="t9">TENET T9 — осень 2026</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-qty-l">Количество автомобилей<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-qty" name="quantity" data-widget-field="quantity" aria-labelledby="ls-qty-l" required aria-required="true">
+          <option value="" disabled selected>Выберите</option>
+          <option value="1">1</option>
+          <option value="2_5">2 — 5</option>
+          <option value="6_10">6 — 10</option>
+          <option value="11_30">11 — 30</option>
+          <option value="30plus">Более 30</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-adv-l">Аванс<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-adv" name="advance" data-widget-field="advance" aria-labelledby="ls-adv-l" required aria-required="true">
+          <option value="" disabled selected>Выберите</option>
+          <option value="0">Без аванса</option>
+          <option value="10">10%</option>
+          <option value="20">20%</option>
+          <option value="30">30%</option>
+          <option value="49">49%</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-term-l">Срок лизинга<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-term" name="term" data-widget-field="term" aria-labelledby="ls-term-l" required aria-required="true">
+          <option value="" disabled selected>Выберите</option>
+          <option value="12">12 месяцев</option>
+          <option value="24">24 месяца</option>
+          <option value="36">36 месяцев</option>
+          <option value="48">48 месяцев</option>
+          <option value="60">60 месяцев</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-balance-l">Балансодержатель</span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-balance" name="balance_holder" data-widget-field="balance_holder" aria-labelledby="ls-balance-l">
+          <option value="" disabled selected>Выберите</option>
+          <option value="lessor">Лизингодатель</option>
+          <option value="lessee">Лизингополучатель</option>
+          <option value="unknown">Нужна консультация</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-service-l">Дополнительно</span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-service" name="extras" data-widget-field="extras" aria-labelledby="ls-service-l">
+          <option value="" disabled selected>Выберите</option>
+          <option value="none">Не требуется</option>
+          <option value="service">Сервисное обслуживание</option>
+          <option value="insurance">Страхование КАСКО и ОСАГО</option>
+          <option value="full">Полный пакет «под ключ»</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-contact-l">Контактное лицо<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="ls-contact" type="text" name="contact_person" data-widget-field="contact_person"
+             placeholder="Введите" aria-labelledby="ls-contact-l" required aria-required="true">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="ls-phone" type="tel" name="phone" data-widget-field="phone"
+             placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="ls-phone-l" required aria-required="true" inputmode="tel">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-email-l">Рабочая почта<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="ls-email" type="email" name="email" data-widget-field="email"
+             placeholder="Введите" aria-labelledby="ls-email-l" required aria-required="true" inputmode="email">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="ls-city-l">Город<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="ls-city" name="city" data-widget-field="city" aria-labelledby="ls-city-l" required aria-required="true">
+          <option value="" disabled selected>Выберите</option>
+          <option value="moscow">Москва</option>
+          <option value="spb">Санкт-Петербург</option>
+          <option value="ekb">Екатеринбург</option>
+          <option value="nsk">Новосибирск</option>
+          <option value="kzn">Казань</option>
+          <option value="nnov">Нижний Новгород</option>
+          <option value="krd">Краснодар</option>
+          <option value="other">Другой город</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+  </div>
+
+  <div class="cefalot-field cefalot-field--wide">
+    <span class="cefalot-label" id="ls-comment-l">Комментарий</span>
+    <textarea class="cefalot-textarea" id="ls-comment" name="comment" data-widget-field="comment" rows="3"
+              placeholder="Задачи парка, желаемый график платежей, особые условия" aria-labelledby="ls-comment-l"></textarea>
+  </div>
+
+  <div class="cefalot-consents">
+    <label class="cefalot-check">
+      <input class="cefalot-check__box" type="checkbox" id="ls-pd" name="agreement_pd"
+             data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+      <span class="cefalot-check__text">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
+        в разделе по обработке персональных данных в
+        <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="cefalot-req" aria-hidden="true">*</span></span>
+    </label>
+    <label class="cefalot-check">
+      <input class="cefalot-check__box" type="checkbox" id="ls-ad" name="agreement_ad"
+             data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1">
+      <span class="cefalot-check__text">Даю согласие на рекламную коммуникацию</span>
+    </label>
+  </div>
+</div>
+
+<footer class="cefalot-foot">
+  <div class="cefalot-actions">
+    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>Отправить заявку <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="cefalot-btn cefalot-btn--quiet" type="button" data-widget-close>Отмена</button>
+  </div>
+  <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+  <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
+</footer>

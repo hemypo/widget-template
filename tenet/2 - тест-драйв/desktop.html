@@ -1,98 +1,97 @@
-<div class="tw-custom-widget-wrap">
-  <header class="tw-head">
-    <div class="tw-head__text">
-      <p class="tw-eyebrow">Запись</p>
-      <h2 class="tw-title">Тест-драйв</h2>
-      <p class="tw-lead">Выберите модель и удобное время — дилер подтвердит запись по телефону.</p>
-    </div>
-    <button class="tw-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
-  </header>
+<header class="cefalot-head">
+  <div class="cefalot-head__text">
+    <p class="cefalot-eyebrow">Запись</p>
+    <h2 class="cefalot-title">Тест-драйв</h2>
+    <p class="cefalot-lead">Выберите модель и удобное время — дилер подтвердит запись по телефону.</p>
+  </div>
+  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</header>
 
-  <div class="tw-body">
-    <div class="tw-field tw-field--wide">
-      <span class="tw-label" id="td-model-l">Модель<span class="tw-req" aria-hidden="true">*</span></span>
-      <div class="tw-choice-grid" role="radiogroup" aria-labelledby="td-model-l">
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="td-m-t4" name="model" value="t4" data-widget-field="model" aria-labelledby="td-m-t4-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="td-m-t4-t">TENET T4</span>
-            </span>
+<div class="cefalot-body">
+  <div class="cefalot-field cefalot-field--wide">
+    <span class="cefalot-label" id="td-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
+    <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="td-model-l">
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="td-m-t4" name="model" value="t4" data-widget-field="model" aria-labelledby="td-m-t4-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="td-m-t4-t">TENET T4</span>
           </span>
         </span>
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="td-m-t4l" name="model" value="t4l" data-widget-field="model" aria-labelledby="td-m-t4l-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="td-m-t4l-t">TENET T4L</span>
-            </span>
-          </span>
-        </span>
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="td-m-t7" name="model" value="t7" data-widget-field="model" aria-labelledby="td-m-t7-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="td-m-t7-t">TENET T7</span>
-            </span>
-          </span>
-        </span>
-        <span class="tw-choice">
-          <input class="tw-choice__input" type="radio" id="td-m-t8" name="model" value="t8" data-widget-field="model" aria-labelledby="td-m-t8-t">
-          <span class="tw-choice__body">
-            <span class="tw-choice__top">
-              <span class="tw-choice__title" id="td-m-t8-t">TENET T8</span>
-            </span>
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div class="tw-grid">
-      <div class="tw-field">
-        <span class="tw-label" id="td-name-l">Имя<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="td-name" type="text" name="name" data-widget-field="name" placeholder="Введите" aria-labelledby="td-name-l" required aria-required="true">
-      </div>
-     
-      <div class="tw-field">
-        <span class="tw-label" id="td-phone-l">Телефон<span class="tw-req" aria-hidden="true">*</span></span>
-        <input class="tw-input" id="td-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="td-phone-l" required aria-required="true" inputmode="tel">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="td-date-l">Желаемая дата</span>
-        <input class="tw-input" id="td-date" type="date" name="preferred_date" data-widget-field="preferred_date" placeholder="" aria-labelledby="td-date-l">
-      </div>
-      <div class="tw-field">
-        <span class="tw-label" id="td-slot-l">Время</span>
-        <span class="tw-select-wrap">
-          <select class="tw-select" id="td-slot" name="preferred_time" data-widget-field="preferred_time" aria-labelledby="td-slot-l">
-            <option value="" disabled selected>Выберите</option>
-            <option value="10_12">10:00 — 12:00</option>
-            <option value="12_14">12:00 — 14:00</option>
-            <option value="14_16">14:00 — 16:00</option>
-            <option value="16_18">16:00 — 18:00</option>
-            <option value="18_20">18:00 — 20:00</option>
-          </select>
-          <span class="tw-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </span>
-      </div>
-    </div>
-    <div class="tw-consents">
-      <span class="tw-check">
-        <input class="tw-check__box" type="checkbox" id="td-pd" name="agreement_pd" data-widget-field="agreement_pd" value="1" required aria-labelledby="td-pd-t" data-widget-field-type="checkbox">
-        <span class="tw-check__text" id="td-pd-t">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных в разделе по обработке персональных данных в <a data-widget-link="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="tw-req" aria-hidden="true">*</span></span>
       </span>
-      <span class="tw-check">
-        <input class="tw-check__box" type="checkbox" id="td-ad" name="agreement_ad" data-widget-field="agreement_ad" value="1" aria-labelledby="td-ad-t" data-widget-field-type="checkbox">
-        <span class="tw-check__text" id="td-ad-t">Даю согласие на рекламную коммуникацию</span>
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="td-m-t4l" name="model" value="t4l" data-widget-field="model" aria-labelledby="td-m-t4l-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="td-m-t4l-t">TENET T4L</span>
+          </span>
+        </span>
+      </span>
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="td-m-t7" name="model" value="t7" data-widget-field="model" aria-labelledby="td-m-t7-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="td-m-t7-t">TENET T7</span>
+          </span>
+        </span>
+      </span>
+      <span class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="td-m-t8" name="model" value="t8" data-widget-field="model" aria-labelledby="td-m-t8-t">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title" id="td-m-t8-t">TENET T8</span>
+          </span>
+        </span>
       </span>
     </div>
   </div>
 
-  <footer class="tw-foot">
-    <div class="tw-actions">
-      <button class="tw-btn tw-btn--primary" type="button" data-widget-submit>Записаться на тест-драйв <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="tw-btn tw-btn--quiet" type="button" data-widget-close>Отмена</button>
+  <div class="cefalot-grid">
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="td-name" type="text" name="name" data-widget-field="name" placeholder="Введите" aria-labelledby="td-name-l" required aria-required="true">
     </div>
-    <p class="tw-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
-  </footer>
+
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="td-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="td-phone-l" required aria-required="true" inputmode="tel">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-date-l">Желаемая дата</span>
+      <input class="cefalot-input" id="td-date" type="date" name="preferred_date" data-widget-field="preferred_date" placeholder="" aria-labelledby="td-date-l">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-slot-l">Время</span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="td-slot" name="preferred_time" data-widget-field="preferred_time" aria-labelledby="td-slot-l">
+          <option value="" disabled selected>Выберите</option>
+          <option value="10_12">10:00 — 12:00</option>
+          <option value="12_14">12:00 — 14:00</option>
+          <option value="14_16">14:00 — 16:00</option>
+          <option value="16_18">16:00 — 18:00</option>
+          <option value="18_20">18:00 — 20:00</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+  </div>
+  <div class="cefalot-consents">
+    <label class="cefalot-check">
+      <input class="cefalot-check__box" type="checkbox" id="td-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+      <span class="cefalot-check__text">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных в разделе по обработке персональных данных в <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="cefalot-req" aria-hidden="true">*</span></span>
+    </label>
+    <label class="cefalot-check">
+      <input class="cefalot-check__box" type="checkbox" id="td-ad" name="agreement_ad" data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1">
+      <span class="cefalot-check__text">Даю согласие на рекламную коммуникацию</span>
+    </label>
+  </div>
 </div>
+
+<footer class="cefalot-foot">
+  <div class="cefalot-actions">
+    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>Записаться на тест-драйв <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="cefalot-btn cefalot-btn--quiet" type="button" data-widget-close>Отмена</button>
+  </div>
+  <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+  <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
+</footer>

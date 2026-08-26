@@ -7,74 +7,78 @@
  */
 
 /* ============================================================
-   ШРИФТЫ — подключаются ассетами платформы ({{asset:key}}).
-   Загрузите файлы через кнопки медиа и укажите свои ключи.
-   ============================================================ */
-@font-face {
-  font-family: "TENET Sans";
-  src: url("{{asset:tenet-sans-regular}}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "TENET Sans";
-  src: url("{{asset:tenet-sans-medium}}") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "TENET Sans Display";
-  src: url("{{asset:tenet-sans-semiexpanded-bold}}") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+   ШРИФТ БРЕНДА — TENET Sans, см. tenet/DESIGN-TOKENS.md.
+   {{asset:tenet-font-regular}} / {{asset:tenet-font-bold}} — плейсхолдеры,
+   заменить на реальные ключи после первой заливки шрифта в кабинет
+   (кнопка «Шрифт»), затем синхронно поправить во всех комплектах проекта.
+   Отдельного файла-начертания «TENET Sans Display» в проекте нет —
+   --cf-font-display намеренно падает обратно на «TENET Sans», см.
+   DESIGN-TOKENS.md; выдуманного @font-face на несуществующий ассет
+   здесь больше нет (было в легаси-версии — tenet-sans-semiexpanded-bold). ============================================================ */
+@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
+.cefalot-custom-template-content { font-family: "TENET Sans", system-ui, sans-serif; }
 
 /* ============================================================
-   ТОКЕНЫ ДИЗАЙН-СИСТЕМЫ (сняты с tenet.ru)
+   ДИЗАЙН-ТОКЕНЫ ПРОЕКТА — дословно из tenet/DESIGN-TOKENS.md.
+   Менять только в источнике истины и синхронизировать все комплекты.
    ============================================================ */
 :root,
 :host {
-  --tw-ink:          #3E3A39;
-  --tw-ink-soft:     #615952;
-  --tw-muted:        #80756B;
-  --tw-line:         #D8CEC5;
-  --tw-surface:      #FFFFFF;
-  --tw-surface-soft: #F7F3EF;
-  --tw-surface-tile: #F2EDE8;
-  --tw-cta:          #D8CEC5;
-  --tw-cta-hover:    #CBBEB0;
-  --tw-cta-active:   #BFB1A2;
-  --tw-cta-ink:      #4A443F;
-  --tw-focus:        #3E3A39;
+  /* Цвета бренда TENET */
+  --cf-ink:          #3E3A39;
+  --cf-ink-strong:   #2F2B2A;
+  --cf-ink-soft:     #615952;
+  --cf-muted:        #80756B;
+  --cf-line:         #D8CEC5;
+  --cf-line-soft:    #EDE7E1;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F7F3EF;
+  --cf-surface-tile: #F2EDE8;
+  --cf-accent:       #C30D23;
+  --cf-cta:          #D8CEC5;
+  --cf-cta-hover:    #CBBEB0;
+  --cf-cta-active:   #BFB1A2;
+  --cf-cta-ink:      #4A443F;
+  --cf-disabled:     #E7E0D9;
+  --cf-focus:        #3E3A39;
 
-  --tw-font:         "TENET Sans", Arial, Helvetica, sans-serif;
-  --tw-font-display: "TENET Sans Display", "TENET Sans", Arial, Helvetica, sans-serif;
-  --tw-fs-label:     11px;
-  --tw-fs-caption:   12px;
-  --tw-fs-body:      15px;
-  --tw-ls-label:     1px;
-  --tw-ls-btn:       1px;
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
 
-  --tw-r-sm: 12px;
-  --tw-r-lg: 20px;
-  --tw-r-xl: 28px;
-  --tw-r-pill: 999px;
+  /* Скругления */
+  --cf-r-xs:   8px;
+  --cf-r-sm:   12px;
+  --cf-r-md:   16px;
+  --cf-r-lg:   20px;
+  --cf-r-xl:   28px;
+  --cf-r-pill: 999px;
 
-  --tw-s2: 8px;
-  --tw-s3: 12px;
-  --tw-s4: 16px;
-  --tw-s5: 24px;
-  --tw-s6: 32px;
-  --tw-s7: 40px;
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+  --cf-s8: 56px;
 
-  --tw-control-h: 56px;
-  --tw-tap: 44px;
+  /* Высоты контролов */
+  --cf-control-h: 56px;
+  --cf-tap: 44px;
 
-  --tw-dur:  200ms;
-  --tw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Движение */
+  --cf-dur:   200ms;
+  --cf-dur-l: 300ms;
+  --cf-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* ============================================================
@@ -82,19 +86,19 @@
    ============================================================ */
 .cefalot-custom-template-content {
   box-sizing: border-box;
-  font-family: var(--tw-font);
-  font-size: var(--tw-fs-body);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
   line-height: 1.5;
-  color: var(--tw-ink);
+  color: var(--cf-ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
   display: flex;
   flex-direction: column;
-  gap: var(--tw-s5);
-  padding: var(--tw-s7);
-  background: var(--tw-surface-soft);
-  border-radius: var(--tw-r-xl);
+  gap: var(--cf-s5);
+  padding: var(--cf-s7);
+  background: var(--cf-surface-soft);
+  border-radius: var(--cf-r-xl);
 }
 .cefalot-custom-template-content *,
 .cefalot-custom-template-content *::before,
@@ -107,76 +111,76 @@
 .cefalot-custom-template-content p { margin: 0; }
 
 /* --- Шапка -------------------------------------------------- */
-.tw-head { display: flex; align-items: flex-start; gap: var(--tw-s4); }
-.tw-head__text { flex: 1 1 auto; min-width: 0; }
-.tw-eyebrow { font-size: var(--tw-fs-label); letter-spacing: var(--tw-ls-label); text-transform: uppercase; color: var(--tw-muted); margin-bottom: var(--tw-s2); }
-.tw-title { font-family: var(--tw-font-display); font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--tw-ink); font-size: 34px; line-height: 1.1; }
-.tw-lead { color: var(--tw-muted); margin-top: var(--tw-s3); font-size: var(--tw-fs-body); }
+.cefalot-head { display: flex; align-items: flex-start; gap: var(--cf-s4); }
+.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
+.cefalot-eyebrow { font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); margin-bottom: var(--cf-s2); }
+.cefalot-title { font-family: var(--cf-font-display); font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--cf-ink); font-size: 34px; line-height: 1.1; }
+.cefalot-lead { color: var(--cf-muted); margin-top: var(--cf-s3); font-size: var(--cf-fs-body); }
 
-.tw-close {
+.cefalot-close {
   flex: 0 0 auto;
   display: inline-flex; align-items: center; justify-content: center;
-  width: var(--tw-tap); height: var(--tw-tap);
-  padding: 0; border: 0; border-radius: var(--tw-r-pill);
-  background: var(--tw-surface-tile); color: var(--tw-ink-soft);
+  width: var(--cf-tap); height: var(--cf-tap);
+  padding: 0; border: 0; border-radius: var(--cf-r-pill);
+  background: var(--cf-surface-tile); color: var(--cf-ink-soft);
   cursor: pointer;
-  transition: background var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease);
+  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
 }
-.tw-close:hover { background: var(--tw-line); }
-.tw-close svg { width: 16px; height: 16px; display: block; }
+.cefalot-close:hover { background: var(--cf-line); }
+.cefalot-close svg { width: 16px; height: 16px; display: block; }
 
 /* --- Чипы (быстрые переходы к формам) ------------------------ */
-.tw-menu__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--tw-s3); }
-.tw-chip {
+.cefalot-menu__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
+.cefalot-chip {
   display: inline-flex; align-items: center; justify-content: center; text-align: center;
-  width: 100%; min-height: var(--tw-tap); padding: 12px 20px;
-  font-family: var(--tw-font); font-size: var(--tw-fs-caption);
-  letter-spacing: var(--tw-ls-label); text-transform: uppercase;
-  color: var(--tw-ink-soft); background: var(--tw-surface);
-  border: 1px solid var(--tw-line); border-radius: var(--tw-r-sm);
+  width: 100%; min-height: var(--cf-tap); padding: 12px 20px;
+  font-family: var(--cf-font); font-size: var(--cf-fs-caption);
+  letter-spacing: var(--cf-ls-label); text-transform: uppercase;
+  color: var(--cf-ink-soft); background: var(--cf-surface);
+  border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm);
   cursor: pointer;
-  transition: border-color var(--tw-dur) var(--tw-ease), background var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease);
+  transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
 }
-.tw-chip:hover { border-color: var(--tw-ink); color: var(--tw-ink); background: var(--tw-surface-soft); }
-.tw-chip:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
+.cefalot-chip:hover { border-color: var(--cf-ink); color: var(--cf-ink); background: var(--cf-surface-soft); }
+.cefalot-chip:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 /* --- Главная кнопка ------------------------------------------ */
-.tw-menu__cta { width: 100%; min-height: 64px; font-size: 14px; }
-.tw-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--tw-s3);
-  min-height: var(--tw-control-h); padding: 16px 32px;
-  font-family: var(--tw-font); font-size: 13px; letter-spacing: var(--tw-ls-btn);
+.cefalot-menu__cta { width: 100%; min-height: 64px; font-size: 14px; }
+.cefalot-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s3);
+  min-height: var(--cf-control-h); padding: 16px 32px;
+  font-family: var(--cf-font); font-size: 13px; letter-spacing: var(--cf-ls-btn);
   text-transform: uppercase; text-decoration: none;
-  border: 1px solid transparent; border-radius: var(--tw-r-sm);
+  border: 1px solid transparent; border-radius: var(--cf-r-sm);
   cursor: pointer;
-  transition: background var(--tw-dur) var(--tw-ease), border-color var(--tw-dur) var(--tw-ease), color var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+  transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
 }
-.tw-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
-.tw-btn:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
-.tw-btn:active { transform: translateY(1px); }
-.tw-btn--primary { background: var(--tw-cta); color: var(--tw-cta-ink); }
-.tw-btn--primary:hover { background: var(--tw-cta-hover); }
-.tw-btn--primary:active { background: var(--tw-cta-active); }
+.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+.cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-btn:active { transform: translateY(1px); }
+.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); }
+.cefalot-btn--primary:hover { background: var(--cf-cta-hover); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); }
 
 /* --- Плитки с иконкой ------------------------------------------ */
-.tw-menu__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--tw-s3); }
-.tw-tile {
+.cefalot-menu__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--cf-s3); }
+.cefalot-tile {
   display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  gap: var(--tw-s3); width: 100%; height: 100%; padding: var(--tw-s4);
-  text-align: center; text-decoration: none; color: var(--tw-ink-soft);
-  background: var(--tw-surface); border: 1px solid transparent; border-radius: var(--tw-r-lg);
+  gap: var(--cf-s3); width: 100%; height: 100%; padding: var(--cf-s4);
+  text-align: center; text-decoration: none; color: var(--cf-ink-soft);
+  background: var(--cf-surface); border: 1px solid transparent; border-radius: var(--cf-r-lg);
   cursor: pointer;
-  transition: border-color var(--tw-dur) var(--tw-ease), transform var(--tw-dur) var(--tw-ease);
+  transition: border-color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
 }
-.tw-tile:hover { border-color: var(--tw-line); transform: translateY(-2px); }
-.tw-tile:focus-visible { outline: 2px solid var(--tw-focus); outline-offset: 2px; }
-.tw-tile__icon {
+.cefalot-tile:hover { border-color: var(--cf-line); transform: translateY(-2px); }
+.cefalot-tile:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-tile__icon {
   display: flex; align-items: center; justify-content: center;
-  width: 72px; height: 72px; border-radius: var(--tw-r-lg);
-  background: var(--tw-surface-tile); color: var(--tw-ink-soft);
+  width: 72px; height: 72px; border-radius: var(--cf-r-lg);
+  background: var(--cf-surface-tile); color: var(--cf-ink-soft);
 }
-.tw-tile__icon svg { width: 32px; height: 32px; }
-.tw-tile__label { font-size: var(--tw-fs-caption); letter-spacing: var(--tw-ls-label); text-transform: uppercase; }
+.cefalot-tile__icon svg { width: 32px; height: 32px; }
+.cefalot-tile__label { font-size: var(--cf-fs-caption); letter-spacing: var(--cf-ls-label); text-transform: uppercase; }
 
 /* --- Уважение к prefers-reduced-motion --------------------- */
 @media (prefers-reduced-motion: reduce) {
