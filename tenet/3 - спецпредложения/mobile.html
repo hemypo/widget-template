@@ -1,13 +1,13 @@
 <header class="cefalot-head">
   <div class="cefalot-head__text">
     <p class="cefalot-eyebrow">Выгода</p>
-    <h2 class="cefalot-title">Спецпредложения</h2>
+    <h2 class="cefalot-title">Специальные предложения</h2>
     <p class="cefalot-lead">Отметьте интересное предложение — менеджер рассчитает условия под ваш случай.</p>
   </div>
   <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </header>
 
-<div class="cefalot-body">
+ <div class="cefalot-body">
   <div class="cefalot-field cefalot-field--wide">
     <span class="cefalot-label" id="of-offer-l">Выберите предложение<span class="cefalot-req" aria-hidden="true">*</span></span>
     <div class="cefalot-choice-grid cefalot-scroll" role="radiogroup" aria-labelledby="of-offer-l">
@@ -76,73 +76,10 @@
     </div>
   </div>
 
-  <hr class="cefalot-divider">
-
-  <div class="cefalot-grid">
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="of-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="of-name" type="text" name="name" data-widget-field="name"
-             placeholder="Введите" aria-labelledby="of-name-l" required aria-required="true">
-    </div>
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="of-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="of-phone" type="tel" name="phone" data-widget-field="phone"
-             placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="of-phone-l" required aria-required="true" inputmode="tel">
-    </div>
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="of-city-l">Город<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <span class="cefalot-select-wrap">
-        <select class="cefalot-select" id="of-city" name="city" data-widget-field="city" aria-labelledby="of-city-l" required aria-required="true">
-          <option value="" disabled selected>Выберите</option>
-          <option value="moscow">Москва</option>
-          <option value="spb">Санкт-Петербург</option>
-          <option value="ekb">Екатеринбург</option>
-          <option value="nsk">Новосибирск</option>
-          <option value="kzn">Казань</option>
-          <option value="nnov">Нижний Новгород</option>
-          <option value="krd">Краснодар</option>
-          <option value="other">Другой город</option>
-        </select>
-        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </span>
-    </div>
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="of-dealer-l">Дилерский центр</span>
-      <span class="cefalot-select-wrap">
-        <select class="cefalot-select" id="of-dealer" name="dealer" data-widget-field="dealer" aria-labelledby="of-dealer-l">
-          <option value="" disabled selected>Выберите</option>
-          <option value="d1">АВИЛОН — Москва, Волгоградский пр-т, 43</option>
-          <option value="d2">АВИЛОН БЕЛАЯ ДАЧА — Котельники</option>
-          <option value="d3">АВТОДОМ — Москва, Ленинградское ш., 71</option>
-          <option value="d4">РОЛЬФ — Санкт-Петербург, Витебский пр-т, 17</option>
-          <option value="d5">Подобрать ближайший автоматически</option>
-        </select>
-        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </span>
-    </div>
-  </div>
-
-  <div class="cefalot-consents">
-    <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="of-pd" name="agreement_pd"
-             data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
-      <span class="cefalot-check__text">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
-        в разделе по обработке персональных данных в
-        <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="cefalot-req" aria-hidden="true">*</span></span>
-    </label>
-    <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="of-ad" name="agreement_ad"
-             data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1">
-      <span class="cefalot-check__text">Даю согласие на рекламную коммуникацию</span>
-    </label>
-  </div>
-</div>
 
 <footer class="cefalot-foot">
   <div class="cefalot-actions">
-    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>Получить условия <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button class="cefalot-btn cefalot-btn--quiet" type="button" data-widget-close>Отмена</button>
+    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-next>Далее<svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-  <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
   <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
 </footer>

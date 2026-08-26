@@ -102,10 +102,10 @@
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
 .cefalot-input, .cefalot-select, .cefalot-textarea { width: 100%; min-height: var(--cf-control-h); padding: 15px 20px; font-family: var(--cf-font); font-size: var(--cf-fs-input); line-height: 22px; letter-spacing: 0.2px; color: var(--cf-ink); background: var(--cf-surface); border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); outline: none; transition: border-color var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); -webkit-appearance: none; appearance: none; }
+.cefalot-textarea { min-height: 108px; resize: vertical; }
 .cefalot-input::placeholder, .cefalot-textarea::placeholder { color: var(--cf-muted); opacity: 1; }
 .cefalot-input:hover, .cefalot-select:hover, .cefalot-textarea:hover { border-color: var(--cf-cta-hover); }
 .cefalot-input:focus-visible, .cefalot-select:focus-visible, .cefalot-textarea:focus-visible, .cefalot-input:focus, .cefalot-select:focus, .cefalot-textarea:focus { border-color: var(--cf-focus); box-shadow: 0 0 0 3px rgba(62, 58, 57, 0.12); }
-.cefalot-input:disabled, .cefalot-select:disabled { background: var(--cf-surface-soft); color: var(--cf-muted); cursor: not-allowed; }
 
 .cefalot-select-wrap { position: relative; display: block; }
 .cefalot-select { padding-right: 48px; cursor: pointer; }
@@ -121,34 +121,16 @@
 .cefalot-check__text { font-size: var(--cf-fs-caption); line-height: 1.5; color: var(--cf-muted); }
 .cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
 
-/* Карточки выбора спецпредложения — 2 колонки, есть бейдж ("Хит"/"Новинка") в углу карточки */
-.cefalot-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
-/* box-shadow вместо fade-градиента на псевдоэлементе: список одновременно
-   grid и scroll-контейнер, доп. ::after стал бы лишней grid-ячейкой и
-   сломал бы раскладку карточек — а так подсказка «есть что прокрутить»
-   видна всегда, пока не докрутили до конца, без затрагивания разметки. */
-.cefalot-scroll { max-height: 340px; overflow-y: auto; box-shadow: inset 0 -16px 12px -12px rgba(62, 58, 57, 0.12); }
-.cefalot-choice { position: relative; display: block; align-self: stretch; }
+.cefalot-choice-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--cf-s3); }
+.cefalot-choice { position: relative; display: flex; height: auto; justify-content: space-between; align-self: stretch; }
 .cefalot-choice__input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
-.cefalot-choice__body { display: flex; flex-direction: column; gap: var(--cf-s1); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }
+.cefalot-choice__body { display: flex; width: 100%; flex-direction: column; gap: var(--cf-s2); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }
 .cefalot-choice__input:hover + .cefalot-choice__body { border-color: var(--cf-cta-hover); }
 .cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-ink); background: var(--cf-surface-soft); box-shadow: inset 0 0 0 1px var(--cf-ink); }
 .cefalot-choice__input:focus-visible + .cefalot-choice__body { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-choice__top { display: flex; align-items: center; justify-content: space-between; gap: var(--cf-s2); }
-.cefalot-choice__title { font-weight: 500; color: var(--cf-ink); }
+.cefalot-choice__title { font-weight: 500; color: var(--cf-ink); font-family: var(--cf-font-display); text-transform: uppercase; letter-spacing: 0.5px; }
 .cefalot-choice__meta { font-size: var(--cf-fs-caption); color: var(--cf-muted); margin-top: auto; }
-.cefalot-choice__badge {
-  flex: 0 0 auto;
-  align-self: center;
-  white-space: nowrap;
-  font-size: 10px;
-  letter-spacing: var(--cf-ls-label);
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: var(--cf-accent);
-  padding: 4px 8px;
-  border-radius: var(--cf-r-xs);
-}
 
 .cefalot-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s3); min-height: var(--cf-control-h); padding: 16px 32px; font-family: var(--cf-font); font-size: 13px; letter-spacing: var(--cf-ls-btn); text-transform: uppercase; text-decoration: none; border: 1px solid transparent; border-radius: var(--cf-r-sm); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease); min-width: 200px; }
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
@@ -160,21 +142,8 @@
 .cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); font-size: var(--cf-fs-label); }
 .cefalot-btn--quiet:hover { color: var(--cf-ink); }
 
-.cefalot-divider { height: 1px; background: var(--cf-line-soft); border: 0; }
 .cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); }
 .cefalot-actions { display: flex; align-items: center; justify-content: flex-start; gap: var(--cf-s3); flex-wrap: wrap; }
 .cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
-
-/* --- Уважение к prefers-reduced-motion --------------------- */
-@media (prefers-reduced-motion: reduce) {
-  .cefalot-form-custom-template-content *,
-  .cefalot-form-custom-template-content *::before,
-  .cefalot-form-custom-template-content *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
