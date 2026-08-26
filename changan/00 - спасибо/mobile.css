@@ -126,8 +126,12 @@
 .cefalot-head {
   position: absolute;
 
+  /* Совпадает с эффективным инсетом крестика в остальных бандлах
+     проекта на мобайле (padding var(--cf-s5) var(--cf-s4) контейнера
+     + flex-заголовок, прижатый к его краю) — держим общий элемент
+     (крестик закрытия) в одном и том же месте во всех состояниях. */
   top: var(--cf-s5);
-  right: var(--cf-s5);
+  right: var(--cf-s4);
 
   margin: 0;
 }
@@ -385,8 +389,8 @@
   }
 
   .cefalot-head {
-    top: 20px;
-    right: 20px;
+    top: var(--cf-s5);
+    right: var(--cf-s4);
   }
 
   .cefalot-success {
@@ -424,8 +428,8 @@
   /* Close */
 
   .cefalot-head {
-    top: 16px;
-    right: 16px;
+    top: var(--cf-s5);
+    right: var(--cf-s4);
   }
 
 

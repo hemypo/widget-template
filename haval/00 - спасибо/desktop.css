@@ -396,8 +396,8 @@
   }
 
   .cefalot-head {
-    top: 20px;
-    right: 20px;
+    top: var(--cf-s5);
+    right: var(--cf-s4);
   }
 
   .cefalot-success {
@@ -435,8 +435,8 @@
   /* Close */
 
   .cefalot-head {
-    top: 16px;
-    right: 16px;
+    top: var(--cf-s5);
+    right: var(--cf-s4);
   }
 
 
