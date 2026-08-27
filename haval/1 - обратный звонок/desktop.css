@@ -197,7 +197,7 @@
    В редакторе Cefalot привяжите изображение к asset key.
    ============================================================ */
 .cefalot-form-custom-template-content {
-  --cf-hero-image: url("{{asset:key}}");
+  --cf-hero-image: url("{{asset:image1}}");
 
   position: relative;
   display: grid;
@@ -216,7 +216,7 @@
 }
 
 .cefalot-head {
-  position: relative;
+  position: static;
   grid-column: 1;
   grid-row: 1 / -1;
 
@@ -265,17 +265,17 @@
 
 .cefalot-head .cefalot-close {
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   top: var(--cf-s5);
   right: var(--cf-s5);
 
-  background: rgba(0, 0, 0, 0.34);
-  color: var(--cf-surface);
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
 }
 
 .cefalot-head .cefalot-close:hover {
-  background: rgba(0, 0, 0, 0.52);
-  color: var(--cf-surface);
+  background: var(--cf-line);
+  color: var(--cf-ink);
 }
 
 .cefalot-body {
@@ -297,7 +297,11 @@
 }
 
 .cefalot-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--cf-s4);
   min-width: 0;
+  width: 100%;
 }
 
 .cefalot-field,

@@ -1,0 +1,88 @@
+<header class="cefalot-head">
+  <div class="cefalot-head__text">
+    <p class="cefalot-eyebrow">TENET для бизнеса</p>
+    <h2 class="cefalot-title">Оформить лизинг</h2>
+    <p class="cefalot-lead">Специальные условия на автомобили для парка любого размера — от одной машины до корпоративного флота.</p>
+  </div>
+
+  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+</header>
+
+<main class="cefalot-leasing">
+  <section class="cefalot-leasing-step" data-widget-step="1">
+    <div class="cefalot-leasing-step__head">
+      <p class="cefalot-leasing-step__label">Шаг 1 из 3</p>
+      <h3 class="cefalot-leasing-step__title">Клиент</h3>
+      <p class="cefalot-leasing-step__lead">Расскажите, кто оформляет лизинг. Эти данные помогут подобрать подходящие условия и пакет документов.</p>
+    </div>
+
+    <div class="cefalot-body">
+      <div class="cefalot-field cefalot-field--wide">
+        <span class="cefalot-label" id="ls-type-l">Тип клиента<span class="cefalot-req" aria-hidden="true">*</span></span>
+
+        <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="ls-type-l">
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-ul" name="client_type" value="legal"
+                   data-widget-field="client_type" required aria-required="true">
+            <span class="cefalot-choice__body">
+              <span class="cefalot-choice__title">Юридическое лицо</span>
+              <span class="cefalot-choice__meta">ООО, АО — полный пакет документов</span>
+            </span>
+          </label>
+
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-ip" name="client_type" value="ip"
+                   data-widget-field="client_type">
+            <span class="cefalot-choice__body">
+              <span class="cefalot-choice__title">Индивидуальный предприниматель</span>
+              <span class="cefalot-choice__meta">Упрощённый пакет, решение за 1 день</span>
+            </span>
+          </label>
+
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-fl" name="client_type" value="individual"
+                   data-widget-field="client_type">
+            <span class="cefalot-choice__body">
+              <span class="cefalot-choice__title">Физическое лицо</span>
+              <span class="cefalot-choice__meta">Лизинг для частных клиентов</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cefalot-grid">
+        <div class="cefalot-field">
+          <span class="cefalot-label" id="ls-company-l">Название компании<span class="cefalot-req" aria-hidden="true">*</span></span>
+          <input class="cefalot-input" id="ls-company" type="text" name="company" data-widget-field="company"
+                 placeholder="Введите" aria-labelledby="ls-company-l" required aria-required="true">
+        </div>
+
+        <div class="cefalot-field">
+          <span class="cefalot-label" id="ls-inn-l">ИНН</span>
+          <input class="cefalot-input" id="ls-inn" type="text" name="inn" data-widget-field="inn"
+                 placeholder="10 или 12 цифр" aria-labelledby="ls-inn-l" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-next>
+          Далее
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
+  </section>
+</main>

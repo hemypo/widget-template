@@ -189,7 +189,7 @@
    В редакторе Cefalot привяжите изображение к asset key.
    ============================================================ */
 .cefalot-form-custom-template-content {
-  --cf-hero-image: url("{{asset:key}}");
+  --cf-hero-image: url("{{asset:image1}}");
 
   position: relative;
   display: flex;
