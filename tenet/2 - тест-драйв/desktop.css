@@ -1,9 +1,14 @@
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "TENET Sans", system-ui, sans-serif; }
+@font-face { font-family: "TENET Sans"; src: url("{{asset:font1}}") format("opentype"); font-display: swap; font-weight: 400;}
+
+@font-face { font-family: "TENET Sans Bold"; src: url("{{asset:font2}}") format("opentype"); font-display: swap; font-weight: 700; }
+
+.cefalot-custom-template-content { font-family: "TENET Sans", Arial, sans-serif; }
 
 :root,
 :host {
+  --cf-font: "TENET Sans Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-display: "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
   /* Цвета бренда TENET */
   --cf-ink:          #3E3A39;
   --cf-ink-strong:   #2F2B2A;
@@ -21,10 +26,6 @@
   --cf-cta-ink:      #4A443F;
   --cf-disabled:     #E7E0D9;
   --cf-focus:        #3E3A39;
-
-  /* Типографика */
-  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   --cf-fs-label:     11px;
   --cf-fs-caption:   12px;
   --cf-fs-body:      15px;

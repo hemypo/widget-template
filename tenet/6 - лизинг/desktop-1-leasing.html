@@ -25,33 +25,39 @@
       <div class="cefalot-field cefalot-field--wide">
         <span class="cefalot-label" id="ls-type-l">Тип клиента<span class="cefalot-req" aria-hidden="true">*</span></span>
 
-        <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="ls-type-l">
-          <label class="cefalot-choice">
-            <input class="cefalot-choice__input" type="radio" id="ls-t-ul" name="client_type" value="legal"
-                   data-widget-field="client_type" required aria-required="true">
+        <div class="cefalot-choice-grid cefalot-scroll" role="radiogroup" aria-labelledby="ls-type-l" aria-required="true">
+          <span class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-ul" name="client_type" value="legal" data-widget-field="client_type" data-widget-field-type="radio" required aria-required="true"
+                   aria-labelledby="ls-t-ul-t">
             <span class="cefalot-choice__body">
-              <span class="cefalot-choice__title">Юридическое лицо</span>
+              <span class="cefalot-choice__top">
+                <span class="cefalot-choice__title" id="ls-t-ul-t">Юридическое лицо</span>
+              </span>
               <span class="cefalot-choice__meta">ООО, АО — полный пакет документов</span>
             </span>
-          </label>
+          </span>
 
-          <label class="cefalot-choice">
-            <input class="cefalot-choice__input" type="radio" id="ls-t-ip" name="client_type" value="ip"
-                   data-widget-field="client_type">
+          <span class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-ip" name="client_type" value="ip" data-widget-field="client_type" data-widget-field-type="radio"
+                   aria-labelledby="ls-t-ip-t">
             <span class="cefalot-choice__body">
-              <span class="cefalot-choice__title">Индивидуальный предприниматель</span>
+              <span class="cefalot-choice__top">
+                <span class="cefalot-choice__title" id="ls-t-ip-t">Индивидуальный предприниматель</span>
+              </span>
               <span class="cefalot-choice__meta">Упрощённый пакет, решение за 1 день</span>
             </span>
-          </label>
+          </span>
 
-          <label class="cefalot-choice">
-            <input class="cefalot-choice__input" type="radio" id="ls-t-fl" name="client_type" value="individual"
-                   data-widget-field="client_type">
+          <span class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" id="ls-t-fl" name="client_type" value="individual" data-widget-field="client_type" data-widget-field-type="radio"
+                   aria-labelledby="ls-t-fl-t">
             <span class="cefalot-choice__body">
-              <span class="cefalot-choice__title">Физическое лицо</span>
+              <span class="cefalot-choice__top">
+                <span class="cefalot-choice__title" id="ls-t-fl-t">Физическое лицо</span>
+              </span>
               <span class="cefalot-choice__meta">Лизинг для частных клиентов</span>
             </span>
-          </label>
+          </span>
         </div>
       </div>
 

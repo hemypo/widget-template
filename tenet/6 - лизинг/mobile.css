@@ -417,12 +417,15 @@
 
 .cefalot-choice__input {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   opacity: 0;
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .cefalot-choice__body {
@@ -450,6 +453,13 @@
 .cefalot-choice__input:focus-visible + .cefalot-choice__body {
   outline: 2px solid var(--cf-focus);
   outline-offset: 2px;
+}
+
+.cefalot-choice__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cf-s2);
 }
 
 .cefalot-choice__title {

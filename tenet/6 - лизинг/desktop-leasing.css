@@ -407,39 +407,40 @@
 .cefalot-choice-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: stretch;
   gap: var(--cf-s3);
-  width: 100%;
 }
 
 .cefalot-choice {
   position: relative;
-  display: block;
-  min-width: 0;
-  cursor: pointer;
+  display: flex;
+  height: auto;
+  justify-content: space-between;
+  align-self: stretch;
 }
 
 .cefalot-choice__input {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   opacity: 0;
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .cefalot-choice__body {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: var(--cf-s2);
-  min-height: 116px;
-  height: 100%;
   padding: var(--cf-s4) var(--cf-s5);
+  min-height: var(--cf-tap);
   border: 1px solid var(--cf-line);
   border-radius: var(--cf-r-md);
   background: var(--cf-surface);
-  color: var(--cf-ink);
   transition:
     border-color var(--cf-dur) var(--cf-ease),
     background var(--cf-dur) var(--cf-ease),
@@ -461,20 +462,25 @@
   outline-offset: 2px;
 }
 
+.cefalot-choice__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cf-s2);
+}
+
 .cefalot-choice__title {
+  font-weight: 500;
   color: var(--cf-ink);
   font-family: var(--cf-font-display);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.3;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .cefalot-choice__meta {
-  margin-top: auto;
-  color: var(--cf-muted);
   font-size: var(--cf-fs-caption);
-  line-height: 1.4;
+  color: var(--cf-muted);
+  margin-top: auto;
 }
 
 /* ============================================================
@@ -566,7 +572,13 @@
   align-items: center;
   justify-content: flex-start;
   gap: var(--cf-s3);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.cefalot-actions .cefalot-btn {
+  flex: 0 0 auto;
+  width: auto;
 }
 
 .cefalot-btn {

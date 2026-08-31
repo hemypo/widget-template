@@ -1,30 +1,30 @@
-/* TENET WIDGET — Раскрытие (само меню/навигация)
-   Файл: стили десктоп
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
- */
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:font3}}") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* ============================================================
-   ШРИФТ БРЕНДА — TENET Sans, см. tenet/DESIGN-TOKENS.md.
-   {{asset:tenet-font-regular}} / {{asset:tenet-font-bold}} — плейсхолдеры,
-   заменить на реальные ключи после первой заливки шрифта в кабинет
-   (кнопка «Шрифт»), затем синхронно поправить во всех комплектах проекта.
-   Отдельного файла-начертания «TENET Sans Display» в проекте нет —
-   --cf-font-display намеренно падает обратно на «TENET Sans», см.
-   DESIGN-TOKENS.md; выдуманного @font-face на несуществующий ассет
-   здесь больше нет (было в легаси-версии — tenet-sans-semiexpanded-bold). ============================================================ */
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
-.cefalot-custom-template-content { font-family: "TENET Sans", system-ui, sans-serif; }
+@font-face {
+  font-family: "TENET Sans";
+  src: url("{{asset:font4}}") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
-/* ============================================================
-   ДИЗАЙН-ТОКЕНЫ ПРОЕКТА — дословно из tenet/DESIGN-TOKENS.md.
-   Менять только в источнике истины и синхронизировать все комплекты.
-   ============================================================ */
 :root,
 :host {
+  --cf-font: "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-display: "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
+  
   /* Цвета бренда TENET */
   --cf-ink:          #3E3A39;
   --cf-ink-strong:   #2F2B2A;
@@ -42,16 +42,6 @@
   --cf-cta-ink:      #4A443F;
   --cf-disabled:     #E7E0D9;
   --cf-focus:        #3E3A39;
-
-  /* Типографика */
-  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-fs-label:     11px;
-  --cf-fs-caption:   12px;
-  --cf-fs-body:      15px;
-  --cf-fs-input:     16px;
-  --cf-ls-label:     1px;
-  --cf-ls-btn:       1px;
 
   /* Скругления */
   --cf-r-xs:   8px;
@@ -204,3 +194,57 @@
 }
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); text-align:center; margin-top:15px; margin-bottom:-10px;}
 .cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
+.cefalot-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cf-s4);
+  width: 100%;
+}
+
+.cefalot-menu__title {
+  min-width: 0;
+  color: var(--cf-ink);
+  font-family: var(--cf-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+.cefalot-menu__close {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 0;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition:
+    background var(--cf-dur) var(--cf-ease),
+    color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-menu__close:hover {
+  background: var(--cf-line);
+  color: var(--cf-ink);
+}
+
+.cefalot-menu__close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+.cefalot-menu__close svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
