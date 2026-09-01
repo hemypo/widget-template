@@ -1,5 +1,7 @@
-
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font1}}") format("woff2"); font-display: swap; }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font2}}") format("woff2"); font-display: swap; }
 @font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font4}}") format("woff2"); font-display: swap; }
 .cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
 :root,

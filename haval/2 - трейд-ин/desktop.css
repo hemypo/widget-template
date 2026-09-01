@@ -412,3 +412,38 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* === MOBILE ADAPTATION === */
+@media (max-width: 768px) {
+  .cefalot-form-custom-template-content { 
+    padding: var(--cf-s4); 
+    gap: var(--cf-s4); 
+    border-radius: 0; 
+  }
+  .cefalot-title { font-size: 24px; }
+  .cefalot-lead { max-width: none; font-size: 14px; }
+  .cefalot-head { gap: var(--cf-s3); }
+
+  .cefalot-progress { 
+    flex-wrap: wrap; 
+    gap: var(--cf-s2); 
+    margin-bottom: var(--cf-s4); 
+    padding: 0;
+  }
+  .cefalot-progress__step { flex: 0 0 calc(25% - 6px); }
+  .cefalot-progress__num { width: 32px; height: 32px; font-size: 13px; }
+  .cefalot-progress__label { font-size: 10px; line-height: 1.2; }
+  .cefalot-progress__line { margin: 0 4px 16px 4px; }
+
+  .cefalot-substep { 
+    padding: var(--cf-s4); 
+    border-radius: var(--cf-r-md);
+  }
+  .cefalot-substep__title { font-size: 20px; }
+  .cefalot-grid { grid-template-columns: 1fr !important; gap: var(--cf-s4); }
+  
+  .cefalot-actions { flex-direction: column-reverse; width: 100%; gap: var(--cf-s3); }
+  .cefalot-btn { width: 100%; min-width: 0; }
+  .cefalot-btn--ghost { order: 2; }
+  .cefalot-btn--primary { order: 1; }
+}

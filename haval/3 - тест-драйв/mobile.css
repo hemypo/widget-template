@@ -102,6 +102,7 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
+  overflow: hidden;
 }
 
 .cefalot-hero::after {
@@ -233,6 +234,15 @@
   border-color: var(--cf-accent);
   box-shadow: 0 0 0 3px rgba(3, 202, 191, 0.15);
 }
+
+/* === MODEL CHOICE CARDS === */
+.cefalot-choice-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s2); }
+.cefalot-choice { position: relative; display: block; }
+.cefalot-choice__input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
+.cefalot-choice__body { display: flex; align-items: center; padding: var(--cf-s3) var(--cf-s4); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); background: var(--cf-surface); transition: all var(--cf-dur) var(--cf-ease); }
+.cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-accent); background: var(--cf-accent-light); box-shadow: 0 4px 12px rgba(3, 202, 191, 0.2); }
+.cefalot-choice__input:focus-visible + .cefalot-choice__body { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-choice__title { font-size: 13px; font-weight: 500; color: var(--cf-ink); text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* === CONSENTS === */
 .cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
@@ -514,25 +524,25 @@
     padding: 0 var(--cf-s3);
     padding-right: calc(var(--cf-s3) + 18px);
   }
-
+  
   .cefalot-caret {
     right: var(--cf-s3);
     width: 14px;
     height: 14px;
     margin-top: -7px;
   }
-
+  
   .cefalot-caret svg {
     width: 14px;
     height: 14px;
   }
-
+  
   /* На мобильных нативный select часто лучше */
   @supports (-webkit-touch-callout: none) {
     .cefalot-select {
       padding-right: var(--cf-s4);
     }
-
+    
     .cefalot-caret {
       display: none; /* Скрываем кастомную стрелку на iOS */
     }
@@ -546,11 +556,11 @@
   .cefalot-select:hover {
     border-color: var(--cf-line);
   }
-
+  
   .cefalot-select:hover + .cefalot-caret {
     color: var(--cf-muted);
   }
-
+  
   .cefalot-select:active {
     border-color: var(--cf-accent);
   }
@@ -565,12 +575,12 @@
     border-color: #3A3A3A;
     color: #FFFFFF;
   }
-
+  
   .cefalot-select option {
     background: #2A2A2A;
     color: #FFFFFF;
   }
-
+  
   .cefalot-caret {
     color: #999999;
   }
@@ -593,9 +603,11 @@
   .cefalot-select {
     border-width: 2px;
   }
-
+  
   .cefalot-select:focus {
     outline: 2px solid var(--cf-accent);
     outline-offset: 2px;
   }
 }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font2}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }

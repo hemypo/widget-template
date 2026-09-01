@@ -1,3 +1,9 @@
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font1}}") format("woff2"); font-display: swap; }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font2}}") format("woff2"); font-display: swap; }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font4}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
+
 :root,
 :host {
   /* Цвета бренда Haval */
@@ -45,9 +51,6 @@
   --cf-dur: 200ms;
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
-@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
 /* Локальные токены комплекта «Расчёт кредита» — не входят в канонический набор */
 :root, :host {
