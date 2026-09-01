@@ -1,102 +1,75 @@
-<header class="cefalot-head">
-  <div class="cefalot-head__text">
-    <p class="cefalot-eyebrow">Расчёт кредита</p>
-    <h2 class="cefalot-title">Заявка на кредит</h2>
-    <p class="cefalot-lead">Оставьте параметры — специалист дилерского центра Changan подготовит для вас расчёт кредита и перезвонит.</p>
-  </div>
-  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
-</header>
+<div class="cefalot-layout">
 
-<div class="cefalot-body">
+  <!-- HERO SECTION -->
+  <aside class="cefalot-hero"></aside>
 
-  <div class="cefalot-step-head">
-    <p class="cefalot-eyebrow">Шаг 2 из 2</p>
-    <h2 class="cefalot-title">Параметры кредита</h2>
-    <p class="cefalot-lead">Укажите желаемые параметры и контакты — специалист свяжется с вами для точного расчёта.</p>
-  </div>
+  <!-- FORM PANEL -->
+  <div class="cefalot-panel">
 
-  <div class="cefalot-grid">
+    <!-- Крестик закрытия (строго на своем месте) -->
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
 
-    <!-- СРОК -->
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="cr-term-l">Срок кредита<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <span class="cefalot-select-wrap">
-        <select class="cefalot-select" id="cr-term" name="term" data-widget-field="term" data-widget-field-type="select" aria-labelledby="cr-term-l" required aria-required="true">
-          <option value="" disabled selected>Выберите срок</option>
-          <option value="12">12 месяцев</option>
-          <option value="24">24 месяца</option>
-          <option value="36">36 месяцев</option>
-          <option value="48">48 месяцев</option>
-          <option value="60">60 месяцев</option>
-        </select>
-        <span class="cefalot-caret" aria-hidden="true">
-          <svg viewBox="0 0 12 8" fill="none"><polyline points="1,1.5 6,6.5 11,1.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </span>
+    <div class="cefalot-head">
+      <span class="cefalot-eyebrow">Кредитная программа</span>
+      <h2 class="cefalot-title">Рассчитать кредит</h2>
+      <p class="cefalot-lead">Подберём выгодные условия кредита от банков-партнёров CHANGAN — низкий % и высокий % одобрения.</p>
     </div>
 
-    <!-- ПЕРВОНАЧАЛЬНЫЙ ВЗНОС -->
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="cr-down-l">Первоначальный взнос</span>
-      <span class="cefalot-select-wrap">
-        <select class="cefalot-select" id="cr-down" name="downpayment" data-widget-field="downpayment" data-widget-field-type="select" aria-labelledby="cr-down-l">
-          <option value="" disabled selected>Выберите взнос</option>
-          <option value="10">10%</option>
-          <option value="20">20%</option>
-          <option value="30">30%</option>
-          <option value="40">40%</option>
-          <option value="50">50%</option>
-        </select>
-        <span class="cefalot-caret" aria-hidden="true">
-          <svg viewBox="0 0 12 8" fill="none"><polyline points="1,1.5 6,6.5 11,1.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </span>
+    <div class="cefalot-step-head">
+      <span class="cefalot-step-eyebrow">Шаг 2 из 3</span>
+      <h3 class="cefalot-step-title">Параметры кредита</h3>
     </div>
 
-    <!-- ИМЯ -->
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="cr-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="cr-name" type="text" name="name" data-widget-field="name"
-             placeholder="Введите имя" aria-labelledby="cr-name-l" required aria-required="true">
+    <div class="cefalot-body">
+      <div class="cefalot-field">
+        <span class="cefalot-label" id="cr-down-l">Первоначальный взнос, ₽</span>
+        <input class="cefalot-input" type="number" name="downpayment" data-widget-field="downpayment" data-widget-field-type="number" placeholder="Например, 400 000" aria-labelledby="cr-down-l" inputmode="numeric" min="0" step="1000">
+      </div>
+
+      <div class="cefalot-field">
+        <span class="cefalot-label" id="cr-term-label">Срок кредита, мес.<span class="cefalot-req" aria-hidden="true">*</span></span>
+        <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="cr-term-label">
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" name="loan_term" value="24" data-widget-field="loan_term" required>
+            <span class="cefalot-choice__body">24 месяца</span>
+          </label>
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" name="loan_term" value="36" data-widget-field="loan_term">
+            <span class="cefalot-choice__body">36 месяцев</span>
+          </label>
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" name="loan_term" value="48" data-widget-field="loan_term">
+            <span class="cefalot-choice__body">48 месяцев</span>
+          </label>
+          <label class="cefalot-choice">
+            <input class="cefalot-choice__input" type="radio" name="loan_term" value="60" data-widget-field="loan_term">
+            <span class="cefalot-choice__body">60 месяцев</span>
+          </label>
+        </div>
+      </div>
+
+      <p class="cefalot-note">Точную ставку и размер ежемесячного платежа рассчитает банк-партнёр индивидуально — низкий % по кредиту и высокий % одобрения.</p>
     </div>
 
-    <!-- ТЕЛЕФОН -->
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="cr-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="cr-phone" type="tel" name="phone"
-             data-widget-field="phone" data-widget-field-type="phone" data-widget-mask="+7 (000) 000-00-00"
-             placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="cr-phone-l" required aria-required="true" inputmode="tel">
-    </div>
-
-  </div>
-
-  <div class="cefalot-consents">
-    <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="cr-pd" name="agreement_pd"
-             data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
-      <span class="cefalot-check__text">Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a><span class="cefalot-req" aria-hidden="true">*</span></span>
-    </label>
-
-    <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="cr-third-party" name="agreement_third_party"
-             data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
-      <span class="cefalot-check__text">Я согласен(-на) с условиями <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политики обработки персональных данных</a> и <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">Политикой конфиденциальности</a><span class="cefalot-req" aria-hidden="true">*</span></span>
-    </label>
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-back>
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Назад
+        </button>
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-next>
+          Далее
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
   </div>
 
 </div>
-
-<footer class="cefalot-foot">
-  <div class="cefalot-actions">
-    <button class="cefalot-btn cefalot-btn--quiet" type="button" data-widget-back>
-      <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Назад
-    </button>
-    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
-      Отправить заявку на расчёт
-      <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-  <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
-  <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
-</footer>

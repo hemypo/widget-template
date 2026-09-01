@@ -1,59 +1,41 @@
-@font-face {
-  font-family: "Haval-Regular";
-  src: url("{{asset:font3}}") format("woff2");
-  font-display: swap;
-}
-
-.cefalot-form-custom-template-root {
-  font-family: "Haval-Regular", system-ui, sans-serif;
-}
-
-
-/* ============================================================
-   VARIABLES
-   ============================================================ */
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
 :root,
 :host {
-  --cf-accent:        #03CABF;
-  --cf-accent-hover:  #02B0A6;
+  /* Цвета бренда Haval */
+  --cf-accent:       #03CABF;
+  --cf-accent-hover: #02B0A6;
   --cf-accent-active: #028D86;
-
-  --cf-ink:      #1A1A1A;
-  --cf-ink-soft: #4A4A4A;
-  --cf-muted:    #767676;
-
-  --cf-line:      #DEDEDE;
-  --cf-line-soft: #EEEEEE;
-
+  --cf-accent-light: rgba(3, 202, 191, 0.08);
+  --cf-ink:          #1A1A1A;
+  --cf-ink-soft:     #4A4A4A;
+  --cf-muted:        #767676;
+  --cf-line:         #DEDEDE;
+  --cf-line-soft:    #EEEEEE;
   --cf-surface:      #FFFFFF;
-  --cf-surface-soft: #F5F5F5;
+  --cf-surface-soft: #F8F9FA;
   --cf-surface-tile: #F0F0F0;
+  --cf-focus:        #1A1A1A;
+  --cf-gradient: linear-gradient(135deg, rgba(3, 202, 191, 0.12) 0%, rgba(3, 202, 191, 0.04) 100%);
 
-  --cf-focus: #1A1A1A;
-
-  --cf-font:
-    Haval-Regular,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
+  /* Типографика */
+  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
   --cf-fs-input:   16px;
+  --cf-ls-label:   0.6px;
+  --cf-ls-btn:     0.4px;
 
-  --cf-ls-label: 0.6px;
-  --cf-ls-btn:   0.4px;
+  /* Скругления */
+  --cf-r-xs: 5px;
+  --cf-r-sm: 5px;
+  --cf-r-md: 5px;
+  --cf-r-lg: 12px;
+  --cf-r-pill: 999px;
 
-  /* Скругления как в трейд-ин */
-  --cf-r-xs:   5px;
-  --cf-r-sm:   5px;
-  --cf-r-md:   5px;
-  --cf-r-pill: 5px;
-
+  /* Отступы */
   --cf-s1: 4px;
   --cf-s2: 8px;
   --cf-s3: 12px;
@@ -61,251 +43,284 @@
   --cf-s5: 24px;
   --cf-s6: 32px;
   --cf-s7: 40px;
+  --cf-s8: 48px;
 
+  /* Высоты контролов */
   --cf-control-h: 52px;
   --cf-tap: 44px;
 
+  /* Движение */
   --cf-dur: 160ms;
+  --cf-dur-slow: 400ms;
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --cf-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+:root,
+:host {
+  --cf-fs-title: 26px;
+}
 
-/* ============================================================
-   ROOT
-   ============================================================ */
-
-.cefalot-form-custom-template-root,
 .cefalot-form-custom-template-content {
-  width: 100%;
-  height: 100%;
-
-  margin: 0;
-
   box-sizing: border-box;
-}
-
-
-/* ============================================================
-   PLATFORM CONTENT
-   ============================================================ */
-
-.cefalot-form-custom-template-content {
-  position: relative;
-
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 100%;
-
-  padding: var(--cf-s5) var(--cf-s4);
-
-  background: var(--cf-surface);
-  color: var(--cf-ink);
-
-  border-radius: 5px;
-
+  padding: 0;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-body);
   line-height: 1.5;
-
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow: hidden;
+  height: stretch;
+margin: 0 auto;
 }
 
 .cefalot-form-custom-template-content *,
 .cefalot-form-custom-template-content *::before,
-.cefalot-form-custom-template-content *::after {
-  box-sizing: border-box;
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1, .cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3, .cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
+
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { list-style: none; }
+
+.cefalot-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--cf-s7) var(--cf-s5) var(--cf-s6);
+  background: var(--cf-gradient);
+  justify-content: space-around;
+  width: stretch;
 }
 
-.cefalot-form-custom-template-content p,
-.cefalot-form-custom-template-content h1,
-.cefalot-form-custom-template-content h2,
-.cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content h4 {
-  margin: 0;
-  padding: 0;
-}
-
-
-/* ============================================================
-   HEADER / CLOSE
-   ============================================================ */
-
-.cefalot-head {
+.cefalot-close {
   position: absolute;
-
-  top: var(--cf-s5);
-  right: var(--cf-s4);
-
-  margin: 0;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 0;
+  border-radius: var(--cf-r-pill);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.cefalot-head__text {
-  display: none;
+.cefalot-close:hover {
+  background: #FFFFFF;
+  color: var(--cf-ink);
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+.cefalot-close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
 
-/* Close */
-
-.cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 0; border-radius: var(--cf-r-pill); background: var(--cf-surface-tile); color: var(--cf-ink-soft); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease); }
-.cefalot-close:hover { background: var(--cf-line); color: var(--cf-ink); }
-.cefalot-close svg { width: 16px; height: 16px; display: block; }
-
-
-/* ============================================================
-   SUCCESS
-   ============================================================ */
+.cefalot-close svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
 
 .cefalot-success {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: 16px;
-
-  width: 100%;
-  max-width: 560px;
-
-  padding: 32px;
-
   text-align: center;
+  gap: var(--cf-s5);
+  width: 100%;
+  margin: 0 auto;
 }
 
-
-/* ============================================================
-   SUCCESS ICON
-   ============================================================ */
-
-.cefalot-success__icon {
+/* Success Icon with Animation */
+.cefalot-success__icon-wrap {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
 
-  width: 72px;
-  height: 72px;
-
-  margin-bottom: 4px;
-
-  border-radius: 5px;
-
-  background: var(--cf-accent);
-  color: #FFFFFF;
+.cefalot-success__icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  box-shadow: 
+    0 0 0 8px var(--cf-accent-light),
+    0 12px 32px rgba(3, 202, 191, 0.24),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  color: var(--cf-accent);
+  animation: cefalot-success-pop var(--cf-dur-slow) var(--cf-ease-bounce) 0.1s both;
 }
 
 .cefalot-success__icon svg {
-  display: block;
-
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
 }
 
+.cefalot-success__circle {
+  stroke-dasharray: 94.2;
+  stroke-dashoffset: 94.2;
+  animation: cefalot-success-circle var(--cf-dur-slow) var(--cf-ease) 0.2s forwards;
+}
 
-/* ============================================================
-   SUCCESS TITLE
-   ============================================================ */
+.cefalot-success__check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: cefalot-success-check var(--cf-dur-slow) var(--cf-ease) 0.4s forwards;
+}
 
-.cefalot-success__title {
-  max-width: 520px;
+.cefalot-success__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 88px;
+  height: 88px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-accent);
+  opacity: 0;
+  animation: cefalot-success-ripple 1.2s var(--cf-ease) 0.6s infinite;
+}
 
-  color: var(--cf-ink);
-
-  font-size: clamp(26px, 3vw, 34px);
-  font-weight: 700;
-
-  line-height: 1.12;
-
+/* Title & Lead */
+.cefalot-title {
+  font-family: var(--cf-font);
+  font-weight: 600;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.2;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.2s both;
 }
 
-
-/* ============================================================
-   SUCCESS LEAD
-   ============================================================ */
-
-.cefalot-success__lead {
-  max-width: 520px;
-
+.cefalot-lead {
   color: var(--cf-muted);
-
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--cf-fs-body);
+  line-height: 1.6;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.3s both;
 }
 
+/* Facts Cards */
+.cefalot-success__facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--cf-s3);
+  width: 100%;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.4s both;
+}
 
-/* ============================================================
-   ACTIONS
-   ============================================================ */
-
-.cefalot-actions {
+.cefalot-success__fact {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  width: 100%;
-
-  flex-wrap: wrap;
+  gap: var(--cf-s4);
+  padding: var(--cf-s4);
+  text-align: left;
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(3, 202, 191, 0.12);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-success__actions {
-  margin-top: 8px;
+.cefalot-success__fact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--cf-accent);
 }
 
-
-/* ============================================================
-   BUTTON
-   ============================================================ */
-
-.cefalot-btn {
-  appearance: none;
-  -webkit-appearance: none;
-
+.cefalot-success__fact-icon {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: 12px;
-
-  min-width: 170px;
-  min-height: var(--cf-control-h);
-
-  padding: 13px 24px;
-
-  border: 1px solid transparent;
-  border-radius: 5px;
-
-  font-family: var(--cf-font);
-
-  font-size: 15px;
-  font-weight: 600;
-
-  line-height: 1.2;
-
-  letter-spacing: var(--cf-ls-btn);
-
-  text-decoration: none;
-
-  cursor: pointer;
-
-  transition:
-    background-color var(--cf-dur) var(--cf-ease),
-    border-color var(--cf-dur) var(--cf-ease),
-    color var(--cf-dur) var(--cf-ease),
-    transform var(--cf-dur) var(--cf-ease);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--cf-r-md);
+  background: var(--cf-gradient);
+  color: var(--cf-accent);
+  box-shadow: 0 2px 8px rgba(3, 202, 191, 0.15);
 }
 
-.cefalot-btn svg {
-  flex: 0 0 auto;
+.cefalot-success__fact-icon svg {
+  width: 20px;
+  height: 20px;
+}
 
-  width: 19px;
-  height: 12px;
+.cefalot-success__fact-text {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+  line-height: 1.4;
+}
 
-  transition:
-    transform var(--cf-dur) var(--cf-ease);
+.cefalot-success__fact-strong {
+  font-family: var(--cf-font);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--cf-ink);
+  margin-top: 2px;
+}
+
+/* Actions */
+.cefalot-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--cf-s2);
+  width: 100%;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.5s both;
+}
+
+.cefalot-success__actions {
+  margin-top: var(--cf-s2);
+}
+
+.cefalot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-s3);
+  width: 100%;
+  min-height: var(--cf-control-h);
+  padding: 15px 24px;
+  font-family: var(--cf-font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--cf-ls-btn);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0;
+  border-radius: var(--cf-r-md);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 4px 12px rgba(3, 202, 191, 0.24);
 }
 
 .cefalot-btn:focus-visible {
@@ -313,243 +328,89 @@
   outline-offset: 2px;
 }
 
-.cefalot-btn:active {
-  transform: translateY(1px);
-}
-
-
-/* ============================================================
-   GHOST BUTTON
-   ============================================================ */
-
-.cefalot-btn--ghost {
-  background: transparent;
-
-  border-color: var(--cf-line);
-
+.cefalot-btn--primary {
+  background: var(--cf-accent);
   color: var(--cf-ink);
 }
 
-.cefalot-btn--ghost:hover {
-  background: var(--cf-accent);
-  border-color: var(--cf-accent);
-
-  color: #FFFFFF;
+.cefalot-btn--primary:hover {
+  background: var(--cf-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(3, 202, 191, 0.32);
 }
 
-.cefalot-btn--ghost:hover svg {
-  color: #FFFFFF;
+.cefalot-btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(3, 202, 191, 0.24);
 }
 
-.cefalot-btn--ghost:active {
-  background: var(--cf-accent-active);
-  border-color: var(--cf-accent-active);
-
-  color: #FFFFFF;
-}
-
-
-/* ============================================================
-   CREDIT
-   ============================================================ */
-
+/* Credits */
 .cefalot-cr {
-  position: absolute;
-
-  right: 0;
-  bottom: var(--cf-s3);
-  left: 0;
-
-  margin: 0;
-
-  color: rgba(0, 0, 0, 0.38);
-
-  font-size: 10px;
-  line-height: 1.3;
-
-  text-align: center;
+  margin-top: var(--cf-s4);
+  font-size: var(--cf-fs-caption);
+  color: var(--cf-muted);
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.6s both;
 }
 
 .cefalot-cr a {
-  color: inherit;
-
+  color: var(--cf-ink-soft);
   text-decoration: underline;
   text-underline-offset: 2px;
-
-  transition:
-    color var(--cf-dur) var(--cf-ease);
+  transition: color var(--cf-dur) var(--cf-ease);
 }
 
 .cefalot-cr a:hover {
   color: var(--cf-accent);
 }
 
-
-/* ============================================================
-   TABLET
-   ============================================================ */
-
-@media (max-width: 820px) {
-
-  .cefalot-form-custom-template-content {
-    padding: 32px 24px;
+/* Animations */
+@keyframes cefalot-success-pop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
   }
-
-  .cefalot-head {
-    top: var(--cf-s5);
-    right: var(--cf-s4);
+  50% {
+    transform: scale(1.05);
   }
-
-  .cefalot-success {
-    max-width: 520px;
-
-    padding: 28px 20px;
+  70% {
+    transform: scale(0.95);
   }
-
-  .cefalot-success__title {
-    font-size: 28px;
-  }
-
-  .cefalot-success__lead {
-    font-size: 15px;
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-  .cefalot-form-custom-template-content {
-    justify-content: center;
-
-    padding:
-      72px
-      16px
-      52px;
-  }
-
-
-  /* Close */
-
-  .cefalot-head {
-    top: var(--cf-s5);
-    right: var(--cf-s4);
-  }
-
-
-
-  /* Success */
-
-  .cefalot-success {
-    gap: 14px;
-
-    max-width: 100%;
-
-    padding: 20px 0;
-  }
-
-  .cefalot-success__icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .cefalot-success__icon svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .cefalot-success__title {
-    font-size: 24px;
-  }
-
-  .cefalot-success__lead {
-    max-width: 360px;
-
-    font-size: 14px;
-  }
-
-
-  /* Actions */
-
-  .cefalot-actions {
-    width: 100%;
-  }
-
-  .cefalot-btn {
-    width: 100%;
-    min-width: 0;
-    min-height: 50px;
-
-    padding: 12px 16px;
-
-    font-size: 14px;
-  }
-
-
-  /* Credit */
-
-  .cefalot-cr {
-    right: 12px;
-    bottom: 10px;
-    left: 12px;
-
-    font-size: 9px;
+@keyframes cefalot-success-circle {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-
-/* ============================================================
-   SMALL MOBILE
-   ============================================================ */
-
-@media (max-width: 380px) {
-
-  .cefalot-form-custom-template-content {
-    padding:
-      64px
-      12px
-      46px;
-  }
-
-  .cefalot-success__title {
-    font-size: 22px;
-  }
-
-  .cefalot-success__lead {
-    font-size: 13px;
+@keyframes cefalot-success-check {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-
-/* ============================================================
-   TOUCH
-   ============================================================ */
-
-@media (hover: none) {
-
-  .cefalot-btn--ghost:hover {
-    background: var(--cf-accent);
-    border-color: var(--cf-accent);
-
-    color: #FFFFFF;
+@keyframes cefalot-success-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
   }
 }
 
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .cefalot-form-custom-template-content *,
-  .cefalot-form-custom-template-content *::before,
-  .cefalot-form-custom-template-content *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+@keyframes cefalot-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

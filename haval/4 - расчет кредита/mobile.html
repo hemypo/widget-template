@@ -1,0 +1,86 @@
+<div class="cefalot-layout">
+
+  <!-- HERO SECTION -->
+  <aside class="cefalot-hero">
+    <div class="cefalot-hero__content">
+      <span class="cefalot-eyebrow">Кредитное предложение</span>
+      <h2 class="cefalot-title">Рассчитать кредит</h2>
+      <p class="cefalot-lead">Выберите модель и менеджер подберёт выгодное кредитное предложение</p>
+    </div>
+  </aside>
+
+  <!-- FORM PANEL -->
+  <div class="cefalot-panel">
+
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="cefalot-body">
+      
+      <!-- ЗАМЕНЕНО: Выбор модели через Select -->
+      <div class="cefalot-field">
+        <label class="cefalot-label" for="tst-model">Модель <span class="cefalot-req">*</span></label>
+        <span class="cefalot-select-wrap">
+          <select class="cefalot-select" id="tst-model" name="model" data-widget-field="model" required aria-required="true">
+            <option value="" disabled selected>Выберите модель</option>
+            <option value="jolion">HAVAL JOLION</option>
+            <option value="m6">HAVAL M6</option>
+            <option value="f7">HAVAL F7</option>
+            <option value="f7x">HAVAL F7X</option>
+            <option value="dargo">HAVAL DARGO</option>
+            <option value="poer">GWM POER</option>
+          </select>
+          <span class="cefalot-caret" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false">
+              <polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </span>
+      </div>
+
+      <div class="cefalot-grid">
+        
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="tst-phone">Телефон <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="tst-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" required aria-required="true" inputmode="tel">
+        </div>
+      </div>
+
+      <div class="cefalot-consents">
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="tst-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю <a class="cefalot-check__link" href="https://disk.yandex.ru/i/yB4Ry1ovFb48rA" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="tst-ad" name="agreement_ad" data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю согласие на <a class="cefalot-check__link" href="https://disk.yandex.ru/i/Xunx_Frzu2Xnqg" target="_blank" rel="noopener">предоставление ПД третьим лицам</a> и ознакомлен с <a class="cefalot-check__link" href="#popup:politika" target="_blank" rel="noopener">Политикой обработки ПД</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
+          Расчитать кредит
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
+  </div>
+
+</div>

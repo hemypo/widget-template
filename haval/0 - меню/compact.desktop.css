@@ -1,15 +1,3 @@
-/* HAVAL WIDGET — Компакт (плавающая иконка)
-   Файл: стили десктоп
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
-   Шрифт бренда подключён через @font-face + {{asset:font3}} — см. DESIGN-TOKENS.md.
- */
-
-@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
-.cefalot-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
-
 :root,
 :host {
   --cf-ink:      #000000;
@@ -18,7 +6,7 @@
   --cf-accent:   #03CABF;
   --cf-focus:    #000000;
 
-  --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --cf-r-lg: 16px;
   --cf-r-pill: 999px;
@@ -29,9 +17,6 @@
   --cf-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.22);
 }
 
-/* ============================================================
-   БАЗА
-   ============================================================ */
 .cefalot-custom-template-content {
   box-sizing: border-box;
   font-family: var(--cf-font);
@@ -43,10 +28,19 @@
   box-sizing: inherit;
 }
 
+/* --- Обёртка кнопки+плашки: shrink-to-fit по кнопке (100x100),
+   чтобы «right» у плашки отсчитывался от края самой кнопки,
+   а не от произвольной ширины родительского контейнера. -------- */
+.cefalot-launcher {
+  position: relative;
+  display: inline-block;
+}
+
 /* --- Кнопка-лаунчер ------------------------------------------ */
 .cefalot-launcher__btn {
   position: relative;
-  width: 60px; height: 60px;
+  z-index: 2;
+  width: 100px; height: 100px;
   display: flex; align-items: center; justify-content: center;
   border: 0; border-radius: var(--cf-r-lg);
   background: var(--cf-accent); color: var(--cf-ink);
@@ -55,7 +49,7 @@
 }
 .cefalot-launcher__btn:hover { background: #02A99F; }
 .cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
-.cefalot-launcher__icon svg { width: 26px; height: 26px; display: block; }
+.cefalot-launcher__icon svg { width: 60px; height: 60px; display: block; }
 
 @keyframes cefalot-launcher-pulse {
   0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0.5); }
@@ -63,11 +57,89 @@
   100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(3, 202, 191, 0); }
 }
 
+/* --- Плашка с перечислением форм ------------------------------
+   Выезжает из-под кнопки-лаунчера сама через ~2с, показывает
+   названия всех форм по очереди (каждое — 2с), затем задвигается
+   обратно; цикл зациклен. Некликабельна — дублирует aria-label
+   кнопки, поэтому aria-hidden. */
+.cefalot-launcher__pill {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 42px;
+  height: 100px;
+  width: 0;
+  overflow: hidden;
+  border-radius: var(--cf-r-lg);
+  background: #000000;
+  box-shadow: var(--cf-shadow-md);
+  pointer-events: none;
+  animation: cefalot-launcher-pill-slide 12.3s var(--cf-ease) infinite;
+}
+
+.cefalot-launcher__pill-text {
+  position: absolute;
+  top: 50%;
+  left: 26px;
+  right: 58px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  opacity: 0;
+}
+
+@keyframes cefalot-launcher-pill-slide {
+  0%, 13.82%   { width: 0; }
+  16.26%, 97.56% { width: 360px; }
+  100%         { width: 0; }
+}
+
+@keyframes cefalot-pill-text-1 {
+  0%, 16.26%   { opacity: 0; }
+  17.76%       { opacity: 1; }
+  31.02%       { opacity: 1; }
+  32.52%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-2 {
+  0%, 32.52%   { opacity: 0; }
+  34.02%       { opacity: 1; }
+  47.28%       { opacity: 1; }
+  48.78%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-3 {
+  0%, 48.78%   { opacity: 0; }
+  50.28%       { opacity: 1; }
+  63.54%       { opacity: 1; }
+  65.04%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-4 {
+  0%, 65.04%   { opacity: 0; }
+  66.54%       { opacity: 1; }
+  79.80%       { opacity: 1; }
+  81.30%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-5 {
+  0%, 81.30%   { opacity: 0; }
+  82.80%       { opacity: 1; }
+  96.06%       { opacity: 1; }
+  97.56%, 100% { opacity: 0; }
+}
+
+.cefalot-launcher__pill-text--1 { animation: cefalot-pill-text-1 12.3s linear infinite; }
+.cefalot-launcher__pill-text--2 { animation: cefalot-pill-text-2 12.3s linear infinite; }
+.cefalot-launcher__pill-text--3 { animation: cefalot-pill-text-3 12.3s linear infinite; }
+.cefalot-launcher__pill-text--4 { animation: cefalot-pill-text-4 12.3s linear infinite; }
+.cefalot-launcher__pill-text--5 { animation: cefalot-pill-text-5 12.3s linear infinite; }
+
 /* --- Дизмисс «не показывать сегодня» --------------------------
    Обязательно в compact — на платформе data-widget-hide-visit
    не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
 .cefalot-launcher__dismiss {
-  position: absolute; top: -8px; left: -8px;
+  position: absolute; z-index: 3; top: -8px; left: -8px;
   width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--cf-line); border-radius: var(--cf-r-pill);
@@ -99,8 +171,6 @@
     transition-duration: 0.01ms !important;
   }
 }
-
-
 /* ============================================================
    Launcher — grid icon
    ============================================================ */
@@ -244,3 +314,5 @@
     transition: none !important;
   }
 }
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font1}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-content { font-family: "Haval-Regular", Arial, sans-serif; }

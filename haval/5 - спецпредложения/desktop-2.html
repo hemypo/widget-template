@@ -1,303 +1,81 @@
-<header class="cefalot-head">
-  <div class="cefalot-head__text">
-    <p class="cefalot-eyebrow">Спецпредложения</p>
+<div class="cefalot-layout">
 
-    <h2 class="cefalot-title">
-      Выгодные условия на новый HAVAL
-    </h2>
-  </div>
+  <!-- HERO SECTION -->
+  <aside class="cefalot-hero"></aside>
 
-  <button
-    class="cefalot-close"
-    type="button"
-    data-widget-close
-    aria-label="Закрыть окно"
-  >
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <line
-        x1="2"
-        y1="2"
-        x2="14"
-        y2="14"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-      />
-      <line
-        x1="14"
-        y1="2"
-        x2="2"
-        y2="14"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-      />
-    </svg>
-  </button>
-</header>
-<div class="cefalot-body">
+  <!-- STEP PANEL -->
+  <div class="cefalot-panel">
 
-  <div class="cefalot-step-head">
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
 
-    <p class="cefalot-eyebrow">
-      Шаг 2 из 2
-    </p>
+    <div class="cefalot-head">
+      <span class="cefalot-eyebrow">Спецпредложения</span>
+      <h2 class="cefalot-title">Выгодные условия на новый HAVAL</h2>
+    </div>
 
-    <h2 class="cefalot-title">
-      Получить предложение
-    </h2>
+    <div class="cefalot-body">
 
-    <p class="cefalot-lead">
-      Оставьте контактные данные — менеджер свяжется с вами,
-      расскажет подробности и рассчитает вашу выгоду.
-    </p>
-
-  </div>
-
-
-  <div class="cefalot-contact-form">
-
-
-    <div class="cefalot-grid">
-
-
-      <!-- Имя -->
-      <div class="cefalot-field">
-
-        <span
-          class="cefalot-label"
-          id="offer-name-l"
-        >
-          Имя
-
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
-        </span>
-
-        <input
-          class="cefalot-input"
-          id="offer-name"
-          type="text"
-          name="name"
-          data-widget-field="name"
-          placeholder="Введите имя"
-          aria-labelledby="offer-name-l"
-          required
-          aria-required="true"
-        >
-
+      <div class="cefalot-step-head">
+        <p class="cefalot-step-eyebrow">Шаг 2 из 2</p>
+        <h3 class="cefalot-step-title">Ваши контакты</h3>
+        <p class="cefalot-step-lead">Оставьте номер — менеджер расскажет подробности выбранного предложения.</p>
       </div>
 
+      <div class="cefalot-grid">
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="so-name">Имя <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-name" type="text" name="name" data-widget-field="name" placeholder="Иван Иванов" required aria-required="true">
+        </div>
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="so-phone">Телефон <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" required aria-required="true" inputmode="tel">
+        </div>
+      </div>
 
-      <!-- Телефон -->
-      <div class="cefalot-field">
-
-        <span
-          class="cefalot-label"
-          id="offer-phone-l"
-        >
-          Телефон
-
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
-        </span>
-
-        <input
-          class="cefalot-input"
-          id="offer-phone"
-          type="tel"
-          name="phone"
-          data-widget-field="phone"
-          data-widget-field-type="phone"
-          data-widget-mask="+7 (000) 000-00-00"
-          placeholder="+7 (9XX) XXX-XX-XX"
-          aria-labelledby="offer-phone-l"
-          inputmode="tel"
-          required
-          aria-required="true"
-        >
-
+      <div class="cefalot-consents">
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="so-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю <a class="cefalot-check__link" href="https://disk.yandex.ru/i/yB4Ry1ovFb48rA" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="so-ad" name="agreement_ad" data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю согласие на <a class="cefalot-check__link" href="https://disk.yandex.ru/i/Xunx_Frzu2Xnqg" target="_blank" rel="noopener">предоставление ПД третьим лицам</a> и ознакомлен с <a class="cefalot-check__link" href="#popup:politika" target="_blank" rel="noopener">Политикой обработки ПД</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
       </div>
 
     </div>
 
-
-    <div class="cefalot-consents">
-
-
-      <label class="cefalot-check">
-
-        <input
-          class="cefalot-check__box"
-          type="checkbox"
-          id="offer-pd"
-          name="agreement_pd"
-          data-widget-field="agreement_pd"
-          data-widget-field-type="checkbox"
-          value="1"
-          required
-          aria-required="true"
-        >
-
-        <span class="cefalot-check__text">
-
-          Я даю
-
-          <a
-            class="cefalot-check__link"
-            href="https://docs.yandex.ru/view/d/M7fLB9LZxYHXJ_iyHaU29iPegnqahzm72s0qoIz-cKg6Rkx5eUZGSGhJZw"
-            target="_blank"
-            rel="noopener"
-          >
-            согласие на обработку персональных данных
-          </a>
-
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
-
-        </span>
-
-      </label>
-
-
-      <label class="cefalot-check">
-
-        <input
-          class="cefalot-check__box"
-          type="checkbox"
-          id="offer-third-party"
-          name="agreement_third_party"
-          data-widget-field="agreement_third_party"
-          data-widget-field-type="checkbox"
-          value="1"
-          required
-          aria-required="true"
-        >
-
-        <span class="cefalot-check__text">
-
-          Я даю согласие на
-
-          <a
-            class="cefalot-check__link"
-            href="https://docs.yandex.ru/view/d/M7fLB9LZxYHXJ_iyHaU29iPegnqahzm72s0qoIz-cKg6R29aSkRmWVJTUQ"
-            target="_blank"
-            rel="noopener"
-          >
-            предоставление персональных данных третьим лицам
-          </a>; ознакомлен(-а) c
-
-          <a
-            class="cefalot-check__link"
-            href="https://sales-haval-avtosalon-2000.ru/#popup:politika"
-            target="_blank"
-            rel="noopener"
-          >
-            Политикой обработки персональных данных
-          </a>
-
-          <span
-            class="cefalot-req"
-            aria-hidden="true"
-          >*</span>
-
-        </span>
-
-      </label>
-
-    </div>
-
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-back>
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
+            <line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.6"/>
+            <polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Назад
+        </button>
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
+          Отправить заявку
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
   </div>
 
 </div>
-
-
-<footer class="cefalot-foot">
-
-  <div class="cefalot-actions">
-
-    <button
-      class="cefalot-btn cefalot-btn--quiet"
-      type="button"
-      data-widget-back
-    >
-      <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
-        <line
-          x1="20"
-          y1="6"
-          x2="2"
-          y2="6"
-          stroke="currentColor"
-          stroke-width="1.4"
-        />
-
-        <polyline
-          points="7,1 1,6 7,11"
-          stroke="currentColor"
-          stroke-width="1.4"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-
-      Назад
-    </button>
-
-
-    <button
-      class="cefalot-btn cefalot-btn--primary"
-      type="button"
-      data-widget-submit
-    >
-      Получить предложение
-
-      <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
-        <line
-          x1="0"
-          y1="6"
-          x2="18"
-          y2="6"
-          stroke="currentColor"
-          stroke-width="1.4"
-        />
-
-        <polyline
-          points="13,1 19,6 13,11"
-          stroke="currentColor"
-          stroke-width="1.4"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-
-    </button>
-
-  </div>
-
-
-  <p class="cefalot-note">
-    * Поля, отмеченные звёздочкой, обязательны для заполнения.
-  </p>
-
-
-  <p class="cefalot-cr">
-    Разработано в
-
-    <a
-      href="https://auto.makeagency.ru"
-      target="_blank"
-      rel="noopener"
-    >
-      мэйк.диджитал
-    </a>
-  </p>
-
-</footer>

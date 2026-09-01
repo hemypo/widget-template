@@ -3,972 +3,295 @@
   /* Цвета бренда Haval */
   --cf-accent:       #03CABF;
   --cf-accent-hover: #02B0A6;
-  --cf-accent-active: #028D86;
+  --cf-accent-active:#028D86;
   --cf-ink:          #1A1A1A;
   --cf-ink-soft:     #4A4A4A;
   --cf-muted:        #767676;
   --cf-line:         #DEDEDE;
   --cf-line-soft:    #EEEEEE;
   --cf-surface:      #FFFFFF;
-  --cf-surface-soft: #F5F5F5;
+  --cf-surface-soft: #F8F9FA;
   --cf-surface-tile: #F0F0F0;
   --cf-focus:        #1A1A1A;
 
   /* Типографика */
   --cf-font: Haval-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
-  --cf-fs-caption: 13px;
+  --cf-fs-caption: 12px;
   --cf-fs-body:    15px;
   --cf-fs-input:   16px;
-  --cf-ls-label:   0.6px;
-  --cf-ls-btn:     0.4px;
+  --cf-ls-label:   0.8px;
+  --cf-ls-btn:     0.5px;
 
-  /* Скругления — плоские 5px везде */
+  /* Скругления (строго 5px по брендбуку) */
   --cf-r-xs: 5px;
   --cf-r-sm: 5px;
   --cf-r-md: 5px;
-  --cf-r-pill: 5px;
+  --cf-r-pill: 999px;
 
-  /* Отступы (шаг 4px) */
+  /* Отступы */
   --cf-s1: 4px;
   --cf-s2: 8px;
   --cf-s3: 12px;
   --cf-s4: 16px;
   --cf-s5: 24px;
   --cf-s6: 32px;
-  --cf-s7: 40px;
 
-  /* Высоты контролов */
+  /* Контролы */
   --cf-control-h: 52px;
   --cf-tap: 44px;
 
   /* Движение */
-  --cf-dur: 160ms;
+  --cf-dur: 200ms;
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@font-face {
-  font-family: "Haval-Regular";
-  src: url("{{asset:font3}}") format("woff2");
-  font-display: swap;
-}
+@font-face { font-family: "Haval-Regular"; src: url("{{asset:font3}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "Haval-Regular", system-ui, sans-serif; }
 
-.cefalot-form-custom-template-root {
-  font-family: "Haval-Regular", system-ui, sans-serif;
+/* Локальные токены комплекта «Расчёт кредита» — не входят в канонический набор */
+:root, :host {
+  --cf-hero-col:     45%;
+  --cf-hero-min-h:   640px;
+  --cf-fs-title:     26px;
+  --cf-accent-light: rgba(3, 202, 191, 0.08);
 }
 
 .cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  overflow: hidden;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-body);
   line-height: 1.5;
   color: var(--cf-ink);
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-md);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  height: 100%;
+}
 
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1,
+.cefalot-form-custom-template-content h2, .cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul { list-style: none; }
+
+/* === LAYOUT === */
+.cefalot-layout {
+  display: grid;
+  grid-template-columns: var(--cf-hero-col) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: var(--cf-hero-min-h);
+  height: 100%;
+}
+
+/* === HERO (чистое изображение, без текста) === */
+.cefalot-hero {
+  position: relative;
+  min-width: 0;
+  background-color: var(--cf-surface-tile);
+  background-image: url("{{asset:asset1}}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* === HEAD (эйбрау/заголовок/лид — теперь в правой панели) === */
+.cefalot-head {
+  display: flex;
+  flex-direction: column;
+  padding-right: calc(var(--cf-tap) + var(--cf-s2));
+}
+
+.cefalot-eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-accent-active);
+  font-weight: 600;
+  margin-bottom: var(--cf-s1);
+  background: var(--cf-accent-light);
+  padding: 4px 10px;
+  border-radius: var(--cf-r-xs);
+}
+
+.cefalot-title {
+  font-family: var(--cf-font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.15;
+  margin-bottom: var(--cf-s2);
+}
+
+.cefalot-lead {
+  color: var(--cf-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* === PANEL & CLOSE BUTTON === */
+.cefalot-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--cf-s5);
-  padding: var(--cf-s7);
+  min-width: 0;
+  padding: var(--cf-s6);
   background: var(--cf-surface);
-  border-radius: var(--cf-r-md);
+  overflow-y: auto;
 }
 
-.cefalot-form-custom-template-content p,
-.cefalot-form-custom-template-content h1,
-.cefalot-form-custom-template-content h2,
-.cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content h4,
-.cefalot-form-custom-template-content ul,
-.cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
-.cefalot-form-custom-template-content ul,
-.cefalot-form-custom-template-content ol { list-style: none; }
+.cefalot-close {
+  position: absolute;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--cf-r-sm);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
 
-/* ============================================================
-   ШАПКА
-   ============================================================ */
-.cefalot-head { display: flex; align-items: flex-start; gap: var(--cf-s4); }
-.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
-.cefalot-eyebrow { font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-accent); font-weight: 600; margin-bottom: var(--cf-s2); }
-.cefalot-title { font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; color: var(--cf-ink); }
-.cefalot-lead { font-size: var(--cf-fs-body); max-width: 56ch; color: var(--cf-muted); margin-top: var(--cf-s3); }
+.cefalot-close:hover {
+  background: #FFFFFF;
+  color: var(--cf-ink);
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--cf-line);
+}
 
-.cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 0; border-radius: var(--cf-r-pill); background: var(--cf-surface-tile); color: var(--cf-ink-soft); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease); }
-.cefalot-close:hover { background: var(--cf-line); color: var(--cf-ink); }
+.cefalot-close:active { transform: rotate(90deg) scale(0.95); }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
-/* ============================================================
-   ПОЛЯ
-   ============================================================ */
+/* === FORM FIELDS === */
 .cefalot-body { display: flex; flex-direction: column; gap: var(--cf-s5); }
-.cefalot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s5) var(--cf-s4); }
+.cefalot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s4); }
 .cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
-.cefalot-label { display: block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); }
+
+.cefalot-label {
+  display: block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+  font-weight: 500;
+}
+
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
 .cefalot-input {
   width: 100%;
   min-height: var(--cf-control-h);
-  padding: 14px 16px;
+  padding: 0 16px;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-input);
-  line-height: 22px;
   color: var(--cf-ink);
   background: var(--cf-surface);
   border: 1px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
-  transition: border-color var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
-  appearance: none;
-}
-.cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
-.cefalot-input:hover { border-color: #C7C7C7; }
-.cefalot-input:focus-visible,
-.cefalot-input:focus { border-color: var(--cf-focus); box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1); }
-
-/* ============================================================
-   ЧЕКБОКС
-   ============================================================ */
-.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s1); }
-
-.cefalot-check {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--cf-s3);
-  min-height: var(--cf-tap);
-  padding: 10px 0;
-  cursor: pointer;
 }
 
-.cefalot-check__box {
-  flex: 0 0 auto;
-  width: 20px;
-  height: 20px;
-  margin: 2px 0 0 0;
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-xs);
-  background: var(--cf-surface);
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease);
-}
-.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
-.cefalot-check__box:checked::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 3px;
-  width: 5px;
-  height: 9px;
-  border: solid #FFFFFF;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-.cefalot-check__box:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
-
-.cefalot-check__text { font-size: var(--cf-fs-caption); line-height: 1.5; color: var(--cf-muted); }
-.cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
-.cefalot-check__link:hover { color: var(--cf-accent); }
-
-/* ============================================================
-   КНОПКИ И ПОДВАЛ
-   ============================================================ */
-.cefalot-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s3); min-height: var(--cf-control-h); padding: 14px 28px; font-family: var(--cf-font); font-size: 14px; font-weight: 600; letter-spacing: var(--cf-ls-btn); text-decoration: none; border: 1px solid transparent; border-radius: var(--cf-r-sm); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease); min-width: 200px; }
-.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
-.cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
-.cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--cf-accent); color: #FFFFFF; }
-.cefalot-btn--primary:hover { background: var(--cf-accent-hover); }
-.cefalot-btn--primary:active { background: var(--cf-accent-active); }
-.cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); font-size: var(--cf-fs-label); min-width: 0; }
-.cefalot-btn--quiet:hover { color: var(--cf-ink); }
-
-.cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); }
-.cefalot-actions { display: flex; align-items: center; justify-content: flex-start; gap: var(--cf-s3); flex-wrap: wrap; }
-.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
-.cefalot-cr { font-size: 11px; color: var(--cf-muted); opacity: 0.7; }
-.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
-.cefalot-cr a:hover { color: var(--cf-ink-soft); }
-
-/* ============================================================
-   SELECT
-   ============================================================ */
-
-.cefalot-select-wrap {
-  position: relative;
-
-  display: block;
-
-  width: 100%;
-  min-width: 0;
-}
-
-.cefalot-select {
-  width: 100%;
-  min-height: var(--cf-control-h);
-
-  padding: 14px 44px 14px 16px;
-
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-input);
-  line-height: 22px;
-
-  color: var(--cf-ink);
-
-  background: var(--cf-surface);
-
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-
-  outline: none;
-
-  cursor: pointer;
-
-  -webkit-appearance: none;
-  appearance: none;
-
-  transition:
-    border-color var(--cf-dur) var(--cf-ease),
-    box-shadow var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-select:hover {
-  border-color: #C7C7C7;
-}
-
-.cefalot-select:focus,
-.cefalot-select:focus-visible {
-  border-color: var(--cf-focus);
-
-  box-shadow:
-    0 0 0 3px rgba(26, 26, 26, 0.1);
-}
-
-.cefalot-select:required:invalid {
-  color: var(--cf-muted);
-}
-
-.cefalot-select option {
-  color: var(--cf-ink);
-  background: var(--cf-surface);
-}
-
-
-/* ============================================================
-   SELECT CARET
-   ============================================================ */
-
-.cefalot-caret {
-  position: absolute;
-
-  top: 50%;
-  right: var(--cf-s4);
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 16px;
-  height: 16px;
-
-  color: var(--cf-muted);
-
-  pointer-events: none;
-
-  transform: translateY(-50%);
-
-  transition:
-    color var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-caret svg {
-  display: block;
-
-  width: 12px;
-  height: 12px;
-}
-
-.cefalot-select-wrap:hover .cefalot-caret,
-.cefalot-select-wrap:focus-within .cefalot-caret {
-  color: var(--cf-ink);
-}
-
-
-/* ============================================================
-   WIDE FIELD
-   Телефон занимает всю строку
-   ============================================================ */
-
-.cefalot-field--wide {
-  grid-column: 1 / -1;
-}
-
-@font-face {
-  font-family: "Haval-Regular";
-  src: url("{{asset:font3}}") format("woff2");
-  font-display: swap;
-}
-
-.cefalot-form-custom-template-root {
-  font-family: "Haval-Regular", system-ui, sans-serif;
-}
-
-
-:root,
-:host {
-  --cf-accent:        #03CABF;
-  --cf-accent-hover:  #02B0A6;
-  --cf-accent-active: #028D86;
-
-  --cf-ink:          #1A1A1A;
-  --cf-ink-soft:     #4A4A4A;
-  --cf-muted:        #767676;
-
-  --cf-line:         #DEDEDE;
-  --cf-line-soft:    #EEEEEE;
-
-  --cf-surface:      #FFFFFF;
-  --cf-surface-soft: #F5F5F5;
-  --cf-surface-tile: #F0F0F0;
-
-  --cf-focus:        #1A1A1A;
-
-  --cf-font:
-    Haval-Regular,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
-  --cf-fs-label:   11px;
-  --cf-fs-caption: 13px;
-  --cf-fs-body:    15px;
-  --cf-fs-input:   16px;
-
-  --cf-ls-label: 0.6px;
-  --cf-ls-btn:   0.4px;
-
-  --cf-r-xs:   5px;
-  --cf-r-sm:   5px;
-  --cf-r-md:   5px;
-  --cf-r-pill: 5px;
-
-  --cf-s1: 4px;
-  --cf-s2: 8px;
-  --cf-s3: 12px;
-  --cf-s4: 16px;
-  --cf-s5: 24px;
-  --cf-s6: 32px;
-  --cf-s7: 40px;
-
-  --cf-control-h: 52px;
-  --cf-tap: 44px;
-
-  --cf-dur: 160ms;
-  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-
-/* ============================================================
-   BASE
-   ============================================================ */
-
-.cefalot-form-custom-template-content {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s5);
-
-  padding: var(--cf-s7);
-
-  background: var(--cf-surface);
-  color: var(--cf-ink);
-
-  border-radius: var(--cf-r-md);
-
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-body);
-  line-height: 1.5;
-}
-
-.cefalot-form-custom-template-content *,
-.cefalot-form-custom-template-content *::before,
-.cefalot-form-custom-template-content *::after {
-  box-sizing: border-box;
-}
-
-.cefalot-form-custom-template-content p,
-.cefalot-form-custom-template-content h1,
-.cefalot-form-custom-template-content h2,
-.cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content h4 {
-  margin: 0;
-}
-
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
-.cefalot-head {
-  display: flex;
-  align-items: flex-start;
-
-  gap: var(--cf-s4);
-}
-
-.cefalot-head__text {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.cefalot-eyebrow,
-.cefalot-credit-step__label {
-  margin-bottom: var(--cf-s2);
-
-  color: var(--cf-accent);
-
-  font-size: var(--cf-fs-label);
-  font-weight: 600;
-
-  letter-spacing: var(--cf-ls-label);
-
-  text-transform: uppercase;
-}
-
-.cefalot-title {
-  color: var(--cf-ink);
-
-  font-size: 28px;
-  font-weight: 700;
-
-  line-height: 1.15;
-}
-
-.cefalot-lead {
-  max-width: 56ch;
-
-  margin-top: var(--cf-s3);
-
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-body);
-}
-
-
-/* ============================================================
-   CLOSE
-   ============================================================ */
-
-.cefalot-close {
-  flex: 0 0 auto;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: var(--cf-tap);
-  height: var(--cf-tap);
-
-  padding: 0;
-
-  border: 0;
-  border-radius: var(--cf-r-pill);
-
-  background: var(--cf-surface-tile);
-  color: var(--cf-ink-soft);
-
-  cursor: pointer;
-}
-
-.cefalot-close:hover {
-  background: var(--cf-line);
-
-  color: var(--cf-ink);
-}
-
-.cefalot-close svg {
-  width: 16px;
-  height: 16px;
-}
-
-
-/* ============================================================
-   CREDIT STEPS
-   ============================================================ */
-
-.cefalot-credit {
-  width: 100%;
-}
-
-.cefalot-credit-step {
-  width: 100%;
-}
-
-.cefalot-credit-step[hidden] {
-  display: none !important;
-}
-
-.cefalot-credit-step__head {
-  margin-bottom: var(--cf-s5);
-}
-
-.cefalot-credit-step__title {
-  color: var(--cf-ink);
-
-  font-size: 28px;
-  font-weight: 700;
-
-  line-height: 1.15;
-}
-
-.cefalot-credit-step__lead {
-  max-width: 56ch;
-
-  margin-top: var(--cf-s3);
-
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-body);
-}
-
-
-/* ============================================================
-   CAR GRID
-   ============================================================ */
-
-.cefalot-car-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: var(--cf-s4);
-
-  width: 100%;
-
-  margin-bottom: var(--cf-s5);
-}
-
-
-/* ============================================================
-   CAR CARD
-   ============================================================ */
-
-.cefalot-car-card {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  min-width: 0;
-
-  overflow: hidden;
-
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-
-  background: var(--cf-surface);
-
-  cursor: pointer;
-
-  transition:
-    border-color var(--cf-dur) var(--cf-ease),
-    box-shadow var(--cf-dur) var(--cf-ease),
-    transform var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-car-card:hover {
-  border-color: var(--cf-accent);
-
-  transform: translateY(-2px);
-}
-
-.cefalot-car-card__radio {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-
-  opacity: 0;
-
-  pointer-events: none;
-}
-
-
-/* selected */
-
-.cefalot-car-card:has(.cefalot-car-card__radio:checked) {
-  border-color: var(--cf-accent);
-
-  box-shadow:
-    0 0 0 2px rgba(3, 202, 191, 0.14);
-}
-
-
-/* ============================================================
-   CARD IMAGE
-   ============================================================ */
-
-.cefalot-car-card__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 150px;
-
-  padding: var(--cf-s3);
-
-  background: var(--cf-surface-soft);
-}
-
-.cefalot-car-card__image {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-}
-
-
-/* ============================================================
-   CARD CONTENT
-   ============================================================ */
-
-.cefalot-car-card__content {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s1);
-
-  padding: var(--cf-s4);
-}
-
-.cefalot-car-card__name {
-  color: var(--cf-ink);
-
-  font-size: 16px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-}
-
-.cefalot-car-card__price {
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-caption);
-}
-
-
-/* ============================================================
-   SELECTED CHECK
-   ============================================================ */
-
-.cefalot-car-card__check {
-  position: absolute;
-
-  top: var(--cf-s3);
-  right: var(--cf-s3);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 26px;
-  height: 26px;
-
-  border-radius: var(--cf-r-sm);
-
-  background: var(--cf-accent);
-  color: #FFFFFF;
-
-  opacity: 0;
-
-  transform: scale(0.8);
-
-  transition:
-    opacity var(--cf-dur) var(--cf-ease),
-    transform var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-car-card__check svg {
-  width: 14px;
-  height: 14px;
-}
-
-.cefalot-car-card:has(.cefalot-car-card__radio:checked)
-.cefalot-car-card__check {
-  opacity: 1;
-
-  transform: scale(1);
-}
-
-
-/* ============================================================
-   BODY / GRID
-   ============================================================ */
-
-.cefalot-body {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s5);
-}
-
-.cefalot-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap:
-    var(--cf-s5)
-    var(--cf-s4);
-}
-
-
-/* ============================================================
-   FIELD
-   ============================================================ */
-
-.cefalot-field {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s2);
-
-  min-width: 0;
-}
-
-.cefalot-label {
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-label);
-
-  letter-spacing: var(--cf-ls-label);
-
-  text-transform: uppercase;
-}
-
-.cefalot-req {
-  margin-left: 2px;
-
-  color: var(--cf-accent);
-}
-
-
-/* ============================================================
-   INPUT
-   ============================================================ */
-
-.cefalot-input {
-  width: 100%;
-
-  min-height: var(--cf-control-h);
-
-  padding: 14px var(--cf-s4);
-
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-
-  outline: none;
-
-  background: var(--cf-surface);
-  color: var(--cf-ink);
-
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-input);
-
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.cefalot-input::placeholder {
-  color: var(--cf-muted);
-}
-
-.cefalot-input:hover {
-  border-color: #C7C7C7;
-}
-
+.cefalot-input::placeholder { color: #B0B0B0; opacity: 1; }
+.cefalot-input:hover { border-color: var(--cf-ink-soft); }
 .cefalot-input:focus {
-  border-color: var(--cf-focus);
-
-  box-shadow:
-    0 0 0 3px rgba(26, 26, 26, 0.1);
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(3, 202, 191, 0.15);
 }
 
+/* === MODEL CHOICE CARDS === */
+.cefalot-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
+.cefalot-choice { position: relative; display: block; }
+.cefalot-choice__input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
+.cefalot-choice__body { display: flex; align-items: center; padding: var(--cf-s3) var(--cf-s4); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); background: var(--cf-surface); transition: all var(--cf-dur) var(--cf-ease); }
+.cefalot-choice__input:hover + .cefalot-choice__body { border-color: var(--cf-ink-soft); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); }
+.cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-accent); background: var(--cf-accent-light); box-shadow: 0 4px 12px rgba(3, 202, 191, 0.2); }
+.cefalot-choice__input:focus-visible + .cefalot-choice__body { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-choice__title { font-size: 13px; font-weight: 500; color: var(--cf-ink); text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ============================================================
-   SELECT
-   ============================================================ */
-
-.cefalot-select-wrap {
-  position: relative;
-
-  display: block;
-
-  width: 100%;
-}
-
-.cefalot-select {
-  width: 100%;
-
-  min-height: var(--cf-control-h);
-
-  padding:
-    14px
-    44px
-    14px
-    var(--cf-s4);
-
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-
-  outline: none;
-
-  background: var(--cf-surface);
-  color: var(--cf-ink);
-
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-input);
-
-  cursor: pointer;
-
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.cefalot-select:focus {
-  border-color: var(--cf-focus);
-
-  box-shadow:
-    0 0 0 3px rgba(26, 26, 26, 0.1);
-}
-
-.cefalot-caret {
-  position: absolute;
-
-  top: 50%;
-  right: var(--cf-s4);
-
-  width: 12px;
-  height: 12px;
-
-  color: var(--cf-muted);
-
-  pointer-events: none;
-
-  transform: translateY(-50%);
-}
-
-.cefalot-caret svg {
-  display: block;
-
-  width: 12px;
-  height: 12px;
-}
-
-
-/* ============================================================
-   CHECKBOX
-   ============================================================ */
-
-.cefalot-consents {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s1);
-}
+/* === CONSENTS === */
+.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
 
 .cefalot-check {
   display: flex;
   align-items: flex-start;
-
   gap: var(--cf-s3);
-
-  min-height: var(--cf-tap);
-
-  padding: 10px 0;
-
   cursor: pointer;
+  line-height: 1.45;
 }
 
 .cefalot-check__box {
-  position: relative;
-
-  flex: 0 0 auto;
-
-  width: 20px;
-  height: 20px;
-
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
   margin-top: 2px;
-
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-xs);
-
   background: var(--cf-surface);
-
+  cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
+  position: relative;
+  transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__box:checked {
-  background: var(--cf-accent);
-  border-color: var(--cf-accent);
-}
+.cefalot-check__box:hover { border-color: var(--cf-accent); }
+.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
 
 .cefalot-check__box:checked::after {
   content: "";
-
   position: absolute;
-
-  top: 3px;
   left: 6px;
-
-  width: 5px;
-  height: 9px;
-
-  border: solid #FFFFFF;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border: solid var(--cf-ink);
   border-width: 0 2px 2px 0;
-
   transform: rotate(45deg);
 }
 
 .cefalot-check__text {
-  color: var(--cf-muted);
-
   font-size: var(--cf-fs-caption);
-  line-height: 1.5;
+  color: var(--cf-muted);
 }
 
 .cefalot-check__link {
   color: var(--cf-ink);
-
   text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__link:hover {
-  color: var(--cf-accent);
-}
+.cefalot-check__link:hover { color: var(--cf-accent); }
 
-
-/* ============================================================
-   ACTIONS / BUTTONS
-   ============================================================ */
+/* === FOOTER & ACTIONS === */
+.cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
 
 .cefalot-actions {
   display: flex;
   align-items: center;
-
   gap: var(--cf-s3);
-
   flex-wrap: wrap;
 }
 
@@ -976,284 +299,330 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: var(--cf-s3);
-
-  min-width: 200px;
+  gap: var(--cf-s2);
   min-height: var(--cf-control-h);
-
-  padding: 14px 28px;
-
+  padding: 0 28px;
+  font-family: var(--cf-font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--cf-ls-btn);
+  text-transform: uppercase;
+  text-decoration: none;
   border: 1px solid transparent;
   border-radius: var(--cf-r-sm);
-
-  font-family: var(--cf-font);
-  font-size: 14px;
-  font-weight: 600;
-
   cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-btn svg {
-  width: 18px;
-  height: 12px;
-}
+.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; transition: transform var(--cf-dur) var(--cf-ease); }
 
 .cefalot-btn--primary {
   background: var(--cf-accent);
-
-  color: #FFFFFF;
+  color: var(--cf-ink);
+  box-shadow: 0 4px 12px rgba(3, 202, 191, 0.25);
 }
 
 .cefalot-btn--primary:hover {
   background: var(--cf-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(3, 202, 191, 0.35);
 }
 
+.cefalot-btn--primary:hover svg { transform: translateX(3px); }
+.cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(3, 202, 191, 0.25); }
+
 .cefalot-btn--quiet {
-  min-width: 0;
-
-  padding:
-    0
-    var(--cf-s2);
-
-  border: 0;
-
   background: transparent;
   color: var(--cf-muted);
+  border-color: var(--cf-line);
+  padding: 0 20px;
 }
 
 .cefalot-btn--quiet:hover {
+  background: var(--cf-surface-soft);
   color: var(--cf-ink);
+  border-color: var(--cf-ink-soft);
 }
 
+.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
+
+/* === MOBILE ADAPTATION === */
+@media (max-width: 900px) {
+  .cefalot-layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    height: 100%;
+  }
+
+  .cefalot-hero {
+    min-height: 200px;
+    border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
+  }
+
+  .cefalot-head { padding-right: 0; }
+
+  .cefalot-panel {
+    padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+    border-radius: 0;
+  }
+
+  .cefalot-choice-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .cefalot-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--cf-s2);
+  }
+
+  .cefalot-btn { width: 100%; }
+  .cefalot-btn--quiet { order: 2; }
+}
+/* ============================================================
+   SELECT WRAPPER
+   ============================================================ */
+.cefalot-select-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
 
 /* ============================================================
-   FOOT
+   SELECT ELEMENT
    ============================================================ */
-
-.cefalot-foot {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s4);
-
-  margin-top: var(--cf-s5);
-}
-
-.cefalot-note {
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-caption);
-}
-
-.cefalot-cr {
-  color: var(--cf-muted);
-
-  font-size: var(--cf-fs-label);
-
-  opacity: 0.7;
-}
-
-.cefalot-cr a {
-  color: inherit;
-
-  text-decoration: underline;
-}
-
-/* ============================================================
-   КОНТЕЙНЕР ФОРМЫ НА ВСЮ ВЫСОТУ
-   ============================================================ */
-
-.cefalot-form-custom-template-root {
+.cefalot-select {
   width: 100%;
-  height: 100%;
-}
-
-.cefalot-form-custom-template-content {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-
-  padding: var(--cf-s7);
-
-  background: var(--cf-surface);
-  border-radius: var(--cf-r-md);
-
+  height: var(--cf-control-h);
+  padding: 0 var(--cf-s4);
+  padding-right: calc(var(--cf-s4) + 20px); /* Место под стрелочку */
   font-family: var(--cf-font);
-  font-size: var(--cf-fs-body);
-  line-height: 1.5;
+  font-size: var(--cf-fs-input);
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.2px;
   color: var(--cf-ink);
-
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-
-/* ============================================================
-   ОСНОВНОЕ СОДЕРЖИМОЕ
-   ============================================================ */
-
-.cefalot-body {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s5);
-
-  width: 100%;
-}
-
-
-/* ============================================================
-   FOOTER ВСЕГДА ВНИЗУ
-   ============================================================ */
-
-.cefalot-foot {
-  display: flex;
-  flex-direction: column;
-
-  gap: var(--cf-s4);
-
-  width: 100%;
-
-  /* главное правило */
-  margin-top: auto;
-
-  /* расстояние от основного контента */
-  padding-top: var(--cf-s6);
-
-  flex: 0 0 auto;
-}
-
-/* ============================================================
-   Локальный layout-токен формы: hero-изображение.
-   В редакторе Cefalot привяжите изображение к asset key.
-   ============================================================ */
-.cefalot-form-custom-template-content {
-  --cf-hero-image: url("{{asset:key}}");
-
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 0;
-
-  width: 100%;
-  height: 100%;
-  min-height: 560px;
-  padding: 0;
-  overflow: hidden;
-
   background: var(--cf-surface);
-  border-radius: var(--cf-r-md);
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-sizing: border-box;
 }
 
-.cefalot-head {
-  position: relative;
-  grid-column: 1;
-  grid-row: 1 / -1;
+/* Placeholder color */
+.cefalot-select option:first-child:disabled {
+  color: var(--cf-muted);
+}
 
+/* Hover state */
+.cefalot-select:hover {
+  border-color: var(--cf-ink-soft);
+}
+
+/* Focus state */
+.cefalot-select:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(3, 202, 191, 0.15);
+}
+
+/* Focus-visible for keyboard navigation */
+.cefalot-select:focus-visible {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(3, 202, 191, 0.15);
+}
+
+/* Disabled state */
+.cefalot-select:disabled {
+  background: var(--cf-surface-soft);
+  color: var(--cf-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error state (можно добавить класс .cefalot-select--error) */
+.cefalot-select--error {
+  border-color: #DC3545;
+}
+
+.cefalot-select--error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+/* ============================================================
+   CARET (СТРЕЛОЧКА)
+   ============================================================ */
+.cefalot-caret {
+  position: absolute;
+  top: 50%;
+  right: var(--cf-s4);
+  width: 12px;
+  height: 12px;
+  margin-top: -6px; /* Центрирование по вертикали */
+  pointer-events: none; /* Чтобы клики проходили сквозь */
+  color: var(--cf-muted);
+  transition: all var(--cf-dur) var(--cf-ease);
   display: flex;
-  align-items: flex-end;
-  width: 100%;
-  min-width: 0;
-  min-height: 560px;
-  height: 100%;
-  margin: 0;
-  padding: var(--cf-s7);
-
-  overflow: hidden;
-  background-color: var(--cf-ink);
-  background-image:
-    linear-gradient(to top, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.22) 58%, rgba(0, 0, 0, 0.08) 100%),
-    var(--cf-hero-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: var(--cf-surface);
+  align-items: center;
+  justify-content: center;
 }
 
-.cefalot-head__text {
-  position: relative;
-  z-index: 1;
-  max-width: 520px;
-  min-width: 0;
+.cefalot-caret svg {
+  width: 12px;
+  height: 12px;
+  display: block;
 }
 
-.cefalot-head .cefalot-eyebrow {
+/* Поворот стрелочки при открытии select (добавляется через JS) */
+.cefalot-select-wrap.is-open .cefalot-caret {
+  transform: rotate(180deg);
   color: var(--cf-accent);
 }
 
-.cefalot-head .cefalot-title {
-  color: var(--cf-surface);
-  font-size: 34px;
-  line-height: 1.08;
+/* Стрелочка при hover на select */
+.cefalot-select:hover + .cefalot-caret {
+  color: var(--cf-ink-soft);
 }
 
-.cefalot-head .cefalot-lead {
-  max-width: 46ch;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 15px;
+/* Стрелочка при focus на select */
+.cefalot-select:focus + .cefalot-caret,
+.cefalot-select:focus-visible + .cefalot-caret {
+  color: var(--cf-accent);
 }
 
-.cefalot-head .cefalot-close {
-  position: absolute;
-  z-index: 2;
-  top: var(--cf-s5);
-  right: var(--cf-s5);
-
-  background: rgba(0, 0, 0, 0.34);
-  color: var(--cf-surface);
+/* Стрелочка при disabled */
+.cefalot-select:disabled + .cefalot-caret {
+  color: var(--cf-muted);
+  opacity: 0.5;
 }
 
-.cefalot-head .cefalot-close:hover {
-  background: rgba(0, 0, 0, 0.52);
-  color: var(--cf-surface);
+/* ============================================================
+   OPTIONS (элементы списка)
+   ============================================================ */
+.cefalot-select option {
+  padding: var(--cf-s3) var(--cf-s4);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-input);
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  cursor: pointer;
 }
 
-.cefalot-body {
-  grid-column: 2;
-  grid-row: 1;
-  min-width: 0;
-  min-height: 0;
-  margin: 0;
-  padding: var(--cf-s7) var(--cf-s7) 0;
-  overflow-y: auto;
+/* Для WebKit браузеров (Chrome, Safari, Edge) */
+.cefalot-select::-webkit-scrollbar {
+  width: 6px;
 }
 
-.cefalot-foot {
-  grid-column: 2;
-  grid-row: 2;
-  min-width: 0;
-  margin: 0;
-  padding: var(--cf-s5) var(--cf-s7) var(--cf-s7);
+.cefalot-select::-webkit-scrollbar-track {
+  background: var(--cf-surface-soft);
+  border-radius: var(--cf-r-xs);
 }
 
-.cefalot-grid {
-  min-width: 0;
+.cefalot-select::-webkit-scrollbar-thumb {
+  background: var(--cf-line);
+  border-radius: var(--cf-r-xs);
 }
 
-.cefalot-field,
-.cefalot-input,
-.cefalot-select,
-.cefalot-select-wrap {
-  min-width: 0;
-  max-width: 100%;
+.cefalot-select::-webkit-scrollbar-thumb:hover {
+  background: var(--cf-ink-soft);
 }
 
-.cefalot-input,
-.cefalot-select {
-  width: 100%;
+/* ============================================================
+   MOBILE ADAPTATION
+   ============================================================ */
+@media (max-width: 768px) {
+  .cefalot-select {
+    height: 52px;
+    font-size: 16px; /* ВАЖНО: предотвращает зум на iOS */
+    padding: 0 var(--cf-s3);
+    padding-right: calc(var(--cf-s3) + 18px);
+  }
+  
+  .cefalot-caret {
+    right: var(--cf-s3);
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+  }
+  
+  .cefalot-caret svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* На мобильных нативный select часто лучше */
+  @supports (-webkit-touch-callout: none) {
+    .cefalot-select {
+      padding-right: var(--cf-s4);
+    }
+    
+    .cefalot-caret {
+      display: none; /* Скрываем кастомную стрелку на iOS */
+    }
+  }
 }
 
-.cefalot-actions {
-  align-items: stretch;
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+@media (hover: none) and (pointer: coarse) {
+  .cefalot-select:hover {
+    border-color: var(--cf-line);
+  }
+  
+  .cefalot-select:hover + .cefalot-caret {
+    color: var(--cf-muted);
+  }
+  
+  .cefalot-select:active {
+    border-color: var(--cf-accent);
+  }
 }
 
-.cefalot-btn--primary {
-  min-width: 220px;
+/* ============================================================
+   DARK MODE (опционально)
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  .cefalot-select {
+    background: #2A2A2A;
+    border-color: #3A3A3A;
+    color: #FFFFFF;
+  }
+  
+  .cefalot-select option {
+    background: #2A2A2A;
+    color: #FFFFFF;
+  }
+  
+  .cefalot-caret {
+    color: #999999;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-select,
+  .cefalot-caret {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   HIGH CONTRAST MODE
+   ============================================================ */
+@media (prefers-contrast: high) {
+  .cefalot-select {
+    border-width: 2px;
+  }
+  
+  .cefalot-select:focus {
+    outline: 2px solid var(--cf-accent);
+    outline-offset: 2px;
+  }
 }

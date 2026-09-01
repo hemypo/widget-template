@@ -1,12 +1,3 @@
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
-
-
-/* ============================================================
-   VARIABLES
-   ============================================================ */
-
 :root,
 :host {
   /* Цвета бренда Changan */
@@ -58,491 +49,231 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
 
-/* ============================================================
-   ROOT
-   ============================================================ */
-
-.cefalot-form-custom-template-root,
-.cefalot-form-custom-template-content {
-  width: 100%;
-  height: 100%;
-
-  margin: 0;
-
-  box-sizing: border-box;
+/* Локальные токены комплекта — размер заголовка success-экрана и тайминги
+   иконки-анимации; не входят в канонический набор DESIGN-TOKENS.md проекта. */
+:root,
+:host {
+  --cf-fs-title: 22px;
+  --cf-dur-slow: 400ms;
+  --cf-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-
-/* ============================================================
-   PLATFORM CONTENT
-   ============================================================ */
-
 .cefalot-form-custom-template-content {
-  position: relative;
-
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 100%;
-
-  padding: var(--cf-s7);
-
+  gap: var(--cf-s5);
+  width: 100%;
+  height: 100%;
+  padding: var(--cf-s5) var(--cf-s4);
   background: var(--cf-surface);
   color: var(--cf-ink);
-
-  border-radius: var(--cf-r-md);
-
   font-family: var(--cf-font);
   font-size: var(--cf-fs-body);
   line-height: 1.5;
-
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 .cefalot-form-custom-template-content *,
 .cefalot-form-custom-template-content *::before,
-.cefalot-form-custom-template-content *::after {
-  box-sizing: border-box;
-}
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
 
 .cefalot-form-custom-template-content p,
 .cefalot-form-custom-template-content h1,
 .cefalot-form-custom-template-content h2,
-.cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content h4 {
-  margin: 0;
-  padding: 0;
-}
-
+.cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul { list-style: none; }
 
 /* ============================================================
-   HEADER / CLOSE
+   HEAD / CLOSE
+   Тот же паттерн, что и во flat-header формах проекта (см. реальный
+   комплект "2 - трейд-ин"): крестик — обычный flex-child в шапке,
+   эффективный инсет от края карточки = padding контейнера
+   (var(--cf-s5) сверху, var(--cf-s4) справа на мобайле). НЕ отдельный
+   position:absolute с произвольным числом — см. раздел 0a агентской
+   инструкции: именно так раньше уже разъезжался крестик в этом же
+   комплекте.
    ============================================================ */
-
 .cefalot-head {
-  position: absolute;
-
-  /* Совпадает с эффективным инсетом крестика в остальных бандлах
-     проекта на мобайле (padding var(--cf-s5) var(--cf-s4) контейнера
-     + flex-заголовок, прижатый к его краю) — держим общий элемент
-     (крестик закрытия) в одном и том же месте во всех состояниях. */
-  top: var(--cf-s5);
-  right: var(--cf-s4);
-
-  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
-.cefalot-head__text {
-  display: none;
+.cefalot-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 0;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface-tile);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
 }
-
-
-/* Close */
-
-.cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 0; border-radius: var(--cf-r-pill); background: var(--cf-surface-tile); color: var(--cf-ink-soft); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease); }
 .cefalot-close:hover { background: var(--cf-line); color: var(--cf-ink); }
+.cefalot-close:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
-
 /* ============================================================
-   SUCCESS
+   SUCCESS CONTENT
    ============================================================ */
-
 .cefalot-success {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: 16px;
-
-  width: 100%;
-  max-width: 560px;
-
-  padding: 32px;
-
   text-align: center;
+  gap: var(--cf-s4);
+  width: 100%;
+  margin: 0 auto;
 }
 
-
-/* ============================================================
-   SUCCESS ICON
-   ============================================================ */
-
-.cefalot-success__icon {
+.cefalot-success__icon-wrap {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
 
-  width: 72px;
-  height: 72px;
-
-  margin-bottom: 4px;
-
+.cefalot-success__icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
   border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  box-shadow:
+    0 0 0 6px var(--cf-accent-tint),
+    0 12px 32px rgba(248, 148, 53, 0.24),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  color: var(--cf-accent);
+  animation: cefalot-success-pop var(--cf-dur-slow) var(--cf-ease-bounce) 0.1s both;
+}
 
+.cefalot-success__icon svg { width: 30px; height: 30px; }
+
+.cefalot-success__circle {
+  stroke-dasharray: 94.2;
+  stroke-dashoffset: 94.2;
+  animation: cefalot-success-circle var(--cf-dur-slow) var(--cf-ease) 0.2s forwards;
+}
+
+.cefalot-success__check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: cefalot-success-check var(--cf-dur-slow) var(--cf-ease) 0.4s forwards;
+}
+
+.cefalot-success__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: var(--cf-r-pill);
   background: var(--cf-accent);
-  color: #FFFFFF;
+  opacity: 0;
+  animation: cefalot-success-ripple 1.2s var(--cf-ease) 0.6s infinite;
 }
 
-.cefalot-success__icon svg {
-  display: block;
-
-  width: 34px;
-  height: 34px;
-}
-
-
-/* ============================================================
-   SUCCESS TITLE
-   ============================================================ */
-
-.cefalot-success__title {
-  max-width: 520px;
-
-  color: var(--cf-ink);
-
-  font-size: clamp(26px, 3vw, 34px);
+.cefalot-title {
+  font-family: var(--cf-font);
   font-weight: 700;
-
-  line-height: 1.12;
-
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.2;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.2s both;
 }
 
-
-/* ============================================================
-   SUCCESS LEAD
-   ============================================================ */
-
-.cefalot-success__lead {
-  max-width: 520px;
-
+.cefalot-lead {
+  max-width: 100%;
   color: var(--cf-muted);
-
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.3s both;
 }
-
-
-/* ============================================================
-   ACTIONS
-   ============================================================ */
 
 .cefalot-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--cf-s3);
   width: 100%;
-
-  flex-wrap: wrap;
 }
 
 .cefalot-success__actions {
-  margin-top: 8px;
+  margin-top: var(--cf-s1);
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.4s both;
 }
 
-
-/* ============================================================
-   BUTTON
-   ============================================================ */
-
 .cefalot-btn {
-  appearance: none;
-  -webkit-appearance: none;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: 12px;
-
-  min-width: 170px;
+  gap: var(--cf-s2);
+  width: 100%;
   min-height: var(--cf-control-h);
-
-  padding: 13px 24px;
-
+  padding: 0 28px;
+  font-family: var(--cf-font);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: var(--cf-ls-btn);
+  text-decoration: none;
   border: 1px solid transparent;
   border-radius: var(--cf-r-sm);
-
-  font-family: var(--cf-font);
-
-  font-size: 15px;
-  font-weight: 600;
-
-  line-height: 1.2;
-
-  letter-spacing: var(--cf-ls-btn);
-
-  text-decoration: none;
-
   cursor: pointer;
-
-  transition:
-    background-color var(--cf-dur) var(--cf-ease),
-    border-color var(--cf-dur) var(--cf-ease),
-    color var(--cf-dur) var(--cf-ease),
-    transform var(--cf-dur) var(--cf-ease);
+  transition: background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
 }
-
-.cefalot-btn svg {
-  flex: 0 0 auto;
-
-  width: 19px;
-  height: 12px;
-
-  transition:
-    transform var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-btn:focus-visible {
-  outline: 2px solid var(--cf-focus);
-  outline-offset: 2px;
-}
-
-.cefalot-btn:active {
-  transform: translateY(1px);
-}
-
+.cefalot-btn--primary { background: var(--cf-accent); color: #FFFFFF; box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25); }
+.cefalot-btn--primary:hover { background: var(--cf-accent-hover); box-shadow: 0 6px 16px rgba(248, 148, 53, 0.35); }
+.cefalot-btn--primary:active { background: var(--cf-accent-active); }
+.cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 /* ============================================================
-   GHOST BUTTON
+   FOOTER / ATRIBUTION
    ============================================================ */
-
-.cefalot-btn--ghost {
-  background: transparent;
-
-  border-color: var(--cf-line);
-
-  color: var(--cf-ink);
-}
-
-.cefalot-btn--ghost:hover {
-  background: var(--cf-accent);
-  border-color: var(--cf-accent);
-
-  color: #FFFFFF;
-}
-
-.cefalot-btn--ghost:hover svg {
-  color: #FFFFFF;
-}
-
-.cefalot-btn--ghost:active {
-  background: var(--cf-accent-active);
-  border-color: var(--cf-accent-active);
-
-  color: #FFFFFF;
-}
-
-
-/* ============================================================
-   CREDIT
-   ============================================================ */
+.cefalot-foot { display: flex; justify-content: center; }
 
 .cefalot-cr {
-  position: absolute;
-
-  right: 0;
-  bottom: var(--cf-s3);
-  left: 0;
-
   margin: 0;
-
-  color: rgba(0, 0, 0, 0.38);
-
-  font-size: 10px;
-  line-height: 1.3;
-
+  font-size: 11px;
+  color: var(--cf-muted);
   text-align: center;
 }
-
-.cefalot-cr a {
-  color: inherit;
-
-  text-decoration: underline;
-  text-underline-offset: 2px;
-
-  transition:
-    color var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-cr a:hover {
-  color: var(--cf-accent);
-}
-
+.cefalot-cr a { color: var(--cf-ink-soft); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ============================================================
-   TABLET
+   ANIMATIONS
    ============================================================ */
-
-@media (max-width: 820px) {
-
-  .cefalot-form-custom-template-content {
-    padding: 32px 24px;
-  }
-
-  .cefalot-head {
-    top: var(--cf-s5);
-    right: var(--cf-s4);
-  }
-
-  .cefalot-success {
-    max-width: 520px;
-
-    padding: 28px 20px;
-  }
-
-  .cefalot-success__title {
-    font-size: 28px;
-  }
-
-  .cefalot-success__lead {
-    font-size: 15px;
-  }
+@keyframes cefalot-success-pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
 }
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 600px) {
-
-  .cefalot-form-custom-template-content {
-    justify-content: center;
-
-    padding:
-      72px
-      16px
-      52px;
-  }
-
-
-  /* Close */
-
-  .cefalot-head {
-    top: var(--cf-s5);
-    right: var(--cf-s4);
-  }
-
-
-
-  /* Success */
-
-  .cefalot-success {
-    gap: 14px;
-
-    max-width: 100%;
-
-    padding: 20px 0;
-  }
-
-  .cefalot-success__icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .cefalot-success__icon svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .cefalot-success__title {
-    font-size: 24px;
-  }
-
-  .cefalot-success__lead {
-    max-width: 360px;
-
-    font-size: 14px;
-  }
-
-
-  /* Actions */
-
-  .cefalot-actions {
-    width: 100%;
-  }
-
-  .cefalot-btn {
-    width: 100%;
-    min-width: 0;
-    min-height: 50px;
-
-    padding: 12px 16px;
-
-    font-size: 14px;
-  }
-
-
-  /* Credit */
-
-  .cefalot-cr {
-    right: 12px;
-    bottom: 10px;
-    left: 12px;
-
-    font-size: 9px;
-  }
+@keyframes cefalot-success-circle { to { stroke-dashoffset: 0; } }
+@keyframes cefalot-success-check { to { stroke-dashoffset: 0; } }
+@keyframes cefalot-success-ripple {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
 }
-
-
-/* ============================================================
-   SMALL MOBILE
-   ============================================================ */
-
-@media (max-width: 380px) {
-
-  .cefalot-form-custom-template-content {
-    padding:
-      64px
-      12px
-      46px;
-  }
-
-  .cefalot-success__title {
-    font-size: 22px;
-  }
-
-  .cefalot-success__lead {
-    font-size: 13px;
-  }
-}
-
-
-/* ============================================================
-   TOUCH
-   ============================================================ */
-
-@media (hover: none) {
-
-  .cefalot-btn--ghost:hover {
-    background: var(--cf-accent);
-    border-color: var(--cf-accent);
-
-    color: #FFFFFF;
-  }
-}
-
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .cefalot-form-custom-template-content *,
-  .cefalot-form-custom-template-content *::before,
-  .cefalot-form-custom-template-content *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
+@keyframes cefalot-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }

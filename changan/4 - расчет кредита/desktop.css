@@ -1,7 +1,3 @@
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
-
 :root,
 :host {
   /* Цвета бренда Changan */
@@ -53,314 +49,456 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* ============================================================
-   БАЗА И КОРНЕВОЙ БЛОК
-   ============================================================ */
-.cefalot-form-custom-template-root {
-  width: 100%;
-  height: 100%;
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
+
+/* Локальные токены комплекта "4 - расчет кредита" (hero-layout, многошаговая форма) */
+:root, :host {
+  --cf-hero-col:      45%;
+  --cf-hero-min-h:    480px;
+  --cf-fs-title:      26px;
+  --cf-accent-light:  rgba(248, 148, 53, 0.08);
 }
 
 .cefalot-form-custom-template-content {
   box-sizing: border-box;
+  display: block;
+  padding: 0;
+  overflow: hidden;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-body);
   line-height: 1.5;
   color: var(--cf-ink);
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-md);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  height: 100%;
+}
 
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1,
+.cefalot-form-custom-template-content h2, .cefalot-form-custom-template-content h3,
+.cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul { list-style: none; }
+
+/* === LAYOUT === */
+.cefalot-layout {
+  display: grid;
+  grid-template-columns: var(--cf-hero-col) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: var(--cf-hero-min-h);
+  height: 100%;
+}
+
+/* === HERO (чистое изображение, без текста) === */
+.cefalot-hero {
+  position: relative;
+  min-width: 0;
+  background-color: var(--cf-surface-tile);
+  /* TODO: заменить на реальный ключ ассета после первой заливки фото в кабинет Cefalot */
+  background-image: url("{{asset:changan-hero-credit}}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* === HEAD (эйбрау/заголовок/лид формы — в правой панели, дублируется на каждом шаге) === */
+.cefalot-head {
+  display: flex;
+  flex-direction: column;
+  padding-right: calc(var(--cf-tap) + var(--cf-s2));
+}
+
+.cefalot-eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-accent-active);
+  font-weight: 600;
+  margin-bottom: var(--cf-s1);
+  background: var(--cf-accent-light);
+  padding: 4px 10px;
+  border-radius: var(--cf-r-xs);
+}
+
+.cefalot-title {
+  font-family: var(--cf-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.15;
+  margin-bottom: var(--cf-s2);
+}
+
+.cefalot-lead {
+  color: var(--cf-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* === STEP HEAD (подзаголовок конкретного шага, ниже общего .cefalot-head) === */
+.cefalot-step-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s1);
+  padding-top: var(--cf-s4);
+  margin-top: var(--cf-s4);
+  border-top: 1px solid var(--cf-line-soft);
+}
+
+.cefalot-step-eyebrow {
+  display: inline-block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+  font-weight: 600;
+}
+
+.cefalot-step-title {
+  font-family: var(--cf-font);
+  font-weight: 700;
+  color: var(--cf-ink);
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+/* === PANEL & CLOSE BUTTON === */
+.cefalot-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--cf-s5);
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  padding: var(--cf-s7);
+  min-width: 0;
+  padding: var(--cf-s6);
   background: var(--cf-surface);
-  border-radius: var(--cf-r-md);
+  overflow-y: auto;
 }
-.cefalot-form-custom-template-content *,
-.cefalot-form-custom-template-content *::before,
-.cefalot-form-custom-template-content *::after { box-sizing: border-box; }
 
-.cefalot-form-custom-template-content p,
-.cefalot-form-custom-template-content h1,
-.cefalot-form-custom-template-content h2,
-.cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content h4,
-.cefalot-form-custom-template-content ul,
-.cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
-.cefalot-form-custom-template-content ul,
-.cefalot-form-custom-template-content ol { list-style: none; }
-
-/* ============================================================
-   ШАПКА
-   ============================================================ */
-.cefalot-head { display: flex; align-items: flex-start; gap: var(--cf-s4); }
-.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
-.cefalot-eyebrow { font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-accent); font-weight: 600; margin-bottom: var(--cf-s2); }
-.cefalot-title { font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; color: var(--cf-ink); }
-.cefalot-lead { font-size: var(--cf-fs-body); max-width: 56ch; color: var(--cf-muted); margin-top: var(--cf-s3); }
-
+/* Крестик строго на своем месте (см. "1 - обратный звонок") */
 .cefalot-close {
-  flex: 0 0 auto;
+  position: absolute;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  z-index: 10;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: var(--cf-tap);
   height: var(--cf-tap);
   padding: 0;
-  border: 0;
-  border-radius: var(--cf-r-pill);
-  background: var(--cf-surface-tile);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--cf-r-sm);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
   color: var(--cf-ink-soft);
   cursor: pointer;
-  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-.cefalot-close:hover { background: var(--cf-line); color: var(--cf-ink); }
+
+.cefalot-close:hover {
+  background: #FFFFFF;
+  color: var(--cf-ink);
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--cf-line);
+}
+
+.cefalot-close:active { transform: rotate(90deg) scale(0.95); }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
-/* ============================================================
-   ТЕЛО / ЗАГОЛОВОК ШАГА
-   ============================================================ */
+/* === FORM FIELDS === */
 .cefalot-body { display: flex; flex-direction: column; gap: var(--cf-s5); }
-.cefalot-step-head { display: flex; flex-direction: column; }
-
-/* ============================================================
-   ШАГ 1 — ВЫБОР АВТОМОБИЛЯ
-   ============================================================ */
-.cefalot-car-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--cf-s4);
-  width: 100%;
-}
-
-.cefalot-car-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-  background: var(--cf-surface);
-  cursor: pointer;
-  transition: border-color var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
-}
-.cefalot-car-card:hover { border-color: var(--cf-accent); transform: translateY(-2px); }
-
-.cefalot-car-card__radio { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-
-.cefalot-car-card:has(.cefalot-car-card__radio:checked) {
-  border-color: var(--cf-accent);
-  background: var(--cf-accent-tint);
-  box-shadow: 0 0 0 2px rgba(248, 148, 53, 0.16);
-}
-
-.cefalot-car-card__content { display: flex; flex-direction: column; gap: var(--cf-s1); padding: var(--cf-s4); }
-.cefalot-car-card__name { color: var(--cf-ink); font-size: 16px; font-weight: 700; text-transform: uppercase; }
-.cefalot-car-card__type { color: var(--cf-muted); font-size: var(--cf-fs-caption); }
-
-.cefalot-car-card__check {
-  position: absolute;
-  top: var(--cf-s3);
-  right: var(--cf-s3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: var(--cf-r-pill);
-  background: var(--cf-accent);
-  color: #FFFFFF;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
-}
-.cefalot-car-card__check svg { width: 14px; height: 14px; display: block; }
-.cefalot-car-card:has(.cefalot-car-card__radio:checked) .cefalot-car-card__check {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* ============================================================
-   ШАГ 2 — ПОЛЯ
-   ============================================================ */
-.cefalot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s5) var(--cf-s4); }
+.cefalot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s4); }
 .cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
-.cefalot-label { display: block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); }
+
+.cefalot-label {
+  display: block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+  font-weight: 500;
+}
+
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
 .cefalot-input {
   width: 100%;
   min-height: var(--cf-control-h);
-  padding: 14px var(--cf-s4);
+  padding: 0 16px;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-input);
-  line-height: 22px;
   color: var(--cf-ink);
   background: var(--cf-surface);
   border: 1px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
-  transition: border-color var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
-  appearance: none;
 }
-.cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
-.cefalot-input:hover { border-color: var(--cf-ink-soft); }
-.cefalot-input:focus-visible,
-.cefalot-input:focus { border-color: var(--cf-focus); box-shadow: 0 0 0 3px rgba(36, 39, 45, 0.1); }
 
-/* ============================================================
-   SELECT
-   ============================================================ */
-.cefalot-select-wrap { position: relative; display: block; width: 100%; min-width: 0; }
+.cefalot-input::placeholder { color: #B0B4BA; opacity: 1; }
+.cefalot-input:hover { border-color: var(--cf-ink-soft); }
+.cefalot-input:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
+}
+
+.cefalot-input[type="number"] { -moz-appearance: textfield; }
+.cefalot-input[type="number"]::-webkit-inner-spin-button,
+.cefalot-input[type="number"]::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
+
+/* === SELECT (выбор модели) === */
+.cefalot-select-wrap { position: relative; display: block; }
 
 .cefalot-select {
   width: 100%;
   min-height: var(--cf-control-h);
-  padding: 14px 44px 14px var(--cf-s4);
+  padding: 0 44px 0 16px;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-input);
-  line-height: 22px;
   color: var(--cf-ink);
   background: var(--cf-surface);
   border: 1px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
   cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
   appearance: none;
-  transition: border-color var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
 }
-.cefalot-select:hover { border-color: var(--cf-ink-soft); }
-.cefalot-select:focus,
-.cefalot-select:focus-visible { border-color: var(--cf-focus); box-shadow: 0 0 0 3px rgba(36, 39, 45, 0.1); }
+
 .cefalot-select:required:invalid { color: var(--cf-muted); }
 .cefalot-select option { color: var(--cf-ink); background: var(--cf-surface); }
+.cefalot-select:hover { border-color: var(--cf-ink-soft); }
+.cefalot-select:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
+}
 
-.cefalot-caret {
+.cefalot-select-wrap .cefalot-caret {
   position: absolute;
   top: 50%;
   right: var(--cf-s4);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  color: var(--cf-muted);
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
   pointer-events: none;
-  transform: translateY(-50%);
-  transition: color var(--cf-dur) var(--cf-ease);
+  color: var(--cf-muted);
 }
-.cefalot-caret svg { display: block; width: 12px; height: 12px; }
-.cefalot-select-wrap:hover .cefalot-caret,
-.cefalot-select-wrap:focus-within .cefalot-caret { color: var(--cf-ink); }
+.cefalot-select-wrap .cefalot-caret svg { width: 12px; height: 12px; display: block; }
 
-/* ============================================================
-   ЧЕКБОКС
-   ============================================================ */
-.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s1); }
+/* === RADIO — choice-grid (срок кредита) === */
+.cefalot-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
+
+.cefalot-choice {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-s3);
+  min-height: var(--cf-control-h);
+  padding: 0 var(--cf-s4);
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-choice:hover { border-color: var(--cf-ink-soft); }
+
+.cefalot-choice__input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.cefalot-choice__input:checked { border-color: var(--cf-accent); }
+.cefalot-choice__input:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-accent);
+}
+
+.cefalot-choice:has(.cefalot-choice__input:checked) {
+  border-color: var(--cf-accent);
+  background: var(--cf-accent-tint);
+}
+
+.cefalot-choice__body { font-size: var(--cf-fs-body); color: var(--cf-ink); font-weight: 500; }
+
+/* === CONSENTS === */
+.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
 
 .cefalot-check {
   display: flex;
   align-items: flex-start;
   gap: var(--cf-s3);
-  min-height: var(--cf-tap);
-  padding: 10px 0;
   cursor: pointer;
+  line-height: 1.45;
 }
 
 .cefalot-check__box {
-  flex: 0 0 auto;
-  width: 20px;
-  height: 20px;
-  margin: 2px 0 0 0;
-  border: 1px solid var(--cf-line);
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px; /* Идеальное выравнивание с первой строкой текста */
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-xs);
   background: var(--cf-surface);
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   position: relative;
-  transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
+
+.cefalot-check__box:hover { border-color: var(--cf-accent); }
 .cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+
 .cefalot-check__box:checked::after {
   content: "";
   position: absolute;
   left: 6px;
-  top: 3px;
-  width: 5px;
-  height: 9px;
-  border: solid #FFFFFF;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border: solid var(--cf-ink);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.cefalot-check__box:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
-.cefalot-check__text { font-size: var(--cf-fs-caption); line-height: 1.5; color: var(--cf-muted); }
-.cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
+.cefalot-check__text {
+  font-size: var(--cf-fs-caption);
+  color: var(--cf-muted);
+}
+
+.cefalot-check__link {
+  color: var(--cf-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--cf-dur) var(--cf-ease);
+}
+
 .cefalot-check__link:hover { color: var(--cf-accent); }
 
-/* ============================================================
-   КНОПКИ И ПОДВАЛ
-   ============================================================ */
+/* === FOOTER & ACTIONS === */
+.cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
+
+.cefalot-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-s3);
+  flex-wrap: wrap;
+}
+
 .cefalot-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--cf-s3);
+  gap: var(--cf-s2);
   min-height: var(--cf-control-h);
-  min-width: 200px;
-  padding: 14px 28px;
+  padding: 0 28px;
   font-family: var(--cf-font);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: var(--cf-ls-btn);
+  text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: var(--cf-r-sm);
   cursor: pointer;
-  transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
-.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
-.cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
-.cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--cf-accent); color: #FFFFFF; }
-.cefalot-btn--primary:hover { background: var(--cf-accent-hover); }
-.cefalot-btn--primary:active { background: var(--cf-accent-active); }
-.cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); min-width: 0; font-size: var(--cf-fs-label); }
-.cefalot-btn--quiet:hover { color: var(--cf-ink); }
 
-.cefalot-foot {
-  display: flex;
-  flex-direction: column;
-  gap: var(--cf-s4);
-  width: 100%;
-  margin-top: auto;
-  padding-top: var(--cf-s6);
-  flex: 0 0 auto;
+.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; transition: transform var(--cf-dur) var(--cf-ease); }
+
+.cefalot-btn--primary {
+  background: var(--cf-accent);
+  color: var(--cf-ink);
+  box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25);
 }
-.cefalot-actions { display: flex; align-items: center; justify-content: flex-start; gap: var(--cf-s3); flex-wrap: wrap; }
+
+.cefalot-btn--primary:hover {
+  background: var(--cf-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(248, 148, 53, 0.35);
+}
+
+.cefalot-btn--primary:hover svg { transform: translateX(3px); }
+.cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(248, 148, 53, 0.25); }
+
+.cefalot-btn--ghost {
+  background: transparent;
+  color: var(--cf-muted);
+  border-color: var(--cf-line);
+}
+
+.cefalot-btn--ghost:hover {
+  background: var(--cf-surface-soft);
+  color: var(--cf-ink);
+  border-color: var(--cf-ink-soft);
+}
+.cefalot-btn--ghost:hover svg { transform: translateX(-3px); }
+
 .cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
-.cefalot-cr { font-size: 11px; color: var(--cf-muted); opacity: 0.7; }
+.cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
-.cefalot-cr a:hover { color: var(--cf-ink-soft); }
 
-/* ============================================================
-   Уважение к prefers-reduced-motion
-   ============================================================ */
+/* === MOBILE ADAPTATION (на случай узкого desktop-вьюпорта) === */
+@media (max-width: 900px) {
+  .cefalot-layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    height: 100%;
+  }
+
+  .cefalot-hero {
+    min-height: 200px;
+    border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
+  }
+
+  .cefalot-head { padding-right: 0; }
+
+  .cefalot-panel {
+    padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+    border-radius: 0;
+  }
+
+  .cefalot-choice-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .cefalot-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--cf-s2);
+  }
+
+  .cefalot-btn { width: 100%; }
+  .cefalot-btn--ghost { order: 2; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cefalot-form-custom-template-content *,
   .cefalot-form-custom-template-content *::before,
   .cefalot-form-custom-template-content *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

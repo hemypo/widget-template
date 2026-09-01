@@ -1,19 +1,3 @@
-/* TENET WIDGET — Компакт (плавающая иконка)
-   Файл: стили мобильные
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
- */
-
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
-.cefalot-custom-template-content { font-family: "TENET Sans", system-ui, sans-serif; }
-
-/* ============================================================
-   ДИЗАЙН-ТОКЕНЫ ПРОЕКТА — дословно из tenet/DESIGN-TOKENS.md.
-   Менять только в источнике истины и синхронизировать все комплекты.
-   ============================================================ */
 :root,
 :host {
   /* Цвета бренда TENET */
@@ -72,6 +56,9 @@
   --cf-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+/* ============================================================
+   БАЗА
+   ============================================================ */
 /* Локальный токен состояния compact: тень плавающей кнопки. */
 .cefalot-custom-template-content {
   --cf-shadow-md: 0 8px 24px rgba(62, 58, 57, 0.10);
@@ -85,11 +72,10 @@
   box-sizing: inherit;
 }
 
-/* --- Кнопка-лаунчер (мобайл — чуть компактнее, но не тесно:
-       52px уже выше минимального тап-таргета в 44px) ------------- */
+/* --- Кнопка-лаунчер ------------------------------------------ */
 .cefalot-launcher__btn {
   position: relative;
-  width: 52px; height: 52px;
+  width: 100px; height: 100px;
   display: flex; align-items: center; justify-content: center;
   border: 0; border-radius: var(--cf-r-pill);
   background: var(--cf-ink); color: var(--cf-surface);
@@ -98,34 +84,38 @@
 }
 .cefalot-launcher__btn:hover { background: var(--cf-ink-strong); }
 .cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
-.cefalot-launcher__icon svg { width: 22px; height: 22px; display: block; }
+.cefalot-launcher__icon svg { width: 50px; height: 50px; display: block; }
 .cefalot-launcher__ring {
-  position: absolute; inset: -5px; border-radius: inherit;
+  position: absolute; inset: -6px; border-radius: inherit;
   border: 2px solid var(--cf-accent);
   opacity: 0; animation: cefalot-launcher-ping 2.6s ease-out infinite;
 }
 .cefalot-launcher__badge {
   position: absolute; top: -3px; right: -3px;
-  min-width: 17px; height: 17px; padding: 0 4px;
+  min-width: 30px; height: 30px; padding: 0 4px;
   display: flex; align-items: center; justify-content: center;
   border-radius: var(--cf-r-pill);
   background: var(--cf-accent); color: #fff;
-  font-size: 10px; font-weight: 700; line-height: 1;
+  font-size: 19px; font-weight: 400; line-height: 1;
   border: 2px solid var(--cf-surface);
 }
 
-/* На тач-устройствах :hover ненадёжен — дизмисс виден сразу,
-   без анимации раскрытия по наведению. Визуальный размер кнопки
-   остаётся 22px (совпадает с десктопом), но кликабельная зона
-   расширена до --cf-tap (44px) прозрачным ::before — на мобильном
-   это особенно важно, т.к. попасть пальцем в 22px крайне сложно. */
+/* --- Дизмисс «не показывать сегодня» --------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a).
+   Визуальный размер кнопки — 22px, но кликабельная зона расширена
+   до --cf-tap (44px) прозрачным ::before, отцентрованным на кнопке.
+   Это НЕ анти-паттерн «150vw» из раздела 3 (там зона растягивалась
+   на весь экран и могла перехватывать чужие клики) — здесь зона
+   строго 44×44px и не выходит за пределы самой кнопки. */
 .cefalot-launcher__dismiss {
   position: absolute; top: -8px; left: -8px;
   width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--cf-line); border-radius: var(--cf-r-pill);
   background: var(--cf-surface); color: var(--cf-ink-soft);
-  cursor: pointer;
+  cursor: pointer; opacity: 0; transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
 }
 .cefalot-launcher__dismiss::before {
   content: "";
@@ -135,6 +125,8 @@
   transform: translate(-50%, -50%);
 }
 .cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
 
 @keyframes cefalot-launcher-breathe {
   0%, 100% { transform: scale(1); }
@@ -145,6 +137,7 @@
   70%, 100% { transform: scale(1.35); opacity: 0; }
 }
 
+/* --- Уважение к prefers-reduced-motion --------------------- */
 @media (prefers-reduced-motion: reduce) {
   .cefalot-custom-template-content *,
   .cefalot-custom-template-content *::before,

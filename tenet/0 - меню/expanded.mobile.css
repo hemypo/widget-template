@@ -1,25 +1,14 @@
-/* TENET WIDGET — Раскрытие (само меню/навигация)
-   Файл: стили мобильные
-   Платформа: разрешены только data-widget-* атрибуты,
-   медиа только через {{asset:key}}, без script/style/iframe.
-   Позиция/размер этого состояния на странице задаются в редакторе
-   («Позиция на полотне» — X/Y/W/H), в CSS их не указываем.
-   Оформлено как панель снизу экрана (bottom-sheet) — плоский низ,
-   скруглённый верх; это чисто CSS-выбор, платформенного механизма
-   под bottom-sheet нет.
- */
-
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
-.cefalot-custom-template-content { font-family: "TENET Sans", system-ui, sans-serif; }
-
 /* ============================================================
-   ДИЗАЙН-ТОКЕНЫ ПРОЕКТА — дословно из tenet/DESIGN-TOKENS.md.
-   Менять только в источнике истины и синхронизировать все комплекты.
+   ШРИФТЫ И ПЕРЕМЕННЫЕ (TENET Design System)
    ============================================================ */
+@font-face { font-family: "TENET Sans"; src: url("{{asset:font1}}") format("opentype"); font-display: swap; }
+@font-face { font-family: "TENET Sans Bold"; src: url("{{asset:font2}}") format("opentype"); font-display: swap; }
+
 :root,
 :host {
-  /* Цвета бренда TENET */
+  --cf-font: "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-display: "TENET Sans Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
   --cf-ink:          #3E3A39;
   --cf-ink-strong:   #2F2B2A;
   --cf-ink-soft:     #615952;
@@ -37,17 +26,13 @@
   --cf-disabled:     #E7E0D9;
   --cf-focus:        #3E3A39;
 
-  /* Типографика */
-  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-fs-label:     11px;
-  --cf-fs-caption:   12px;
-  --cf-fs-body:      15px;
-  --cf-fs-input:     16px;
-  --cf-ls-label:     1px;
-  --cf-ls-btn:       1px;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 12px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   1px;
+  --cf-ls-btn:     1px;
 
-  /* Скругления */
   --cf-r-xs:   8px;
   --cf-r-sm:   12px;
   --cf-r-md:   16px;
@@ -55,7 +40,6 @@
   --cf-r-xl:   28px;
   --cf-r-pill: 999px;
 
-  /* Отступы (шаг 4px) */
   --cf-s1: 4px;
   --cf-s2: 8px;
   --cf-s3: 12px;
@@ -65,128 +49,245 @@
   --cf-s7: 40px;
   --cf-s8: 56px;
 
-  /* Высоты контролов */
   --cf-control-h: 56px;
   --cf-tap: 44px;
 
-  /* Движение */
   --cf-dur:   200ms;
   --cf-dur-l: 300ms;
   --cf-ease:  cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* ============================================================
-   EXPANDED MENU — адаптивная сетка карточек по ширине родителя.
-   Отдельный mobile CSS, без breakpoint: Grid сам меняет число колонок.
-   ============================================================ */
-.cefalot-custom-template-content {
+/* Сброс для изоляции виджета */
+.cefalot-mobile-menu, 
+.cefalot-mobile-menu * {
   box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
-  position: relative;
-  padding: var(--cf-s4);
-  padding-bottom: calc(var(--cf-s4) + env(safe-area-inset-bottom, 0px));
-  background: var(--cf-surface-soft);
-  border-radius: var(--cf-r-lg) var(--cf-r-lg) 0 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   BACKDROP (ЗАТЕМНЕНИЕ ФОНА)
+   ============================================================ */
+.cefalot-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(47, 43, 42, 0.5); /* --cf-ink-strong с прозрачностью */
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--cf-dur) ease;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.cefalot-menu-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   МОБИЛЬНАЯ ПАНЕЛЬ (BOTTOM SHEET)
+   ============================================================ */
+.cefalot-mobile-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-xl) var(--cf-r-xl) 0 0;
+  box-shadow: 0 -8px 32px rgba(47, 43, 42, 0.12);
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  
+  /* Анимация появления снизу */
+  transform: translateY(100%);
+  transition: transform var(--cf-dur) var(--cf-ease);
+  will-change: transform;
+}
+
+.cefalot-mobile-menu.is-open {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ШАПКА МЕНЮ
+   ============================================================ */
+.cefalot-menu__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cf-line-soft);
+}
+
+.cefalot-menu__title {
+  font-family: var(--cf-font-display);
+  font-weight: 700;
+  font-size: 16px;
   color: var(--cf-ink);
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-body);
-  line-height: 1.4;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-.cefalot-custom-template-content *,
-.cefalot-custom-template-content *::before,
-.cefalot-custom-template-content *::after {
-  box-sizing: inherit;
-}
-.cefalot-custom-template-content ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .cefalot-menu__close {
-  position: absolute;
-  top: var(--cf-s2);
-  right: var(--cf-s2);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--cf-tap);
-  height: var(--cf-tap);
-  padding: 0;
-  border: 0;
+  width: 40px;
+  height: 40px;
   border-radius: var(--cf-r-pill);
+  border: none;
   background: var(--cf-surface-tile);
   color: var(--cf-ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
 }
-.cefalot-menu__close:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
-.cefalot-menu__close svg { width: 16px; height: 16px; display: block; }
 
+.cefalot-menu__close:active {
+  background: var(--cf-line);
+  color: var(--cf-ink);
+}
+
+.cefalot-menu__close svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* ============================================================
+   СЕТКА КАРТОЧЕК
+   ============================================================ */
 .cefalot-menu__nav {
   width: 100%;
-  min-width: 0;
-  padding-top: var(--cf-s6);
 }
 
 .cefalot-menu__grid {
   display: grid;
-  width: 100%;
-  min-width: 0;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--cf-s2);
-  align-items: stretch;
-}
-.cefalot-menu__grid > li {
-  display: flex;
-  min-width: 0;
+  grid-template-columns: repeat(2, 1fr); /* 2 колонки для идеального мобильного тапа */
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+/* ============================================================
+   КАРТОЧКА ДЕЙСТВИЯ
+   ============================================================ */
 .cefalot-menu-card {
   width: 100%;
-  min-width: 0;
-  min-height: 150px;
+  min-height: 120px; /* Крупная зона тапа */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--cf-s3);
-  padding: var(--cf-s3);
+  gap: 12px;
+  padding: 20px 20px;
+  background: var(--cf-surface-soft);
   border: 1px solid transparent;
   border-radius: var(--cf-r-lg);
-  background: var(--cf-surface);
-  color: var(--cf-ink-soft);
-  font-family: var(--cf-font);
-  text-align: center;
   cursor: pointer;
+  text-align: center;
+  transition: all 0.2s var(--cf-ease);
 }
-.cefalot-menu-card:active { background: var(--cf-line-soft); }
-.cefalot-menu-card:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+
+.cefalot-menu-card:active {
+  background: var(--cf-surface-tile);
+  transform: scale(0.97);
+  border-color: var(--cf-line);
+}
 
 .cefalot-menu-card__icon {
-  flex: 0 0 auto;
-  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  color: var(--cf-ink);
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 68px;
-  height: 68px;
-  border-radius: var(--cf-r-lg);
-  background: var(--cf-surface-tile);
+}
+
+.cefalot-menu-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cefalot-menu-card__label {
+  font-family: var(--cf-font);
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--cf-ink);
+  letter-spacing: 0.2px;
+}
+
+/* ============================================================
+   ПОДВАЛ (COPYRIGHT)
+   ============================================================ */
+.cefalot-cr {
+  text-align: center;
+  font-family: var(--cf-font);
+  font-size: 11px;
+  color: var(--cf-muted);
+  margin-top: 24px;
+  line-height: 1.4;
+}
+
+.cefalot-cr a {
+  color: var(--cf-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.cefalot-cr a:hover,
+.cefalot-cr a:active {
   color: var(--cf-ink-soft);
 }
-.cefalot-menu-card__icon svg {
-  width: 30px;
-  height: 30px;
-  display: block;
+
+/* ============================================================
+   АДАПТИВ ДЛЯ ПЛАНШЕТОВ (опционально)
+   ============================================================ */
+@media (min-width: 600px) {
+  .cefalot-menu__grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки на планшетах */
+  }
+  
+  .cefalot-mobile-menu {
+    max-width: 600px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    border-radius: var(--cf-r-xl) var(--cf-r-xl) 0 0;
+  }
+  
+  .cefalot-mobile-menu.is-open {
+    transform: translate(-50%, 0);
+  }
 }
-.cefalot-menu-card__label {
-  max-width: 15ch;
-  font-size: 11px;
-  line-height: 1.25;
-  letter-spacing: var(--cf-ls-label);
-  text-transform: uppercase;
-  overflow-wrap: normal;
+/* ============================================================
+   МОБИЛЬНАЯ ПАНЕЛЬ (BOTTOM SHEET)
+   ============================================================ */
+.cefalot-mobile-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  
+  /* ИСПРАВЛЕНО: явный цвет фона */
+  background-color: var(--cf-surface); /* Белый #FFFFFF */
+  /* ИЛИ если нужен светло-серый фон, раскомментируйте: */
+  /* background-color: var(--cf-surface-soft); /* #F7F3EF */
+  
+  border-radius: var(--cf-r-xl) var(--cf-r-xl) 0 0;
+  box-shadow: 0 -8px 32px rgba(47, 43, 42, 0.12);
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  
+  /* Анимация появления снизу */
+  transform: translateY(100%);
+  transition: transform var(--cf-dur) var(--cf-ease);
+  will-change: transform;
+}
+
+.cefalot-mobile-menu.is-open {
+  transform: translateY(0);
 }

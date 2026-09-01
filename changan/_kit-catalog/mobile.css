@@ -1,0 +1,154 @@
+/* ============================================================
+   CHANGAN — КИТ КОМПОНЕНТОВ ДЛЯ КАТАЛОГА (мобайл)
+   Тот же HTML, что в desktop.html — адаптация только через CSS.
+   ============================================================ */
+
+:root,
+:host {
+  --cf-accent:       #F89435;
+  --cf-accent-hover: #DA822F;
+  --cf-accent-active: #B26B26;
+  --cf-accent-tint:  #F6E1CC;
+  --cf-ink:          #24272D;
+  --cf-ink-soft:     #4E5561;
+  --cf-muted:        #83888F;
+  --cf-line:         #DFE4EB;
+  --cf-line-soft:    #E8EAED;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F4F5F7;
+  --cf-surface-tile: #E8EAED;
+  --cf-focus:        #24272D;
+  --cf-error:        #F13F3F;
+
+  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 13px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   0.6px;
+  --cf-ls-btn:     0.4px;
+
+  --cf-r-xs: 8px;
+  --cf-r-sm: 12px;
+  --cf-r-md: 16px;
+  --cf-r-lg: 16px;
+  --cf-r-pill: 999px;
+
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  --cf-dur: 160ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
+
+:root, :host {
+  --cf-fs-title:   22px;
+  --cf-fs-substep: 19px;
+}
+
+.cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  color: var(--cf-ink);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s4);
+  padding: var(--cf-s5) var(--cf-s4);
+  background: var(--cf-surface);
+}
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1, .cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3, .cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { list-style: none; }
+
+/* === ШАПКА === */
+.cefalot-head { display: flex; align-items: flex-start; gap: var(--cf-s3); }
+.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
+.cefalot-eyebrow { display: inline-block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-accent-active); font-weight: 600; margin-bottom: var(--cf-s1); background: var(--cf-accent-tint); padding: 3px 9px; border-radius: var(--cf-r-xs); }
+.cefalot-title { font-family: var(--cf-font); font-weight: 700; letter-spacing: -0.01em; color: var(--cf-ink); font-size: var(--cf-fs-title); line-height: 1.2; }
+.cefalot-lead { color: var(--cf-muted); margin-top: var(--cf-s2); font-size: 13px; }
+.cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); background: var(--cf-surface-soft); color: var(--cf-ink-soft); cursor: pointer; }
+.cefalot-close svg { width: 16px; height: 16px; display: block; }
+
+/* === КАТАЛОГ: рельса сжимается в горизontальную полосу шагов === */
+.cefalot-catalog { display: flex; flex-direction: column; gap: var(--cf-s3); }
+.cefalot-catalog__panel { display: flex; flex-direction: column; }
+
+.cefalot-rail { padding: var(--cf-s3); background: var(--cf-surface-soft); border-radius: var(--cf-r-sm); }
+.cefalot-rail__title { display: none; }
+.cefalot-rail__list { flex-direction: row; gap: var(--cf-s2); }
+.cefalot-rail__item { width: auto; flex: 1 1 0; min-width: 0; }
+.cefalot-rail__btn { grid-template-columns: 28px minmax(0, 1fr); padding: 6px; gap: var(--cf-s2); }
+.cefalot-rail__num { width: 28px; height: 28px; font-size: 10px; }
+.cefalot-rail__label { font-size: var(--cf-fs-caption); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cefalot-rail__sub { display: none; }
+.cefalot-rail__footer { margin-top: var(--cf-s3); padding-top: var(--cf-s3); border-top: 1px solid var(--cf-line-soft); }
+.cefalot-rail__note, .cefalot-rail__footer .cefalot-note { font-size: 11px; text-align: center; }
+.cefalot-rail__footer .cefalot-cr { font-size: 11px; text-align: center; opacity: 0.7; }
+.cefalot-rail__footer .cefalot-cr a { color: inherit; text-decoration: underline; }
+
+.cefalot-substep__label { margin-bottom: 4px; color: var(--cf-accent-active); font-size: var(--cf-fs-label); font-weight: 600; letter-spacing: var(--cf-ls-label); text-transform: uppercase; }
+.cefalot-substep__title { color: var(--cf-ink); font-family: var(--cf-font); font-size: var(--cf-fs-substep); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.cefalot-substep__lead { margin-top: var(--cf-s2); color: var(--cf-muted); font-size: 13px; line-height: 1.4; }
+.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: var(--cf-s3); }
+
+.cefalot-grid, .cefalot-grid--1col { display: flex; flex-direction: column; gap: var(--cf-s4); max-width: none; }
+.cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
+.cefalot-label { display: block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); font-weight: 500; }
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; }
+
+.cefalot-field[data-widget-catalog-radio-host] { font-size: 0; }
+.cefalot-field[data-widget-catalog-radio-host] > .cefalot-label,
+.cefalot-field[data-widget-catalog-radio-host] > .cefalot-select-wrap { font-size: initial; }
+.cefalot-field[data-widget-catalog-radio-host] input[type="radio"] { display: none !important; }
+.cefalot-field[data-widget-catalog-radio-host] label:has(input[type="radio"]) { display: none !important; }
+.cefalot-field[data-widget-catalog-radio-host] input[type="radio"] + label { display: none !important; }
+.cefalot-field[data-widget-catalog-radio-host] > :not(.cefalot-label):not(.cefalot-select-wrap) { display: none !important; }
+
+/* font-size: 16px обязателен — иначе iOS Safari автозумит при фокусе */
+.cefalot-input, .cefalot-select, .cefalot-textarea { width: 100%; min-height: var(--cf-control-h); padding: 0 var(--cf-s4); font-family: var(--cf-font); font-size: 16px; color: var(--cf-ink); background: var(--cf-surface); border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); outline: none; transition: border-color var(--cf-dur) var(--cf-ease); -webkit-appearance: none; appearance: none; }
+.cefalot-input::placeholder, .cefalot-textarea::placeholder { color: var(--cf-muted); opacity: 1; }
+.cefalot-input:focus, .cefalot-select:focus, .cefalot-textarea:focus { border-color: var(--cf-accent); }
+.cefalot-select-wrap { position: relative; display: block; }
+.cefalot-select { padding-right: 44px; cursor: pointer; }
+.cefalot-select-wrap .cefalot-caret { position: absolute; top: 50%; right: var(--cf-s4); width: 12px; height: 12px; margin-top: -6px; pointer-events: none; color: var(--cf-muted); }
+.cefalot-select-wrap .cefalot-caret svg { width: 12px; height: 12px; display: block; }
+
+.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s2); }
+.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); cursor: pointer; line-height: 1.4; min-height: var(--cf-tap); padding: var(--cf-s2) 0; }
+.cefalot-check__box { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 2px; border: 1.5px solid var(--cf-line); border-radius: var(--cf-r-xs); background: var(--cf-surface); -webkit-appearance: none; appearance: none; position: relative; }
+.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+.cefalot-check__box:checked::after { content: ""; position: absolute; left: 5px; top: 2px; width: 6px; height: 10px; border: solid #FFFFFF; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.cefalot-check__text { font-size: 13px; color: var(--cf-muted); }
+.cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
+
+.cefalot-actions { display: flex; flex-direction: column; gap: var(--cf-s2); }
+.cefalot-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s2); width: 100%; min-height: var(--cf-control-h); padding: 0 var(--cf-s5); font-family: var(--cf-font); font-size: 14px; font-weight: 600; letter-spacing: var(--cf-ls-btn); text-decoration: none; border: 1px solid transparent; border-radius: var(--cf-r-sm); cursor: pointer; }
+.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+.cefalot-btn--primary { order: 2; background: var(--cf-accent); color: #FFFFFF; }
+.cefalot-btn--primary:active { background: var(--cf-accent-active); }
+.cefalot-btn--ghost { order: 1; border: 1px solid var(--cf-line); background: transparent; color: var(--cf-muted); }
+
+.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }

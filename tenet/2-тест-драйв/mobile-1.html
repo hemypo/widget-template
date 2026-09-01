@@ -1,0 +1,53 @@
+<header class="cefalot-head">
+  <div class="cefalot-head__text">
+    <h2 class="cefalot-title">Тест-драйв</h2>
+    <p class="cefalot-lead">Выберите модель и удобное время — дилер подтвердит запись по телефону.</p>
+  </div>
+  <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</header>
+
+<div class="cefalot-body">
+  <div class="cefalot-field">
+    <span class="cefalot-label" id="td-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
+    <span class="cefalot-select-wrap">
+      <select class="cefalot-select" id="td-model" name="model" data-widget-field="model" aria-labelledby="td-model-l" required aria-required="true">
+        <option value="" disabled selected>Выберите модель</option>
+        <option value="t4">TENET T4</option>
+        <option value="t4l">TENET T4L</option>
+        <option value="t7">TENET T7</option>
+        <option value="t8">TENET T8</option>
+      </select>
+      <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </span>
+  </div>
+
+  <div class="cefalot-grid">
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-date-l">Желаемая дата</span>
+      <input class="cefalot-input" id="td-date" type="date" name="preferred_date" data-widget-field="preferred_date"
+             aria-labelledby="td-date-l">
+    </div>
+    <div class="cefalot-field">
+      <span class="cefalot-label" id="td-slot-l">Время</span>
+      <span class="cefalot-select-wrap">
+        <select class="cefalot-select" id="td-slot" name="preferred_time" data-widget-field="preferred_time" aria-labelledby="td-slot-l">
+          <option value="" disabled selected>Выберите</option>
+          <option value="10_12">10:00 — 12:00</option>
+          <option value="12_14">12:00 — 14:00</option>
+          <option value="14_16">14:00 — 16:00</option>
+          <option value="16_18">16:00 — 18:00</option>
+          <option value="18_20">18:00 — 20:00</option>
+        </select>
+        <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </span>
+    </div>
+  </div>
+
+ 
+<footer class="cefalot-foot">
+  <div class="cefalot-actions">
+    <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-next>Далее <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+  <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
+</footer>
