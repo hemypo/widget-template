@@ -1,0 +1,263 @@
+:root,
+:host {
+  /* Цвета бренда JELAND */
+  --cf-accent:       #3A83A3;
+  --cf-accent-hover: #316E88;
+  --cf-accent-active: #285A70;
+  --cf-accent-tint:  #E4EDF1;
+  --cf-ink:          #181D21;
+  --cf-ink-soft:     #454C52;
+  --cf-muted:        #7C8489;
+  --cf-line:         #DDE1E3;
+  --cf-line-soft:    #EBEDEE;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F5F6F7;
+  --cf-surface-tile: #E9EBEC;
+  --cf-focus:        #181D21;
+  --cf-error:        #D14343;
+
+  /* Типографика */
+  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 13px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   0.8px;
+  --cf-ls-btn:     0.6px;
+
+  /* Скругления — плоские 0px везде (острая айдентика JELAND) */
+  --cf-r-xs: 0px;
+  --cf-r-sm: 0px;
+  --cf-r-md: 0px;
+  --cf-r-pill: 0px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 160ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Шрифт бренда пока не подключается — файлов .woff2 нет в проекте (см. DESIGN-TOKENS.md) */
+
+/* Локальный токен комплекта "0 - меню" (тень лаунчера) */
+:root,
+:host {
+  --cf-shadow-md: 0 6px 20px rgba(24, 29, 33, 0.28);
+}
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  position: relative;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+/* --- Обёртка кнопки+плашки --- */
+.cefalot-launcher {
+  position: relative;
+  display: inline-block;
+}
+
+/* --- Кнопка-лаунчер (острый квадрат — фирменный стиль JELAND) --- */
+.cefalot-launcher__btn {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--cf-r-md);
+  background: var(--cf-accent);
+  color: var(--cf-surface);
+  cursor: pointer;
+  animation: cefalot-launcher-pulse 2.4s ease-out infinite;
+}
+.cefalot-launcher__btn:hover { background: var(--cf-accent-hover); }
+.cefalot-launcher__btn:active { background: var(--cf-accent-active); }
+.cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
+
+.cefalot-launcher__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #FFFFFF;
+  pointer-events: none;
+}
+
+.cefalot-launcher__grid {
+  display: block;
+  width: 23px;
+  height: 23px;
+  overflow: visible;
+}
+
+@keyframes cefalot-launcher-pulse {
+  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(58, 131, 163, 0.5); }
+  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(58, 131, 163, 0); }
+  100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(58, 131, 163, 0); }
+}
+
+/* --- Плашка с перечислением форм --- */
+.cefalot-launcher__pill {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 42px;
+  height: 100px;
+  width: 0;
+  overflow: hidden;
+  border-radius: var(--cf-r-md);
+  background: var(--cf-ink);
+  box-shadow: var(--cf-shadow-md);
+  pointer-events: none;
+  animation: cefalot-launcher-pill-slide 12.3s var(--cf-ease) infinite;
+}
+
+.cefalot-launcher__pill-text {
+  position: absolute;
+  top: 50%;
+  left: 26px;
+  right: 58px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  opacity: 0;
+}
+
+@keyframes cefalot-launcher-pill-slide {
+  0%, 13.82%   { width: 0; }
+  16.26%, 97.56% { width: 360px; }
+  100%         { width: 0; }
+}
+
+@keyframes cefalot-pill-text-1 {
+  0%, 16.26%   { opacity: 0; }
+  17.76%       { opacity: 1; }
+  31.02%       { opacity: 1; }
+  32.52%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-2 {
+  0%, 32.52%   { opacity: 0; }
+  34.02%       { opacity: 1; }
+  47.28%       { opacity: 1; }
+  48.78%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-3 {
+  0%, 48.78%   { opacity: 0; }
+  50.28%       { opacity: 1; }
+  63.54%       { opacity: 1; }
+  65.04%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-4 {
+  0%, 65.04%   { opacity: 0; }
+  66.54%       { opacity: 1; }
+  79.80%       { opacity: 1; }
+  81.30%, 100% { opacity: 0; }
+}
+@keyframes cefalot-pill-text-5 {
+  0%, 81.30%   { opacity: 0; }
+  82.80%       { opacity: 1; }
+  96.06%       { opacity: 1; }
+  97.56%, 100% { opacity: 0; }
+}
+
+.cefalot-launcher__pill-text--1 { animation: cefalot-pill-text-1 12.3s linear infinite; }
+.cefalot-launcher__pill-text--2 { animation: cefalot-pill-text-2 12.3s linear infinite; }
+.cefalot-launcher__pill-text--3 { animation: cefalot-pill-text-3 12.3s linear infinite; }
+.cefalot-launcher__pill-text--4 { animation: cefalot-pill-text-4 12.3s linear infinite; }
+.cefalot-launcher__pill-text--5 { animation: cefalot-pill-text-5 12.3s linear infinite; }
+
+/* --- Анимация ячеек grid-иконки --- */
+.cefalot-launcher__grid-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: cefalot-grid-pulse;
+  animation-duration: 3.6s;
+  animation-timing-function: var(--cf-ease, cubic-bezier(0.22, 0.61, 0.36, 1));
+  animation-iteration-count: infinite;
+}
+.cefalot-launcher__grid-cell--1 { animation-delay: 0s; }
+.cefalot-launcher__grid-cell--2 { animation-delay: 0.10s; }
+.cefalot-launcher__grid-cell--4 { animation-delay: 0.20s; }
+.cefalot-launcher__grid-cell--3 { animation-delay: 0.30s; }
+
+@keyframes cefalot-grid-pulse {
+  0%, 8%    { transform: scale(1); opacity: 1; }
+  12%       { transform: scale(0.64); opacity: 0.62; }
+  18%       { transform: scale(1.08); opacity: 1; }
+  23%, 100% { transform: scale(1); opacity: 1; }
+}
+
+.cefalot-launcher__btn:hover .cefalot-launcher__grid {
+  animation: cefalot-grid-hover 480ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes cefalot-grid-hover {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(0.88) rotate(-5deg); }
+  75%  { transform: scale(1.08) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.cefalot-launcher__btn:active .cefalot-launcher__grid { transform: scale(0.88); }
+
+/* --- Дизмисс «не показывать сегодня» --- */
+.cefalot-launcher__dismiss {
+  position: absolute;
+  z-index: 3;
+  top: -8px;
+  left: -8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
+
+/* --- Уважение к prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

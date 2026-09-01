@@ -1,0 +1,99 @@
+<div class="cefalot-layout">
+
+  <!-- HERO SECTION -->
+  <aside class="cefalot-hero">
+    <div class="cefalot-hero__content">
+      <span class="cefalot-eyebrow">Кредитное предложение</span>
+      <h2 class="cefalot-title">Рассчитать кредит</h2>
+      <p class="cefalot-lead">Выберите модель — менеджер официального дилера CHANGAN «Автосалон-2000» подберёт выгодное кредитное предложение</p>
+    </div>
+  </aside>
+
+  <!-- FORM PANEL -->
+  <div class="cefalot-panel">
+
+    <!-- Крестик закрытия (строго на своем месте) -->
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="cefalot-body">
+
+      <div class="cefalot-field">
+        <label class="cefalot-label" for="cr-model">Модель <span class="cefalot-req">*</span></label>
+        <span class="cefalot-select-wrap">
+          <select class="cefalot-select" id="cr-model" name="model" data-widget-field="model" data-widget-field-type="select" required aria-required="true">
+            <option value="" disabled selected>Выберите модель</option>
+            <option value="cs75-pro">CHANGAN CS75 PRO</option>
+            <option value="alsvin">CHANGAN ALSVIN</option>
+            <option value="cs35-plus">CHANGAN CS35 PLUS</option>
+            <option value="cs35-max">CHANGAN CS35 MAX</option>
+            <option value="cs75-plus">CHANGAN CS75 PLUS</option>
+            <option value="cs75-plus-new">CHANGAN CS75 PLUS NEW</option>
+            <option value="cs95-new">CHANGAN CS95 NEW</option>
+            <option value="hunter-plus">CHANGAN HUNTER PLUS</option>
+            <option value="uni-k">CHANGAN UNI-K</option>
+            <option value="uni-s">CHANGAN UNI-S</option>
+            <option value="uni-t">CHANGAN UNI-T</option>
+            <option value="uni-v">CHANGAN UNI-V</option>
+            <option value="uni-v-2-0t">CHANGAN UNI-V 2.0T</option>
+            <option value="uni-s-4x4">CHANGAN UNI-S 4X4</option>
+            <option value="deepal-g318">DEEPAL G318</option>
+            <option value="deepal-s07">DEEPAL S07</option>
+          </select>
+          <span class="cefalot-caret" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false">
+              <polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </span>
+      </div>
+
+      <div class="cefalot-grid">
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="cr-name">Имя <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="cr-name" type="text" name="name" data-widget-field="name" placeholder="Иван Иванов" required aria-required="true">
+        </div>
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="cr-phone">Телефон <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="cr-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" required aria-required="true" inputmode="tel">
+        </div>
+      </div>
+
+      <div class="cefalot-consents">
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="cr-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="cr-third" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
+          Рассчитать кредит
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
+  </div>
+
+</div>

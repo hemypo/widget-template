@@ -1,18 +1,17 @@
 <div class="cefalot-layout">
 
-  <!-- HERO SECTION (на мобиле — фото сверху, текст поверх со scrim, см. раздел 0c) -->
+  <!-- HERO SECTION -->
   <aside class="cefalot-hero">
     <div class="cefalot-hero__content">
       <span class="cefalot-eyebrow">Спецпредложения</span>
       <h2 class="cefalot-title">Актуальные акции CHANGAN</h2>
-      <p class="cefalot-lead">Официальный дилер CHANGAN «Автосалон-2000» — автомобили от 1 589 900 ₽, выгода до 1 225 000 ₽, платёж от 10 132 ₽/мес.</p>
     </div>
   </aside>
 
   <!-- STEP PANEL -->
   <div class="cefalot-panel">
 
-    <!-- Крестик закрытия (строго на своем месте — как в "1 - обратный звонок") -->
+    <!-- Крестик закрытия (строго на своем месте) -->
     <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
         <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -25,30 +24,30 @@
       <div class="cefalot-step-head">
         <p class="cefalot-step-eyebrow">Шаг 2 из 2</p>
         <h3 class="cefalot-step-title">Ваши контакты</h3>
-        <p class="cefalot-step-lead">Оставьте имя и телефон — менеджер официального дилера CHANGAN «Автосалон-2000» свяжется и расскажет подробности выбранной акции.</p>
+        <p class="cefalot-step-lead">Оставьте номер — менеджер расскажет подробности выбранного предложения.</p>
       </div>
 
       <div class="cefalot-grid">
         <div class="cefalot-field">
-          <span class="cefalot-label" id="so-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
-          <input class="cefalot-input" type="text" name="name" data-widget-field="name" placeholder="Введите имя" aria-labelledby="so-name-l" required aria-required="true">
+          <label class="cefalot-label" for="so-name">Имя <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-name" type="text" name="name" data-widget-field="name" placeholder="Иван Иванов" required aria-required="true">
         </div>
         <div class="cefalot-field">
-          <span class="cefalot-label" id="so-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
-          <input class="cefalot-input" type="tel" name="phone" data-widget-field="phone" data-widget-field-type="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="so-phone-l" inputmode="tel" required aria-required="true">
+          <label class="cefalot-label" for="so-phone">Телефон <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" required aria-required="true" inputmode="tel">
         </div>
       </div>
 
       <div class="cefalot-consents">
         <label class="cefalot-check">
-          <input class="cefalot-check__box" type="checkbox" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <input class="cefalot-check__box" type="checkbox" id="so-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
           <span class="cefalot-check__text">
             Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
             <span class="cefalot-req" aria-hidden="true">*</span>
           </span>
         </label>
         <label class="cefalot-check">
-          <input class="cefalot-check__box" type="checkbox" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <input class="cefalot-check__box" type="checkbox" id="so-third" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
           <span class="cefalot-check__text">
             Я даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
             <span class="cefalot-req" aria-hidden="true">*</span>
@@ -61,7 +60,7 @@
     <footer class="cefalot-foot">
       <div class="cefalot-actions">
         <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-back>
-          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
             <line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.6"/>
             <polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

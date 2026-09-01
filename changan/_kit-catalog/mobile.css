@@ -1,6 +1,7 @@
 /* ============================================================
    CHANGAN — КИТ КОМПОНЕНТОВ ДЛЯ КАТАЛОГА (мобайл)
    Тот же HTML, что в desktop.html — адаптация только через CSS.
+   Структура без боковой рельсы: подшаги — карточки в потоке.
    ============================================================ */
 
 :root,
@@ -31,7 +32,6 @@
   --cf-r-xs: 8px;
   --cf-r-sm: 12px;
   --cf-r-md: 16px;
-  --cf-r-lg: 16px;
   --cf-r-pill: 999px;
 
   --cf-s1: 4px;
@@ -54,6 +54,7 @@
 .cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
 
 :root, :host {
+  --cf-r-lg: 16px;
   --cf-fs-title:   22px;
   --cf-fs-substep: 19px;
 }
@@ -90,30 +91,31 @@
 .cefalot-close { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: var(--cf-tap); height: var(--cf-tap); padding: 0; border: 1px solid var(--cf-line); border-radius: var(--cf-r-sm); background: var(--cf-surface-soft); color: var(--cf-ink-soft); cursor: pointer; }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
-/* === КАТАЛОГ: рельса сжимается в горизontальную полосу шагов === */
-.cefalot-catalog { display: flex; flex-direction: column; gap: var(--cf-s3); }
-.cefalot-catalog__panel { display: flex; flex-direction: column; }
+/* === КАТАЛОГ: подшаги — карточки, без рельсы === */
+.cefalot-catalog { width: 100%; min-width: 0; }
+.cefalot-catalog__panel { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: var(--cf-s4); }
 
-.cefalot-rail { padding: var(--cf-s3); background: var(--cf-surface-soft); border-radius: var(--cf-r-sm); }
-.cefalot-rail__title { display: none; }
-.cefalot-rail__list { flex-direction: row; gap: var(--cf-s2); }
-.cefalot-rail__item { width: auto; flex: 1 1 0; min-width: 0; }
-.cefalot-rail__btn { grid-template-columns: 28px minmax(0, 1fr); padding: 6px; gap: var(--cf-s2); }
-.cefalot-rail__num { width: 28px; height: 28px; font-size: 10px; }
-.cefalot-rail__label { font-size: var(--cf-fs-caption); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cefalot-rail__sub { display: none; }
-.cefalot-rail__footer { margin-top: var(--cf-s3); padding-top: var(--cf-s3); border-top: 1px solid var(--cf-line-soft); }
-.cefalot-rail__note, .cefalot-rail__footer .cefalot-note { font-size: 11px; text-align: center; }
-.cefalot-rail__footer .cefalot-cr { font-size: 11px; text-align: center; opacity: 0.7; }
-.cefalot-rail__footer .cefalot-cr a { color: inherit; text-decoration: underline; }
+.cefalot-substep {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  background: var(--cf-surface-soft);
+  border: 1px solid var(--cf-line-soft);
+  border-radius: var(--cf-r-lg);
+  padding: var(--cf-s4);
+}
+.cefalot-substep[hidden] { display: none !important; }
 
+.cefalot-substep__header { margin-bottom: var(--cf-s4); }
 .cefalot-substep__label { margin-bottom: 4px; color: var(--cf-accent-active); font-size: var(--cf-fs-label); font-weight: 600; letter-spacing: var(--cf-ls-label); text-transform: uppercase; }
 .cefalot-substep__title { color: var(--cf-ink); font-family: var(--cf-font); font-size: var(--cf-fs-substep); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
 .cefalot-substep__lead { margin-top: var(--cf-s2); color: var(--cf-muted); font-size: 13px; line-height: 1.4; }
-.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: var(--cf-s3); }
+.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s4); }
 
-.cefalot-grid, .cefalot-grid--1col { display: flex; flex-direction: column; gap: var(--cf-s4); max-width: none; }
+.cefalot-grid { display: flex; flex-direction: column; gap: var(--cf-s4); }
 .cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
+.cefalot-field--wide { grid-column: auto; }
 .cefalot-label { display: block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); font-weight: 500; }
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
@@ -149,6 +151,9 @@
 .cefalot-btn--primary:active { background: var(--cf-accent-active); }
 .cefalot-btn--ghost { order: 1; border: 1px solid var(--cf-line); background: transparent; color: var(--cf-muted); }
 
-.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
-.cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-substep__nav { margin-top: var(--cf-s2); padding-top: var(--cf-s3); border-top: 1px solid var(--cf-line-soft); }
+.cefalot-substep__footer { margin-top: var(--cf-s3); padding-top: var(--cf-s3); border-top: 1px solid var(--cf-line-soft); }
+
+.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); text-align: center; }
+.cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); text-align: center; }
 .cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }

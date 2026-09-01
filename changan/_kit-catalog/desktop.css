@@ -2,9 +2,11 @@
    CHANGAN — КИТ КОМПОНЕНТОВ ДЛЯ КАТАЛОГА (data-widget-catalog-*)
    ============================================================
    Это НЕ комплект для загрузки в Cefalot. Справочный документ:
-   рельса навигации + подшаги + каталожные поля — своя логика,
-   отдельная от обычных форм (см. changan/_kit-forms/).
-   Применяется сейчас только в "2 - трейд-ин", как у haval.
+   подшаги-карточки в потоке .cefalot-catalog__panel (без боковой
+   рельсы) + каталожные поля — своя логика, отдельная от обычных
+   форм (см. changan/_kit-forms/).
+   Применяется сейчас только в "2 - трейд-ин", структура синхронизирована
+   с haval/2 - трейд-ин (рельса убрана, подшаг = карточка).
    ============================================================ */
 
 :root,
@@ -37,7 +39,6 @@
   --cf-r-xs: 8px;
   --cf-r-sm: 12px;
   --cf-r-md: 16px;
-  --cf-r-lg: 20px;
   --cf-r-pill: 999px;
 
   --cf-s1: 4px;
@@ -61,6 +62,7 @@
 
 /* Локальные токены только каталога — не входят в канонический набор */
 :root, :host {
+  --cf-r-lg: 20px;
   --cf-fs-title:   28px;
   --cf-fs-substep: 22px;
 }
@@ -102,48 +104,33 @@
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
 /* ============================================================
-   КАТАЛОГ: рельса + подшаги
+   КАТАЛОГ: подшаги — карточки в потоке, без боковой рельсы
    ============================================================ */
-.cefalot-catalog { display: grid; grid-template-columns: 280px minmax(0, 1fr); align-items: stretch; gap: var(--cf-s6); width: 100%; min-width: 0; }
-.cefalot-catalog__panel { width: 100%; min-width: 0; }
+.cefalot-catalog { width: 100%; min-width: 0; }
+.cefalot-catalog__panel { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: var(--cf-s5); }
 
-.cefalot-rail { display: flex; flex-direction: column; width: 100%; min-width: 0; height: 100%; padding: var(--cf-s4); background: var(--cf-surface-soft); border-radius: var(--cf-r-lg); }
-.cefalot-rail__title { flex: 0 0 auto; margin-bottom: var(--cf-s4); color: var(--cf-ink); font-family: var(--cf-font); font-size: var(--cf-fs-body); font-weight: 700; line-height: 1.3; text-transform: uppercase; letter-spacing: var(--cf-ls-label); }
-.cefalot-rail__list { flex: 0 0 auto; display: flex; flex-direction: column; gap: var(--cf-s2); width: 100%; }
-.cefalot-rail__item { width: 100%; min-width: 0; }
-
-.cefalot-rail__btn { -webkit-appearance: none; appearance: none; display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: center; gap: var(--cf-s3); width: 100%; min-height: var(--cf-tap); padding: 10px; border: 1px solid transparent; border-radius: var(--cf-r-sm); background: var(--cf-surface); color: var(--cf-ink); font-family: var(--cf-font); text-align: left; cursor: pointer; transition: all var(--cf-dur) var(--cf-ease); }
-.cefalot-rail__btn:hover { border-color: var(--cf-accent); }
-
-.cefalot-rail__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--cf-r-sm); background: var(--cf-accent-tint); color: var(--cf-accent-active); font-size: var(--cf-fs-label); font-weight: 700; line-height: 1; }
-.cefalot-rail__text { display: flex; flex-direction: column; gap: var(--cf-s1); min-width: 0; }
-.cefalot-rail__label { color: var(--cf-ink); font-size: var(--cf-fs-body); font-weight: 600; line-height: 1.25; white-space: nowrap; }
-.cefalot-rail__sub { color: var(--cf-muted); font-size: var(--cf-fs-caption); line-height: 1.35; }
-
-/* Активный подшаг (пример статичного состояния для демонстрации — на реальной
-   платформе класс/атрибут активного пункта проставляет сама платформа) */
-.cefalot-rail__btn.is-active,
-.cefalot-rail__btn[aria-current="step"] { background: var(--cf-accent); border-color: var(--cf-accent); color: #FFFFFF; }
-.cefalot-rail__btn.is-active .cefalot-rail__num,
-.cefalot-rail__btn[aria-current="step"] .cefalot-rail__num { background: rgba(255, 255, 255, 0.2); color: #FFFFFF; }
-.cefalot-rail__btn.is-active .cefalot-rail__sub,
-.cefalot-rail__btn[aria-current="step"] .cefalot-rail__sub { color: rgba(255, 255, 255, 0.75); }
-
-.cefalot-rail__footer { display: flex; flex-direction: column; gap: var(--cf-s4); width: 100%; margin-top: auto; padding-top: var(--cf-s6); }
-.cefalot-rail__note, .cefalot-rail__footer .cefalot-note { margin: 0; color: var(--cf-muted); font-size: var(--cf-fs-caption); line-height: 1.45; }
-.cefalot-rail__footer .cefalot-cr { margin: 0; color: var(--cf-muted); font-size: var(--cf-fs-label); line-height: 1.4; opacity: 0.7; }
-.cefalot-rail__footer .cefalot-cr a { color: inherit; text-decoration: underline; }
-
-.cefalot-substep { display: flex; flex-direction: column; width: 100%; min-width: 0; }
+.cefalot-substep {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  background: var(--cf-surface-soft);
+  border: 1px solid var(--cf-line-soft);
+  border-radius: var(--cf-r-lg);
+  padding: var(--cf-s6);
+  transition: all var(--cf-dur) var(--cf-ease);
+}
 .cefalot-substep[hidden] { display: none !important; }
+
+.cefalot-substep__header { margin-bottom: var(--cf-s5); }
 .cefalot-substep__label { margin-bottom: var(--cf-s2); color: var(--cf-accent-active); font-size: var(--cf-fs-label); font-weight: 600; letter-spacing: var(--cf-ls-label); text-transform: uppercase; }
-.cefalot-substep__title { color: var(--cf-ink); font-family: var(--cf-font); font-size: var(--cf-fs-substep); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+.cefalot-substep__title { color: var(--cf-ink); font-family: var(--cf-font); font-size: var(--cf-fs-substep); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
 .cefalot-substep__lead { max-width: 56ch; margin-top: var(--cf-s3); color: var(--cf-muted); font-size: var(--cf-fs-body); line-height: 1.5; }
-.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s5); margin-top: var(--cf-s5); }
+.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s5); }
 
 .cefalot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s5) var(--cf-s4); }
-.cefalot-grid--1col { grid-template-columns: 1fr; max-width: 560px; }
 .cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
+.cefalot-field--wide { grid-column: 1 / -1; }
 .cefalot-label { display: block; font-size: var(--cf-fs-label); letter-spacing: var(--cf-ls-label); text-transform: uppercase; color: var(--cf-muted); font-weight: 500; }
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
@@ -199,11 +186,14 @@
 .cefalot-btn--ghost { min-width: 0; min-height: var(--cf-tap); padding: 0 var(--cf-s2); border: 0; background: transparent; color: var(--cf-muted); font-size: var(--cf-fs-label); }
 .cefalot-btn--ghost:hover { color: var(--cf-ink); }
 
+.cefalot-substep__nav { margin-top: auto; padding-top: var(--cf-s4); border-top: 1px solid var(--cf-line-soft); }
+.cefalot-substep__footer { margin-top: var(--cf-s5); padding-top: var(--cf-s4); border-top: 1px solid var(--cf-line-soft); }
+
 .cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
 
 /* Мобильная адаптация каталога — в отдельном mobile.css (см. mobile.css рядом),
    не здесь: desktop.css грузится только для десктоп-вьюпорта на платформе,
-   держать в нём мёртвый @media-код не нужно (в отличие от haval, где такой
-   неиспользуемый хвост остался как мусор от правок — не повторяем эту ошибку). */
+   держать в нём мёртвый @media-код не нужно (в отличие от старой версии haval,
+   где такой неиспользуемый хвост остался как мусор от правок — не повторяем эту ошибку). */

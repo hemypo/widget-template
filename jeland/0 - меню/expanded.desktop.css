@@ -1,0 +1,245 @@
+:root,
+:host {
+  /* Цвета бренда JELAND */
+  --cf-accent:       #3A83A3;
+  --cf-accent-hover: #316E88;
+  --cf-accent-active: #285A70;
+  --cf-accent-tint:  #E4EDF1;
+  --cf-ink:          #181D21;
+  --cf-ink-soft:     #454C52;
+  --cf-muted:        #7C8489;
+  --cf-line:         #DDE1E3;
+  --cf-line-soft:    #EBEDEE;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F5F6F7;
+  --cf-surface-tile: #E9EBEC;
+  --cf-focus:        #181D21;
+  --cf-error:        #D14343;
+
+  /* Типографика */
+  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-fs-label:   11px;
+  --cf-fs-caption: 13px;
+  --cf-fs-body:    15px;
+  --cf-fs-input:   16px;
+  --cf-ls-label:   0.8px;
+  --cf-ls-btn:     0.6px;
+
+  /* Скругления — плоские 0px везде (острая айдентика JELAND) */
+  --cf-r-xs: 0px;
+  --cf-r-sm: 0px;
+  --cf-r-md: 0px;
+  --cf-r-pill: 0px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 160ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Шрифт бренда пока не подключается — .woff2 нет в проекте, см. DESIGN-TOKENS.md */
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  color: var(--cf-ink);
+  -webkit-font-smoothing: antialiased;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after { box-sizing: inherit; }
+.cefalot-custom-template-content p, .cefalot-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-custom-template-content ul { list-style: none; }
+
+/* ============================================================
+   ПАНЕЛЬ
+   ============================================================ */
+.cefalot-widget-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-ink);
+  box-shadow: 0 16px 48px rgba(24, 29, 33, 0.22);
+}
+
+/* === ШАПКА: острый геометричный wordmark, не текстовый блок «эйбрау/тайтл» === */
+.cefalot-widget__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cf-s4);
+  padding: var(--cf-s5) var(--cf-s5) 0;
+}
+
+.cefalot-widget__word {
+  font-family: var(--cf-font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--cf-ink);
+  text-transform: uppercase;
+}
+
+.cefalot-widget__close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  margin: calc(var(--cf-tap) / -4) calc(var(--cf-tap) / -4) 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-widget__close:hover { color: var(--cf-accent); transform: rotate(90deg); }
+.cefalot-widget__close:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-widget__close svg { width: 16px; height: 16px; display: block; }
+
+.cefalot-widget__tag {
+  padding: var(--cf-s2) var(--cf-s5) var(--cf-s4);
+  font-size: var(--cf-fs-label);
+  font-weight: 600;
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+}
+
+/* ============================================================
+   МЕНЮ — вертикальный список пронумерованных строк, а не сетка
+   карточек (уникальное решение проекта jeland, см. DESIGN-TOKENS.md).
+   Каждая строка — полноширинный "манифест-ряд": крупный индекс +
+   подпись + стрелка; при наведении заливается акцентом целиком.
+   ============================================================ */
+.cefalot-menu__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--cf-ink);
+}
+
+.cefalot-menu__item {
+  border-bottom: 1px solid var(--cf-line);
+  /* Стаггер входа: каждая строка появляется на ~70мс позже предыдущей.
+     Срабатывает при каждом открытии меню — expanded.html монтируется
+     заново платформой при каждом переключении состояния (раздел 2a),
+     поэтому keyframe-анимация проигрывается не один раз за сессию,
+     а при каждом открытии — это осознанно (нечастое действие). */
+  animation: cefalot-row-in 0.4s var(--cf-ease) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.cefalot-menu__row {
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: var(--cf-s4);
+  width: 100%;
+  min-height: 64px;
+  padding: 0 var(--cf-s5);
+  border: 0;
+  background: var(--cf-surface);
+  color: var(--cf-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-menu__num {
+  flex: 0 0 auto;
+  font-family: var(--cf-font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--cf-accent);
+  transition: color var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-menu__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+  font-size: var(--cf-fs-body);
+  letter-spacing: 0.01em;
+}
+
+.cefalot-menu__arrow {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--cf-ink-soft);
+  transform: translateX(0);
+  transition: transform var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
+}
+.cefalot-menu__arrow svg { width: 18px; height: 11px; display: block; }
+
+/* Наведение/фокус — заливка строки целиком акцентом (статичный признак
+   состояния, не только цвет — см. принцип "motion restraint": анимация
+   стрелки идёт ВМЕСТЕ со сменой фона, а не вместо неё) */
+.cefalot-menu__row:hover,
+.cefalot-menu__row:focus-visible {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+.cefalot-menu__row:hover .cefalot-menu__num,
+.cefalot-menu__row:focus-visible .cefalot-menu__num { color: #FFFFFF; }
+.cefalot-menu__row:hover .cefalot-menu__arrow,
+.cefalot-menu__row:focus-visible .cefalot-menu__arrow {
+  color: #FFFFFF;
+  transform: translateX(4px);
+}
+.cefalot-menu__row:focus-visible { outline: 2px solid var(--cf-ink); outline-offset: -2px; }
+
+/* Нажатие — статичный тёмный вариант акцента вместо scale(): строка
+   растянута на всю ширину, уменьшение масштаба оставило бы разрыв по
+   краям карточки, поэтому тактильный отклик даём сменой тона, а не
+   transform (см. skill better-ui, "scale on press" — не применяется
+   к полноширинным элементам без видимых полей вокруг них). */
+.cefalot-menu__row:active { background: var(--cf-accent-active); }
+
+@keyframes cefalot-row-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ПОДВАЛ
+   ============================================================ */
+.cefalot-widget__foot {
+  padding: var(--cf-s4) var(--cf-s5) var(--cf-s5);
+}
+.cefalot-cr { font-size: 11px; color: var(--cf-muted); }
+.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
+.cefalot-cr a:hover { color: var(--cf-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

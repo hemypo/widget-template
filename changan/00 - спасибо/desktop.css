@@ -1,3 +1,6 @@
+@font-face { font-family: "ChangAnunitype-Regular"; src: url("{{asset:font1}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype-Regular", system-ui, sans-serif; }
+
 :root,
 :host {
   /* Цвета бренда Changan */
@@ -60,6 +63,7 @@
 
 .cefalot-form-custom-template-content {
   box-sizing: border-box;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--cf-s5);

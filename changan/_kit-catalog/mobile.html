@@ -1,15 +1,15 @@
 <!-- ============================================================
      CHANGAN — КИТ КОМПОНЕНТОВ ДЛЯ КАТАЛОГА (справочный документ,
      НЕ комплект для загрузки в Cefalot). desktop.html == mobile.html.
-     Применяется сейчас только к "2 - трейд-ин" — своя логика,
-     отдельная от обычных форм (см. ../_kit-forms/).
+     Структура без боковой рельсы: подшаги — карточки в потоке
+     .cefalot-catalog__panel (см. "2 - трейд-ин" / haval/2 - трейд-ин).
      ============================================================ -->
 
 <header class="cefalot-head">
   <div class="cefalot-head__text">
     <span class="cefalot-eyebrow">Категория</span>
     <h2 class="cefalot-title">Заголовок каталога</h2>
-    <p class="cefalot-lead">Короткое пояснение над рельсой навигации.</p>
+    <p class="cefalot-lead">Короткое пояснение над подшагами каталога.</p>
   </div>
   <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
@@ -20,63 +20,21 @@
 </header>
 
 <div class="cefalot-catalog">
-
-  <!-- РЕЛЬСА НАВИГАЦИИ: один пункт на подшаг, data-widget-catalog-go
-       для прямого перехода (работает только на уже пройденный подшаг) -->
-  <aside class="cefalot-rail" aria-label="Шаги">
-    <p class="cefalot-rail__title">Название калькулятора</p>
-
-    <ul class="cefalot-rail__list">
-      <li class="cefalot-rail__item">
-        <button class="cefalot-rail__btn is-active" type="button" data-widget-catalog-go="step-one" aria-current="step">
-          <span class="cefalot-rail__num" aria-hidden="true">01</span>
-          <span class="cefalot-rail__text">
-            <span class="cefalot-rail__label">Название шага 1</span>
-            <span class="cefalot-rail__sub">Краткое пояснение</span>
-          </span>
-        </button>
-      </li>
-      <li class="cefalot-rail__item">
-        <button class="cefalot-rail__btn" type="button" data-widget-catalog-go="step-two">
-          <span class="cefalot-rail__num" aria-hidden="true">02</span>
-          <span class="cefalot-rail__text">
-            <span class="cefalot-rail__label">Название шага 2</span>
-            <span class="cefalot-rail__sub">Краткое пояснение</span>
-          </span>
-        </button>
-      </li>
-      <li class="cefalot-rail__item">
-        <button class="cefalot-rail__btn" type="button" data-widget-catalog-go="step-contact">
-          <span class="cefalot-rail__num" aria-hidden="true">03</span>
-          <span class="cefalot-rail__text">
-            <span class="cefalot-rail__label">Контакты</span>
-            <span class="cefalot-rail__sub">Куда прислать результат</span>
-          </span>
-        </button>
-      </li>
-    </ul>
-
-    <div class="cefalot-rail__footer">
-      <p class="cefalot-rail__note">Расчёт предварительный. Точную стоимость подтвердит дилер CHANGAN после осмотра автомобиля.</p>
-      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
-      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
-    </div>
-  </aside>
-
-  <!-- ПАНЕЛЬ С ПОДШАГАМИ -->
   <main class="cefalot-catalog__panel">
 
-    <!-- ПОДШАГ: заголовок + select-based поле (radio скрыт CSS-трюком выше) -->
-    <section class="cefalot-substep" data-widget-catalog-substep="step-one" data-widget-catalog-substep-label="Название шага 1">
-      <p class="cefalot-substep__label">Шаг 1 из 3</p>
-      <h3 class="cefalot-substep__title">Заголовок подшага</h3>
-      <p class="cefalot-substep__lead">Пояснение, что нужно указать на этом подшаге.</p>
+    <!-- ПОДШАГ 1 — карточка: заголовок + select-based поле (radio скрыт CSS-трюком ниже) -->
+    <section class="cefalot-substep is-active" data-widget-catalog-substep="step-one" data-widget-catalog-substep-label="Название шага 1">
+      <div class="cefalot-substep__header">
+        <p class="cefalot-substep__label">Шаг 1 из 3</p>
+        <h3 class="cefalot-substep__title">Заголовок подшага</h3>
+        <p class="cefalot-substep__lead">Пояснение, что нужно указать на этом подшаге.</p>
+      </div>
 
       <div class="cefalot-substep__body">
         <div class="cefalot-grid">
           <!-- Каталожное select-поле: data-widget-catalog-radio-host обязателен на
                обёртке, если платформа генерирует под него скрытые radio (см. CSS-трюк) -->
-          <div class="cefalot-field" data-widget-catalog-radio-host="example_field" data-widget-catalog-input-name="example_field" data-widget-catalog-required="true">
+          <div class="cefalot-field cefalot-field--wide" data-widget-catalog-radio-host="example_field" data-widget-catalog-input-name="example_field" data-widget-catalog-required="true">
             <span class="cefalot-label">Название поля<span class="cefalot-req">*</span></span>
             <span class="cefalot-select-wrap">
               <select class="cefalot-select" name="example_field" data-widget-catalog-field="example_field" aria-label="Название поля" required>
@@ -93,7 +51,7 @@
           </div>
         </div>
 
-        <div class="cefalot-actions">
+        <div class="cefalot-actions cefalot-substep__nav">
           <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-catalog-next>
             Далее
             <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.6"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -102,20 +60,22 @@
       </div>
     </section>
 
-    <!-- ПОДШАГ 2 — пример «назад + далее», hidden до перехода -->
+    <!-- ПОДШАГ 2 — карточка, пример «назад + далее», hidden до перехода -->
     <section class="cefalot-substep" data-widget-catalog-substep="step-two" data-widget-catalog-substep-label="Название шага 2" hidden>
-      <p class="cefalot-substep__label">Шаг 2 из 3</p>
-      <h3 class="cefalot-substep__title">Заголовок подшага 2</h3>
+      <div class="cefalot-substep__header">
+        <p class="cefalot-substep__label">Шаг 2 из 3</p>
+        <h3 class="cefalot-substep__title">Заголовок подшага 2</h3>
+      </div>
 
       <div class="cefalot-substep__body">
-        <div class="cefalot-grid cefalot-grid--1col">
-          <div class="cefalot-field">
+        <div class="cefalot-grid">
+          <div class="cefalot-field cefalot-field--wide">
             <span class="cefalot-label">Текстовое поле</span>
             <input class="cefalot-input" type="text" name="example_text" data-widget-catalog-field="example_text" placeholder="Значение">
           </div>
         </div>
 
-        <div class="cefalot-actions">
+        <div class="cefalot-actions cefalot-substep__nav">
           <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-catalog-back>
             <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.6"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Назад
@@ -128,15 +88,19 @@
       </div>
     </section>
 
-    <!-- ПОДШАГ «Контакты» — последний, с чекбоксами согласия и data-widget-submit -->
+    <!-- ПОДШАГ «Контакты» — последняя карточка: чекбоксы согласия, data-widget-submit,
+         а также заметка про обязательные поля и атрибуция мэйк.диджитал — они
+         переехали сюда (в __body последнего подшага), рельсы с общим __footer больше нет -->
     <section class="cefalot-substep" data-widget-catalog-substep="step-contact" data-widget-catalog-substep-label="Контакты" hidden>
-      <p class="cefalot-substep__label">Шаг 3 из 3</p>
-      <h3 class="cefalot-substep__title">Контакты</h3>
-      <p class="cefalot-substep__lead">Оставьте контактные данные — пришлём результат расчёта.</p>
+      <div class="cefalot-substep__header">
+        <p class="cefalot-substep__label">Шаг 3 из 3</p>
+        <h3 class="cefalot-substep__title">Контакты</h3>
+        <p class="cefalot-substep__lead">Оставьте контактные данные — пришлём результат расчёта.</p>
+      </div>
 
       <div class="cefalot-substep__body">
-        <div class="cefalot-grid cefalot-grid--1col">
-          <div class="cefalot-field">
+        <div class="cefalot-grid">
+          <div class="cefalot-field cefalot-field--wide">
             <span class="cefalot-label" id="kit-catalog-phone-l">Телефон<span class="cefalot-req">*</span></span>
             <input class="cefalot-input" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="kit-catalog-phone-l" inputmode="tel" required aria-required="true">
           </div>
@@ -159,7 +123,7 @@
           </label>
         </div>
 
-        <div class="cefalot-actions">
+        <div class="cefalot-actions cefalot-substep__nav">
           <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-catalog-back>
             <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.6"/><polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Назад
@@ -168,6 +132,11 @@
             Отправить заявку
             <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.6"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
+        </div>
+
+        <div class="cefalot-substep__footer">
+          <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+          <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
         </div>
       </div>
     </section>

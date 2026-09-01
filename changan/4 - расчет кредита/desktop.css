@@ -17,7 +17,7 @@
   --cf-error:        #F13F3F;
 
   /* Типографика */
-  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: ChangAnunitype-regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
@@ -49,11 +49,7 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
-
-/* Локальные токены комплекта "4 - расчет кредита" (hero-layout, многошаговая форма) */
+/* Локальные токены комплекта "4 - расчет кредита" (hero-layout) */
 :root, :host {
   --cf-hero-col:      45%;
   --cf-hero-min-h:    480px;
@@ -81,8 +77,7 @@
 .cefalot-form-custom-template-content *::after { box-sizing: inherit; }
 
 .cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1,
-.cefalot-form-custom-template-content h2, .cefalot-form-custom-template-content h3,
-.cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content h2, .cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
 .cefalot-form-custom-template-content ul { list-style: none; }
 
 /* === LAYOUT === */
@@ -106,7 +101,7 @@
   background-repeat: no-repeat;
 }
 
-/* === HEAD (эйбрау/заголовок/лид формы — в правой панели, дублируется на каждом шаге) === */
+/* === HEAD (эйбрау/заголовок/лид — в правой панели) === */
 .cefalot-head {
   display: flex;
   flex-direction: column;
@@ -144,33 +139,6 @@
   line-height: 1.4;
 }
 
-/* === STEP HEAD (подзаголовок конкретного шага, ниже общего .cefalot-head) === */
-.cefalot-step-head {
-  display: flex;
-  flex-direction: column;
-  gap: var(--cf-s1);
-  padding-top: var(--cf-s4);
-  margin-top: var(--cf-s4);
-  border-top: 1px solid var(--cf-line-soft);
-}
-
-.cefalot-step-eyebrow {
-  display: inline-block;
-  font-size: var(--cf-fs-label);
-  letter-spacing: var(--cf-ls-label);
-  text-transform: uppercase;
-  color: var(--cf-muted);
-  font-weight: 600;
-}
-
-.cefalot-step-title {
-  font-family: var(--cf-font);
-  font-weight: 700;
-  color: var(--cf-ink);
-  font-size: 18px;
-  line-height: 1.3;
-}
-
 /* === PANEL & CLOSE BUTTON === */
 .cefalot-panel {
   position: relative;
@@ -183,7 +151,7 @@
   overflow-y: auto;
 }
 
-/* Крестик строго на своем месте (см. "1 - обратный звонок") */
+/* Крестик строго на своем месте */
 .cefalot-close {
   position: absolute;
   top: var(--cf-s3);
@@ -232,7 +200,8 @@
 
 .cefalot-req { color: var(--cf-accent); margin-left: 2px; }
 
-.cefalot-input {
+.cefalot-input,
+.cefalot-select {
   width: 100%;
   min-height: var(--cf-control-h);
   padding: 0 16px;
@@ -245,105 +214,23 @@
   outline: none;
   transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .cefalot-input::placeholder { color: #B0B4BA; opacity: 1; }
-.cefalot-input:hover { border-color: var(--cf-ink-soft); }
-.cefalot-input:focus {
+.cefalot-input:hover, .cefalot-select:hover { border-color: var(--cf-ink-soft); }
+.cefalot-input:focus, .cefalot-select:focus {
   border-color: var(--cf-accent);
   box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
 }
 
-.cefalot-input[type="number"] { -moz-appearance: textfield; }
-.cefalot-input[type="number"]::-webkit-inner-spin-button,
-.cefalot-input[type="number"]::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
-
-/* === SELECT (выбор модели) === */
+/* Select с кастомной стрелкой */
 .cefalot-select-wrap { position: relative; display: block; }
-
-.cefalot-select {
-  width: 100%;
-  min-height: var(--cf-control-h);
-  padding: 0 44px 0 16px;
-  font-family: var(--cf-font);
-  font-size: var(--cf-fs-input);
-  color: var(--cf-ink);
-  background: var(--cf-surface);
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-  outline: none;
-  cursor: pointer;
-  transition: all var(--cf-dur) var(--cf-ease);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
+.cefalot-select { padding-right: 44px; cursor: pointer; }
 .cefalot-select:required:invalid { color: var(--cf-muted); }
 .cefalot-select option { color: var(--cf-ink); background: var(--cf-surface); }
-.cefalot-select:hover { border-color: var(--cf-ink-soft); }
-.cefalot-select:focus {
-  border-color: var(--cf-accent);
-  box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
-}
-
-.cefalot-select-wrap .cefalot-caret {
-  position: absolute;
-  top: 50%;
-  right: var(--cf-s4);
-  width: 12px;
-  height: 12px;
-  margin-top: -6px;
-  pointer-events: none;
-  color: var(--cf-muted);
-}
+.cefalot-select-wrap .cefalot-caret { position: absolute; top: 50%; right: var(--cf-s4); width: 12px; height: 12px; margin-top: -6px; pointer-events: none; color: var(--cf-muted); }
 .cefalot-select-wrap .cefalot-caret svg { width: 12px; height: 12px; display: block; }
-
-/* === RADIO — choice-grid (срок кредита) === */
-.cefalot-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s3); }
-
-.cefalot-choice {
-  display: flex;
-  align-items: center;
-  gap: var(--cf-s3);
-  min-height: var(--cf-control-h);
-  padding: 0 var(--cf-s4);
-  border: 1.5px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
-  cursor: pointer;
-  transition: all var(--cf-dur) var(--cf-ease);
-}
-
-.cefalot-choice:hover { border-color: var(--cf-ink-soft); }
-
-.cefalot-choice__input {
-  flex: 0 0 18px;
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  border: 1.5px solid var(--cf-line);
-  border-radius: var(--cf-r-pill);
-  background: var(--cf-surface);
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  cursor: pointer;
-}
-
-.cefalot-choice__input:checked { border-color: var(--cf-accent); }
-.cefalot-choice__input:checked::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: var(--cf-r-pill);
-  background: var(--cf-accent);
-}
-
-.cefalot-choice:has(.cefalot-choice__input:checked) {
-  border-color: var(--cf-accent);
-  background: var(--cf-accent-tint);
-}
-
-.cefalot-choice__body { font-size: var(--cf-fs-body); color: var(--cf-ink); font-weight: 500; }
 
 /* === CONSENTS === */
 .cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
@@ -433,7 +320,7 @@
 
 .cefalot-btn--primary {
   background: var(--cf-accent);
-  color: var(--cf-ink);
+  color: var(--cf-surface);
   box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25);
 }
 
@@ -446,18 +333,18 @@
 .cefalot-btn--primary:hover svg { transform: translateX(3px); }
 .cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(248, 148, 53, 0.25); }
 
-.cefalot-btn--ghost {
+.cefalot-btn--quiet {
   background: transparent;
   color: var(--cf-muted);
   border-color: var(--cf-line);
+  padding: 0 20px;
 }
 
-.cefalot-btn--ghost:hover {
+.cefalot-btn--quiet:hover {
   background: var(--cf-surface-soft);
   color: var(--cf-ink);
   border-color: var(--cf-ink-soft);
 }
-.cefalot-btn--ghost:hover svg { transform: translateX(-3px); }
 
 .cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
 .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
@@ -483,8 +370,6 @@
     border-radius: 0;
   }
 
-  .cefalot-choice-grid { grid-template-columns: minmax(0, 1fr); }
-
   .cefalot-actions {
     flex-direction: column;
     align-items: stretch;
@@ -492,13 +377,5 @@
   }
 
   .cefalot-btn { width: 100%; }
-  .cefalot-btn--ghost { order: 2; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cefalot-form-custom-template-content *,
-  .cefalot-form-custom-template-content *::before,
-  .cefalot-form-custom-template-content *::after {
-    transition-duration: 0.01ms !important;
-  }
+  .cefalot-btn--quiet { order: 2; }
 }
