@@ -5,6 +5,7 @@
   --cf-accent-hover: #DA822F;
   --cf-accent-active: #B26B26;
   --cf-accent-tint:  #F6E1CC;
+  --cf-accent-glow:  rgba(248, 148, 53, 0.35);
   --cf-ink:          #24272D;
   --cf-ink-soft:     #4E5561;
   --cf-muted:        #83888F;
@@ -17,7 +18,7 @@
   --cf-error:        #F13F3F;
 
   /* Типографика */
-  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: ChangAnunitype-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
@@ -49,9 +50,8 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
+@font-face { font-family: "ChangAnunitype-Regular"; src: url("{{asset:font1}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype-Regular", system-ui, sans-serif; }
 
 /* Локальные токены комплекта "5 - спецпредложения" (hero-layout, карточки предложений) */
 :root, :host {
@@ -115,27 +115,42 @@
 }
 
 .cefalot-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
   align-self: flex-start;
   font-size: var(--cf-fs-label);
-  letter-spacing: var(--cf-ls-label);
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--cf-accent-active);
-  font-weight: 600;
-  margin-bottom: var(--cf-s1);
-  background: var(--cf-accent-light);
-  padding: 4px 10px;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: var(--cf-s3);
+  background: var(--cf-accent);
+  padding: 6px 14px;
   border-radius: var(--cf-r-xs);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+}
+.cefalot-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
 
 .cefalot-title {
   font-family: var(--cf-font);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: var(--cf-ink);
   font-size: var(--cf-fs-title);
   line-height: 1.15;
+  background: linear-gradient(135deg, var(--cf-ink) 0%, var(--cf-ink-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* === PANEL & CLOSE BUTTON === */
@@ -146,7 +161,7 @@
   gap: var(--cf-s5);
   min-width: 0;
   padding: var(--cf-s6);
-  background: var(--cf-surface);
+  background: radial-gradient(circle at 100% 0%, var(--cf-accent-tint) 0%, transparent 55%), var(--cf-surface);
   overflow-y: auto;
 }
 
@@ -173,11 +188,11 @@
 }
 
 .cefalot-close:hover {
-  background: #FFFFFF;
-  color: var(--cf-ink);
+  background: var(--cf-accent);
+  color: #FFFFFF;
   transform: rotate(90deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--cf-line);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+  border-color: var(--cf-accent);
 }
 
 .cefalot-close:active { transform: rotate(90deg) scale(0.95); }
@@ -187,21 +202,32 @@
 .cefalot-body { display: flex; flex-direction: column; gap: var(--cf-s5); }
 
 .cefalot-step-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
   font-size: var(--cf-fs-label);
-  letter-spacing: var(--cf-ls-label);
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--cf-accent-active);
-  font-weight: 600;
-  margin-bottom: var(--cf-s1);
-  background: var(--cf-accent-light);
-  padding: 4px 10px;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: var(--cf-s2);
+  background: var(--cf-accent);
+  padding: 5px 12px;
   border-radius: var(--cf-r-xs);
+  box-shadow: 0 3px 10px var(--cf-accent-glow);
+}
+.cefalot-step-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
 
 .cefalot-step-title {
   font-family: var(--cf-font);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--cf-ink);
@@ -209,7 +235,7 @@
   line-height: 1.2;
 }
 
-.cefalot-step-lead { color: var(--cf-muted); margin-top: var(--cf-s1); font-size: 14px; line-height: 1.4; }
+.cefalot-step-lead { color: var(--cf-ink-soft); margin-top: var(--cf-s1); font-size: 14px; line-height: 1.5; }
 
 /* === OFFERS (шаг 1) === */
 .cefalot-offers-grid { display: flex; flex-direction: column; gap: var(--cf-s2); margin-top: var(--cf-s4); }
@@ -221,14 +247,14 @@
   align-items: flex-start;
   gap: var(--cf-s3);
   padding: var(--cf-s3);
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   background: var(--cf-surface);
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-offer-card__radio:hover + .cefalot-offer-card__surface { border-color: var(--cf-ink-soft); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); }
-.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface { border-color: var(--cf-accent); background: var(--cf-accent-light); box-shadow: 0 4px 12px rgba(248, 148, 53, 0.2); }
+.cefalot-offer-card__radio:hover + .cefalot-offer-card__surface { border-color: var(--cf-accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); }
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface { border-color: var(--cf-accent); background: var(--cf-accent-tint); box-shadow: 0 4px 16px var(--cf-accent-glow); }
 .cefalot-offer-card__radio:focus-visible + .cefalot-offer-card__surface { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 .cefalot-offer-card__num {
@@ -239,14 +265,28 @@
   width: 28px;
   height: 28px;
   border-radius: var(--cf-r-sm);
-  background: var(--cf-accent-light);
+  background: var(--cf-accent-tint);
   color: var(--cf-accent-active);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .cefalot-offer-card__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .cefalot-offer-card__title { font-size: 13px; font-weight: 600; color: var(--cf-ink); display: flex; align-items: center; flex-wrap: wrap; gap: 4px; line-height: 1.3; }
+
+.cefalot-offer-card__badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--cf-accent-active);
+  background: var(--cf-accent-tint);
+  padding: 5px 12px;
+  border-radius: var(--cf-r-pill);
+}
 
 .cefalot-offer-card__check {
   flex: 0 0 auto;
@@ -262,7 +302,12 @@
   transition: all var(--cf-dur) var(--cf-ease);
 }
 .cefalot-offer-card__check svg { width: 10px; height: 10px; display: block; }
-.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__check { background: var(--cf-accent); border-color: var(--cf-accent); color: var(--cf-surface); }
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__check {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(248, 148, 53, 0.3);
+}
 
 /* === FORM FIELDS (шаг 2) === */
 .cefalot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s4); margin-top: var(--cf-s4); }
@@ -277,7 +322,7 @@
   font-weight: 500;
 }
 
-.cefalot-req { color: var(--cf-accent); margin-left: 2px; }
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; font-weight: 800; }
 
 .cefalot-input {
   width: 100%;
@@ -285,24 +330,84 @@
   padding: 0 16px;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-input);
+  font-weight: 500;
   color: var(--cf-ink);
   background: var(--cf-surface);
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
   transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
 }
 
-.cefalot-input::placeholder { color: #B0B4BA; opacity: 1; }
-.cefalot-input:hover { border-color: var(--cf-ink-soft); }
+.cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
+.cefalot-input:hover { border-color: var(--cf-accent); }
 .cefalot-input:focus {
   border-color: var(--cf-accent);
-  box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
+  box-shadow: 0 0 0 4px var(--cf-accent-tint), 0 4px 12px var(--cf-accent-glow);
+  transform: translateY(-1px);
+}
+
+/* Select с кастомной стрелкой */
+.cefalot-select {
+  width: 100%;
+  min-height: var(--cf-control-h);
+  padding: 0 44px 0 16px;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-input);
+  font-weight: 500;
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  outline: none;
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cefalot-select:required:invalid { color: var(--cf-muted); }
+.cefalot-select option { color: var(--cf-ink); background: var(--cf-surface); }
+.cefalot-select:hover { border-color: var(--cf-accent); }
+.cefalot-select:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 4px var(--cf-accent-tint), 0 4px 12px var(--cf-accent-glow);
+  transform: translateY(-1px);
+}
+.cefalot-select-wrap { position: relative; display: block; }
+.cefalot-select-wrap .cefalot-caret {
+  position: absolute;
+  top: 50%;
+  right: var(--cf-s3);
+  width: 28px; height: 28px;
+  margin-top: -14px;
+  pointer-events: none;
+  color: var(--cf-accent);
+  background: var(--cf-accent-tint);
+  border-radius: var(--cf-r-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+.cefalot-select-wrap .cefalot-caret svg { width: 14px; height: 14px; display: block; stroke-width: 2; }
+.cefalot-select:focus + .cefalot-caret,
+.cefalot-select-wrap:hover .cefalot-caret {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+  transform: rotate(180deg);
 }
 
 /* === CONSENTS === */
-.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
+.cefalot-consents {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s3);
+  padding: var(--cf-s4);
+  background: var(--cf-surface-soft);
+  border-radius: var(--cf-r-md);
+  border: 1px solid var(--cf-line-soft);
+}
 
 .cefalot-check {
   display: flex;
@@ -316,8 +421,8 @@
   flex: 0 0 22px;
   width: 22px;
   height: 22px;
-  margin-top: 2px; /* Идеальное выравнивание с первой строкой текста */
-  border: 1.5px solid var(--cf-line);
+  margin-top: 1px;
+  border: 2px solid var(--cf-line);
   border-radius: var(--cf-r-xs);
   background: var(--cf-surface);
   cursor: pointer;
@@ -325,36 +430,45 @@
   appearance: none;
   position: relative;
   transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.cefalot-check__box:hover { border-color: var(--cf-accent); }
-.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+.cefalot-check__box:hover { border-color: var(--cf-accent); box-shadow: 0 0 0 4px var(--cf-accent-tint); }
+.cefalot-check__box:checked {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  box-shadow: 0 2px 8px rgba(248, 148, 53, 0.3), 0 0 0 4px var(--cf-accent-tint);
+  transform: scale(1.05);
+}
 
 .cefalot-check__box:checked::after {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 2px;
+  left: 5px;
+  top: 1px;
   width: 7px;
   height: 12px;
-  border: solid var(--cf-ink);
-  border-width: 0 2px 2px 0;
+  border: solid #FFFFFF;
+  border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
 }
 
 .cefalot-check__text {
   font-size: var(--cf-fs-caption);
-  color: var(--cf-muted);
+  color: var(--cf-ink-soft);
 }
 
 .cefalot-check__link {
   color: var(--cf-ink);
+  font-weight: 600;
   text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color var(--cf-dur) var(--cf-ease);
+  text-decoration-color: var(--cf-accent-tint);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__link:hover { color: var(--cf-accent); }
+.cefalot-check__link:hover { color: var(--cf-accent); text-decoration-color: var(--cf-accent); }
 
 /* === FOOTER & ACTIONS === */
 .cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
@@ -371,12 +485,12 @@
   align-items: center;
   justify-content: center;
   gap: var(--cf-s2);
-  min-height: var(--cf-control-h);
+  min-height: 56px;
   padding: 0 28px;
   font-family: var(--cf-font);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: var(--cf-ls-btn);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
@@ -385,22 +499,26 @@
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; transition: transform var(--cf-dur) var(--cf-ease); }
+.cefalot-btn svg {
+  width: 18px; height: 12px; flex: 0 0 auto;
+  transition: transform var(--cf-dur) var(--cf-ease);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
 
 .cefalot-btn--primary {
-  background: var(--cf-accent);
-  color: var(--cf-surface);
-  box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px var(--cf-accent-glow), 0 2px 6px rgba(36, 39, 45, 0.08);
 }
 
 .cefalot-btn--primary:hover {
-  background: var(--cf-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(248, 148, 53, 0.35);
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--cf-accent-glow), 0 4px 10px rgba(36, 39, 45, 0.1);
 }
 
-.cefalot-btn--primary:hover svg { transform: translateX(3px); }
-.cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(248, 148, 53, 0.25); }
+.cefalot-btn--primary:hover svg { transform: translateX(4px); }
+.cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(248, 148, 53, 0.3); }
 
 .cefalot-btn--ghost {
   background: transparent;

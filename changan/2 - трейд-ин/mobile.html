@@ -1,7 +1,7 @@
 <header class="cefalot-head">
   <div class="cefalot-head__text">
     <span class="cefalot-eyebrow">Трейд-ин программа</span>
-    <h2 class="cefalot-title">Обменять на новый CHANGAN/UNI</h2>
+    <h2 class="cefalot-title">Обменять на новый <span class="cefalot-title__accent">CHANGAN/UNI</span></h2>
     <p class="cefalot-lead">Оценим ваш автомобиль и подберём новый CHANGAN или UNI с выгодой по программе трейд-ин.</p>
   </div>
   <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
@@ -18,7 +18,7 @@
     <!-- ПОДШАГ 1: Автомобиль -->
     <section class="cefalot-substep is-active" data-widget-catalog-substep="brand" data-widget-catalog-substep-label="Автомобиль">
       <div class="cefalot-substep__header">
-        <p class="cefalot-substep__label">Шаг 1 из 4</p>
+        <span class="cefalot-substep__badge">Шаг 1 из 4</span>
         <h3 class="cefalot-substep__title">Ваш автомобиль</h3>
         <p class="cefalot-substep__lead">Укажите марку, модель и поколение автомобиля, который сдаёте в трейд-ин.</p>
       </div>
@@ -68,7 +68,7 @@
     <!-- ПОДШАГ 2: Характеристики -->
     <section class="cefalot-substep" data-widget-catalog-substep="specs" data-widget-catalog-substep-label="Характеристики" hidden>
       <div class="cefalot-substep__header">
-        <p class="cefalot-substep__label">Шаг 2 из 4</p>
+        <span class="cefalot-substep__badge">Шаг 2 из 4</span>
         <h3 class="cefalot-substep__title">Характеристики автомобиля</h3>
         <p class="cefalot-substep__lead">Укажите основные параметры для более точной предварительной оценки.</p>
       </div>
@@ -132,7 +132,7 @@
     <!-- ПОДШАГ 3: Состояние -->
     <section class="cefalot-substep" data-widget-catalog-substep="condition" data-widget-catalog-substep-label="Состояние" hidden>
       <div class="cefalot-substep__header">
-        <p class="cefalot-substep__label">Шаг 3 из 4</p>
+        <span class="cefalot-substep__badge">Шаг 3 из 4</span>
         <h3 class="cefalot-substep__title">Состояние автомобиля</h3>
         <p class="cefalot-substep__lead">Укажите пробег и количество владельцев по ПТС для расчёта выкупной цены.</p>
       </div>
@@ -166,7 +166,7 @@
     <!-- ПОДШАГ 4: Контакты -->
     <section class="cefalot-substep" data-widget-catalog-substep="contact" data-widget-catalog-substep-label="Контакты" hidden>
       <div class="cefalot-substep__header">
-        <p class="cefalot-substep__label">Шаг 4 из 4</p>
+        <span class="cefalot-substep__badge">Шаг 4 из 4</span>
         <h3 class="cefalot-substep__title">Контакты</h3>
         <p class="cefalot-substep__lead">Оставьте контактные данные — пришлём предварительный расчёт и предложим время для осмотра.</p>
       </div>
@@ -177,20 +177,32 @@
             <span class="cefalot-label" id="ti-phone-l">Телефон<span class="cefalot-req">*</span></span>
             <input class="cefalot-input" id="ti-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="ti-phone-l" inputmode="tel" required aria-required="true">
           </div>
+
+          <div class="cefalot-field cefalot-field--wide" data-widget-catalog-radio-host="dealer_center" data-widget-input-name="dealer_center" data-widget-catalog-required="true">
+            <span class="cefalot-label">Выберите дилерский центр<span class="cefalot-req">*</span></span>
+            <span class="cefalot-select-wrap">
+              <select class="cefalot-select" name="dealer_center" data-widget-field="dealer_center" aria-label="Дилерский центр" required>
+                <option value="" disabled selected>Выберите дилерский центр</option>
+                <option value="Оренбург">г. Оренбург, Нежинское шоссе, 9</option>
+                <option value="Орск">г. Орск, улица Елисеевская, здание 2</option>
+              </select>
+              <span class="cefalot-caret" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </span>
+          </div>
         </div>
 
         <div class="cefalot-consents">
           <label class="cefalot-check">
             <input class="cefalot-check__box" type="checkbox" id="ti-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
             <span class="cefalot-check__text">
-              Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+              Даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
               <span class="cefalot-req" aria-hidden="true">*</span>
             </span>
           </label>
           <label class="cefalot-check">
             <input class="cefalot-check__box" type="checkbox" id="ti-ad" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
             <span class="cefalot-check__text">
-              Я даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
+              Даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
               <span class="cefalot-req" aria-hidden="true">*</span>
             </span>
           </label>

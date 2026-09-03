@@ -1,0 +1,101 @@
+<div class="cefalot-layout">
+
+  <!-- HERO SECTION: на mobile то же фото показывается сверху карточки, текст —
+       отдельным блоком ниже (см. раздел 0c) -->
+  <aside class="cefalot-hero">
+    <div class="cefalot-hero__content">
+      <span class="cefalot-eyebrow">Выгода</span>
+      <h2 class="cefalot-title">Специальные предложения</h2>
+    </div>
+  </aside>
+
+  <!-- STEP PANEL -->
+  <div class="cefalot-panel">
+
+    <!-- Крестик закрытия (строго на своем месте, как в остальных формах проекта) -->
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Общий заголовок формы — дублируется в начале каждого шага (см. раздел 0c);
+         на mobile текст уже показан в .cefalot-hero__content выше, этот блок скрыт CSS -->
+    <div class="cefalot-head">
+      <span class="cefalot-eyebrow">Выгода</span>
+      <h2 class="cefalot-title">Специальные предложения</h2>
+    </div>
+
+    <div class="cefalot-body">
+
+      <div class="cefalot-step-head">
+        <p class="cefalot-step-eyebrow">Шаг 1 из 2</p>
+        <h3 class="cefalot-step-title">Выберите предложение</h3>
+      </div>
+
+      <div class="cefalot-offers-grid">
+
+         <!-- 01 -->
+        <label class="cefalot-offer-card">
+          <input class="cefalot-offer-card__radio" type="radio" name="offer" value="Улучшим любое предложение" data-widget-field="offer" required>
+          <span class="cefalot-offer-card__surface">
+            <span class="cefalot-offer-card__num">01</span>
+            <span class="cefalot-offer-card__body">
+              <span class="cefalot-offer-card__title">Улучшим любое предложение</span>
+              <span class="cefalot-eyebrow">Зафиксируйте свою выгоду</span>
+            </span>
+            <span class="cefalot-offer-card__check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><polyline points="3,8 6.5,11.5 13,4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <!-- 02 -->
+        <label class="cefalot-offer-card">
+          <input class="cefalot-offer-card__radio" type="radio" name="offer" value="Специальные кредитные условия" data-widget-field="offer" required>
+          <span class="cefalot-offer-card__surface">
+            <span class="cefalot-offer-card__num">02</span>
+            <span class="cefalot-offer-card__body">
+              <span class="cefalot-offer-card__title">Специальные кредитные условия</span>
+              <span class="cefalot-eyebrow">Уточните у менеджера</span>
+            </span>
+            <span class="cefalot-offer-card__check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><polyline points="3,8 6.5,11.5 13,4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <!-- 03 -->
+        <label class="cefalot-offer-card">
+          <input class="cefalot-offer-card__radio" type="radio" name="offer" value="Выгода по трейд-ин" data-widget-field="offer" required>
+          <span class="cefalot-offer-card__surface">
+            <span class="cefalot-offer-card__num">03</span>
+            <span class="cefalot-offer-card__body">
+              <span class="cefalot-offer-card__title">Выгода по Трейд-ин</span>
+              <span class="cefalot-eyebrow">Обменяйте свой автомобиль</span>
+            </span>
+            <span class="cefalot-offer-card__check" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><polyline points="3,8 6.5,11.5 13,4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+      </div>
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-next>
+          Далее
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Выберите одно предложение, чтобы продолжить.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
+  </div>
+</div>

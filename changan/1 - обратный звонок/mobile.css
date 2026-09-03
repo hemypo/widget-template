@@ -1,3 +1,6 @@
+@font-face { font-family: "ChangAnunitype-Regular"; src: url("{{asset:font4}}") format("woff2"); font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "ChangAnunitype-Regular", system-ui, sans-serif; }
+
 :root,
 :host {
   /* Цвета бренда Changan */
@@ -5,6 +8,7 @@
   --cf-accent-hover: #DA822F;
   --cf-accent-active: #B26B26;
   --cf-accent-tint:  #F6E1CC;
+  --cf-accent-glow:  rgba(248, 148, 53, 0.35);
   --cf-ink:          #24272D;
   --cf-ink-soft:     #4E5561;
   --cf-muted:        #83888F;
@@ -17,7 +21,7 @@
   --cf-error:        #F13F3F;
 
   /* Типографика */
-  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: ChangAnunitype-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
@@ -49,16 +53,13 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-form-custom-template-root { font-family: "ChangAnunitype", system-ui, sans-serif; }
-
 /* Локальные токены комплекта "1 - обратный звонок" (hero-layout, mobile) */
 :root, :host {
   --cf-hero-min-h: 240px;
   --cf-fs-title:   28px;
   --cf-hero-scrim: linear-gradient(135deg, rgba(36, 39, 45, 0.75) 0%, rgba(36, 39, 45, 0.40) 100%);
 }
+
 
 .cefalot-form-custom-template-content {
   box-sizing: border-box;
@@ -102,7 +103,7 @@
   padding: var(--cf-s5) var(--cf-s4);
   background-color: var(--cf-surface-tile);
   /* TODO: заменить на реальный ключ ассета после первой заливки фото в кабинет Cefalot */
-  background-image: url("{{asset:changan-hero-callback}}");
+  background-image: url("{{asset:asset2}}");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -122,39 +123,50 @@
   position: relative;
   z-index: 1;
   min-width: 0;
-  padding-right: calc(var(--cf-tap) + var(--cf-s2));
 }
 
 .cefalot-eyebrow {
-  display: inline-block;
-  font-size: var(--cf-fs-label);
-  letter-spacing: var(--cf-ls-label);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
+  font-size: 10px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: var(--cf-accent);
-  font-weight: 600;
+  color: #FFFFFF;
+  font-weight: 700;
   margin-bottom: var(--cf-s2);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  padding: 4px 10px;
+  background: var(--cf-accent);
+  padding: 5px 10px;
   border-radius: var(--cf-r-xs);
+  box-shadow: 0 3px 8px var(--cf-accent-glow);
+}
+.cefalot-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
 
 .cefalot-title {
   font-family: var(--cf-font);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #FFFFFF;
   font-size: var(--cf-fs-title);
   line-height: 1.1;
   margin-bottom: var(--cf-s3);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .cefalot-lead {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
   line-height: 1.5;
   max-width: none;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* === PANEL & CLOSE BUTTON === */
@@ -165,7 +177,7 @@
   gap: var(--cf-s5);
   min-height: 0;
   padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
-  background: var(--cf-surface);
+  background: radial-gradient(circle at 100% 0%, var(--cf-accent-tint) 0%, transparent 55%), var(--cf-surface);
   border-radius: 0;
   overflow-y: auto;
 }
@@ -194,11 +206,11 @@
 }
 
 .cefalot-close:hover {
-  background: #FFFFFF;
-  color: var(--cf-ink);
+  background: var(--cf-accent);
+  color: #FFFFFF;
   transform: rotate(90deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--cf-line);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+  border-color: var(--cf-accent);
 }
 
 .cefalot-close:active { transform: rotate(90deg) scale(0.95); }
@@ -214,11 +226,11 @@
   font-size: var(--cf-fs-label);
   letter-spacing: var(--cf-ls-label);
   text-transform: uppercase;
-  color: var(--cf-muted);
-  font-weight: 500;
+  color: var(--cf-focus);
+  font-weight: 700;
 }
 
-.cefalot-req { color: var(--cf-accent); margin-left: 2px; }
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; font-weight: 800; }
 
 .cefalot-input {
   width: 100%;
@@ -226,39 +238,82 @@
   padding: 0 16px;
   font-family: var(--cf-font);
   font-size: var(--cf-fs-input);
+  font-weight: 500;
   color: var(--cf-ink);
   background: var(--cf-surface);
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
   transition: all var(--cf-dur) var(--cf-ease);
   -webkit-appearance: none;
 }
 
-.cefalot-input::placeholder { color: #B0B4BA; opacity: 1; }
-.cefalot-input:hover { border-color: var(--cf-ink-soft); }
+.cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
 .cefalot-input:focus {
   border-color: var(--cf-accent);
-  box-shadow: 0 0 0 3px rgba(248, 148, 53, 0.15);
+  box-shadow: 0 0 0 3px var(--cf-accent-tint), 0 3px 10px var(--cf-accent-glow);
 }
+
+/* Select с кастомной стрелкой */
+.cefalot-select {
+  width: 100%;
+  min-height: var(--cf-control-h);
+  padding: 0 44px 0 16px;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-input);
+  font-weight: 500;
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  outline: none;
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cefalot-select:required:invalid { color: var(--cf-muted); }
+.cefalot-select option { color: var(--cf-ink); background: var(--cf-surface); }
+.cefalot-select:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 3px var(--cf-accent-tint), 0 3px 10px var(--cf-accent-glow);
+}
+.cefalot-select-wrap { position: relative; display: block; }
+.cefalot-select-wrap .cefalot-caret {
+  position: absolute;
+  top: 50%;
+  right: var(--cf-s3);
+  width: 24px; height: 24px;
+  margin-top: -12px;
+  pointer-events: none;
+  color: var(--cf-accent);
+  background: var(--cf-accent-tint);
+  border-radius: var(--cf-r-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cefalot-select-wrap .cefalot-caret svg { width: 12px; height: 12px; display: block; stroke-width: 2; }
 
 /* === CONSENTS === */
-.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
-
-.cefalot-check {
+.cefalot-consents {
   display: flex;
-  align-items: flex-start;
-  gap: var(--cf-s3);
-  cursor: pointer;
-  line-height: 1.45;
+  flex-direction: column;
+  gap: var(--cf-s2);
+  padding: var(--cf-s3);
+  background: var(--cf-surface-soft);
+  border-radius: var(--cf-r-md);
+  border: 1px solid var(--cf-line-soft);
 }
 
+.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s2); cursor: pointer; line-height: 1.4; min-height: var(--cf-tap); padding: var(--cf-s1) 0; }
+
 .cefalot-check__box {
-  flex: 0 0 22px;
-  width: 22px;
-  height: 22px;
-  margin-top: 2px;
-  border: 1.5px solid var(--cf-line);
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border: 2px solid var(--cf-line);
   border-radius: var(--cf-r-xs);
   background: var(--cf-surface);
   cursor: pointer;
@@ -268,34 +323,40 @@
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__box:hover { border-color: var(--cf-accent); }
-.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+.cefalot-check__box:checked {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  box-shadow: 0 2px 6px rgba(248, 148, 53, 0.3), 0 0 0 3px var(--cf-accent-tint);
+}
 
 .cefalot-check__box:checked::after {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 7px;
-  height: 12px;
-  border: solid var(--cf-ink);
-  border-width: 0 2px 2px 0;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border: solid #FFFFFF;
+  border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
 }
 
 .cefalot-check__text {
-  font-size: var(--cf-fs-caption);
-  color: var(--cf-muted);
+  font-size: var(--cf-fs-label);
+  color: var(--cf-ink-soft);
 }
 
 .cefalot-check__link {
   color: var(--cf-ink);
+  font-weight: 600;
   text-decoration: underline;
+  text-decoration-color: var(--cf-accent-tint);
+  text-decoration-thickness: 2px;
   text-underline-offset: 2px;
-  transition: color var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__link:hover { color: var(--cf-accent); }
+.cefalot-check__link:active { color: var(--cf-accent); text-decoration-color: var(--cf-accent); }
 
 /* === FOOTER & ACTIONS === */
 .cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
@@ -314,10 +375,10 @@
   gap: var(--cf-s2);
   width: 100%;
   min-height: var(--cf-control-h);
-  padding: 0 28px;
+  padding: 0 var(--cf-s4);
   font-family: var(--cf-font);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: var(--cf-ls-btn);
   text-transform: uppercase;
   text-decoration: none;
@@ -330,18 +391,15 @@
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; transition: transform var(--cf-dur) var(--cf-ease); }
 
 .cefalot-btn--primary {
-  background: var(--cf-accent);
-  color: var(--cf-ink);
-  box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px var(--cf-accent-glow);
 }
 
-.cefalot-btn--primary:hover {
-  background: var(--cf-accent-hover);
-  box-shadow: 0 6px 16px rgba(248, 148, 53, 0.35);
+.cefalot-btn--primary:active {
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  box-shadow: 0 2px 8px rgba(248, 148, 53, 0.3);
 }
-
-.cefalot-btn--primary:hover svg { transform: translateX(3px); }
-.cefalot-btn--primary:active { box-shadow: 0 2px 6px rgba(248, 148, 53, 0.25); }
 
 .cefalot-btn--quiet {
   background: transparent;

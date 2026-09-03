@@ -1,0 +1,81 @@
+<div class="cefalot-layout">
+
+  <aside class="cefalot-hero"></aside>
+
+  <div class="cefalot-panel">
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <header class="cefalot-head">
+      <div class="cefalot-head__text">
+        <span class="cefalot-eyebrow">Кредитное предложение</span>
+        <h2 class="cefalot-title">Рассчитать кредит</h2>
+        <p class="cefalot-lead">Выберите модель — подберём выгодное кредитное предложение на TENET.</p>
+      </div>
+    </header>
+
+    <div class="cefalot-body">
+      <div class="cefalot-field">
+        <span class="cefalot-label" id="td-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
+        <span class="cefalot-select-wrap">
+          <select class="cefalot-select" name="model" data-widget-field="model" data-widget-field-type="select" aria-labelledby="td-model-l" required aria-required="true">
+            <option value="" disabled selected>Выберите модель</option>
+            <option value="t4">TENET T4</option>
+            <option value="t4l">TENET T4L</option>
+            <option value="t7">TENET T7</option>
+            <option value="t8">TENET T8</option>
+          </select>
+          <span class="cefalot-caret" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false"><polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </span>
+      </div>
+
+      <div class="cefalot-grid">
+        <div class="cefalot-field">
+          <span class="cefalot-label" id="td-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
+          <input class="cefalot-input" type="text" name="name" data-widget-field="name" placeholder="Введите имя" aria-labelledby="td-name-l" required aria-required="true">
+        </div>
+        <div class="cefalot-field">
+          <span class="cefalot-label" id="td-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
+          <input class="cefalot-input" type="tel" name="phone" data-widget-field="phone" data-widget-field-type="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="td-phone-l" inputmode="tel" required aria-required="true">
+        </div>
+      </div>
+
+      <div class="cefalot-consents">
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных в разделе по обработке персональных данных в <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a>
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" name="agreement_ad" data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">
+            Даю согласие на рекламную коммуникацию
+            <span class="cefalot-req" aria-hidden="true">*</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
+          Рассчитать кредит
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true"><line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/><polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank">мэйк.диджитал</a></p>
+    </footer>
+  </div>
+
+</div>
+
+
+ 

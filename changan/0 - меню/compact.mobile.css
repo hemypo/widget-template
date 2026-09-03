@@ -17,7 +17,7 @@
   --cf-error:        #F13F3F;
 
   /* Типографика */
-  --cf-font: ChangAnunitype, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font: ChangAnunitype-Regular, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
   --cf-fs-body:    15px;
@@ -49,9 +49,11 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-regular}}") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "ChangAnunitype"; src: url("{{asset:changan-font-bold}}") format("woff2"); font-weight: 700; font-display: swap; }
-.cefalot-custom-template-content { font-family: "ChangAnunitype", system-ui, sans-serif; }
+/* TODO: ключ шрифта для меню ещё не подтверждён отдельно — font1/font4 подтверждены только для формы 1,
+   у Cefalot каждая заливка через редактор выдаёт свой ключ даже для одного и того же файла (см. haval).
+   Замени плейсхолдер на реальный ключ после первой заливки шрифта именно в редакторе меню. */
+@font-face { font-family: "ChangAnunitype-Regular"; src: url("{{asset:changan-menu-font}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-content { font-family: "ChangAnunitype-Regular", system-ui, sans-serif; }
 
 /* Локальный токен комплекта "0 - меню" (тень лаунчера, не входит в канонический набор) */
 :root,

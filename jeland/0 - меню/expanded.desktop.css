@@ -5,6 +5,7 @@
   --cf-accent-hover: #316E88;
   --cf-accent-active: #285A70;
   --cf-accent-tint:  #E4EDF1;
+  --cf-accent-glow:  rgba(58, 131, 163, 0.35);
   --cf-ink:          #181D21;
   --cf-ink-soft:     #454C52;
   --cf-muted:        #7C8489;
@@ -17,7 +18,7 @@
   --cf-error:        #D14343;
 
   /* Типографика */
-  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font-heading: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
@@ -26,11 +27,13 @@
   --cf-ls-label:   0.8px;
   --cf-ls-btn:     0.6px;
 
-  /* Скругления — плоские 0px везде (острая айдентика JELAND) */
-  --cf-r-xs: 0px;
-  --cf-r-sm: 0px;
-  --cf-r-md: 0px;
-  --cf-r-pill: 0px;
+  /* Скругления — плоские, как у реального сайта (border-radius: 0 везде) */
+  --cf-r-xs: 0;
+  --cf-r-sm: 0;
+  --cf-r-md: 0;
+  --cf-r-pill: 0;
+  /* Срез угла заливных кнопок (chamfer), фирменная форма CTA сайта */
+  --cf-chamfer: 14px;
 
   /* Отступы (шаг 4px) */
   --cf-s1: 4px;
@@ -80,7 +83,7 @@
   margin: 0 auto;
   background: var(--cf-surface);
   border: 1px solid var(--cf-ink);
-  box-shadow: 0 16px 48px rgba(24, 29, 33, 0.22);
+  box-shadow: 0 16px 48px rgba(24, 29, 33, 0.22), 0 4px 24px var(--cf-accent-glow);
 }
 
 /* === ШАПКА: острый геометричный wordmark, не текстовый блок «эйбрау/тайтл» === */
@@ -89,7 +92,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--cf-s4);
-  padding: var(--cf-s5) var(--cf-s5) 0;
+  padding: var(--cf-s5);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
 }
 
 .cefalot-widget__word {
@@ -103,6 +107,7 @@
 
 .cefalot-widget__close {
   flex: 0 0 auto;
+  position:relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -111,11 +116,11 @@
   margin: calc(var(--cf-tap) / -4) calc(var(--cf-tap) / -4) 0 0;
   border: 0;
   background: transparent;
-  color: var(--cf-ink-soft);
+  color: var(--cf-accent-tint);
   cursor: pointer;
   transition: color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
 }
-.cefalot-widget__close:hover { color: var(--cf-accent); transform: rotate(90deg); }
+.cefalot-widget__close:hover { color: var(--cf-line-soft); transform: rotate(90deg); }
 .cefalot-widget__close:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-widget__close svg { width: 16px; height: 16px; display: block; }
 
@@ -200,8 +205,9 @@
    стрелки идёт ВМЕСТЕ со сменой фона, а не вместо неё) */
 .cefalot-menu__row:hover,
 .cefalot-menu__row:focus-visible {
-  background: var(--cf-accent);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
   color: #FFFFFF;
+  box-shadow: inset 0 0 24px var(--cf-accent-glow);
 }
 .cefalot-menu__row:hover .cefalot-menu__num,
 .cefalot-menu__row:focus-visible .cefalot-menu__num { color: #FFFFFF; }

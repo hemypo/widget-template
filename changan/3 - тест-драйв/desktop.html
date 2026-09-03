@@ -21,6 +21,7 @@
     </div>
 
     <div class="cefalot-body">
+<div class="cefalot-grid">
       <div class="cefalot-field">
         <label class="cefalot-label" for="td-model">Модель <span class="cefalot-req">*</span></label>
         <span class="cefalot-select-wrap">
@@ -50,8 +51,21 @@
           </span>
         </span>
       </div>
-
-      <div class="cefalot-grid">
+<div class="cefalot-field">
+        <label class="cefalot-label" for="td-dealer">Выберите дилерский центр <span class="cefalot-req">*</span></label>
+        <span class="cefalot-select-wrap">
+          <select class="cefalot-select" id="td-dealer" name="dealer_center" data-widget-field="dealer_center" data-widget-field-type="select" required aria-required="true" aria-label="Дилерский центр">
+            <option value="" disabled selected>Выберите адрес</option>
+            <option value="Оренбург">г. Оренбург, Нежинское шоссе, 9</option>
+            <option value="Орск">г. Орск, улица Елисеевская, здание 2</option>
+          </select>
+          <span class="cefalot-caret" aria-hidden="true">
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false">
+              <polyline points="2,4 6,8 10,4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </span>
+      </div>
         <div class="cefalot-field">
           <label class="cefalot-label" for="td-name">Имя <span class="cefalot-req">*</span></label>
           <input class="cefalot-input" id="td-name" type="text" name="name" data-widget-field="name" placeholder="Иван Иванов" required aria-required="true">
@@ -64,16 +78,16 @@
 
       <div class="cefalot-consents">
         <label class="cefalot-check">
-          <input class="cefalot-check__box" type="checkbox" id="td-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <input class="cefalot-check__box" type="checkbox" id="cb-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
           <span class="cefalot-check__text">
-            Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+            Даю <a class="cefalot-check__link" href="#popup:soglasie" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
             <span class="cefalot-req" aria-hidden="true">*</span>
           </span>
         </label>
         <label class="cefalot-check">
-          <input class="cefalot-check__box" type="checkbox" id="td-third" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <input class="cefalot-check__box" type="checkbox" id="cb-third" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
           <span class="cefalot-check__text">
-            Я даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
+            Даю согласие на <a class="cefalot-check__link" href="#popup:soglasie-3" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="#popup:politika" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
             <span class="cefalot-req" aria-hidden="true">*</span>
           </span>
         </label>
@@ -96,3 +110,5 @@
   </div>
 
 </div>
+
+<img src="{{asset:asset1}}" alt="">

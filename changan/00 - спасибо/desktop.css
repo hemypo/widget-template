@@ -8,6 +8,7 @@
   --cf-accent-hover: #DA822F;
   --cf-accent-active: #B26B26;
   --cf-accent-tint:  #F6E1CC;
+  --cf-accent-glow:  rgba(248, 148, 53, 0.35);
   --cf-ink:          #24272D;
   --cf-ink-soft:     #4E5561;
   --cf-muted:        #83888F;
@@ -122,11 +123,11 @@
 }
 
 .cefalot-close:hover {
-  background: #FFFFFF;
-  color: var(--cf-ink);
+  background: var(--cf-accent);
+  color: #FFFFFF;
   transform: rotate(90deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--cf-line);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+  border-color: var(--cf-accent);
 }
 
 .cefalot-close:active { transform: rotate(90deg) scale(0.95); }
@@ -163,12 +164,12 @@
   width: 88px;
   height: 88px;
   border-radius: var(--cf-r-pill);
-  background: var(--cf-surface);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
   box-shadow:
     0 0 0 8px var(--cf-accent-tint),
-    0 12px 32px rgba(248, 148, 53, 0.24),
+    0 12px 32px var(--cf-accent-glow),
     0 4px 12px rgba(0, 0, 0, 0.08);
-  color: var(--cf-accent);
+  color: #FFFFFF;
   animation: cefalot-success-pop var(--cf-dur-slow) var(--cf-ease-bounce) 0.1s both;
 }
 
@@ -201,18 +202,22 @@
 
 .cefalot-title {
   font-family: var(--cf-font);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: var(--cf-ink);
   font-size: var(--cf-fs-title);
   line-height: 1.2;
+  background: linear-gradient(135deg, var(--cf-ink) 0%, var(--cf-ink-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: cefalot-fade-up 0.5s var(--cf-ease) 0.2s both;
 }
 
 .cefalot-lead {
   max-width: 46ch;
-  color: var(--cf-muted);
+  color: var(--cf-ink-soft);
   font-size: var(--cf-fs-body);
   line-height: 1.55;
   animation: cefalot-fade-up 0.5s var(--cf-ease) 0.3s both;
@@ -237,21 +242,30 @@
   align-items: center;
   justify-content: center;
   gap: var(--cf-s2);
-  min-height: var(--cf-control-h);
+  min-height: 56px;
   padding: 0 28px;
   font-family: var(--cf-font);
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: var(--cf-ls-btn);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: var(--cf-r-sm);
   cursor: pointer;
-  transition: background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
-.cefalot-btn--primary { background: var(--cf-accent); color: #FFFFFF; box-shadow: 0 4px 12px rgba(248, 148, 53, 0.25); }
-.cefalot-btn--primary:hover { background: var(--cf-accent-hover); box-shadow: 0 6px 16px rgba(248, 148, 53, 0.35); }
-.cefalot-btn--primary:active { background: var(--cf-accent-active); }
+.cefalot-btn--primary {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px var(--cf-accent-glow), 0 2px 6px rgba(36, 39, 45, 0.08);
+}
+.cefalot-btn--primary:hover {
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--cf-accent-glow), 0 4px 10px rgba(36, 39, 45, 0.1);
+}
+.cefalot-btn--primary:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(248, 148, 53, 0.3); }
 .cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 /* ============================================================

@@ -1,0 +1,261 @@
+:root,
+:host {
+  /* Цвета бренда TENET (сверено напрямую с tenet.ru) */
+  --cf-ink:          #3E3A39;
+  --cf-ink-strong:   #2F2B2A;
+  --cf-ink-soft:     #615952;
+  --cf-muted:        #80756B;
+  --cf-line:         #D8CEC5;
+  --cf-line-soft:    #EDE7E1;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F7F3EF;
+  --cf-surface-tile: #F2EDE8;
+  --cf-accent:       #C30D23;
+  --cf-accent-hover: #A80B1E;
+  --cf-accent-active: #8F0919;
+  --cf-accent-tint:  #F7DEE1;
+  --cf-cta:          #D8CEC5;
+  --cf-cta-hover:    #CBBEB0;
+  --cf-cta-active:   #BFB1A2;
+  --cf-cta-ink:      #4A443F;
+  --cf-disabled:     #E7E0D9;
+  --cf-focus:        #3E3A39;
+  --cf-error:        #C30D23;
+
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-heading: "TENET Sans - SemiExpandedBold", "TenetSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
+
+  /* Скругления (сверено: кнопки на сайте — 12px) */
+  --cf-r-xs:   8px;
+  --cf-r-sm:   12px;
+  --cf-r-md:   16px;
+  --cf-r-lg:   20px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 56px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Локальный токен комплекта "0 - меню" (тень лаунчера, не входит в канонический набор) */
+:root,
+:host {
+  --cf-shadow-md: 0 6px 20px rgba(62, 58, 57, 0.22);
+}
+
+/* ============================================================
+   БАЗА
+   ============================================================ */
+.cefalot-custom-template-content {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  position: relative;
+}
+.cefalot-custom-template-content *,
+.cefalot-custom-template-content *::before,
+.cefalot-custom-template-content *::after {
+  box-sizing: inherit;
+}
+
+/* --- Обёртка лаунчера (якорь для выезжающей плашки) ------------- */
+.cefalot-launcher {
+  position: relative;
+  display: inline-flex;
+}
+
+/* --- Кнопка-лаунчер ---------------------------------------------- */
+.cefalot-launcher__btn {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--cf-r-md);
+  background: var(--cf-accent);
+  color: var(--cf-ink);
+  cursor: pointer;
+  animation: cefalot-launcher-pulse 2.4s ease-out infinite;
+}
+.cefalot-launcher__btn:hover { background: var(--cf-accent-hover); }
+.cefalot-launcher__btn:active { background: var(--cf-accent-active); }
+.cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
+
+.cefalot-launcher__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  color: #FFFFFF;
+  pointer-events: none;
+}
+
+.cefalot-launcher__grid {
+  display: block;
+  width: 40px;
+  height: 40px;
+  overflow: visible;
+}
+
+@keyframes cefalot-launcher-pulse {
+  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(195, 13, 35, 0.45); }
+  70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(195, 13, 35, 0); }
+  100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(195, 13, 35, 0); }
+}
+
+/* --- Анимация ячеек grid-иконки ----------------------------------- */
+.cefalot-launcher__grid-cell {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: cefalot-grid-pulse;
+  animation-duration: 3.6s;
+  animation-timing-function: var(--cf-ease);
+  animation-iteration-count: infinite;
+}
+.cefalot-launcher__grid-cell--1 { animation-delay: 0s; }
+.cefalot-launcher__grid-cell--2 { animation-delay: 0.10s; }
+.cefalot-launcher__grid-cell--4 { animation-delay: 0.20s; }
+.cefalot-launcher__grid-cell--3 { animation-delay: 0.30s; }
+
+@keyframes cefalot-grid-pulse {
+  0%, 8%    { transform: scale(1); opacity: 1; }
+  12%       { transform: scale(0.64); opacity: 0.62; }
+  18%       { transform: scale(1.08); opacity: 1; }
+  23%, 100% { transform: scale(1); opacity: 1; }
+}
+
+.cefalot-launcher__btn:hover .cefalot-launcher__grid {
+  animation: cefalot-grid-hover 480ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes cefalot-grid-hover {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(0.88) rotate(-5deg); }
+  75%  { transform: scale(1.08) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.cefalot-launcher__btn:active .cefalot-launcher__grid { transform: scale(0.88); }
+
+/* --- Дизмисс «не показывать сегодня» ------------------------------
+   Обязательно в compact — на платформе data-widget-hide-visit
+   не срабатывает, пока виджет раскрыт (см. агент, раздел 2a). */
+.cefalot-launcher__dismiss {
+  position: absolute;
+  z-index: 3;
+  top: -8px;
+  left: -8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher__dismiss svg { width: 9px; height: 9px; }
+.cefalot-custom-template-content:hover .cefalot-launcher__dismiss,
+.cefalot-launcher__dismiss:focus-visible { opacity: 1; transform: scale(1); }
+
+/* --- Выезжающая плашка со списком форм -----------------------------
+   Прогрессивное улучшение поверх основного пути: тап по кнопке всегда
+   открывает expanded (data-widget-state-action="open"); плашка на
+   hover/focus даёт быстрый прямой переход к форме без раскрытия меню. */
+.cefalot-launcher__pill {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--cf-s3));
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: max-content;
+  max-width: 220px;
+  padding: var(--cf-s3);
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-md);
+  box-shadow: 0 16px 40px rgba(62, 58, 57, 0.18);
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher:hover .cefalot-launcher__pill,
+.cefalot-launcher:focus-within .cefalot-launcher__pill {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.cefalot-launcher__pill-title {
+  margin: 0 0 var(--cf-s1);
+  padding: 0 var(--cf-s2);
+  color: var(--cf-muted);
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+}
+
+.cefalot-launcher__pill-item {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  padding: var(--cf-s2);
+  border: 0;
+  border-radius: var(--cf-r-xs);
+  background: transparent;
+  color: var(--cf-ink);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-caption);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease);
+}
+.cefalot-launcher__pill-item:hover,
+.cefalot-launcher__pill-item:focus-visible {
+  background: var(--cf-accent-tint);
+  color: var(--cf-accent-active);
+  outline: none;
+}
+
+/* --- Уважение к prefers-reduced-motion ----------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-custom-template-content *,
+  .cefalot-custom-template-content *::before,
+  .cefalot-custom-template-content *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

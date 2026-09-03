@@ -5,6 +5,7 @@
   --cf-accent-hover: #316E88;
   --cf-accent-active: #285A70;
   --cf-accent-tint:  #E4EDF1;
+  --cf-accent-glow:  rgba(58, 131, 163, 0.35);
   --cf-ink:          #181D21;
   --cf-ink-soft:     #454C52;
   --cf-muted:        #7C8489;
@@ -17,7 +18,7 @@
   --cf-error:        #D14343;
 
   /* Типографика */
-  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font-heading: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
@@ -26,11 +27,13 @@
   --cf-ls-label:   0.8px;
   --cf-ls-btn:     0.6px;
 
-  /* Скругления — плоские 0px везде (острая айдентика JELAND, подтверждено на сайте) */
-  --cf-r-xs: 0px;
-  --cf-r-sm: 0px;
-  --cf-r-md: 0px;
-  --cf-r-pill: 0px;
+  /* Скругления — плоские, как у реального сайта (border-radius: 0 везде) */
+  --cf-r-xs: 0;
+  --cf-r-sm: 0;
+  --cf-r-md: 0;
+  --cf-r-pill: 0;
+  /* Срез угла заливных кнопок (chamfer), фирменная форма CTA сайта */
+  --cf-chamfer: 14px;
 
   /* Отступы (шаг 4px) */
   --cf-s1: 4px;
@@ -50,7 +53,7 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* Шрифт бренда (Involve/Geologica) пока не подключается — .woff2 файлов
+/* Шрифт бренда (Geologica) пока не подключается — .woff2 файлов
    физически нет в проекте jeland/. --cf-font/--cf-font-heading используют
    только системный fallback-стек. Как только пользователь положит файлы,
    добавить сюда @font-face по образцу changan (раздел 0b агентского файла)
@@ -130,11 +133,11 @@
 }
 
 .cefalot-close:hover {
-  background: #FFFFFF;
-  color: var(--cf-ink);
+  background: var(--cf-accent);
+  color: #FFFFFF;
   transform: rotate(90deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--cf-line);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+  border-color: var(--cf-accent);
 }
 
 .cefalot-close:active { transform: rotate(90deg) scale(0.95); }
@@ -171,12 +174,12 @@
   width: 88px;
   height: 88px;
   border-radius: var(--cf-r-pill);
-  background: var(--cf-surface);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
   box-shadow:
     0 0 0 8px var(--cf-accent-tint),
-    0 12px 32px rgba(58, 131, 163, 0.24),
+    0 12px 32px var(--cf-accent-glow),
     0 4px 12px rgba(0, 0, 0, 0.08);
-  color: var(--cf-accent);
+  color: #FFFFFF;
   animation: cefalot-success-pop var(--cf-dur-slow) var(--cf-ease-bounce) 0.1s both;
 }
 
@@ -209,18 +212,22 @@
 
 .cefalot-title {
   font-family: var(--cf-font-heading);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: var(--cf-ink);
   font-size: var(--cf-fs-title);
   line-height: 1.2;
+  background: linear-gradient(135deg, var(--cf-ink) 0%, var(--cf-ink-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: cefalot-fade-up 0.5s var(--cf-ease) 0.2s both;
 }
 
 .cefalot-lead {
   max-width: 46ch;
-  color: var(--cf-muted);
+  color: var(--cf-ink-soft);
   font-size: var(--cf-fs-body);
   line-height: 1.55;
   animation: cefalot-fade-up 0.5s var(--cf-ease) 0.3s both;
@@ -245,21 +252,30 @@
   align-items: center;
   justify-content: center;
   gap: var(--cf-s2);
+  width: 100%;
   min-height: var(--cf-control-h);
   padding: 0 28px;
   font-family: var(--cf-font);
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: var(--cf-ls-btn);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: var(--cf-r-sm);
   cursor: pointer;
-  transition: background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
+  transition: all var(--cf-dur) var(--cf-ease);
 }
-.cefalot-btn--primary { background: var(--cf-accent); color: #FFFFFF; box-shadow: 0 4px 12px rgba(58, 131, 163, 0.25); }
-.cefalot-btn--primary:hover { background: var(--cf-accent-hover); box-shadow: 0 6px 16px rgba(58, 131, 163, 0.35); }
-.cefalot-btn--primary:active { background: var(--cf-accent-active); }
+.cefalot-btn--primary {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px var(--cf-accent-glow);
+}
+.cefalot-btn--primary { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cf-chamfer)), calc(100% - var(--cf-chamfer)) 100%, 0 100%); }
+.cefalot-btn--primary:active {
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  box-shadow: 0 2px 8px rgba(58, 131, 163, 0.3);
+}
 .cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 /* ============================================================

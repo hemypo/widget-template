@@ -1,0 +1,82 @@
+<!-- HERO SECTION: на mobile то же фото показывается сверху карточки, текст —
+       отдельным блоком ниже (см. раздел 0c) -->
+  <aside class="cefalot-hero">
+    <div class="cefalot-hero__content">
+      <span class="cefalot-eyebrow">Выгода</span>
+      <h2 class="cefalot-title">Специальные предложения</h2>
+    </div>
+  </aside>
+
+  <!-- STEP PANEL -->
+  <div class="cefalot-panel">
+
+    <!-- Крестик закрытия (строго на своем месте, как в остальных формах проекта) -->
+    <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+        <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Общий заголовок формы — дублируется в начале каждого шага (см. раздел 0c);
+         на mobile текст уже показан в .cefalot-hero__content выше, этот блок скрыт CSS -->
+    <div class="cefalot-head">
+      <span class="cefalot-eyebrow">Выгода</span>
+      <h2 class="cefalot-title">Специальные предложения</h2>
+    </div>
+
+    <div class="cefalot-body">
+
+      <div class="cefalot-step-head">
+        <p class="cefalot-step-eyebrow">Шаг 2 из 2</p>
+        <h3 class="cefalot-step-title">Ваши контакты</h3>
+        <p class="cefalot-step-lead">Оставьте имя и номер — менеджер расскажет подробности выбранного предложения.</p>
+      </div>
+
+      <div class="cefalot-grid">
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="so-name">Имя <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-name" type="text" name="name" data-widget-field="name" placeholder="Иван Иванов" required aria-required="true">
+        </div>
+        <div class="cefalot-field">
+          <label class="cefalot-label" for="so-phone">Телефон <span class="cefalot-req">*</span></label>
+          <input class="cefalot-input" id="so-phone" type="tel" name="phone" data-widget-field="phone" placeholder="+7 (9XX) XXX-XX-XX" required aria-required="true" inputmode="tel">
+        </div>
+      </div>
+
+      <div class="cefalot-consents">
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="so-pd" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных в разделе по обработке персональных данных в <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="cefalot-req" aria-hidden="true">*</span></span>
+        </label>
+        <label class="cefalot-check">
+          <input class="cefalot-check__box" type="checkbox" id="so-ad" name="agreement_ad" data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1" required aria-required="true">
+          <span class="cefalot-check__text">Даю согласие на рекламную коммуникацию<span class="cefalot-req" aria-hidden="true">*</span></span>
+        </label>
+      </div>
+
+    </div>
+
+    <footer class="cefalot-foot">
+      <div class="cefalot-actions">
+        <button class="cefalot-btn cefalot-btn--ghost" type="button" data-widget-back>
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true">
+            <line x1="20" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.6"/>
+            <polyline points="7,1 1,6 7,11" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Назад
+        </button>
+        <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
+          Отправить заявку
+          <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
+            <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="cefalot-note">* Поля, отмеченные звёздочкой, обязательны для заполнения.</p>
+      <p class="cefalot-cr">Разработано в <a href="https://auto.makeagency.ru" target="_blank" rel="noopener">мэйк.диджитал</a></p>
+    </footer>
+  </div>
+
+</div>

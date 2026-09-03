@@ -1,0 +1,401 @@
+:root,
+:host {
+  /* Цвета бренда TENET (сверено напрямую с tenet.ru) */
+  --cf-ink:          #3E3A39;
+  --cf-ink-strong:   #2F2B2A;
+  --cf-ink-soft:     #615952;
+  --cf-muted:        #80756B;
+  --cf-line:         #D8CEC5;
+  --cf-line-soft:    #EDE7E1;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F7F3EF;
+  --cf-surface-tile: #F2EDE8;
+  --cf-accent:       #C30D23;
+  --cf-accent-hover: #A80B1E;
+  --cf-accent-active: #8F0919;
+  --cf-accent-tint:  #F7DEE1;
+  --cf-cta:          #D8CEC5;
+  --cf-cta-hover:    #CBBEB0;
+  --cf-cta-active:   #BFB1A2;
+  --cf-cta-ink:      #4A443F;
+  --cf-disabled:     #E7E0D9;
+  --cf-focus:        #3E3A39;
+  --cf-error:        #C30D23;
+
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-heading: "TENETSans-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
+
+  /* Скругления (сверено: кнопки на сайте — 12px) */
+  --cf-r-xs:   8px;
+  --cf-r-sm:   12px;
+  --cf-r-md:   16px;
+  --cf-r-lg:   20px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 56px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Шрифт бренда пока не подключается — файлов шрифта нет в tenet-2/ (см. DESIGN-TOKENS.md) */
+
+/* Локальные токены комплекта "4 - спецпредложения" (mobile) — не входят в канонический
+   набор. На mobile фото показывается просто сверху карточки, БЕЗ текста поверх него
+   (см. раздел 0c): .cefalot-hero__content держит обычный текст на обычном фоне под
+   фото, .cefalot-head в панели скрыт, чтобы не дублировать заголовок дважды. */
+:root, :host {
+  --cf-hero-min-h:    200px;
+  --cf-fs-title:      24px;
+  --cf-fs-step-title: 19px;
+  --cf-accent-light:  rgba(195, 13, 35, 0.08);
+}
+
+.cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-md);
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1,
+.cefalot-form-custom-template-content h2, .cefalot-form-custom-template-content h3,
+.cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul { list-style: none; }
+
+/* === LAYOUT (фото сверху, панель снизу) === */
+.cefalot-layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* === HERO (текст поверх фото со scrim — как в 1/2-тест-драйв/5-кредит) === */
+.cefalot-hero {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 220px;
+  padding: var(--cf-s5) var(--cf-s4);
+  background-color: var(--cf-surface-tile);
+  /* TODO: заменить на реальный ключ ассета после первой заливки фото в кабинет Cefalot */
+  background-image: url("{{asset:asset1}}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.cefalot-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cf-hero-scrim);
+  pointer-events: none;
+}
+.cefalot-hero__content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.cefalot-hero__content .cefalot-eyebrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  box-shadow: none;
+}
+.cefalot-hero__content .cefalot-eyebrow::before { background: #FFFFFF; }
+.cefalot-hero__content .cefalot-title {
+  color: #FFFFFF;
+  background: none;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  font-size: var(--cf-fs-title);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.cefalot-hero__content .cefalot-lead { color: rgba(255, 255, 255, 0.85); }
+
+/* === PANEL & CLOSE BUTTON === */
+.cefalot-panel {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s4);
+  min-height: 0;
+  padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+  background: var(--cf-surface);
+  border-radius: 0;
+  overflow-y: auto;
+}
+
+/* Крестик — позиционируется от .cefalot-layout, поэтому остаётся в правом
+   верхнем углу карточки поверх hero (тот же инсет var(--cf-s3), что на desktop) */
+.cefalot-close {
+  position: absolute;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--cf-r-sm);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.cefalot-close:active { background: #FFFFFF; transform: scale(0.96); }
+.cefalot-close svg { width: 16px; height: 16px; display: block; }
+
+/* === HEAD === */
+/* Текст заголовка уже показан в .cefalot-hero__content выше — этот блок
+   дублируется в HTML каждого шага по общему правилу, но на mobile скрыт,
+   чтобы не показывать eyebrow/title дважды */
+.cefalot-head { display: none; }
+
+.cefalot-eyebrow {
+  display: inline-block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-accent-active);
+  font-weight: 600;
+  margin-bottom: var(--cf-s1);
+  background: var(--cf-accent-light);
+  padding: 4px 10px;
+  border-radius: var(--cf-r-xs);
+}
+
+.cefalot-title {
+  font-family: var(--cf-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.1;
+}
+
+/* === STEP CONTENT === */
+.cefalot-body { display: flex; flex-direction: column; gap: var(--cf-s4); }
+
+.cefalot-step-eyebrow {
+  display: inline-block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-accent-active);
+  font-weight: 600;
+  margin-bottom: var(--cf-s1);
+  background: var(--cf-accent-light);
+  padding: 4px 10px;
+  border-radius: var(--cf-r-xs);
+}
+
+.cefalot-step-title {
+  font-family: var(--cf-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-step-title);
+  line-height: 1.2;
+}
+
+.cefalot-step-lead { color: var(--cf-muted); margin-top: var(--cf-s1); font-size: 13px; line-height: 1.4; }
+
+/* === OFFERS (шаг 1) === */
+.cefalot-offers-grid { display: flex; flex-direction: column; gap: var(--cf-s2); margin-top: var(--cf-s3); }
+.cefalot-offer-card { position: relative; display: block; cursor: pointer; }
+.cefalot-offer-card__radio { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.cefalot-offer-card__surface {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--cf-s2);
+  padding: var(--cf-s3);
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-surface);
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface { border-color: var(--cf-accent); background: var(--cf-accent-light); box-shadow: 0 4px 12px rgba(195, 13, 35, 0.15); }
+.cefalot-offer-card__radio:focus-visible + .cefalot-offer-card__surface { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+
+.cefalot-offer-card__num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-accent-light);
+  color: var(--cf-accent-active);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.cefalot-offer-card__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.cefalot-offer-card__title { font-size: 13px; font-weight: 600; color: var(--cf-ink); display: flex; align-items: center; flex-wrap: wrap; gap: 4px; line-height: 1.3; }
+
+.cefalot-offer-card__check {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  border-radius: var(--cf-r-pill);
+  border: 1.5px solid var(--cf-line);
+  color: transparent;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+.cefalot-offer-card__check svg { width: 10px; height: 10px; display: block; }
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__check { background: var(--cf-accent); border-color: var(--cf-accent); color: var(--cf-surface); }
+
+/* === FORM FIELDS (шаг 2) === */
+.cefalot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s3); margin-top: var(--cf-s3); }
+.cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
+
+.cefalot-label {
+  display: block;
+  font-size: var(--cf-fs-label);
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-muted);
+  font-weight: 500;
+}
+
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; }
+
+.cefalot-input {
+  width: 100%;
+  min-height: var(--cf-control-h);
+  padding: 0 var(--cf-s4);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-input);
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  outline: none;
+  transition: all var(--cf-dur) var(--cf-ease);
+  -webkit-appearance: none;
+}
+
+.cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
+.cefalot-input:focus { border-color: var(--cf-accent); box-shadow: 0 0 0 3px rgba(195, 13, 35, 0.15); }
+
+/* === CONSENTS === */
+.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
+
+.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); cursor: pointer; line-height: 1.45; }
+
+.cefalot-check__box {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-xs);
+  background: var(--cf-surface);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+
+.cefalot-check__box:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.cefalot-check__text { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-check__link { color: var(--cf-ink); text-decoration: underline; text-underline-offset: 2px; }
+.cefalot-check__link:hover { color: var(--cf-accent); }
+
+/* === FOOTER & ACTIONS === */
+.cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
+.cefalot-actions { display: flex; flex-direction: column-reverse; align-items: stretch; gap: var(--cf-s2); }
+
+.cefalot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-s2);
+  width: 100%;
+  min-width: 0;
+  min-height: var(--cf-control-h);
+  padding: 0 28px;
+  font-family: var(--cf-font);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: var(--cf-ls-btn);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--cf-r-sm);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
+
+.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); box-shadow: 0 4px 12px rgba(216, 206, 197, 0.4); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); }
+
+.cefalot-btn--ghost { background: transparent; color: var(--cf-muted); border-color: var(--cf-line); }
+
+.cefalot-note { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr { font-size: 11px; color: var(--cf-muted); opacity: 0.7; }
+.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }

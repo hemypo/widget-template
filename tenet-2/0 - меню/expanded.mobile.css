@@ -1,0 +1,373 @@
+:root,
+:host {
+  /* Цвета бренда TENET (сверено напрямую с tenet.ru) */
+  --cf-ink:          #3E3A39;
+  --cf-ink-strong:   #2F2B2A;
+  --cf-ink-soft:     #615952;
+  --cf-muted:        #80756B;
+  --cf-line:         #D8CEC5;
+  --cf-line-soft:    #EDE7E1;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F7F3EF;
+  --cf-surface-tile: #F2EDE8;
+  --cf-accent:       #C30D23;
+  --cf-accent-hover: #A80B1E;
+  --cf-accent-active: #8F0919;
+  --cf-accent-tint:  #F7DEE1;
+  --cf-cta:          #D8CEC5;
+  --cf-cta-hover:    #CBBEB0;
+  --cf-cta-active:   #BFB1A2;
+  --cf-cta-ink:      #4A443F;
+  --cf-disabled:     #E7E0D9;
+  --cf-focus:        #3E3A39;
+  --cf-error:        #C30D23;
+
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-heading: "TENET Sans - SemiExpandedBold", "TenetSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
+
+  /* Скругления (сверено: кнопки на сайте — 12px) */
+  --cf-r-xs:   8px;
+  --cf-r-sm:   12px;
+  --cf-r-md:   16px;
+  --cf-r-lg:   20px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 56px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ============================================================
+   ROOT PANEL — на mobile раскрытое меню ведёт себя как bottom sheet
+   ============================================================ */
+.cefalot-widget-panel {
+  box-sizing: border-box;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  color: var(--cf-ink);
+  -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s4);
+  width: 100%;
+  margin: 0;
+  padding: var(--cf-s4) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-lg) var(--cf-r-lg) 0 0;
+  box-shadow: 0 -12px 40px rgba(62, 58, 57, 0.16);
+}
+
+.cefalot-widget-panel *,
+.cefalot-widget-panel *::before,
+.cefalot-widget-panel *::after {
+  box-sizing: inherit;
+}
+
+.cefalot-widget-panel p,
+.cefalot-widget-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.cefalot-widget__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--cf-s3);
+}
+
+.cefalot-head__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cefalot-brand {
+  margin: 0;
+  font-family: var(--cf-font-heading);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  color: var(--cf-ink-strong);
+}
+
+.cefalot-lead {
+  margin-top: var(--cf-s1);
+  color: var(--cf-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+.cefalot-close {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-close svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.cefalot-close:active { transform: scale(0.95); }
+
+.cefalot-close:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   PRIMARY CARD — самая приоритетная форма (тест-драйв)
+   ============================================================ */
+.cefalot-widget__primary-wrap {
+  width: 100%;
+}
+
+.cefalot-widget__primary {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: center;
+  gap: var(--cf-s3);
+  width: 100%;
+  padding: var(--cf-s3);
+  border: 1.5px solid var(--cf-accent);
+  border-radius: var(--cf-r-md);
+  background: linear-gradient(135deg, var(--cf-surface) 0%, var(--cf-accent-tint) 140%);
+  color: var(--cf-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-widget__primary-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+
+.cefalot-widget__primary-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cefalot-widget__primary-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cefalot-widget__primary-eyebrow {
+  display: inline-block;
+  color: var(--cf-accent-active);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+}
+
+.cefalot-widget__primary-title {
+  color: var(--cf-ink-strong);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cefalot-widget__primary-text {
+  color: var(--cf-ink-soft);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.cefalot-widget__primary-arrow {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--cf-accent);
+}
+
+.cefalot-widget__primary-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cefalot-widget__primary:active { transform: translateY(1px); }
+
+.cefalot-widget__primary:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   NAV / GRID — компактнее на узком экране
+   ============================================================ */
+.cefalot-widget__nav {
+  width: 100%;
+}
+
+.cefalot-widget__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cf-s2);
+}
+
+.cefalot-widget__card {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--cf-s2);
+  width: 100%;
+  min-height: var(--cf-tap);
+  padding: var(--cf-s3);
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-surface);
+  color: var(--cf-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-widget__card-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--cf-r-xs);
+  background: var(--cf-accent-tint);
+  color: var(--cf-accent-active);
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-widget__card-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cefalot-widget__card-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--cf-ink);
+}
+
+.cefalot-widget__card:active {
+  border-color: var(--cf-accent);
+  background: var(--cf-accent-tint);
+}
+
+.cefalot-widget__card:active .cefalot-widget__card-icon {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+}
+
+.cefalot-widget__card:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.cefalot-widget__foot {
+  margin-top: auto;
+  padding-top: var(--cf-s2);
+  border-top: 1px solid var(--cf-line-soft);
+}
+
+.cefalot-cr {
+  margin: 0;
+  color: var(--cf-muted);
+  font-size: 10px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.cefalot-cr a {
+  color: var(--cf-ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cefalot-cr a:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+@media (max-width: 340px) {
+  .cefalot-widget__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-widget-panel *,
+  .cefalot-widget-panel *::before,
+  .cefalot-widget-panel *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

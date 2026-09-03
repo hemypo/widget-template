@@ -1,0 +1,291 @@
+:root,
+:host {
+  /* Цвета бренда JAECOO (сверено напрямую с jaecoo-adt.ru) */
+  --cf-ink:          #0D171A;
+  --cf-ink-strong:   #050C0E;
+  --cf-ink-soft:     #455356;
+  --cf-muted:        #6C7C80;
+  --cf-line:         #6C7C80;
+  --cf-line-soft:    #DCE1E2;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F6F7F7;
+  --cf-surface-tile: #EDF0F0;
+  --cf-accent:       #00657B;
+  --cf-accent-hover: #00566A;
+  --cf-accent-active: #004759;
+  --cf-accent-tint:  #E0EDF0;
+  --cf-cta:          #00657B;
+  --cf-cta-hover:    #00566A;
+  --cf-cta-active:   #004759;
+  --cf-cta-ink:      #FFFFFF;
+  --cf-disabled:     #E4E8E9;
+  --cf-focus:        #00657B;
+  --cf-error:        #D92D20;
+
+  /* Типографика */
+  --cf-font:         "Dopis", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  --cf-font-heading: "Dopis", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     0.5px;
+  --cf-ls-btn:       normal;
+
+  /* Скругления (сайт полностью плоский — сверено на кнопках/карточках/инпутах) */
+  --cf-r-xs:   0px;
+  --cf-r-sm:   0px;
+  --cf-r-md:   0px;
+  --cf-r-lg:   0px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;
+  --cf-s2: 8px;
+  --cf-s3: 12px;
+  --cf-s4: 16px;
+  --cf-s5: 24px;
+  --cf-s6: 32px;
+  --cf-s7: 40px;
+
+  /* Высоты контролов (52px — сверено напрямую на инпутах формы сайта) */
+  --cf-control-h: 52px;
+  --cf-tap: 44px;
+
+  /* Движение (сверено напрямую: transition кнопок — 0.3s ease-out) */
+  --cf-dur: 300ms;
+  --cf-ease: ease-out;
+}
+
+/* Локальные токены комплекта — размер заголовка success-экрана и тайминги
+   иконки-анимации; не входят в канонический набор DESIGN-TOKENS.md проекта. */
+:root,
+:host {
+  --cf-fs-title: 26px;
+  --cf-dur-slow: 400ms;
+  --cf-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s5);
+  width: 100%;
+  padding: var(--cf-s7);
+  background: var(--cf-surface);
+  color: var(--cf-ink);
+  border-radius: var(--cf-r-lg);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  height: stretch;
+  justify-content: space-between;
+}
+
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+
+.cefalot-form-custom-template-content p,
+.cefalot-form-custom-template-content h1,
+.cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content ul { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul { list-style: none; }
+
+/* ============================================================
+   HEAD / CLOSE
+   ============================================================ */
+.cefalot-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.cefalot-close {
+  position: absolute;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 1px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-surface-soft);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-close:hover {
+  background: var(--cf-surface);
+  color: var(--cf-ink);
+  border-color: var(--cf-ink-soft);
+  transform: rotate(90deg);
+}
+
+.cefalot-close:active { transform: rotate(90deg) scale(0.95); }
+.cefalot-close svg { width: 16px; height: 16px; display: block; }
+
+/* ============================================================
+   SUCCESS CONTENT
+   ============================================================ */
+.cefalot-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--cf-s5);
+  width: 100%;
+  margin: 0 auto;
+  padding-top: var(--cf-s2);
+  padding-bottom: var(--cf-s2);
+}
+
+.cefalot-success__icon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cefalot-success__icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface);
+  box-shadow:
+    0 0 0 8px var(--cf-accent-tint),
+    0 12px 32px rgba(0, 101, 123, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  color: var(--cf-accent);
+  animation: cefalot-success-pop var(--cf-dur-slow) var(--cf-ease-bounce) 0.1s both;
+}
+
+.cefalot-success__icon svg { width: 40px; height: 40px; }
+
+.cefalot-success__circle {
+  stroke-dasharray: 94.2;
+  stroke-dashoffset: 94.2;
+  animation: cefalot-success-circle var(--cf-dur-slow) var(--cf-ease) 0.2s forwards;
+}
+
+.cefalot-success__check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: cefalot-success-check var(--cf-dur-slow) var(--cf-ease) 0.4s forwards;
+}
+
+.cefalot-success__ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 88px;
+  height: 88px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-accent);
+  opacity: 0;
+  animation: cefalot-success-ripple 1.2s var(--cf-ease) 0.6s infinite;
+}
+
+.cefalot-title {
+  font-family: var(--cf-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cf-ink);
+  font-size: var(--cf-fs-title);
+  line-height: 1.2;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.2s both;
+  text-transform: uppercase;
+}
+
+.cefalot-lead {
+  max-width: 46ch;
+  color: var(--cf-muted);
+  font-size: var(--cf-fs-body);
+  line-height: 1.55;
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.3s both;
+}
+
+.cefalot-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-s3);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cefalot-success__actions {
+  margin-top: var(--cf-s1);
+  animation: cefalot-fade-up 0.5s var(--cf-ease) 0.4s both;
+}
+
+.cefalot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-s2);
+  min-height: var(--cf-control-h);
+  padding: 0 28px;
+  font-family: var(--cf-font);
+  font-size: 14px;
+  letter-spacing: var(--cf-ls-btn);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--cf-r-sm);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease);
+}
+.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); box-shadow: 0 4px 12px rgba(0, 101, 123, 0.4); }
+.cefalot-btn--primary:hover { background: var(--cf-cta-hover); box-shadow: 0 6px 16px rgba(0, 101, 123, 0.5); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); }
+.cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+
+/* ============================================================
+   FOOTER / АТРИБУЦИЯ
+   ============================================================ */
+.cefalot-foot { display: flex; justify-content: center; }
+
+.cefalot-cr {
+  margin: 0;
+  font-size: var(--cf-fs-caption);
+  color: var(--cf-muted);
+  text-align: center;
+}
+.cefalot-cr a { color: var(--cf-ink-soft); text-decoration: underline; text-underline-offset: 2px; transition: color var(--cf-dur) var(--cf-ease); }
+.cefalot-cr a:hover { color: var(--cf-accent); }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes cefalot-success-pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes cefalot-success-circle { to { stroke-dashoffset: 0; } }
+@keyframes cefalot-success-check { to { stroke-dashoffset: 0; } }
+@keyframes cefalot-success-ripple {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+@keyframes cefalot-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}

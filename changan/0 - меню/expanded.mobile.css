@@ -5,6 +5,7 @@
   --cf-accent-hover: #DA822F;
   --cf-accent-active: #B26B26;
   --cf-accent-tint:  #F6E1CC;
+  --cf-accent-glow:  rgba(248, 148, 53, 0.35);
   --cf-ink:          #24272D;
   --cf-ink-soft:     #4E5561;
   --cf-muted:        #83888F;
@@ -48,6 +49,18 @@
   --cf-dur: 160ms;
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+
+/* TODO: ключ шрифта для меню ещё не подтверждён отдельно — см. компакт-состояние этого же меню */
+@font-face { font-family: "ChangAnunitype-Regular"; src: url("{{asset:changan-menu-font}}") format("woff2"); font-display: swap; }
+.cefalot-custom-template-content { font-family: "ChangAnunitype-Regular", system-ui, sans-serif; }
+
+/* Локальный токен комплекта "0 - меню" — крупнее канонического --cf-r-md,
+   только для карточек раскрытого меню (более «бентовый», современный вид) */
+:root,
+:host {
+  --cf-r-lg: 18px;
+}
+
 /* ============================================================
    ROOT PANEL — на mobile раскрытое меню ведёт себя как bottom sheet
    ============================================================ */
@@ -65,7 +78,10 @@
   width: 100%;
   margin: 0;
   padding: var(--cf-s4) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
-  background: var(--cf-surface);
+  background:
+    radial-gradient(circle at 100% 0%, var(--cf-accent-tint) 0%, transparent 55%),
+    radial-gradient(circle at 0% 100%, var(--cf-accent-tint) 0%, transparent 40%),
+    var(--cf-surface);
   border-radius: var(--cf-r-md) var(--cf-r-md) 0 0;
   box-shadow: 0 -12px 40px rgba(36, 39, 45, 0.14);
 }
@@ -91,6 +107,8 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--cf-s3);
+  padding-bottom: var(--cf-s3);
+  border-bottom: 1px solid var(--cf-line-soft);
 }
 
 .cefalot-head__text {
@@ -108,16 +126,21 @@
 }
 
 .cefalot-title {
-  color: var(--cf-ink);
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   line-height: 1.2;
+  background: linear-gradient(135deg, var(--cf-ink) 0%, var(--cf-ink-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .cefalot-lead {
   margin-top: var(--cf-s1);
-  color: var(--cf-muted);
+  color: var(--cf-ink-soft);
   font-size: 12px;
   line-height: 1.4;
 }
@@ -176,25 +199,42 @@
 .cefalot-widget__card {
   appearance: none;
   -webkit-appearance: none;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--cf-s2);
   width: 100%;
-  min-height: var(--cf-tap);
+  min-height: 92px;
   padding: var(--cf-s3);
-  border: 1px solid var(--cf-line);
-  border-radius: var(--cf-r-sm);
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-lg);
   background: var(--cf-surface);
   color: var(--cf-ink);
   cursor: pointer;
   text-align: left;
-  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(36, 39, 45, 0.05);
+  opacity: 0;
+  animation: cefalot-menu-card-in 320ms var(--cf-ease) both;
+  transition: transform var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease);
 }
+
+@keyframes cefalot-menu-card-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cefalot-widget__grid > li:nth-child(1) .cefalot-widget__card { animation-delay: 0ms; }
+.cefalot-widget__grid > li:nth-child(2) .cefalot-widget__card { animation-delay: 60ms; }
+.cefalot-widget__grid > li:nth-child(3) .cefalot-widget__card { animation-delay: 100ms; }
+.cefalot-widget__grid > li:nth-child(4) .cefalot-widget__card { animation-delay: 140ms; }
+.cefalot-widget__grid > li:nth-child(5) .cefalot-widget__card { animation-delay: 180ms; }
 
 .cefalot-widget__grid-item--wide .cefalot-widget__card {
   flex-direction: row;
   align-items: center;
+  min-height: 68px;
+  padding: var(--cf-s3) var(--cf-s4);
 }
 
 .cefalot-widget__card-icon {
@@ -202,32 +242,76 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--cf-r-xs);
-  background: var(--cf-accent-tint);
-  color: var(--cf-accent-active);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px var(--cf-accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
 .cefalot-widget__card-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
+}
+
+.cefalot-widget__grid-item--wide .cefalot-widget__card-icon {
+  width: 46px;
+  height: 46px;
+}
+
+.cefalot-widget__grid-item--wide .cefalot-widget__card-icon svg {
+  width: 23px;
+  height: 23px;
 }
 
 .cefalot-widget__card-label {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
   color: var(--cf-ink);
 }
 
-.cefalot-widget__card:active {
-  border-color: var(--cf-accent);
-  background: var(--cf-accent-tint);
+.cefalot-widget__grid-item--wide .cefalot-widget__card-label {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
-.cefalot-widget__card:active .cefalot-widget__card-icon {
+.cefalot-widget__card-arrow {
+  position: absolute;
+  top: var(--cf-s2);
+  right: var(--cf-s2);
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--cf-r-pill);
+  background: var(--cf-surface-soft);
+  color: var(--cf-muted);
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+
+.cefalot-widget__card-arrow svg {
+  width: 6px;
+  height: 10px;
+}
+
+.cefalot-widget__grid-item--wide .cefalot-widget__card-arrow {
+  position: static;
+  margin-left: auto;
+}
+
+.cefalot-widget__card:active {
+  border-color: var(--cf-accent);
+  transform: scale(0.98);
+  box-shadow: 0 4px 14px var(--cf-accent-glow);
+}
+
+.cefalot-widget__card:active .cefalot-widget__card-arrow {
   background: var(--cf-accent);
   color: #FFFFFF;
 }
@@ -235,6 +319,32 @@
 .cefalot-widget__card:focus-visible {
   outline: 2px solid var(--cf-focus);
   outline-offset: 2px;
+}
+
+/* --- Промо-карточка (Спецпредложения) — акцентный CTA-баннер --- */
+.cefalot-widget__card--promo {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: transparent;
+  box-shadow: 0 8px 22px var(--cf-accent-glow);
+}
+
+.cefalot-widget__card--promo .cefalot-widget__card-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.cefalot-widget__card--promo .cefalot-widget__card-label {
+  color: #FFFFFF;
+}
+
+.cefalot-widget__card--promo .cefalot-widget__card-arrow {
+  background: rgba(255, 255, 255, 0.24);
+  color: #FFFFFF;
+}
+
+.cefalot-widget__card--promo:active {
+  border-color: transparent;
 }
 
 /* ============================================================

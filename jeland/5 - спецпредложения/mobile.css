@@ -5,6 +5,7 @@
   --cf-accent-hover: #316E88;
   --cf-accent-active: #285A70;
   --cf-accent-tint:  #E4EDF1;
+  --cf-accent-glow:  rgba(58, 131, 163, 0.35);
   --cf-ink:          #181D21;
   --cf-ink-soft:     #454C52;
   --cf-muted:        #7C8489;
@@ -17,7 +18,7 @@
   --cf-error:        #D14343;
 
   /* Типографика */
-  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font-heading: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
@@ -26,11 +27,13 @@
   --cf-ls-label:   0.8px;
   --cf-ls-btn:     0.6px;
 
-  /* Скругления — плоские 0px везде (острая айдентика JELAND, подтверждено на сайте) */
-  --cf-r-xs: 0px;
-  --cf-r-sm: 0px;
-  --cf-r-md: 0px;
-  --cf-r-pill: 0px;
+  /* Скругления — плоские, как у реального сайта (border-radius: 0 везде) */
+  --cf-r-xs: 0;
+  --cf-r-sm: 0;
+  --cf-r-md: 0;
+  --cf-r-pill: 0;
+  /* Срез угла заливных кнопок (chamfer), фирменная форма CTA сайта */
+  --cf-chamfer: 14px;
 
   /* Отступы (шаг 4px) */
   --cf-s1: 4px;
@@ -50,7 +53,7 @@
   --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* Шрифт бренда JELAND (Involve/Geologica) пока не подключается — .woff2 файлов нет в проекте,
+/* Шрифт бренда JELAND (Geologica) пока не подключается — .woff2 файлов нет в проекте,
    см. jeland/DESIGN-TOKENS.md, раздел «Шрифт бренда — пока не подключается».
    --cf-font/--cf-font-heading используют только системный fallback-стек. */
 
@@ -131,36 +134,61 @@
 
 /* Базовый .cefalot-eyebrow — используется и как заголовок в hero, и как
    маленький тег-бейдж внутри карточек предложений (шаг 1); по умолчанию —
-   стиль тега на светлой поверхности. */
+   тёмный glow-бейдж, переопределяется под каждый контекст ниже. */
 .cefalot-eyebrow {
-  display: inline-block;
-  font-size: var(--cf-fs-label);
-  letter-spacing: var(--cf-ls-label);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
+  font-size: 10px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: var(--cf-accent-active);
-  font-weight: 600;
-  margin-bottom: var(--cf-s1);
-  background: var(--cf-accent-tint);
-  padding: 4px 10px;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: var(--cf-s2);
+  background: var(--cf-accent);
+  padding: 5px 10px;
   border-radius: var(--cf-r-xs);
+  box-shadow: 0 3px 8px var(--cf-accent-glow);
+}
+.cefalot-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
 
 /* Внутри hero — эйбрау лежит поверх фото, стиль переопределяется на белый/полупрозрачный */
 .cefalot-hero__content .cefalot-eyebrow {
   color: var(--cf-accent);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(4px);
-  margin-bottom: var(--cf-s2);
+  box-shadow: none;
 }
+.cefalot-hero__content .cefalot-eyebrow::before { background: var(--cf-accent); box-shadow: none; }
+
+/* Внутри карточки предложения — лёгкий тинт-тег без точки/тени */
+.cefalot-offer-card__body .cefalot-eyebrow {
+  display: inline-flex;
+  background: var(--cf-accent-tint);
+  color: var(--cf-accent-active);
+  font-weight: 600;
+  padding: 3px 8px;
+  margin-bottom: 0;
+  box-shadow: none;
+}
+.cefalot-offer-card__body .cefalot-eyebrow::before { display: none; }
 
 .cefalot-title {
   font-family: var(--cf-font-heading);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #FFFFFF;
   font-size: var(--cf-fs-title);
   line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* === PANEL & CLOSE BUTTON === */
@@ -172,7 +200,7 @@
   gap: var(--cf-s4);
   min-height: 0;
   padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
-  background: var(--cf-surface);
+  background: radial-gradient(circle at 100% 0%, var(--cf-accent-tint) 0%, transparent 55%), var(--cf-surface);
   overflow-y: auto;
 }
 
@@ -189,42 +217,57 @@
   width: var(--cf-tap);
   height: var(--cf-tap);
   padding: 0;
-  border: 1px solid var(--cf-line);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--cf-r-sm);
-  background: var(--cf-surface);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
   color: var(--cf-ink-soft);
   cursor: pointer;
   transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .cefalot-close:hover {
-  background: var(--cf-surface-soft);
-  color: var(--cf-ink);
-  border-color: var(--cf-ink-soft);
+  background: var(--cf-accent);
+  color: #FFFFFF;
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+  border-color: var(--cf-accent);
 }
 
-.cefalot-close:active { transform: scale(0.95); }
+.cefalot-close:active { transform: rotate(90deg) scale(0.95); }
 .cefalot-close svg { width: 16px; height: 16px; display: block; }
 
 /* === STEP CONTENT === */
 .cefalot-body { display: flex; flex-direction: column; gap: var(--cf-s4); }
 
 .cefalot-step-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
   font-size: var(--cf-fs-label);
   letter-spacing: var(--cf-ls-label);
   text-transform: uppercase;
   color: var(--cf-accent-active);
-  font-weight: 600;
-  margin-bottom: var(--cf-s1);
+  font-weight: 700;
+  margin-bottom: var(--cf-s2);
   background: var(--cf-accent-tint);
   padding: 4px 10px;
   border-radius: var(--cf-r-xs);
+  border: 1px solid rgba(58, 131, 163, 0.25);
+}
+.cefalot-step-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--cf-accent);
+  box-shadow: 0 0 0 2px rgba(58, 131, 163, 0.2);
 }
 
 .cefalot-step-title {
   font-family: var(--cf-font-heading);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--cf-ink);
@@ -232,7 +275,7 @@
   line-height: 1.2;
 }
 
-.cefalot-step-lead { color: var(--cf-muted); margin-top: var(--cf-s1); font-size: 13px; line-height: 1.4; }
+.cefalot-step-lead { color: var(--cf-ink-soft); margin-top: var(--cf-s1); font-size: 13px; line-height: 1.4; }
 
 /* === OFFERS (шаг 1) === */
 .cefalot-offers-grid { display: flex; flex-direction: column; gap: var(--cf-s2); margin-top: var(--cf-s3); }
@@ -244,13 +287,17 @@
   align-items: flex-start;
   gap: var(--cf-s2);
   padding: var(--cf-s3);
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   background: var(--cf-surface);
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface { border-color: var(--cf-accent); background: var(--cf-accent-tint); }
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface {
+  border-color: var(--cf-accent);
+  background: linear-gradient(135deg, var(--cf-accent-tint) 0%, var(--cf-surface) 65%);
+  box-shadow: 0 4px 14px var(--cf-accent-glow);
+}
 .cefalot-offer-card__radio:focus-visible + .cefalot-offer-card__surface { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 
 .cefalot-offer-card__num {
@@ -264,11 +311,16 @@
   background: var(--cf-accent-tint);
   color: var(--cf-accent-active);
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__num {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
 }
 
 .cefalot-offer-card__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.cefalot-offer-card__title { font-size: 13px; font-weight: 600; color: var(--cf-ink); display: flex; align-items: center; flex-wrap: wrap; gap: 4px; line-height: 1.3; }
+.cefalot-offer-card__title { font-size: 13px; font-weight: 700; color: var(--cf-ink); display: flex; align-items: center; flex-wrap: wrap; gap: 4px; line-height: 1.3; }
 
 .cefalot-offer-card__check {
   flex: 0 0 auto;
@@ -284,7 +336,11 @@
   transition: all var(--cf-dur) var(--cf-ease);
 }
 .cefalot-offer-card__check svg { width: 10px; height: 10px; display: block; }
-.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__check { background: var(--cf-accent); border-color: var(--cf-accent); color: var(--cf-surface); }
+.cefalot-offer-card__radio:checked + .cefalot-offer-card__surface .cefalot-offer-card__check {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  color: var(--cf-surface);
+}
 
 /* === FORM FIELDS (шаг 2) === */
 .cefalot-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--cf-s3); margin-top: var(--cf-s3); }
@@ -299,7 +355,7 @@
   font-weight: 500;
 }
 
-.cefalot-req { color: var(--cf-accent); margin-left: 2px; }
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; font-weight: 800; }
 
 .cefalot-input {
   width: 100%;
@@ -309,7 +365,7 @@
   font-size: var(--cf-fs-input);
   color: var(--cf-ink);
   background: var(--cf-surface);
-  border: 1px solid var(--cf-line);
+  border: 1.5px solid var(--cf-line);
   border-radius: var(--cf-r-sm);
   outline: none;
   transition: all var(--cf-dur) var(--cf-ease);
@@ -317,10 +373,10 @@
 }
 
 .cefalot-input::placeholder { color: var(--cf-muted); opacity: 1; }
-.cefalot-input:focus { border-color: var(--cf-accent); box-shadow: 0 0 0 3px var(--cf-accent-tint); }
+.cefalot-input:focus { border-color: var(--cf-accent); box-shadow: 0 0 0 3px var(--cf-accent-tint), 0 3px 10px var(--cf-accent-glow); }
 
 /* === CONSENTS === */
-.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); }
+.cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s3); padding: var(--cf-s3); background: var(--cf-surface-soft); border-radius: var(--cf-r-md); border: 1px solid var(--cf-line-soft); }
 
 .cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); cursor: pointer; line-height: 1.45; }
 
@@ -328,8 +384,8 @@
   flex: 0 0 22px;
   width: 22px;
   height: 22px;
-  margin-top: 2px;
-  border: 1.5px solid var(--cf-line);
+  margin-top: 1px;
+  border: 2px solid var(--cf-line);
   border-radius: var(--cf-r-xs);
   background: var(--cf-surface);
   cursor: pointer;
@@ -339,23 +395,27 @@
   transition: all var(--cf-dur) var(--cf-ease);
 }
 
-.cefalot-check__box:checked { background: var(--cf-accent); border-color: var(--cf-accent); }
+.cefalot-check__box:checked {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  box-shadow: 0 2px 6px rgba(58, 131, 163, 0.3);
+}
 
 .cefalot-check__box:checked::after {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 2px;
+  left: 5px;
+  top: 1px;
   width: 7px;
   height: 12px;
-  border: solid var(--cf-surface);
-  border-width: 0 2px 2px 0;
+  border: solid #FFFFFF;
+  border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
 }
 
-.cefalot-check__text { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
-.cefalot-check__link { color: var(--cf-ink); text-decoration: underline; text-underline-offset: 2px; }
-.cefalot-check__link:hover { color: var(--cf-accent); }
+.cefalot-check__text { font-size: var(--cf-fs-caption); color: var(--cf-ink-soft); }
+.cefalot-check__link { color: var(--cf-ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--cf-accent-tint); text-underline-offset: 2px; }
+.cefalot-check__link:hover { color: var(--cf-accent); text-decoration-color: var(--cf-accent); }
 
 /* === FOOTER & ACTIONS === */
 .cefalot-foot { display: flex; flex-direction: column; gap: var(--cf-s4); margin-top: auto; }
@@ -371,8 +431,8 @@
   min-height: var(--cf-control-h);
   padding: 0 28px;
   font-family: var(--cf-font);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: var(--cf-ls-btn);
   text-transform: uppercase;
   text-decoration: none;
@@ -384,8 +444,16 @@
 
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
 
-.cefalot-btn--primary { background: var(--cf-accent); color: var(--cf-surface); }
-.cefalot-btn--primary:hover { background: var(--cf-accent-hover); }
+.cefalot-btn--primary {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px var(--cf-accent-glow);
+}
+.cefalot-btn--primary { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cf-chamfer)), calc(100% - var(--cf-chamfer)) 100%, 0 100%); }
+.cefalot-btn--primary:active {
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  box-shadow: 0 2px 8px rgba(58, 131, 163, 0.3);
+}
 
 .cefalot-btn--ghost { background: transparent; color: var(--cf-muted); border-color: transparent; }
 .cefalot-btn--ghost:hover { background: transparent; color: var(--cf-ink); }

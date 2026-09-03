@@ -5,6 +5,7 @@
   --cf-accent-hover: #316E88;
   --cf-accent-active: #285A70;
   --cf-accent-tint:  #E4EDF1;
+  --cf-accent-glow:  rgba(58, 131, 163, 0.35);
   --cf-ink:          #181D21;
   --cf-ink-soft:     #454C52;
   --cf-muted:        #7C8489;
@@ -17,7 +18,7 @@
   --cf-error:        #D14343;
 
   /* Типографика */
-  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font-heading: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
@@ -26,10 +27,13 @@
   --cf-ls-label:   0.8px;
   --cf-ls-btn:     0.6px;
 
-  --cf-r-xs: 0px;
-  --cf-r-sm: 0px;
-  --cf-r-md: 0px;
-  --cf-r-pill: 0px;
+  /* Скругления — плоские, как у реального сайта (border-radius: 0 везде) */
+  --cf-r-xs: 0;
+  --cf-r-sm: 0;
+  --cf-r-md: 0;
+  --cf-r-pill: 0;
+  /* Срез угла заливных кнопок (chamfer), фирменная форма CTA сайта */
+  --cf-chamfer: 14px;
 
   --cf-s1: 4px;
   --cf-s2: 8px;
@@ -74,13 +78,16 @@
   justify-content: center;
   border: 0;
   border-radius: var(--cf-r-md);
-  background: var(--cf-accent);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
   color: var(--cf-surface);
   cursor: pointer;
+  transition: transform var(--cf-dur) var(--cf-ease);
   animation: cefalot-launcher-pulse 2.4s ease-out infinite;
 }
-.cefalot-launcher__btn:hover { background: var(--cf-accent-hover); }
-.cefalot-launcher__btn:active { background: var(--cf-accent-active); }
+.cefalot-launcher__btn:active {
+  background: var(--cf-accent-active);
+  transform: scale(0.96);
+}
 .cefalot-launcher__btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 3px; }
 
 .cefalot-launcher__icon {
@@ -101,7 +108,7 @@
 }
 
 @keyframes cefalot-launcher-pulse {
-  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(58, 131, 163, 0.5); }
+  0%   { box-shadow: var(--cf-shadow-md), 0 0 0 0 var(--cf-accent-glow); }
   70%  { box-shadow: var(--cf-shadow-md), 0 0 0 14px rgba(58, 131, 163, 0); }
   100% { box-shadow: var(--cf-shadow-md), 0 0 0 0 rgba(58, 131, 163, 0); }
 }

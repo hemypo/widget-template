@@ -1,7 +1,9 @@
 <!-- ============================================================
      CHANGAN — КИТ КОМПОНЕНТОВ ДЛЯ ОБЫЧНЫХ ФОРМ (справочный документ,
      НЕ комплект для загрузки в Cefalot). desktop.html == mobile.html,
-     адаптация только через desktop.css/mobile.css.
+     адаптация в основном через desktop.css/mobile.css — ЕДИНСТВЕННОЕ
+     исключение: поле «Имя» (см. блок 3) на мобильной версии не
+     копируется вовсе, см. DESIGN-TOKENS.md → «Контентные правила».
      Копируй нужный блок целиком в реальную форму (1, 3, 4, 5) —
      меняй только текст/name/data-widget-field, не структуру.
      Каталог (2 - трейд-ин) имеет свою логику — см. ../_kit-catalog/.
@@ -52,11 +54,8 @@
 
 <div class="cefalot-kit-section">
   <p class="cefalot-kit-title">3. Текстовые поля</p>
+  <p class="cefalot-kit-note">Поле «Имя» здесь намеренно отсутствует — на мобильной версии оно не добавляется ни в одну форму проекта (см. DESIGN-TOKENS.md → «Контентные правила»). В desktop-ките оно есть (см. desktop.html, блок 3) — переноси его оттуда, если делаешь именно desktop.html новой формы.</p>
   <div class="cefalot-grid">
-    <div class="cefalot-field">
-      <span class="cefalot-label" id="kit-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" type="text" name="name" data-widget-field="name" placeholder="Введите имя" aria-labelledby="kit-name-l" required aria-required="true">
-    </div>
     <div class="cefalot-field">
       <span class="cefalot-label" id="kit-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
       <input class="cefalot-input" type="tel" name="phone" data-widget-field="phone" data-widget-field-type="phone" placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="kit-phone-l" inputmode="tel" required aria-required="true">
@@ -127,14 +126,14 @@
     <label class="cefalot-check">
       <input class="cefalot-check__box" type="checkbox" name="agreement_pd" data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
       <span class="cefalot-check__text">
-        Я даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
+        Даю <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/consent-personal-data" target="_blank" rel="noopener">согласие на обработку персональных данных</a>
         <span class="cefalot-req" aria-hidden="true">*</span>
       </span>
     </label>
     <label class="cefalot-check">
       <input class="cefalot-check__box" type="checkbox" name="agreement_third_party" data-widget-field="agreement_third_party" data-widget-field-type="checkbox" value="1" required aria-required="true">
       <span class="cefalot-check__text">
-        Я даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
+        Даю согласие на <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/privacy-policy" target="_blank" rel="noopener">предоставление персональных данных третьим лицам</a> и ознакомлен(-а) с <a class="cefalot-check__link" href="https://changanauto.ru/about-us/legal-information/personal-data-policy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>
         <span class="cefalot-req" aria-hidden="true">*</span>
       </span>
     </label>

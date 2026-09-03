@@ -5,6 +5,7 @@
   --cf-accent-hover: #316E88;
   --cf-accent-active: #285A70;
   --cf-accent-tint:  #E4EDF1;
+  --cf-accent-glow:  rgba(58, 131, 163, 0.35);
   --cf-ink:          #181D21;
   --cf-ink-soft:     #454C52;
   --cf-muted:        #7C8489;
@@ -17,7 +18,7 @@
   --cf-error:        #D14343;
 
   /* Типографика */
-  --cf-font-heading: Involve, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --cf-font-heading: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-font: Geologica, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --cf-fs-label:   11px;
   --cf-fs-caption: 13px;
@@ -26,10 +27,13 @@
   --cf-ls-label:   0.8px;
   --cf-ls-btn:     0.6px;
 
-  --cf-r-xs: 0px;
-  --cf-r-sm: 0px;
-  --cf-r-md: 0px;
-  --cf-r-pill: 0px;
+  /* Скругления — плоские, как у реального сайта (border-radius: 0 везде) */
+  --cf-r-xs: 0;
+  --cf-r-sm: 0;
+  --cf-r-md: 0;
+  --cf-r-pill: 0;
+  /* Срез угла заливных кнопок (chamfer), фирменная форма CTA сайта */
+  --cf-chamfer: 14px;
 
   --cf-s1: 4px;
   --cf-s2: 8px;
@@ -67,7 +71,7 @@
   width: 100%;
   background: var(--cf-surface);
   border-top: 1px solid var(--cf-ink);
-  box-shadow: 0 -8px 32px rgba(24, 29, 33, 0.22);
+  box-shadow: 0 -8px 32px rgba(24, 29, 33, 0.22), 0 -2px 20px var(--cf-accent-glow);
 }
 
 .cefalot-widget__head {
@@ -169,7 +173,7 @@
 
 /* На тач-устройствах нет hover — статичный отклик даём через :active */
 .cefalot-menu__row:active {
-  background: var(--cf-accent-active);
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-active) 100%);
   color: #FFFFFF;
 }
 .cefalot-menu__row:active .cefalot-menu__num { color: #FFFFFF; }

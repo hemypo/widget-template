@@ -1,0 +1,511 @@
+:root,
+:host {
+  /* Цвета бренда TENET */
+  --cf-ink:          #3E3A39;
+  --cf-ink-strong:   #2F2B2A;
+  --cf-ink-soft:     #615952;
+  --cf-muted:        #80756B;
+  --cf-line:         #D8CEC5;
+  --cf-line-soft:    #EDE7E1;
+  --cf-surface:      #FFFFFF;
+  --cf-surface-soft: #F7F3EF;
+  --cf-surface-tile: #F2EDE8;
+  --cf-accent:       #C30D23;
+  --cf-accent-hover: #A80B1E;
+  --cf-accent-active: #8F0919;
+  --cf-accent-tint:  #F7DEE1;
+  --cf-cta:          #D8CEC5;
+  --cf-cta-hover:    #CBBEB0;
+  --cf-cta-active:   #BFB1A2;
+  --cf-cta-ink:      #4A443F;
+  --cf-disabled:     #E7E0D9;
+  --cf-focus:        #3E3A39;
+  --cf-error:        #C30D23;
+
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-heading: "TENETSans-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-fs-label:     11px;
+  --cf-fs-caption:   12px;
+  --cf-fs-body:      15px;
+  --cf-fs-input:     16px;
+  --cf-ls-label:     1px;
+  --cf-ls-btn:       1px;
+
+  /* Скругления */
+  --cf-r-xs:   8px;
+  --cf-r-sm:   12px;
+  --cf-r-md:   16px;
+  --cf-r-lg:   20px;
+  --cf-r-pill: 999px;
+
+  /* Отступы (шаг 4px) */
+  --cf-s1: 4px;  --cf-s2: 8px;  --cf-s3: 12px;  --cf-s4: 16px;
+  --cf-s5: 24px; --cf-s6: 32px; --cf-s7: 40px;
+
+  /* Высоты контролов */
+  --cf-control-h: 56px;
+  --cf-tap: 44px;
+
+  /* Движение */
+  --cf-dur: 200ms;
+  --cf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Шрифт бренда пока не подключается — файлов шрифта нет в tenet-2/ (см. DESIGN-TOKENS.md) */
+
+/* Локальные токены комплекта "3 - трейд-ин" — не входят в канонический набор:
+   оформление ПОЛНОСТЬЮ взято за основу с changan/2 - трейд-ин/desktop.css
+   (градиенты, бейджи, свечение), только цвета/шрифты заменены на токены TENET.
+   Добавлен hero-layout (изображение слева), как в остальных формах проекта —
+   у changan трейд-ин сознательно был без фото, здесь фото добавлено по запросу. */
+:root, :host {
+  --cf-accent-glow:  rgba(195, 13, 35, 0.35);
+  --cf-fs-title:     32px;
+  --cf-fs-substep:   24px;
+  --cf-hero-col:     38%;
+  --cf-hero-min-h:   620px;
+}
+
+.cefalot-form-custom-template-content {
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border-radius: var(--cf-r-lg);
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+.cefalot-form-custom-template-content *,
+.cefalot-form-custom-template-content *::before,
+.cefalot-form-custom-template-content *::after { box-sizing: inherit; }
+.cefalot-form-custom-template-content p, .cefalot-form-custom-template-content h1, .cefalot-form-custom-template-content h2,
+.cefalot-form-custom-template-content h3, .cefalot-form-custom-template-content h4,
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { margin: 0; padding: 0; }
+.cefalot-form-custom-template-content ul, .cefalot-form-custom-template-content ol { list-style: none; }
+
+/* === HERO (чистое изображение, без текста) === */
+.cefalot-hero {
+  position: relative;
+  min-width: 0;
+  background-color: var(--cf-surface-tile);
+  /* TODO: заменить на реальный ключ ассета после первой заливки фото в кабинет Cefalot */
+  background-image: url("{{asset:asset1}}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* === PANEL — держит градиентный фон и паддинг, которые раньше были
+   на корневом контейнере (в changan трейд-ин был без hero, поэтому
+   градиент/паддинг сидели прямо на .cefalot-form-custom-template-content) === */
+.cefalot-panel {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s6);
+  padding: var(--cf-s7);
+  background: radial-gradient(circle at 85% -10%, var(--cf-accent-tint) 0%, transparent 55%), var(--cf-surface);
+  overflow-y: auto;
+}
+
+
+.cefalot-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--cf-s4);
+  background: linear-gradient(135deg, var(--cf-surface-soft) 0%, var(--cf-accent-tint) 100%);
+  padding: var(--cf-s5);
+  border-radius: var(--cf-r-lg);
+  border: 1.5px solid var(--cf-accent-tint);
+}
+.cefalot-head__text { flex: 1 1 auto; min-width: 0; }
+
+.cefalot-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
+  font-size: var(--cf-fs-label);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: var(--cf-s3);
+  background: var(--cf-accent);
+  padding: 6px 14px;
+  border-radius: var(--cf-r-xs);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+}
+.cefalot-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+}
+
+.cefalot-title {
+  font-family: var(--cf-font-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: var(--cf-fs-title);
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--cf-ink) 0%, var(--cf-ink-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.cefalot-lead {
+  color: var(--cf-ink-soft);
+  margin-top: var(--cf-s3);
+  font-size: var(--cf-fs-body);
+  line-height: 1.55;
+}
+
+.cefalot-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cf-tap);
+  height: var(--cf-tap);
+  padding: 0;
+  border: 2px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  background: var(--cf-surface);
+  color: var(--cf-ink-soft);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.cefalot-close:hover {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+  border-color: var(--cf-accent);
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px var(--cf-accent-glow);
+}
+.cefalot-close svg { width: 16px; height: 16px; display: block; }
+
+/* === КАТАЛОГ И ПОДШАГИ === */
+.cefalot-catalog { width: 100%; min-width: 0; }
+.cefalot-catalog__panel { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: var(--cf-s4); }
+
+.cefalot-substep {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border: 1.5px solid var(--cf-line-soft);
+  border-radius: var(--cf-r-lg);
+  padding: var(--cf-s6);
+  transition: all var(--cf-dur) var(--cf-ease);
+  overflow: hidden;
+  background: var(--cf-surface);
+  border-color: var(--cf-accent);
+}
+
+.cefalot-substep[hidden] { display: none !important; }
+
+.cefalot-substep__header { margin-bottom: var(--cf-s5); }
+
+.cefalot-substep__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cf-s2);
+  margin-bottom: var(--cf-s3);
+  color: var(--cf-accent-active);
+  background: var(--cf-accent-tint);
+  font-size: var(--cf-fs-label);
+  font-weight: 700;
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--cf-r-pill);
+  border: 1px solid rgba(195, 13, 35, 0.25);
+}
+.cefalot-substep__badge::before {
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cf-accent);
+  box-shadow: 0 0 0 3px rgba(195, 13, 35, 0.2);
+}
+
+.cefalot-substep__title {
+  position: relative;
+  color: var(--cf-ink);
+  font-family: var(--cf-font-heading);
+  font-size: var(--cf-fs-substep);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.cefalot-substep__lead {
+  margin-top: var(--cf-s3);
+  color: var(--cf-ink-soft);
+  font-size: var(--cf-fs-body);
+  line-height: 1.5;
+}
+
+.cefalot-substep__body { display: flex; flex-direction: column; gap: var(--cf-s5); }
+
+.cefalot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cf-s5) var(--cf-s4); }
+.cefalot-field { display: flex; flex-direction: column; gap: var(--cf-s2); min-width: 0; }
+.cefalot-field--wide { grid-column: 1 / -1; }
+
+.cefalot-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: var(--cf-ls-label);
+  text-transform: uppercase;
+  color: var(--cf-ink-soft);
+  font-weight: 700;
+  transition: color var(--cf-dur) var(--cf-ease);
+}
+.cefalot-field:hover .cefalot-label { color: var(--cf-accent-hover); }
+.cefalot-req { color: var(--cf-accent); margin-left: 2px; font-weight: 800; }
+
+/* Radio-hiding hack */
+.cefalot-field[data-widget-catalog-radio-host] { font-size: 0; }
+.cefalot-field[data-widget-catalog-radio-host] > .cefalot-label,
+.cefalot-field[data-widget-catalog-radio-host] > .cefalot-select-wrap { font-size: initial; }
+.cefalot-field[data-widget-catalog-radio-host] input[type="radio"],
+.cefalot-field[data-widget-catalog-radio-host] label:has(input[type="radio"]),
+.cefalot-field[data-widget-catalog-radio-host] input[type="radio"] + label,
+.cefalot-field[data-widget-catalog-radio-host] > :not(.cefalot-label):not(.cefalot-select-wrap) { display: none !important; }
+
+/* === ПОЛЯ ВВОДА === */
+.cefalot-input, .cefalot-select, .cefalot-textarea {
+  width: 100%;
+  min-height: var(--cf-control-h);
+  padding: 0 var(--cf-s4);
+  font-family: var(--cf-font);
+  font-size: var(--cf-fs-input);
+  font-weight: 500;
+  color: var(--cf-ink);
+  background: var(--cf-surface);
+  border: 1.5px solid var(--cf-line);
+  border-radius: var(--cf-r-sm);
+  outline: none;
+  transition: all var(--cf-dur) var(--cf-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cefalot-input::placeholder, .cefalot-textarea::placeholder { color: var(--cf-muted); opacity: 1; }
+.cefalot-input:hover, .cefalot-select:hover, .cefalot-textarea:hover { border-color: var(--cf-accent); }
+
+.cefalot-input:focus, .cefalot-select:focus, .cefalot-textarea:focus {
+  border-color: var(--cf-accent);
+  box-shadow: 0 0 0 4px var(--cf-accent-tint), 0 4px 12px var(--cf-accent-glow);
+  transform: translateY(-1px);
+}
+
+.cefalot-input[type="number"] { -moz-appearance: textfield; }
+.cefalot-input[type="number"]::-webkit-inner-spin-button,
+.cefalot-input[type="number"]::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
+.cefalot-select:required:invalid { color: var(--cf-muted); }
+.cefalot-select option { color: var(--cf-ink); background: var(--cf-surface); }
+
+.cefalot-select-wrap { position: relative; display: block; }
+.cefalot-select { padding-right: 44px; cursor: pointer; }
+.cefalot-select-wrap .cefalot-caret {
+  position: absolute;
+  top: 50%;
+  right: var(--cf-s4);
+  width: 28px; height: 28px;
+  margin-top: -14px;
+  pointer-events: none;
+  color: var(--cf-accent);
+  background: var(--cf-accent-tint);
+  border-radius: var(--cf-r-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+.cefalot-select-wrap .cefalot-caret svg { width: 14px; height: 14px; display: block; stroke-width: 2; }
+.cefalot-select-wrap:hover .cefalot-caret,
+.cefalot-select:focus + .cefalot-caret {
+  background: var(--cf-accent);
+  color: #FFFFFF;
+  transform: rotate(180deg);
+}
+
+/* === ЧЕКБОКСЫ === */
+.cefalot-consents {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-s3);
+  padding: var(--cf-s4);
+  background: var(--cf-surface-soft);
+  border-radius: var(--cf-r-md);
+  border: 1px solid var(--cf-line-soft);
+}
+.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); cursor: pointer; line-height: 1.45; }
+.cefalot-check__box {
+  flex: 0 0 22px;
+  width: 22px; height: 22px;
+  margin-top: 1px;
+  border: 2px solid var(--cf-line);
+  border-radius: var(--cf-r-xs);
+  background: var(--cf-surface);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  transition: all var(--cf-dur) var(--cf-ease);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.cefalot-check__box:hover { border-color: var(--cf-accent); box-shadow: 0 0 0 4px var(--cf-accent-tint); }
+.cefalot-check__box:checked {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  border-color: var(--cf-accent);
+  box-shadow: 0 2px 8px rgba(195, 13, 35, 0.3), 0 0 0 4px var(--cf-accent-tint);
+  transform: scale(1.05);
+}
+.cefalot-check__box:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 7px; height: 12px;
+  border: solid #FFFFFF;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+.cefalot-check__text { font-size: var(--cf-fs-caption); color: var(--cf-ink-soft); }
+.cefalot-check__link {
+  color: var(--cf-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--cf-accent-tint);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: all var(--cf-dur) var(--cf-ease);
+}
+.cefalot-check__link:hover { color: var(--cf-accent); text-decoration-color: var(--cf-accent); }
+
+/* === НАВИГАЦИЯ И КНОПКИ === */
+.cefalot-actions { display: flex; align-items: center; justify-content: flex-start; gap: var(--cf-s3); flex-wrap: wrap; }
+
+.cefalot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-s2);
+  min-height: 56px;
+  padding: 0 28px;
+  font-family: var(--cf-font);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--cf-r-sm);
+  cursor: pointer;
+  transition: all var(--cf-dur) var(--cf-ease);
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.cefalot-btn svg {
+  width: 18px; height: 12px; flex: 0 0 auto;
+  transition: transform var(--cf-dur) var(--cf-ease);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.cefalot-btn--primary {
+  background: linear-gradient(135deg, var(--cf-accent) 0%, var(--cf-accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 20px var(--cf-accent-glow), 0 2px 6px rgba(62, 58, 57, 0.08);
+}
+.cefalot-btn--primary:hover {
+  background: linear-gradient(135deg, var(--cf-accent-hover) 0%, var(--cf-accent-active) 100%);
+  box-shadow: 0 8px 28px var(--cf-accent-glow), 0 4px 10px rgba(62, 58, 57, 0.1);
+  transform: translateY(-2px);
+}
+.cefalot-btn--primary:hover svg { transform: translateX(4px); }
+.cefalot-btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(195, 13, 35, 0.3);
+}
+
+.cefalot-btn--ghost {
+  min-width: 0;
+  min-height: var(--cf-tap);
+  padding: 0 var(--cf-s3);
+  border: 0;
+  background: transparent;
+  color: var(--cf-ink-soft);
+  font-size: var(--cf-fs-label);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.cefalot-btn--ghost:hover { color: var(--cf-accent); }
+.cefalot-btn--ghost:hover svg { transform: translateX(-3px); }
+
+/* Вытянутая навигация, прижатая к краям карточки подшага */
+.cefalot-substep__nav {
+  margin-top: auto;
+  padding-top: var(--cf-s4);
+  padding-left: var(--cf-s6);
+  padding-right: var(--cf-s6);
+  padding-bottom: var(--cf-s6);
+  margin-left: calc(var(--cf-s6) * -1);
+  margin-right: calc(var(--cf-s6) * -1);
+  margin-bottom: calc(var(--cf-s6) * -1);
+  background: var(--cf-surface-soft);
+  border-top: 1.5px dashed var(--cf-line);
+  border-radius: 0 0 var(--cf-r-lg) var(--cf-r-lg);
+}
+
+.cefalot-substep__footer {
+  margin-top: var(--cf-s5);
+  padding-top: var(--cf-s4);
+  border-top: 1px solid var(--cf-line-soft);
+}
+
+.cefalot-note, .cefalot-cr { font-size: var(--cf-fs-caption); color: var(--cf-muted); }
+.cefalot-cr a { color: var(--cf-muted); text-decoration: underline; }
+
+.cefalot-btn:disabled, .cefalot-input:disabled, .cefalot-select:disabled, .cefalot-textarea:disabled {
+  opacity: 0.45; cursor: not-allowed; pointer-events: none;
+}
+
+/* === MOBILE ADAPTATION (на случай узкого desktop-вьюпорта) === */
+@media (max-width: 900px) {
+  .cefalot-layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    height: 100%;
+  }
+  .cefalot-hero {
+    min-height: 200px;
+    border-radius: var(--cf-r-lg) var(--cf-r-lg) 0 0;
+  }
+  .cefalot-panel {
+    padding: var(--cf-s5) var(--cf-s4) calc(var(--cf-s6) + env(safe-area-inset-bottom, 0px));
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cefalot-form-custom-template-content *,
+  .cefalot-form-custom-template-content *::before,
+  .cefalot-form-custom-template-content *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
