@@ -1,12 +1,9 @@
-@font-face { font-family: "TENET Sans"; src: url("{{asset:font1}}") format("opentype"); font-display: swap;}
-
-@font-face { font-family: "TENET Sans Bold"; src: url("{{asset:font2}}") format("opentype"); font-display: swap;}
+@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-regular}}") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "TENET Sans"; src: url("{{asset:tenet-font-bold}}") format("opentype"); font-weight: 700; font-display: swap; }
+.cefalot-form-custom-template-root { font-family: "TENET Sans", system-ui, sans-serif; }
 
 :root,
 :host {
-  --cf-font: "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --cf-font-display: "TENET Sans Bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-
   /* Цвета бренда TENET */
   --cf-ink:          #3E3A39;
   --cf-ink-strong:   #2F2B2A;
@@ -25,9 +22,9 @@
   --cf-disabled:     #E7E0D9;
   --cf-focus:        #3E3A39;
 
-  /* Локальный токен комплекта — акцентное свечение только для бейджей (важные акценты) */
-  --cf-accent-glow: rgba(195, 13, 35, 0.28);
-
+  /* Типографика */
+  --cf-font:         "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cf-font-display: "TENET Sans Display", "TENET Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   --cf-fs-label:     11px;
   --cf-fs-caption:   12px;
   --cf-fs-body:      15px;
@@ -123,60 +120,6 @@
 .cefalot-check__box:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-check__text { font-size: var(--cf-fs-caption); line-height: 1.5; color: var(--cf-muted); }
 .cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
-
-.cefalot-choice-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--cf-s3); }
-/* box-shadow вместо fade-градиента на псевдоэлементе: список одновременно
-   grid и scroll-контейнер, доп. ::after стал бы лишней grid-ячейкой и
-   сломал бы раскладку карточек — а так подсказка «есть что прокрутить»
-   видна всегда, пока не докрутили до конца, без затрагивания разметки. */
-.cefalot-scroll { max-height: 340px; overflow-y: auto; box-shadow: inset 0 -16px 12px -12px rgba(62, 58, 57, 0.12); }
-.cefalot-choice { position: relative; display: flex; height: auto; justify-content: space-between; align-self: stretch; }
-.cefalot-choice__input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; z-index: 2; }
-.cefalot-choice__body { position: relative; display: flex; width: 100%; flex-direction: column; gap: var(--cf-s2); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1.5px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }
-.cefalot-choice__input:hover + .cefalot-choice__body { border-color: var(--cf-cta-active); box-shadow: 0 2px 10px rgba(74, 68, 63, 0.18); }
-.cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-ink); background: var(--cf-surface-soft); box-shadow: 0 0 0 2px var(--cf-ink), 0 6px 16px rgba(74, 68, 63, 0.24); padding-right: 44px; }
-.cefalot-choice__input:focus-visible + .cefalot-choice__body { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
-.cefalot-choice__input:checked + .cefalot-choice__body .cefalot-choice__title { color: var(--cf-ink-strong); }
-.cefalot-choice__input:checked + .cefalot-choice__body::after {
-  content: "";
-  position: absolute;
-  top: var(--cf-s3);
-  right: var(--cf-s3);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--cf-ink);
-  box-shadow: 0 2px 6px rgba(74, 68, 63, 0.35);
-}
-.cefalot-choice__input:checked + .cefalot-choice__body::before {
-  content: "";
-  position: absolute;
-  top: calc(var(--cf-s3) + 7px);
-  right: calc(var(--cf-s3) + 6px);
-  width: 9px;
-  height: 5px;
-  border: solid #FFFFFF;
-  border-width: 0 0 2px 2px;
-  transform: rotate(-45deg);
-  z-index: 1;
-}
-.cefalot-choice__top { display: flex; align-items: center; justify-content: space-between; gap: var(--cf-s2); }
-.cefalot-choice__title { font-weight: 500; color: var(--cf-ink); font-family: var(--cf-font-display); text-transform: uppercase; letter-spacing: 0.5px; transition: color var(--cf-dur) var(--cf-ease); }
-.cefalot-choice__meta { font-size: var(--cf-fs-caption); color: var(--cf-muted); margin-top: auto; }
-.cefalot-choice__badge {
-  display: inline-flex;
-  align-items: center;
-  flex: 0 0 auto;
-  padding: 3px 9px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: var(--cf-accent);
-  border-radius: var(--cf-r-pill);
-  box-shadow: 0 2px 6px var(--cf-accent-glow);
-}
 
 .cefalot-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s3); min-height: var(--cf-control-h); padding: 16px 32px; font-family: var(--cf-font); font-size: 13px; letter-spacing: var(--cf-ls-btn); text-transform: uppercase; text-decoration: none; border: 1px solid transparent; border-radius: var(--cf-r-sm); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease); min-width: 200px; }
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }

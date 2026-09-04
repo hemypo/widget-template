@@ -137,9 +137,9 @@
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
 .cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); }
-.cefalot-btn--primary:hover { background: var(--cf-cta-hover); }
-.cefalot-btn--primary:active { background: var(--cf-cta-active); }
+.cefalot-btn--primary { background: linear-gradient(135deg, var(--cf-cta) 0%, var(--cf-cta-hover) 100%); color: var(--cf-cta-ink); box-shadow: 0 8px 22px rgba(74, 68, 63, 0.32), 0 3px 8px rgba(0, 0, 0, 0.1); }
+.cefalot-btn--primary:hover { background: linear-gradient(135deg, var(--cf-cta-hover) 0%, var(--cf-cta-active) 100%); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(74, 68, 63, 0.38), 0 5px 14px rgba(0, 0, 0, 0.14); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74, 68, 63, 0.3); }
 .cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); font-size: var(--cf-fs-label); }
 .cefalot-btn--quiet:hover { color: var(--cf-ink); }
 

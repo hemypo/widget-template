@@ -29,6 +29,9 @@
   --cf-disabled:     #E7E0D9;
   --cf-focus:        #3E3A39;
 
+  /* Локальный токен комплекта — акцентное свечение только для бейджей (важные акценты) */
+  --cf-accent-glow: rgba(195, 13, 35, 0.28);
+
   --cf-fs-label:     11px;
   --cf-fs-caption:   12px;
   --cf-fs-body:      15px;
@@ -138,23 +141,66 @@ ul, ol { list-style: none; }
 .cefalot-check__link { color: var(--cf-ink); text-decoration: underline; }
 
 .cefalot-choice-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--cf-s3); }
+/* box-shadow вместо fade-градиента на псевдоэлементе: список одновременно
+   grid и scroll-контейнер, доп. ::after стал бы лишней grid-ячейкой и
+   сломал бы раскладку карточек — а так подсказка «есть что прокрутить»
+   видна всегда, пока не докрутили до конца, без затрагивания разметки. */
+.cefalot-scroll { max-height: 300px; overflow-y: auto; -webkit-overflow-scrolling: touch; box-shadow: inset 0 -16px 12px -12px rgba(62, 58, 57, 0.12); }
 .cefalot-choice { position: relative; display: flex; height: auto; justify-content: space-between; align-self: stretch; }
-.cefalot-choice__input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
-.cefalot-choice__body { display: flex; width: 100%; flex-direction: column; gap: var(--cf-s2); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }
-.cefalot-choice__input:hover + .cefalot-choice__body { border-color: var(--cf-cta-hover); }
-.cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-ink); background: var(--cf-surface-soft); box-shadow: inset 0 0 0 1px var(--cf-ink); }
+.cefalot-choice__input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; z-index: 2; }
+.cefalot-choice__body { position: relative; display: flex; width: 100%; flex-direction: column; gap: var(--cf-s2); padding: var(--cf-s4) var(--cf-s5); min-height: var(--cf-tap); border: 1.5px solid var(--cf-line); border-radius: var(--cf-r-md); background: var(--cf-surface); transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease), box-shadow var(--cf-dur) var(--cf-ease); }
+.cefalot-choice__input:hover + .cefalot-choice__body { border-color: var(--cf-cta-active); box-shadow: 0 2px 10px rgba(74, 68, 63, 0.18); }
+.cefalot-choice__input:checked + .cefalot-choice__body { border-color: var(--cf-ink); background: var(--cf-surface-soft); box-shadow: 0 0 0 2px var(--cf-ink), 0 6px 16px rgba(74, 68, 63, 0.24); padding-right: 44px; }
 .cefalot-choice__input:focus-visible + .cefalot-choice__body { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
+.cefalot-choice__input:checked + .cefalot-choice__body .cefalot-choice__title { color: var(--cf-ink-strong); }
+.cefalot-choice__input:checked + .cefalot-choice__body::after {
+  content: "";
+  position: absolute;
+  top: var(--cf-s3);
+  right: var(--cf-s3);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cf-ink);
+  box-shadow: 0 2px 6px rgba(74, 68, 63, 0.35);
+}
+.cefalot-choice__input:checked + .cefalot-choice__body::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--cf-s3) + 7px);
+  right: calc(var(--cf-s3) + 6px);
+  width: 9px;
+  height: 5px;
+  border: solid #FFFFFF;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+  z-index: 1;
+}
 .cefalot-choice__top { display: flex; align-items: center; justify-content: space-between; gap: var(--cf-s2); }
-.cefalot-choice__title { font-weight: 500; color: var(--cf-ink); font-family: var(--cf-font-display); text-transform: uppercase; letter-spacing: 0.5px; }
+.cefalot-choice__title { font-weight: 500; color: var(--cf-ink); font-family: var(--cf-font-display); text-transform: uppercase; letter-spacing: 0.5px; transition: color var(--cf-dur) var(--cf-ease); }
 .cefalot-choice__meta { font-size: var(--cf-fs-caption); color: var(--cf-muted); margin-top: auto; }
+.cefalot-choice__badge {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--cf-accent);
+  border-radius: var(--cf-r-pill);
+  box-shadow: 0 2px 6px var(--cf-accent-glow);
+}
 
 .cefalot-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--cf-s3); min-height: var(--cf-control-h); padding: 16px 32px; font-family: var(--cf-font); font-size: 13px; letter-spacing: var(--cf-ls-btn); text-transform: uppercase; text-decoration: none; border: 1px solid transparent; border-radius: var(--cf-r-sm); cursor: pointer; transition: background var(--cf-dur) var(--cf-ease), border-color var(--cf-dur) var(--cf-ease), color var(--cf-dur) var(--cf-ease), transform var(--cf-dur) var(--cf-ease); min-width: 200px; }
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
 .cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); }
-.cefalot-btn--primary:hover { background: var(--cf-cta-hover); }
-.cefalot-btn--primary:active { background: var(--cf-cta-active); }
+.cefalot-btn--primary { background: linear-gradient(135deg, var(--cf-cta) 0%, var(--cf-cta-hover) 100%); color: var(--cf-cta-ink); box-shadow: 0 8px 22px rgba(74, 68, 63, 0.32), 0 3px 8px rgba(0, 0, 0, 0.1); }
+.cefalot-btn--primary:hover { background: linear-gradient(135deg, var(--cf-cta-hover) 0%, var(--cf-cta-active) 100%); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(74, 68, 63, 0.38), 0 5px 14px rgba(0, 0, 0, 0.14); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74, 68, 63, 0.3); }
 .cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); font-size: var(--cf-fs-label); }
 .cefalot-btn--quiet:hover { color: var(--cf-ink); }
 

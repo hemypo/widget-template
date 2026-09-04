@@ -1,7 +1,7 @@
 <header class="cefalot-head">
   <div class="cefalot-head__text">
-    <h2 class="cefalot-title">Рассчитать кредит</h2>
-    <p class="cefalot-lead">Выберите модель и менеджер подберёт выгодное кредитное предложение</p>
+    <h2 class="cefalot-title">Оформить лизинг</h2>
+    <p class="cefalot-lead">Выберите модель — менеджер подготовит расчёт по лизингу</p>
   </div>
   <button class="cefalot-close" type="button" data-widget-close aria-label="Закрыть окно">
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
@@ -13,9 +13,31 @@
 
 <div class="cefalot-body">
   <div class="cefalot-field cefalot-field--wide">
-    <span class="cefalot-label" id="td-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
+    <span class="cefalot-label cefalot-label--sr-mobile" id="lz-client-l">Тип клиента<span class="cefalot-req" aria-hidden="true">*</span></span>
+    <div class="cefalot-choice-grid" role="radiogroup" aria-labelledby="lz-client-l">
+      <label class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="lz-client-legal" name="client_type" value="Юридическое лицо" data-widget-field="client_type" required aria-required="true">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title">Юридическое лицо</span>
+          </span>
+        </span>
+      </label>
+      <label class="cefalot-choice">
+        <input class="cefalot-choice__input" type="radio" id="lz-client-ip" name="client_type" value="ИП" data-widget-field="client_type">
+        <span class="cefalot-choice__body">
+          <span class="cefalot-choice__top">
+            <span class="cefalot-choice__title">ИП</span>
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div class="cefalot-field cefalot-field--wide">
+    <span class="cefalot-label" id="lz-model-l">Модель<span class="cefalot-req" aria-hidden="true">*</span></span>
     <span class="cefalot-select-wrap">
-      <select class="cefalot-select" id="td-model" name="model" data-widget-field="model" aria-labelledby="td-model-l" required aria-required="true">
+      <select class="cefalot-select" id="lz-model" name="model" data-widget-field="model" aria-labelledby="lz-model-l" required aria-required="true">
         <option value="" disabled selected>Выберите модель</option>
         <option value="t4">TENET T4</option>
         <option value="t4l">TENET T4L</option>
@@ -32,28 +54,28 @@
 
   <div class="cefalot-grid">
     <div class="cefalot-field">
-      <span class="cefalot-label" id="td-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="td-name" type="text" name="name" data-widget-field="name"
-             placeholder="Введите" aria-labelledby="td-name-l" required aria-required="true">
+      <span class="cefalot-label" id="lz-name-l">Имя<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="lz-name" type="text" name="name" data-widget-field="name"
+             placeholder="Введите" aria-labelledby="lz-name-l" required aria-required="true">
     </div>
 
     <div class="cefalot-field">
-      <span class="cefalot-label" id="td-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
-      <input class="cefalot-input" id="td-phone" type="tel" name="phone" data-widget-field="phone"
-             placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="td-phone-l" required aria-required="true" inputmode="tel">
+      <span class="cefalot-label" id="lz-phone-l">Телефон<span class="cefalot-req" aria-hidden="true">*</span></span>
+      <input class="cefalot-input" id="lz-phone" type="tel" name="phone" data-widget-field="phone"
+             placeholder="+7 (9XX) XXX-XX-XX" aria-labelledby="lz-phone-l" required aria-required="true" inputmode="tel">
     </div>
   </div>
 
   <div class="cefalot-consents">
     <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="td-pd" name="agreement_pd"
+      <input class="cefalot-check__box" type="checkbox" id="lz-pd" name="agreement_pd"
              data-widget-field="agreement_pd" data-widget-field-type="checkbox" value="1" required aria-required="true">
       <span class="cefalot-check__text">Я ознакомлен(а) и соглашаюсь с условиями обработки персональных данных
         в разделе по обработке персональных данных в
         <a class="cefalot-check__link" href="https://tenet.ru/legal/" target="_blank" rel="noopener">Правилах пользования сайтом</a><span class="cefalot-req" aria-hidden="true">*</span></span>
     </label>
     <label class="cefalot-check">
-      <input class="cefalot-check__box" type="checkbox" id="td-ad" name="agreement_ad"
+      <input class="cefalot-check__box" type="checkbox" id="lz-ad" name="agreement_ad"
              data-widget-field="agreement_ad" data-widget-field-type="checkbox" value="1">
       <span class="cefalot-check__text">Даю согласие на рекламную коммуникацию</span>
     </label>
@@ -63,7 +85,7 @@
 <footer class="cefalot-foot">
   <div class="cefalot-actions">
     <button class="cefalot-btn cefalot-btn--primary" type="button" data-widget-submit>
-      Получить предложение
+      Получить расчёт
       <svg viewBox="0 0 20 12" fill="none" aria-hidden="true" focusable="false">
         <line x1="0" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.4"/>
         <polyline points="13,1 19,6 13,11" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>

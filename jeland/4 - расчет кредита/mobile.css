@@ -101,7 +101,7 @@
   padding: var(--cf-s5) var(--cf-s4);
   background-color: var(--cf-surface-tile);
   /* TODO: заменить на реальный ключ ассета после первой заливки фото в кабинет Cefalot */
-  background-image: url("{{asset:jeland-hero-credit}}");
+  background-image: url("{{asset:asset1}}");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

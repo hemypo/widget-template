@@ -116,7 +116,7 @@
 .cefalot-select-wrap .cefalot-caret svg { width: 12px; height: 12px; display: block; }
 
 .cefalot-consents { display: flex; flex-direction: column; gap: var(--cf-s1); }
-.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); min-height: var(--cf-tap); padding: 10px 0; cursor: pointer; }
+.cefalot-check { display: flex; align-items: flex-start; gap: var(--cf-s3); min-height: var(--cf-tap); padding: 6px 0; cursor: pointer; }
 .cefalot-check__box { flex: 0 0 auto; width: 24px; height: 24px; margin: 0; border: 1px solid var(--cf-line); border-radius: 6px; background: var(--cf-surface); cursor: pointer; -webkit-appearance: none; appearance: none; position: relative; transition: border-color var(--cf-dur) var(--cf-ease), background var(--cf-dur) var(--cf-ease); }
 .cefalot-check__box:checked { background: var(--cf-ink); border-color: var(--cf-ink); }
 .cefalot-check__box:checked::after { content: ""; position: absolute; left: 8px; top: 4px; width: 6px; height: 11px; border: solid #FFFFFF; border-width: 0 2px 2px 0; transform: rotate(45deg); }
@@ -128,9 +128,9 @@
 .cefalot-btn svg { width: 18px; height: 12px; flex: 0 0 auto; }
 .cefalot-btn:focus-visible { outline: 2px solid var(--cf-focus); outline-offset: 2px; }
 .cefalot-btn:active { transform: translateY(1px); }
-.cefalot-btn--primary { background: var(--cf-cta); color: var(--cf-cta-ink); }
-.cefalot-btn--primary:hover { background: var(--cf-cta-hover); }
-.cefalot-btn--primary:active { background: var(--cf-cta-active); }
+.cefalot-btn--primary { background: linear-gradient(135deg, var(--cf-cta) 0%, var(--cf-cta-hover) 100%); color: var(--cf-cta-ink); box-shadow: 0 8px 22px rgba(74, 68, 63, 0.32), 0 3px 8px rgba(0, 0, 0, 0.1); }
+.cefalot-btn--primary:hover { background: linear-gradient(135deg, var(--cf-cta-hover) 0%, var(--cf-cta-active) 100%); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(74, 68, 63, 0.38), 0 5px 14px rgba(0, 0, 0, 0.14); }
+.cefalot-btn--primary:active { background: var(--cf-cta-active); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74, 68, 63, 0.3); }
 .cefalot-btn--quiet { background: transparent; color: var(--cf-muted); border: 0; padding: 0 var(--cf-s2); min-height: var(--cf-tap); font-size: var(--cf-fs-label); }
 .cefalot-btn--quiet:hover { color: var(--cf-ink); }
 
@@ -142,8 +142,8 @@
 
 /* === Мобайл-специфика === */
 .cefalot-form-custom-template-content {
-  gap: var(--cf-s5);
-  padding: var(--cf-s5) var(--cf-s4) var(--cf-s6);
+  gap: var(--cf-s4);
+  padding: var(--cf-s4) var(--cf-s4) var(--cf-s5);
   border-radius: var(--cf-r-lg) var(--cf-r-lg) 0 0;
 }
 .cefalot-title { font-size: 24px; line-height: 1.15; }

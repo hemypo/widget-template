@@ -170,7 +170,8 @@
 
 /* Внутри карточки предложения — лёгкий тинт-тег без точки/тени */
 .cefalot-offer-card__body .cefalot-eyebrow {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   background: var(--cf-accent-tint);
   color: var(--cf-accent-active);
   font-weight: 600;
